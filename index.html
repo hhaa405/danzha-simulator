@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>蛋渣模擬器 3.0｜你會成為姐姐的小餅，還是蛋渣？</title>
-<meta name="description" content="《蛋渣模擬器》3.0：自由探索校園、排行程、回訊息、躲八卦，用十三歲小餅的視角經歷姐姐被渣、決定當渣男、運動會翻車的那一年。9款小遊戲＋7種結局＋全角色配音＋原創配樂。">
+<title>蛋渣模擬器 3.1｜你會成為姐姐的小餅，還是蛋渣？</title>
+<meta name="description" content="《蛋渣模擬器》3.1：自由探索校園、排行程、回訊息、躲八卦，用十三歲小餅的視角經歷姐姐被渣、決定當渣男、運動會翻車的那一年。9款小遊戲＋7種結局＋全角色配音＋原創配樂。">
 <meta name="theme-color" content="#ff8a65">
 <meta property="og:type" content="website">
-<meta property="og:title" content="蛋渣模擬器 3.0 🥚 你會成為姐姐的小餅，還是蛋渣？">
+<meta property="og:title" content="蛋渣模擬器 3.1 🥚 你會成為姐姐的小餅，還是蛋渣？">
 <meta property="og:description" content="2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的小餅決定——「我要當渣男！」逛校園、排行程、同時回三個人的訊息、躲過阿福的八卦電台……9款小遊戲＋7種結局。">
 <meta property="og:locale" content="zh_TW">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蛋渣模擬器 3.0 🥚">
+<meta name="twitter:title" content="蛋渣模擬器 3.1 🥚">
 <meta name="twitter:description" content="你會成為姐姐的小餅，還是蛋渣？">
-<meta name="dz-version" content="3.0">
+<meta name="dz-version" content="3.1">
 <meta property="og:image" content="https://hhaa405.github.io/danzha-simulator/assets/img/bg/key_title.webp">
 <link rel="preload" as="image" href="assets/img/bg/key_title.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%9A%3C/text%3E%3C/svg%3E">
@@ -361,6 +361,114 @@ img.ph.face{width:100%;height:100%;object-fit:cover;border-radius:50%;display:bl
 #mapbar{background:rgba(18,14,30,.85)!important;color:#eee;backdrop-filter:blur(6px)}
 #mapbar b{color:#ffb38a!important}
 #app{overflow:clip!important}
+/* ===== v3.1 shop & gift FX ===== */
+#shop{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(6,4,16,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);font-family:inherit}
+#shop.show{display:flex}
+#shop .sbox{width:min(1040px,calc(100% - 16px));height:min(720px,calc(100% - 16px));display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(28,20,48,.96),rgba(14,10,26,.97));border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.12);color:#f3eeff;overflow:hidden}
+#shop .shd{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
+#shop .shd b{font-size:18px}
+#shop .mon{background:linear-gradient(90deg,#fdcb6e,#e17055);color:#2d1b00;font-weight:900;border-radius:999px;padding:4px 12px}
+#shop .tabs{display:flex;gap:4px;margin-left:auto}
+#shop .tabs button,#shop .x{background:rgba(255,255,255,.08);color:#ddd;border:0;border-radius:10px;padding:6px 10px;font-weight:700;cursor:pointer}
+#shop .tabs button.on{background:#fd79a8;color:#fff}
+#shop .x{font-size:16px}
+#shop .srec{display:flex;align-items:center;gap:6px;padding:8px 14px;overflow-x:auto;white-space:nowrap;font-size:13px;color:#bbb}
+#shop .rc{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:0;color:#ddd;cursor:pointer;padding:2px}
+#shop .rc span,#shop .rc img{width:42px;height:42px}
+#shop .rc>img,#shop .rc>svg{width:42px;height:42px;border-radius:50%;border:2px solid transparent}
+#shop .rc.on>img,#shop .rc.on>svg{border-color:#fd79a8;box-shadow:0 0 0 3px rgba(253,121,168,.35)}
+#shop .rc i{font-style:normal;font-size:11px}
+#shop .no{color:#999;font-size:13px;white-space:normal}
+#shop .smain{flex:1;display:flex;min-height:0}
+#shop .sstage{position:relative;width:34%;min-width:150px;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 70%,rgba(253,121,168,.22),transparent 70%)}
+#shop .sp{max-height:100%;max-width:100%;object-fit:contain;object-position:bottom;-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent);transition:filter .2s}
+#shop .sp.hit{animation:sphit .35s}
+@keyframes sphit{0%{transform:scale(1)}40%{transform:scale(1.04) translateY(-1%)}100%{transform:scale(1)}}
+#shop .sbub{position:absolute;left:8%;right:8%;top:6%;background:#fff;color:#2d2240;border-radius:16px;padding:10px 12px;font-weight:700;font-size:14px;line-height:1.5;opacity:0;transform:translateY(-6px);transition:.25s;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+#shop .sbub.show{opacity:1;transform:none}
+#shop .slist{flex:1;overflow-y:auto;padding:8px 12px}
+#shop .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+#shop .gc{position:relative;background:rgba(255,255,255,.06);border-radius:14px;padding:8px 6px;text-align:center;cursor:pointer;border:2px solid transparent;transition:transform .12s}
+#shop .gc:hover{transform:translateY(-2px)}
+#shop .gc.on{border-color:#fd79a8;background:rgba(253,121,168,.14)}
+#shop .gc.t4{background:linear-gradient(160deg,rgba(253,121,168,.18),rgba(255,255,255,.05))}
+#shop .gc.t5{background:linear-gradient(160deg,rgba(253,203,110,.25),rgba(162,155,254,.15));box-shadow:inset 0 0 0 1px rgba(253,203,110,.5)}
+#shop .ge{font-size:34px;line-height:1.2}
+#shop .gn{font-weight:800;font-size:13px}
+#shop .gp{color:#fdcb6e;font-weight:900;font-size:13px}
+#shop .gt{font-size:10px}
+#shop .gi{position:absolute;left:4px;top:4px;font-size:10px;background:#00b894;color:#fff;border-radius:8px;padding:1px 5px}
+#shop .gh{position:absolute;right:4px;top:2px;font-size:16px}
+#shop .who{display:flex;flex-direction:column;gap:8px}
+#shop .wc{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.05);border-radius:12px;padding:8px}
+#shop .wf{width:52px;height:52px;flex:none}
+#shop .wc p{margin:2px 0 0;font-size:13px;color:#ccc;line-height:1.5}
+#shop .tip{font-size:12.5px;color:#aaa;line-height:1.6}
+#shop .sbar2{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;position:relative}
+#shop .sg{font-size:14px}
+#shop .sbtns{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+#shop .sbtns .btn{padding:8px 12px;font-size:14px}
+#shop .btn.hot{background:linear-gradient(90deg,#ff7675,#fd79a8);color:#fff}
+#shopHold,#shop #shHold{touch-action:none;user-select:none;-webkit-user-select:none}
+#shop .combo2{position:absolute;right:16px;top:-34px;font-size:26px;font-weight:900;font-style:italic;color:#ffeaa7;text-shadow:0 0 12px #fd79a8,0 2px 0 #c0392b;pointer-events:none}
+#shop .combo2.pop{animation:cpop .3s}
+@keyframes cpop{0%{transform:scale(1.6)}100%{transform:scale(1)}}
+.btn.pink{background:linear-gradient(90deg,#fd79a8,#e84393)!important;color:#fff!important}
+#gfx{position:fixed;inset:0;width:100%;height:100%;z-index:90;pointer-events:none}
+#gbanners{position:fixed;left:10px;top:118px;z-index:92;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.gbn{display:flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:999px;color:#fff;font-size:14px;background:linear-gradient(90deg,rgba(116,185,255,.95),rgba(116,185,255,0));animation:bin .35s cubic-bezier(.3,1.4,.6,1);max-width:92vw;white-space:nowrap}
+.gbn.t3{background:linear-gradient(90deg,rgba(162,155,254,.97),rgba(162,155,254,0))}
+.gbn.t4{background:linear-gradient(90deg,rgba(232,67,147,.97),rgba(253,121,168,0))}
+.gbn.t5{background:linear-gradient(90deg,rgba(225,112,85,.98),rgba(253,203,110,.85) 60%,rgba(253,203,110,0));font-size:16px}
+.gbn .bf{width:30px;height:30px;flex:none}
+.gbn em{font-style:italic;font-weight:900;font-size:1.35em;color:#ffeaa7;text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.gbn .bi{font-size:24px}
+.gbn.bump em{display:inline-block;animation:cpop .25s}
+.gbn.out{opacity:0;transform:translateX(-30px);transition:.45s}
+@keyframes bin{from{transform:translateX(-110%)}to{transform:none}}
+.gflash{position:fixed;inset:0;z-index:91;background:rgba(255,255,255,.85);pointer-events:none;animation:gfl .6s forwards}
+@keyframes gfl{from{opacity:1}to{opacity:0}}
+.ggold{position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(circle at 50% 55%,rgba(255,215,110,.55),rgba(255,180,60,.15) 45%,transparent 70%);animation:ggo 1.5s forwards;mix-blend-mode:screen}
+@keyframes ggo{0%{opacity:0;transform:scale(.6)}25%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
+.gbig{position:fixed;left:50%;top:48%;z-index:91;font-size:min(42vw,300px);pointer-events:none;transform:translate(-50%,-50%) scale(.2);animation:gbig 1.6s cubic-bezier(.2,1.3,.4,1) forwards;filter:drop-shadow(0 0 30px rgba(255,220,150,.8))}
+@keyframes gbig{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}25%{transform:translate(-50%,-50%) scale(1.05);opacity:1}75%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-60%) scale(1.2);opacity:0}}
+#bShop #mny{font-weight:900;color:#ffeaa7}
+@media (max-width:760px){#shop .sbox{height:calc(100% - 10px);width:calc(100% - 10px)}#shop .smain{flex-direction:column}#shop .sstage{width:100%;height:30%;min-height:150px}#shop .ggrid{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}#shop .ge{font-size:28px}#shop .sbtns .btn{padding:7px 9px;font-size:13px}}
+.coin{position:fixed;z-index:95;font-size:24px;pointer-events:none;transform:translate(0,0);filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+.cfloat{position:fixed;z-index:95;pointer-events:none;transform:translate(-50%,-50%);font-weight:900;font-size:28px;color:#ffeaa7;text-shadow:0 2px 0 #b8860b,0 0 14px rgba(255,200,80,.9);animation:cfl 1.2s ease-out forwards}
+@keyframes cfl{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:0;transform:translate(-50%,-140%) scale(1)}}
+#bShop.pulse{animation:wpulse .5s}
+@keyframes wpulse{0%{transform:scale(1)}40%{transform:scale(1.25);box-shadow:0 0 18px rgba(255,214,90,.9)}100%{transform:scale(1)}}
+.btn.gold{background:linear-gradient(90deg,#fdcb6e,#e1a33b)!important;color:#3b2500!important}
+#shop .tasks h4{margin:10px 0 6px;font-size:14px;color:#ffeaa7}
+#shop .tk{display:grid;grid-template-columns:1fr 90px auto;gap:8px;align-items:center;background:rgba(255,255,255,.05);border-radius:10px;padding:7px 10px;margin-bottom:5px;font-size:13.5px}
+#shop .tk.ok{background:rgba(0,184,148,.18)}
+#shop .tk .pb{height:6px;background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden}#shop .tk .pb i{display:block;height:100%;background:#00b894}
+#shop .tk b{color:#fdcb6e}
+#shop .achs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+#shop .ac{background:rgba(255,255,255,.05);border-radius:10px;padding:6px 8px;display:flex;flex-direction:column;font-size:12.5px;opacity:.6}
+#shop .ac.ok{opacity:1;background:rgba(253,203,110,.16)}#shop .ac small{color:#bbb}#shop .ac em{color:#fdcb6e;font-style:normal;font-weight:800}
+#job{position:fixed;inset:0;z-index:62;display:none;align-items:center;justify-content:center;background:rgba(6,4,16,.6);backdrop-filter:blur(4px)}
+#job.show{display:flex}
+#job .jbox{width:min(720px,calc(100% - 16px));min-height:min(480px,calc(100% - 16px));background:linear-gradient(180deg,#fffaf2,#fff1dd);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.6);padding:14px;display:flex;flex-direction:column;color:#3d2a45}
+#job .jh{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}#job .jh span{font-size:12.5px;color:#8a6d55}
+#job .ja{flex:1;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+#job .jres{font-size:30px;font-weight:900;text-align:center}
+#job .jq,#job .je,#job .js,#job .jc{width:100%;display:flex;flex-direction:column;gap:12px;align-items:center}
+#job .jw{font-weight:800;text-align:center}#job .jw small{display:block;color:#999;font-weight:600}
+#job .jx{font-size:clamp(34px,8vw,56px);font-weight:900;letter-spacing:.04em}
+#job .jt{width:80%;height:8px;background:#eee;border-radius:5px;overflow:hidden}#job .jt i{display:block;height:100%;width:100%;background:#e17055}
+#job .jo{display:flex;gap:10px}#job .jo .btn{font-size:24px;min-width:90px}
+#job .btn.right{background:#00b894!important;color:#fff}#job .btn.wrong{background:#d63031!important;color:#fff}
+#job .jsh{display:flex;justify-content:space-between;width:100%;font-weight:800}
+#job .jitem{font-size:96px;height:120px;line-height:120px}#job .jitem.in{animation:cpop .25s}
+#job .jbins{display:flex;gap:10px;width:100%}#job .jbins .btn{flex:1;font-size:18px;padding:16px 4px}#job .jbins small{display:block;font-size:11px;opacity:.6}
+#job .jbar{position:relative;width:90%;height:34px;background:#dfe6e9;border-radius:18px;overflow:hidden}
+#job .jz{position:absolute;top:0;bottom:0;width:18%;background:rgba(0,184,148,.45)}#job .jzp{position:absolute;top:0;bottom:0;width:5%;background:#00b894}
+#job .jcur{position:absolute;top:-4px;bottom:-4px;width:6px;margin-left:-3px;background:#d63031;border-radius:3px;box-shadow:0 0 8px rgba(214,48,49,.7)}
+#job .jmsg{height:24px;font-weight:800}
+#job .jsink{position:relative;width:100%;height:min(320px,48vh);background:linear-gradient(#cfe7f3,#a9cfe2);border-radius:16px;overflow:hidden}
+#job .dish{position:absolute;font-size:54px;background:none;border:0;cursor:pointer;transition:filter .1s,transform .1s}#job .dish:active{transform:scale(.9)}
 
 </style>
 </head>
@@ -399,9 +507,9 @@ img.ph.face{width:100%;height:100%;object-fit:cover;border-radius:50%;display:bl
  <div class="ov show" id="title">
   <svg class="tsvg" id="tsvg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice"></svg>
   <div class="inner">
-  <h1>蛋渣<span class="egg">🥚</span>模擬器<span class="v">3.0</span></h1>
+  <h1>蛋渣<span class="egg">🥚</span>模擬器<span class="v">3.1</span></h1>
   <div class="sub">「你不是我的小餅，你是蛋渣。」</div>
-  <div class="intro">2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的我決定——<b>「我要當渣男！」</b><br>🗺️ 自由逛校園・📅 排行程・📱 同時回三個人的訊息・👀 躲過阿福的八卦電台<br>🎮 9 款小遊戲 ｜ 🏁 7 種結局 ｜ 🎙️ 全角色配音・🎵 原創配樂</div>
+  <div class="intro">2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的我決定——<b>「我要當渣男！」</b><br>🗺️ 自由逛校園・📅 排行程・📱 同時回三個人的訊息・👀 躲過阿福的八卦電台<br>🎮 9 款小遊戲 ｜ 🏁 7 種結局 ｜ 🎙️ 全角色配音・🎵 原創配樂・🎁 禮物商店</div>
   <div class="menu">
    <button class="btn big" id="tStart">🥚 開始遊戲</button>
    <button class="btn" id="tCont">📖 續閱</button>
@@ -1219,7 +1327,7 @@ const later=(f,t)=>miniTimers.push(setTimeout(f,t));
 const onKey=f=>{miniKeys.push(f);addEventListener('keydown',f)}, onKeyUp=f=>{miniUp.push(f);addEventListener('keyup',f)};
 const FORCE_DEF={pat:true,catch:true,hide:true,chase:true,stack:7,pudding:true,chat:{ok:6,wrong:0,missed:0},stealth:true,dog:0,juggle:true,sprint:{rank:1,time:11.02},start:{react:.21}};
 function startMini(name,opts){if(miniOn)return;skip=false;$('#bSkip').classList.remove('on');TTS.stop();
- let fdone=false;const fin=r=>{if(fdone)return;fdone=true;miniCleanup();ST.f['m_'+name]=r;$('#mini').classList.remove('show');ST.i++;run()};
+ let fdone=false;const fin=r=>{if(fdone)return;fdone=true;miniCleanup();ST.f['m_'+name]=r;try{window.onMiniDone&&onMiniDone(name,r)}catch(_e){}$('#mini').classList.remove('show');ST.i++;run()};
  const F=window.DZ_FORCE;if(TEST||(F&&name in F)){fin(F&&name in F?F[name]:FORCE_DEF[name]);return}
  $('#mini').classList.add('show');miniOn=true;MINI[name](fin,opts)}
 function intro(c,ic,ttl,desc,cb){const d=document.createElement('div');d.className='mstart';d.innerHTML=`<div class="ic">${ic}</div><h3>${ttl}</h3><p>${desc}</p><button class="btn mbig">開始！</button>`;c.appendChild(d);
@@ -1626,6 +1734,256 @@ mapSVG=function(){const ks=Object.keys(LOCS).filter(l=>l!=='home');const E=[['cl
  return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">${E.map(([a,b])=>`<line x1="${LOCS[a].x}" y1="${LOCS[a].y}" x2="${LOCS[b].x}" y2="${LOCS[b].y}" stroke="rgba(255,236,190,.55)" stroke-width=".45" stroke-dasharray="1.2 1" vector-effect="non-scaling-stroke" style="stroke-width:3px"/>`).join('')}</svg>`};
 const _renderMap=renderMap;renderMap=function(t,i){_renderMap(t,i);$$('#nodes .node').forEach(n=>{const L=LOCS[n.dataset.l];const b=L&&BGF[L.bg];const pin=n.querySelector('.pin');if(b&&pin&&!pin.querySelector('.ph2')){pin.insertAdjacentHTML('afterbegin',`<span class="ph2" style="background-image:url(${ASSET}img/bg/${b}.webp)"></span>`)}})};
 window.DZ3={VO,MUS,vkey,fnv,musWant,PORT,portExpr,CFG};
+/* ================= v3.1: 零用錢 + 禮物商店 + 刷禮物特效 ================= */
+'055e767f 0a84df2c 0d8bf28a 10708085 13b3bd60 149b889c 1536ec26 1631b23a 165a8efb 1a9b5841 1f55e869 227ac81c 22e0e27c 298f895e 2b11d2f8 2c43e73b 2ef01243 330d6f5f 38bdb5b6 3dba86f5 3ecde320 412d8f77 413d8b3d 42be04c2 47f39b23 4dede860 50691855 58085dbb 58cac898 5c028122 610cb251 6494cfce 6c998d45 6dc92a55 7800904a 781c074b 78ba777f 7a29271d 7d529af9 8d528e2c 9394aeea a38648be a60cb6fa ab59f1fa af5791ff b260e99d b47c9b6e b825fa14 c1fc1ba0 c4b4c8cc c991d51d cef0b7df d02f797b d0deb978 d1804b8f ddc734e3 e0ccaf1d e7180372 f85aca91 fab64fa8 '.trim().split(' ').forEach(k=>VKEYS.add(k));
+const GREACT={"sis":{"love":["小餅……你怎麼知道我最喜歡這個。","嗚……姐姐要哭了啦，謝謝你。"],"like":["哇，送我的？謝謝小餅～","嘿嘿，今天是什麼好日子？"],"ok":["謝謝……不過你零用錢要省著用喔。","收到了，姐姐會好好收著。"],"dislike":["……送姐姐這個怪怪的吧？","小餅，你是不是拿錯了？"],"big":["等、等一下！你哪來這麼多錢？！","太誇張了啦！整條街都在看了！"]},"desk":{"love":["這個……我會一直留著。","你、你怎麼知道我喜歡這個……"],"like":["謝謝……蛋餅。","我很喜歡。真的。"],"ok":["……謝謝。","你不用買東西給我啦。"],"dislike":["這個……好像不太適合我。","你是不是也送別人一樣的？"],"big":["太、太多了啦！大家都在看！","蛋餅你瘋了嗎……"]},"ai":{"love":["哇啊！這個超讚的！我要天天帶著！","蛋餅你最懂我了！"],"like":["謝啦！晚點一起去跑步！","嘿嘿，算你有眼光！"],"ok":["喔？給我的？謝謝啦。","下次直接請我喝飲料就好！"],"dislike":["呃……這個好少女喔。","你把我當誰啊？"],"big":["蛤？！這也太多了吧！","全校都在看啦！你很煩欸！"]},"mei":{"love":["……哼，勉強收下。我很喜歡，不准說出去。","討厭鬼……你怎麼知道的。"],"like":["……還不錯。謝了。","算你有點品味。"],"ok":["……我又沒跟你要。","放著吧，我等一下再看。"],"dislike":["這種東西，你是不是隨便買的？","討厭鬼，我不需要這個。"],"big":["你、你是笨蛋嗎？！這麼多！","別人會誤會的啦！……雖然我也沒差。"]},"qing":{"love":["啊啊啊！蛋餅！我要告訴全世界！","這是我收過最棒的禮物！！"],"like":["哇～謝謝蛋餅！","嘿嘿，我好開心喔！"],"ok":["謝謝～雖然我比較想要你陪我。","收到！我會好好珍惜！"],"dislike":["欸……這個我不太喜歡耶。","蛋餅你是不是記錯人了……"],"big":["天啊天啊天啊！！好多！！","蛋餅你是王子嗎！！"]},"fat":{"love":["雞腿！你是我的神！嘴巴拉鍊拉起來～","好吃！今天什麼八卦都沒有！"],"like":["喔～賄賂我？我收下了。","嘿嘿，我會考慮少講一點。"],"ok":["送我這個幹嘛？……我會寫進筆記本喔。","有料了有料了！"],"dislike":["送男生這個？明天全年級都知道了！","哇喔，蛋餅好有愛喔～"],"big":["這、這是什麼排場？！我要發號外！","全校廣播等級的八卦啊！"]}};
+const GREX={"sis": {"love": "happy", "like": "happy", "ok": "n", "dislike": "shy", "big": "shock"}, "desk": {"love": "shy", "like": "happy", "ok": "n", "dislike": "angry", "big": "shock"}, "ai": {"love": "happy", "like": "happy", "ok": "n", "dislike": "angry", "big": "shock"}, "mei": {"love": "shy", "like": "happy", "ok": "n", "dislike": "angry", "big": "shock"}, "qing": {"love": "happy", "like": "happy", "ok": "n", "dislike": "cry", "big": "shock"}, "fat": {"love": "happy", "like": "happy", "ok": "n", "dislike": "shock", "big": "shock"}};
+const GIFTS=[
+ {id:'pudding',n:'布丁',e:'🍮',p:25,t:1},{id:'card',n:'手寫小卡片',e:'💌',p:30,t:1},{id:'cocoa',n:'熱可可',e:'☕',p:45,t:1},{id:'candy',n:'糖果罐',e:'🍬',p:50,t:1},{id:'chicken',n:'雞腿便當',e:'🍗',p:80,t:1},
+ {id:'boba',n:'珍奶',e:'🧋',p:65,t:2},{id:'clip',n:'髮夾',e:'🎀',p:120,t:2},{id:'starjar',n:'星星折紙瓶',e:'⭐',p:150,t:2},
+ {id:'scarf',n:'絲巾',e:'🧣',p:360,t:3},{id:'bracelet',n:'手鍊',e:'📿',p:420,t:3},{id:'plush',n:'玩偶',e:'🐰',p:520,t:3},{id:'cake',n:'生日蛋糕',e:'🎂',p:580,t:3},
+ {id:'roses',n:'玫瑰花束',e:'🌹',p:999,t:4},{id:'bear',n:'限定大熊',e:'🧸',p:1314,t:4},
+ {id:'fireworks',n:'煙火秀',e:'🎆',p:2888,t:5},{id:'meteor',n:'流星雨',e:'🌠',p:5200,t:5}];
+const GID={};GIFTS.forEach(g=>GID[g.id]=g);
+const TIERN=['','小心意','用心','貴重','豪華','傳說'],TIERC=['','#8fd3a8','#74b9ff','#a29bfe','#fd79a8','#fdcb6e'];
+const GPREF={
+ sis:{love:['cake','card','cocoa'],like:['pudding','starjar','scarf','plush'],dislike:['roses','chicken'],hint:'姐姐最近很累。她喜歡甜甜的、暖暖的、看得出心意的東西。送她玫瑰……有點怪吧？'},
+ desk:{love:['starjar','card','plush'],like:['clip','pudding','candy'],dislike:['roses','chicken'],hint:'同桌喜歡手作、可愛、有心意的小東西。太高調的東西會嚇到她。'},
+ ai:{love:['boba','bracelet','chicken'],like:['pudding','candy','fireworks'],dislike:['clip','card'],hint:'小愛是運動系，喜歡飲料、好吃的、能戴著跑步的東西；太少女的她會嫌棄。'},
+ mei:{love:['scarf','card','starjar'],like:['cocoa','bear','meteor'],dislike:['candy','chicken'],hint:'小美嘴硬心軟，其實喜歡有質感、安靜又浪漫的東西；討厭幼稚的零食。'},
+ qing:{love:['candy','plush','bear'],like:['boba','clip','roses','fireworks','meteor'],dislike:['cocoa'],hint:'小晴什麼都喜歡！最愛甜食和毛茸茸的，越誇張越開心。'},
+ fat:{love:['chicken'],like:['pudding','boba','candy'],dislike:[],hint:'阿福只認雞腿。送別的東西……他會寫進八卦筆記本。'}};
+const GSTAT={sis:'sis',desk:'desk',ai:'ai',mei:'mei',qing:'qing'};
+const GVAL=[0,2,3,5,8,14],GMULT={love:2.2,like:1.4,ok:.8,dislike:-.6};
+function prefOf(c,id){const P=GPREF[c];if(!P)return 'ok';if(P.love.includes(id))return 'love';if(P.like.includes(id))return 'like';if(P.dislike.includes(id))return 'dislike';return c==='fat'?'dislike':'ok'}
+/* ---------- money state ---------- */
+function gM(){if(!ST)return null;if(typeof ST.money!=='number')ST.money=200;ST.inv=ST.inv||{};ST.gday=ST.gday||{d:0};ST.gacc=ST.gacc||{};if(ST.gday.d!==ST.day)ST.gday={d:ST.day,n:{},gain:{},girls:[],fatx:0};return ST}
+function addMoney(v,why,quiet){if(!gM())return;ST.money=Math.max(0,Math.round(ST.money+v));moneyHud();if(why&&!quiet)toast(`💰 ${why} ${v>=0?'+':'−'}NT$${Math.abs(v)}`,v>=0?'up':'down',2400);if(SHOP.open)shopRender()}
+const _fresh31=fresh;fresh=function(){const s=_fresh31();s.money=200;s.inv={};s.gday={d:0};s.gacc={};s.giftN=0;return s};
+const _newGame31=newGame;newGame=function(){_newGame31();gM();const pm=LS.get('pendMoney',0)||0;if(pm){ST.money+=pm;LS.set('pendMoney',0);setTimeout(()=>toast(`🎁 兌換的零用錢 +NT$${pm} 已入帳！`,'up',2600),600)}moneyHud()};
+const _restore31=restore;restore=function(d){_restore31(d);gM();moneyHud()};
+/* earning: daily allowance, help, random finds, minigames */
+const _roamNext31=roamNext;roamNext=function(){const b=ST&&ST.dayStarted;_roamNext31();if(ST&&!b&&ST.dayStarted&&ST.allowDay!==ST.day){ST.allowDay=ST.day;gM();let v=100,w='爸媽給的零用錢';if(ST.st.sis>=55){v+=50;w='爸媽的零用錢＋姐姐偷偷塞的'}addMoney(v,w)}};
+const _doAct31=doAct;doAct=function(a,c){const had=ST.energy;_doAct31(a,c);if(a==='help'&&ST.energy<had)setTimeout(()=>addMoney(15,CH[c].n+'硬塞的謝禮'),T(600));if(a==='study'&&ST.energy<had&&Math.random()<.3)addMoney(20,'考卷滿分，爸爸的獎金')};
+const _showLoc31=showLoc;showLoc=function(l){_showLoc31(l);if(!TEST&&gM()&&Math.random()<.1){const v=pickr([10,10,20,20,50]);setTimeout(()=>addMoney(v,pickr(['在樓梯撿到零錢','口袋裡翻到上週的零錢','福利社阿姨找錯錢還你多的'])),1200)}};
+function miniReward(name,r){if(!gM())return;let v=15;
+ if(r===true)v=60;else if(typeof r==='number')v=Math.min(200,10*r+10);
+ else if(r&&typeof r==='object'){if('rank' in r)v=r.rank===1?200:r.rank===2?120:60;else if('ok' in r)v=Math.max(15,r.ok*15-(r.wrong||0)*5);else if('react' in r)v=r.react<.3?80:30}
+ setTimeout(()=>addMoney(v,'小遊戲獎勵'),TEST?0:500)}
+window.onMiniDone=miniReward;
+/* redeem: money=N */
+GRANTS.money={check:v=>/^\+?\d{1,5}$/.test(v)&&+v>0?null:'零用錢數字格式錯誤',
+ apply(k,v){v=parseInt(v,10);if(inGame()){gM();addMoney(v,'兌換碼',true);return `零用錢 +NT$${v}`}LS.set('pendMoney',(LS.get('pendMoney',0)||0)+v);return `零用錢 +NT$${v}（下次開始遊戲時入帳）`}};
+/* ---------- HUD money button ---------- */
+(function(){const ref=$('#bCode');const b=document.createElement('button');b.id='bShop';b.className=ref?ref.className:'tb';b.title='禮物商店';b.innerHTML='🛍️ <span id="mny">NT$0</span>';b.onclick=e=>{e.stopPropagation();ac();openShop()};ref&&ref.parentNode.insertBefore(b,ref)})();
+function moneyHud(){const m=$('#mny');if(m)m.textContent='NT$'+(ST&&typeof ST.money==='number'?ST.money:0);const b=$('#bShop');if(b)b.style.display=inGame()?'':'none'}
+setInterval(moneyHud,1000);
+/* ---------- shop overlay ---------- */
+const SHOP={open:false,tab:'shop',to:null,gift:null,combo:0,last:0,sess:null,hold:null,wasAuto:null};
+const shopEl=document.createElement('div');shopEl.id='shop';document.body.appendChild(shopEl);
+const gfxc=document.createElement('canvas');gfxc.id='gfx';document.body.appendChild(gfxc);
+const gbn=document.createElement('div');gbn.id='gbanners';document.body.appendChild(gbn);
+function recipients(){if(!ST)return [];const ok=c=>GPREF[c];
+ if($('#loc').classList.contains('show'))return whoAt(ST.at).filter(ok);
+ if(ST.mode==='roam'&&ST.at==='home')return ['sis'];
+ if(ST.show&&ok(ST.show.c))return [ST.show.c];return []}
+function openShop(to,tab){SHOP.bub='';SHOP.bex='';if(!inGame()||miniOn||$('#ending').classList.contains('show'))return;gM();SHOP.open=true;SHOP.tab=tab||'shop';const R=recipients();SHOP.to=to&&R.includes(to)?to:(SHOP.to&&R.includes(SHOP.to)?SHOP.to:R[0]||null);
+ if(SHOP.wasAuto===null){SHOP.wasAuto=CFG.auto;CFG.auto=false;clearTimeout(autoT)}sfx('choice');shopEl.classList.add('show');shopRender()}
+function closeShop(){finishSess();SHOP.open=false;shopEl.classList.remove('show');stopHold();if(SHOP.wasAuto!==null){CFG.auto=SHOP.wasAuto;SHOP.wasAuto=null}}
+const _advance31=advance;advance=function(){if(SHOP.open)return;_advance31()};
+function portraitFor(c,e){return (portExpr(c,e)||'')}
+function shopRender(){if(!SHOP.open||!ST)return;const R=recipients(),to=SHOP.to,inv=ST.inv;
+ const head=`<div class="shd"><b>🛍️ 禮物商店</b><span class="mon">💰 NT$${ST.money}</span><div class="tabs">${[['shop','商店'],['bag','背包 '+Object.values(inv).reduce((a,b)=>a+b,0)],['task','任務'+taskBadge()],['who','人物喜好']].map(([k,n])=>`<button data-tab="${k}" class="${SHOP.tab===k?'on':''}">${n}</button>`).join('')}</div><button class="x" id="shX">✕</button></div>`;
+ const rc=`<div class="srec">${R.length?'<span>送給：</span>'+R.map(c=>`<button class="rc ${c===to?'on':''}" data-to="${c}">${faceSVG(c,'n')}<i>${CH[c].n}</i></button>`).join(''):'<span class="no">這裡沒有可以送禮的人（可以先買起來放背包，在聊天場景或晚上回家時再送）</span>'}</div>`;
+ let body='';
+ if(SHOP.tab==='task'){body=taskHTML()}
+ else if(SHOP.tab==='who'){body='<div class="who">'+Object.keys(GPREF).map(c=>`<div class="wc"><div class="wf">${faceSVG(c,'n')}</div><div><b>${CH[c].n}</b><p>${GPREF[c].hint}</p></div></div>`).join('')+'<p class="tip">💡 送對禮物好感大增，送錯會扣分。同一天送同一個人越多，效果越差。在別的女生面前送禮會增加曝光值；到處送禮、刷太大……渣度也會上升喔。</p></div>'}
+ else{const list=SHOP.tab==='bag'?GIFTS.filter(g=>inv[g.id]):GIFTS;
+  body='<div class="ggrid">'+(list.length?list.map(g=>`<div class="gc t${g.t} ${SHOP.gift===g.id?'on':''}" data-g="${g.id}"><div class="ge">${g.e}</div><div class="gn">${g.n}</div><div class="gp">NT$${g.p}</div><div class="gt" style="color:${TIERC[g.t]}">${'★'.repeat(g.t)} ${TIERN[g.t]}</div>${inv[g.id]?`<div class="gi">背包 x${inv[g.id]}</div>`:''}${to?`<div class="gh">${({love:'💖',like:'😊',dislike:'😓',ok:''})[prefOf(to,g.id)]&&ST.seenPref&&ST.seenPref[to+g.id]?({love:'💖',like:'😊',dislike:'😓',ok:''})[prefOf(to,g.id)]:''}</div>`:''}</div>`).join(''):'<p class="no">背包是空的。</p>')+'</div>'}
+ const g=SHOP.gift&&GID[SHOP.gift];
+ const bar=g?`<div class="sbar2"><div class="sg">${g.e} <b>${g.n}</b> NT$${g.p}${inv[g.id]?`・背包 x${inv[g.id]}`:''}</div><div class="sbtns">
+  <button class="btn gray" data-buy="1">買 x1</button><button class="btn gray" data-buy="10">買 x10</button>
+  ${to?`<button class="btn" data-send="1">送 x1</button><button class="btn" data-send="10">x10</button><button class="btn hot" data-send="99">x99</button><button class="btn purple" id="shHold">按住連刷 🔥</button>`:''}</div><div class="combo2" id="shCombo">${SHOP.combo>1?SHOP.combo+' COMBO':''}</div></div>`:`<div class="sbar2"><div class="sg">👆 選一個禮物</div></div>`;
+ const stage=to?`<div class="sstage"><img class="sp" id="shSp" src="${portraitFor(to,SHOP.sess&&SHOP.sess.ex||SHOP.bex||'n')}" alt=""><div class="sbub ${SHOP.bub?'show':''}" id="shBub">${SHOP.bub||''}</div></div>`:'';
+ shopEl.innerHTML=`<div class="sbox">${head}${rc}<div class="smain">${stage}<div class="slist">${body}</div></div>${bar}</div>`;
+ shopEl.querySelector('#shX').onclick=closeShop;
+ shopEl.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{SHOP.tab=b.dataset.tab;sfx('click');shopRender()});
+ shopEl.querySelectorAll('[data-to]').forEach(b=>b.onclick=()=>{finishSess();SHOP.to=b.dataset.to;SHOP.bub='';SHOP.bex='';sfx('click');shopRender()});
+ shopEl.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{SHOP.gift=b.dataset.g;sfx('tap');shopRender()});
+ shopEl.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>buy(SHOP.gift,+b.dataset.buy));
+ shopEl.querySelectorAll('[data-send]').forEach(b=>b.onclick=()=>sendGift(SHOP.to,SHOP.gift,+b.dataset.send));
+ const hb=shopEl.querySelector('#shHold');if(hb){const st=e=>{e.preventDefault();startHold()};hb.addEventListener('pointerdown',st);['pointerup','pointerleave','pointercancel'].forEach(ev=>hb.addEventListener(ev,stopHold))}}
+function buy(id,q){const g=GID[id];if(!g||!gM())return 0;const n=Math.min(q,Math.floor(ST.money/g.p));if(n<=0){toast('💸 零用錢不夠……','down');sfx('bad');return 0}
+ ST.money-=n*g.p;ST.inv[id]=(ST.inv[id]||0)+n;sfx('coin');toast(`🛍️ 買了 ${g.n} x${n}（−NT$${n*g.p}）`,'up');moneyHud();shopRender();return n}
+function startHold(){stopHold();let k=0;const tick=()=>{if(!sendGift(SHOP.to,SHOP.gift,1)){stopHold();return}k++;SHOP.hold=setTimeout(tick,Math.max(55,170-k*12))};tick()}
+function stopHold(){clearTimeout(SHOP.hold);SHOP.hold=null}
+/* core gifting */
+function sendGift(c,id,q){const g=GID[id];if(!g||!c||!gM())return 0;
+ const have=ST.inv[id]||0,afford=Math.floor(ST.money/g.p),n=Math.min(q,have+afford);
+ if(n<=0){toast('💸 零用錢不夠，也沒有庫存了','down');sfx('bad');return 0}
+ const fromInv=Math.min(have,n),buyN=n-fromInv;ST.inv[id]=have-fromInv;if(!ST.inv[id])delete ST.inv[id];ST.money-=buyN*g.p;
+ const now=performance.now();if(!SHOP.sess||SHOP.sess.c!==c||now-SHOP.last>2600){finishSess();SHOP.sess={c,acc:{},units:0,maxT:0,gifts:{},ex:'n'};SHOP.combo=0}
+ SHOP.last=now;SHOP.combo+=n;const S=SHOP.sess;S.units+=n;S.maxT=Math.max(S.maxT,g.t);S.gifts[id]=(S.gifts[id]||0)+n;S.lastGift=id;
+ const pref=prefOf(c,id),D=ST.gday;ST.giftN=(ST.giftN||0)+n;
+ for(let u=0;u<n;u++){const cnt=D.n[c]=(D.n[c]||0)+1;
+  if(GSTAT[c]){let v=GVAL[g.t]*GMULT[pref]/(1+.12*(cnt-1));const cap=c==='sis'?15:20;const got=D.gain[c]||0;if(v>0)v=Math.max(0,Math.min(v,cap-got));else v=Math.max(v,-10-Math.min(0,got));D.gain[c]=got+v;S.acc[GSTAT[c]]=(S.acc[GSTAT[c]]||0)+v;
+   if(c==='sis'){D.gain.con=D.gain.con||0;if(D.gain.con<6){S.acc.con=(S.acc.con||0)+.4;D.gain.con+=.4}}
+   else{if(!D.girls.includes(c))D.girls.push(c);S.acc.zha=(S.acc.zha||0)+g.t*.22*(D.girls.length>=2?2:1)}}
+  else if(c==='fat'){let v=pref==='love'?-6:pref==='like'?-2:3;if(v<0)v=Math.max(v,-20-Math.min(0,D.fatx));else v=Math.min(v,25-Math.max(0,D.fatx));D.fatx+=v;S.acc.exp=(S.acc.exp||0)+v}}
+ if(!ST.seenPref)ST.seenPref={};ST.seenPref[c+id]=1;
+ S.ex=(g.t>=4||SHOP.combo>=30)?'shock':(GREX[c]||{})[pref]||'happy';
+ giftFX(g,n,SHOP.combo,c);
+ const sp=$('#shSp');if(sp){const u=portraitFor(c,S.ex);if(!sp.src.endsWith(u))sp.src=u;sp.classList.remove('hit');void sp.offsetWidth;sp.classList.add('hit')}
+ const cb=$('#shCombo');if(cb){cb.textContent=SHOP.combo>1?SHOP.combo+' COMBO':'';cb.classList.remove('pop');void cb.offsetWidth;cb.classList.add('pop')}
+ const mn=shopEl.querySelector('.mon');if(mn)mn.textContent='💰 NT$'+ST.money;moneyHud();
+ clearTimeout(SHOP.fin);SHOP.fin=setTimeout(()=>{finishSess();shopRender()},TEST?0:1500);
+ if(TEST)finishSess();return n}
+function finishSess(){const S=SHOP.sess;if(!S)return;SHOP.sess=null;clearTimeout(SHOP.fin);const c=S.c;const fx={};
+ for(const k in S.acc){const key='g_'+k;ST.gacc[key]=(ST.gacc[key]||0)+S.acc[k];const iv=ST.gacc[key]>0?Math.floor(ST.gacc[key]):Math.ceil(ST.gacc[key]);if(iv){fx[k]=(fx[k]||0)+iv;ST.gacc[key]-=iv}}
+ const atSchool=!(ST.mode==='roam'&&ST.at==='home')&&ST.bg!=='home'&&ST.bg!=='sisroom';
+ if(GSTAT[c]&&c!=='sis'&&$('#loc').classList.contains('show')){const ppl=whoAt(ST.at);
+  const wit=ppl.filter(o=>o!==c&&GIRLS.includes(o)&&ST.st[o]>=20);wit.forEach(o=>{fx[o]=(fx[o]||0)-5;fx.exp=(fx.exp||0)+8});
+  if(ppl.includes('fat'))fx.exp=(fx.exp||0)+6;if(ppl.includes('dir'))fx.exp=(fx.exp||0)+8;
+  if(wit.length)setTimeout(()=>toast(`👀 ${wit.map(o=>CH[o].n).join('、')}都看到了……`,'down',2600),300)}
+ if(S.maxT>=4&&atSchool&&c!=='sis')fx.exp=(fx.exp||0)+10;
+ if(Object.keys(fx).length)applyFx(fx);
+ const pref=prefOf(c,S.lastGift);const kind=(S.maxT>=4||S.units>=30)?'big':pref;const R=(GREACT[c]||{})[kind];
+ if(R){const line=pickr(R);SHOP.bub=line;const b=$('#shBub');if(b){b.textContent=line;b.classList.remove('show');void b.offsetWidth;b.classList.add('show')}
+  const ex=kind==='big'?'shock':(GREX[c]||{})[kind]||'n';SHOP.bex=ex;const sp=$('#shSp');if(sp)sp.src=portraitFor(c,ex);
+  if(ST.show&&ST.show.c===c)setShow(c,ex==='n'?'happy':ex);
+  if(!TEST)TTS.speak(line,c);else TTS.speak(line,c)}
+ autosave()}
+/* ---------- FX engine (capped particles, sprite cache) ---------- */
+const GF={x:gfxc.getContext('2d'),p:[],run:false,spr:{},max:matchMedia('(pointer:coarse)').matches?170:360,W:0,H:0,dpr:1,dark:0};
+function gfxSize(){GF.dpr=Math.min(1.5,devicePixelRatio||1);GF.W=innerWidth;GF.H=innerHeight;gfxc.width=GF.W*GF.dpr;gfxc.height=GF.H*GF.dpr}gfxSize();addEventListener('resize',gfxSize);
+function spr(e,s=64){const k=e+s;if(GF.spr[k])return GF.spr[k];const c=document.createElement('canvas');c.width=c.height=s;const x=c.getContext('2d');x.font=`${s*.82}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(e,s/2,s/2+s*.04);GF.spr[k]=c;return c}
+function gP(o){if(GF.p.length>=GF.max)return;GF.p.push(Object.assign({x:0,y:0,vx:0,vy:0,g:0,life:60,max:60,s:30,r:0,vr:0,k:'spr',a:1,drag:1},o));if(!GF.run){GF.run=true;requestAnimationFrame(gfLoop)}}
+function gfLoop(){const X=GF.x;X.setTransform(GF.dpr,0,0,GF.dpr,0,0);X.clearRect(0,0,GF.W,GF.H);
+ if(GF.dark>0){X.fillStyle=`rgba(5,4,20,${Math.min(.6,GF.dark/60*.6)})`;X.fillRect(0,0,GF.W,GF.H);GF.dark--}
+ const ps=GF.p;for(let i=ps.length-1;i>=0;i--){const p=ps[i];p.vx*=p.drag;p.vy=p.vy*p.drag+p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life--;
+  if(p.life<=0||p.y>GF.H+80||p.x<-120||p.x>GF.W+120){ps.splice(i,1);continue}const al=Math.min(1,p.life/(p.max*.35))*p.a;X.globalAlpha=al;
+  if(p.k==='spr'){X.save();X.translate(p.x,p.y);X.rotate(p.r);X.drawImage(spr(p.e),-p.s/2,-p.s/2,p.s,p.s);X.restore()}
+  else if(p.k==='rect'){X.save();X.translate(p.x,p.y);X.rotate(p.r);X.fillStyle=p.c;X.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);X.restore()}
+  else if(p.k==='dot'){X.globalCompositeOperation='lighter';X.fillStyle=p.c;X.beginPath();X.arc(p.x,p.y,p.s,0,6.283);X.fill();X.globalCompositeOperation='source-over'}
+  else if(p.k==='rocket'){X.fillStyle='#fff6c8';X.beginPath();X.arc(p.x,p.y,2.5,0,6.283);X.fill();if(p.life<=1||p.vy>=-1){boom(p.x,p.y,p.c);p.life=0}}
+  else if(p.k==='meteor'){X.globalCompositeOperation='lighter';const L=p.s;const gr=X.createLinearGradient(p.x,p.y,p.x-p.vx*L,p.y-p.vy*L);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.25,'rgba(170,210,255,.8)');gr.addColorStop(1,'rgba(120,160,255,0)');X.strokeStyle=gr;X.lineWidth=2.4;X.lineCap='round';X.beginPath();X.moveTo(p.x,p.y);X.lineTo(p.x-p.vx*L,p.y-p.vy*L);X.stroke();X.fillStyle='#fff';X.beginPath();X.arc(p.x,p.y,2.2,0,6.283);X.fill();X.globalCompositeOperation='source-over'}}
+ X.globalAlpha=1;if(ps.length||GF.dark>0)requestAnimationFrame(gfLoop);else{GF.run=false;X.clearRect(0,0,GF.W,GF.H)}}
+const CONF=['#ff7675','#fdcb6e','#55efc4','#74b9ff','#a29bfe','#fd79a8','#ffffff'];
+function popIcon(e,n){const W=GF.W,H=GF.H;for(let i=0;i<n;i++){const a=rnd(-2.5,-.65);const s=rnd(6,13);gP({e,x:W/2+rnd(-40,40),y:H*.62,vx:Math.cos(a)*s,vy:Math.sin(a)*s,g:.28,life:rnd(55,85),max:85,s:rnd(30,54),vr:rnd(-.08,.08)})}}
+function hearts(n){for(let i=0;i<n;i++)gP({e:pickr(['💖','💗','💕','❤️']),x:rnd(0,GF.W),y:GF.H+20,vx:rnd(-.6,.6),vy:rnd(-5,-2.5),life:rnd(110,170),max:170,s:rnd(22,44),vr:rnd(-.02,.02)})}
+function confetti(n){for(let i=0;i<n;i++)gP({k:'rect',c:pickr(CONF),x:rnd(0,GF.W),y:rnd(-60,-5),vx:rnd(-1.5,1.5),vy:rnd(2,5),g:.04,drag:.995,life:rnd(140,200),max:200,s:rnd(8,14),r:rnd(0,6),vr:rnd(-.2,.2)})}
+function gRain(e,n){for(let i=0;i<n;i++)gP({e,x:rnd(0,GF.W),y:rnd(-GF.H*.6,-20),vx:rnd(-.8,.8),vy:rnd(2.5,5),life:260,max:260,s:rnd(26,48),r:rnd(-.5,.5),vr:rnd(-.03,.03)})}
+function sparkle(n){for(let i=0;i<n;i++)gP({e:pickr(['✨','⭐','🌟']),x:rnd(0,GF.W),y:rnd(0,GF.H*.8),vy:rnd(-.6,.2),life:rnd(40,80),max:80,s:rnd(16,34),vr:rnd(-.05,.05)})}
+function boom(x,y,c){const cols=c||pickr([['#ff7675','#fab1a0'],['#74b9ff','#dfe6e9'],['#ffeaa7','#fdcb6e'],['#a29bfe','#fd79a8'],['#55efc4','#ffffff']]);const n=GF.max>200?70:40;
+ for(let i=0;i<n;i++){const a=i/n*6.283+rnd(-.05,.05),s=rnd(2.5,5.5);gP({k:'dot',c:pickr(cols),x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,g:.05,drag:.975,life:rnd(55,85),max:85,s:rnd(1.6,2.8)})}
+ if(!TEST)noise(.5,.22,0);tone(70,.4,'sine',.15)}
+function fireworks(k){for(let i=0;i<k;i++)setTimeout(()=>{gP({k:'rocket',x:rnd(GF.W*.12,GF.W*.88),y:GF.H+5,vx:rnd(-1,1),vy:rnd(-13,-9.5),g:.18,life:90,max:90,c:null});tone(900,.3,'sine',.03,0,-600)},i*260+rnd(0,140))}
+function meteors(n,dur){for(let i=0;i<n;i++)setTimeout(()=>{const s=rnd(9,15);gP({k:'meteor',x:rnd(GF.W*.2,GF.W*1.15),y:rnd(-80,GF.H*.25),vx:-s*.8,vy:s*.55,life:110,max:110,s:rnd(5,9)});if(i%4===0)tone(rnd(1500,2400),.25,'sine',.025)},rnd(0,dur))}
+function scrFlash(col){const f=document.createElement('div');f.className='gflash';if(col)f.style.background=col;document.body.appendChild(f);setTimeout(()=>f.remove(),700)}
+function goldShine(){const f=document.createElement('div');f.className='ggold';document.body.appendChild(f);setTimeout(()=>f.remove(),1600);sparkle(24)}
+function bigIcon(e){const d=document.createElement('div');d.className='gbig';d.textContent=e;document.body.appendChild(d);setTimeout(()=>d.remove(),1700)}
+function banner(g,n,combo,c){const nm=CH[c]?CH[c].n:'';let b=[...gbn.children].find(x=>x.dataset.k===g.id+c);
+ const txt=`<span class="bf">${faceSVG('me','happy')}</span><span class="bt"><b>小餅</b> 送給 ${nm} <b>${g.n}</b> <em>x${combo}</em>！</span><span class="bi">${g.e}</span>`;
+ if(b){b.innerHTML=txt;b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');clearTimeout(b._t)}else{b=document.createElement('div');b.className='gbn t'+g.t;b.dataset.k=g.id+c;b.innerHTML=txt;gbn.appendChild(b);while(gbn.children.length>3)gbn.firstChild.remove()}
+ b._t=setTimeout(()=>{b.classList.add('out');setTimeout(()=>b.remove(),500)},2600)}
+function giftFX(g,n,combo,c){const t=g.t,m=Math.min(1,Math.log10(n+1)/2);
+ tone(520+Math.min(combo,40)*22,.08,'triangle',.07);if(combo%10===0&&combo)sfx('perfect');
+ if(n>=10||t>=2||combo>=5)banner(g,n,combo,c);
+ popIcon(g.e,Math.round(5+Math.min(n,12)+t*2));
+ if(t===1){hearts(2+Math.round(8*m))}
+ if(t===2){hearts(5+Math.round(10*m));confetti(18+Math.round(40*m))}
+ if(t===3){hearts(18+Math.round(20*m));confetti(30+Math.round(50*m));goldShine();sfx('ding')}
+ if(t===4){scrFlash();goldShine();sfx('win');if(g.id==='roses'){gRain('🌹',45+Math.round(60*m));hearts(20);bigIcon('💐')}else{bigIcon('🧸');hearts(35+Math.round(30*m));confetti(60)}}
+ if(t===5){GF.dark=Math.max(GF.dark,240);if(!GF.run){GF.run=true;requestAnimationFrame(gfLoop)}scrFlash('rgba(255,250,220,.85)');sfx('win');
+  if(g.id==='fireworks'){fireworks(6+Math.round(8*m));setTimeout(()=>confetti(40),1800)}else{meteors(36+Math.round(40*m),2600);bigIcon('🌠');setTimeout(()=>sparkle(30),900)}}
+ if(n>=99||combo>=99){scrFlash('rgba(255,215,120,.7)');confetti(60)}}
+/* ---------- entry points: 福利社 + talk scenes ---------- */
+const _locBar31=locBar;locBar=function(sel){_locBar31(sel);const acts=$('#locbar .acts');if(!acts)return;
+ if(sel&&GPREF[sel]){const b=document.createElement('button');b.className='btn pink';b.innerHTML='🎁 送禮';b.onclick=()=>openShop(sel);acts.insertBefore(b,acts.lastElementChild)}
+ if(!sel&&ST.at==='shop'){const b=document.createElement('button');b.className='btn pink';b.innerHTML='🛍️ 逛禮物櫃';b.onclick=()=>openShop();acts.insertBefore(b,acts.firstElementChild&&acts.firstElementChild.nextSibling)}};
+const _eveMenu31=eveMenu;eveMenu=function(){_eveMenu31();const box=$('#choices');if(!box||TEST)return;const b=document.createElement('button');b.className='opt';b.innerHTML='🎁 送姐姐禮物<span class="eff">親情↑ 不花時間</span>';b.onclick=e=>{e.stopPropagation();openShop('sis')};box.appendChild(b)};
+window.DZ31={GIFTS,GPREF,openShop,closeShop,buy,send:sendGift,finish:finishSess,prefOf,get money(){return ST&&ST.money},set money(v){gM();ST.money=v;moneyHud()},fx:(id,n,c)=>giftFX(GID[id],n||1,n||1,c||'qing'),shop:SHOP,GF};
+/* ================= v3.1b: 打工賺錢 + 每日任務 + 成就 + 金幣動畫 ================= */
+/* ---------- coin fly animation ---------- */
+function flyCoins(v,x,y){if(v<=0)return;const w=$('#bShop');const r=w&&w.offsetParent!==null?w.getBoundingClientRect():{left:innerWidth-80,top:10,width:60,height:30};
+ x=x??innerWidth/2;y=y??innerHeight*.55;const tx=r.left+r.width/2,ty=r.top+r.height/2;const n=Math.min(14,3+Math.round(v/20));
+ const fl=document.createElement('div');fl.className='cfloat';fl.textContent='+NT$'+v;fl.style.left=x+'px';fl.style.top=y+'px';document.body.appendChild(fl);setTimeout(()=>fl.remove(),1300);
+ for(let i=0;i<n;i++){const c=document.createElement('div');c.className='coin';c.textContent='🪙';const sx=x+rnd(-60,60),sy=y+rnd(-40,40);c.style.left=sx+'px';c.style.top=sy+'px';document.body.appendChild(c);
+  setTimeout(()=>{c.style.transition=`transform ${TEST?0:.55+i*.03}s cubic-bezier(.5,-0.4,.7,1),opacity .2s ${.5+i*.03}s`;c.style.transform=`translate(${tx-sx}px,${ty-sy}px) scale(.55)`;c.style.opacity='0'},30+i*45);
+  setTimeout(()=>{c.remove();if(i%3===0)tone(1568+i*30,.05,'square',.035)},650+i*75)}
+ setTimeout(()=>{tone(1319,.06,'square',.05);tone(1760,.12,'square',.05,.06);if(w){w.classList.remove('pulse');void w.offsetWidth;w.classList.add('pulse')}},700+n*40)}
+const _addMoney0=addMoney;addMoney=function(v,why,quiet,x,y){const was=ST&&ST.money;_addMoney0(v,why,quiet);if(!ST)return;const got=ST.money-(was||0);if(got>0){ST.earned=(ST.earned||0)+got;if(!quiet||why)flyCoins(got,x,y);achCheck()}};
+/* ---------- daily tasks + achievements ---------- */
+const TPOOL=[{id:'work',n:'打工 2 次',g:2,pay:60},{id:'gift',n:'送出 3 份禮物',g:3,pay:40},{id:'act',n:'和同學互動 3 次',g:3,pay:35},{id:'mini',n:'完成 1 個小遊戲',g:1,pay:50},{id:'run',n:'去操場練跑 1 次',g:1,pay:30},{id:'perfect',n:'打工拿到「完美」評價',g:1,pay:60}];
+const ACH=[{id:'first',n:'第一桶金',d:'累積賺到 NT$500',pay:100,c:s=>(s.earned||0)>=500},{id:'rich',n:'小富翁',d:'累積賺到 NT$3000',pay:300,c:s=>(s.earned||0)>=3000},
+ {id:'worker',n:'打工狂人',d:'打工 10 次',pay:200,c:s=>(s.works||0)>=10},{id:'genius',n:'全對學霸',d:'教功課 5 題全對',pay:100,c:s=>s.f&&s.f.a_genius},
+ {id:'shelf',n:'貨架之神',d:'整理貨架 15 連擊',pay:100,c:s=>s.f&&s.f.a_shelf},{id:'spender',n:'散財童子',d:'在商店花掉 NT$3000',pay:300,c:s=>(s.spent||0)>=3000},
+ {id:'combo99',n:'百連刷',d:'刷禮物 99 COMBO',pay:300,c:s=>s.f&&s.f.a_c99},{id:'legend',n:'傳說級心意',d:'送出一份傳說禮物',pay:500,c:s=>s.f&&s.f.a_leg},{id:'filial',n:'好弟弟',d:'幫姐姐做家事 3 次',pay:150,c:s=>(s.chores||0)>=3}];
+function tasksToday(){if(!ST)return null;if(!ST.tasks||ST.tasks.d!==ST.day){const pool=TPOOL.slice();const L=[];const rnd0=(ST.day*7919+13)%97;for(let i=0;i<3;i++){const j=(rnd0+i*5)%pool.length;L.push(Object.assign({p:0,done:false},pool.splice(j,1)[0]))}ST.tasks={d:ST.day,list:L}}return ST.tasks}
+function taskTick(id,n=1){const T0=tasksToday();if(!T0)return;T0.list.forEach(t=>{if(t.id===id&&!t.done){t.p=Math.min(t.g,t.p+n);if(t.p>=t.g){t.done=true;setTimeout(()=>{sfx('good');addMoney(t.pay,'✅ 每日任務「'+t.n+'」')},400)}}});if(SHOP.open)shopRender()}
+function achCheck(){if(!ST)return;ST.ach=ST.ach||{};for(const a of ACH){if(!ST.ach[a.id]&&a.c(ST)){ST.ach[a.id]=1;const A=a;setTimeout(()=>{toast('🏆 成就解鎖：'+A.n,'up',3000);sfx('win');addMoney(A.pay,'🏆 '+A.n+' 獎金')},900)}}}
+function taskBadge(){const t=tasksToday();return t?` ${t.list.filter(x=>x.done).length}/${t.list.length}`:''}
+function taskHTML(){const t=tasksToday();const A=ST.ach||{};
+ return `<div class="tasks"><h4>📋 第 ${ST.day} 天・每日任務</h4>${t.list.map(x=>`<div class="tk ${x.done?'ok':''}"><span>${x.done?'✅':'⬜'} ${x.n}</span><span class="pb"><i style="width:${x.p/x.g*100}%"></i></span><b>+NT$${x.pay}</b></div>`).join('')}
+ <h4>🏆 成就</h4><div class="achs">${ACH.map(a=>`<div class="ac ${A[a.id]?'ok':''}"><b>${A[a.id]?'🏆':'🔒'} ${a.n}</b><small>${a.d}</small><em>+NT$${a.pay}</em></div>`).join('')}</div>
+ <h4>💼 打工（每天每種最多 2 次，第 2 次薪水 6 折；花 1⚡、佔一個時段）</h4><p class="tip">📚 教室：教同學功課（問答）　🏪 福利社：幫阿姨整理貨架（分類）　🚪 走廊／操場：幫阿福跑腿（抓時機）　🏠 晚上：幫姐姐洗碗（狂點）<br>累積賺了 NT$${ST.earned||0}・花了 NT$${ST.spent||0}</p></div>`}
+/* hooks for tasks */
+const _sendGift1=sendGift;sendGift=function(c,id,q){const m0=ST&&ST.money;const n=_sendGift1(c,id,q);if(n){ST.spent=(ST.spent||0)+Math.max(0,m0-ST.money);taskTick('gift',n);if(GID[id].t===5)ST.f.a_leg=1;if(SHOP.combo>=99)ST.f.a_c99=1;achCheck()}return n};
+const _buy1=buy;buy=function(id,q){const m0=ST.money;const n=_buy1(id,q);if(n){ST.spent=(ST.spent||0)+(m0-ST.money);achCheck()}return n};
+const _doAct1=doAct;doAct=function(a,c){const e0=ST.energy;_doAct1(a,c);if(ST.energy<e0){if(['chat','flirt','help','bribe'].includes(a))taskTick('act');if(a==='run')taskTick('run')}};
+window.onMiniDone=(n,r)=>{miniReward(n,r);taskTick('mini')};
+/* ---------- 打工 mini jobs ---------- */
+const JOBS={
+ tutor:{n:'教同學功課',ic:'📚',loc:['class'],base:'每題 NT$18，全對加 NT$40'},
+ shelf:{n:'幫福利社阿姨整理貨架',ic:'🏪',loc:['shop'],base:'放對一件 NT$6，每 5 連擊加 NT$10（上限 NT$220）'},
+ errand:{n:'幫阿福跑腿送東西',ic:'🏃',loc:['hall','field','stairs'],base:'完美 NT$20、不錯 NT$10，連續完美再加碼'},
+ chores:{n:'幫姐姐洗碗做家事',ic:'🧽',loc:['home'],base:'洗好一個盤子 NT$6（上限 NT$100），姐姐親情也會上升'}};
+function jobUses(k){gM();ST.gday.job=ST.gday.job||{};return ST.gday.job[k]||0}
+const jobEl=document.createElement('div');jobEl.id='job';document.body.appendChild(jobEl);
+let JOB=null;
+function openJob(k,after){const J=JOBS[k];const u=jobUses(k);if(u>=2){toast('今天這份工已經做夠了','down');return}
+ if(k!=='chores'){if(ST.energy<1)return;ST.energy-=1;renderRHud()}ST.gday.job[k]=u+1;const mult=u===0?1:.6;
+ const done=(pay,lines,perfect)=>{pay=Math.round(pay*mult);jobEl.classList.remove('show');JOB=null;ST.works=(ST.works||0)+1;taskTick('work');if(perfect)taskTick('perfect');
+  addMoney(pay,J.ic+' '+J.n+(mult<1?'（第 2 次・6 折）':''));if(k==='chores'){ST.chores=(ST.chores||0)+1;applyFx({sis:3,con:2})}achCheck();
+  setTimeout(()=>{after&&after()},TEST?0:1300)};
+ if(TEST||window.DZ_JOBAUTO){const R={tutor:[18*4,0,false],shelf:[6*12+20,0,false],errand:[20*3+10*2,0,false],chores:[6*8,0,false]}[k];done(R[0],null,false);return}
+ JOB={k};jobEl.classList.add('show');jobEl.innerHTML=`<div class="jbox"><div class="jh"><b>${J.ic} ${J.n}</b><span>${J.base}${mult<1?'（今天第 2 次・6 折）':''}</span></div><div class="ja" id="ja"></div></div>`;
+ const A=$('#ja');A.innerHTML=`<div class="mstart"><div class="ic">${J.ic}</div><h3>${J.n}</h3><p>${({tutor:'同學圍過來問功課！7 秒內選出正確答案，一共 5 題。',shelf:'東西亂成一團！把每樣東西放到正確的櫃子：飲料、零食、文具。20 秒，放錯扣時間。也可以按 1／2／3。',errand:'阿福要你幫忙送東西。游標跑到綠色區按「送！」，正中間是完美。一共 5 趟。',chores:'晚餐後的碗盤堆成山。每個盤子點 3 下洗乾淨，限時 10 秒！'})[k]}</p><button class="btn mbig">開工！</button></div>`;
+ A.querySelector('button').onclick=()=>{ac();sfx('choice');JOBRUN[k](A,done)}}
+const JOBRUN={
+ tutor(A,done){let q=0,ok=0,tm=null;const who=['小美','同桌','小晴','小愛','阿福'];
+  const next=()=>{if(q>=5){const all=ok===5;if(all)ST.f.a_genius=1;A.innerHTML=`<div class="jres">${all?'🎓 全對！':'答對 '+ok+' / 5'}</div>`;sfx(all?'win':'good');done(ok*18+(all?40:0),null,all);return}
+   const t=q%3;let a,b,c,ans,txt;if(t===0){a=6+Math.floor(Math.random()*9);b=3+Math.floor(Math.random()*7);ans=a*b;txt=`${a} × ${b} = ?`}else if(t===1){a=20+Math.floor(Math.random()*60);b=10+Math.floor(Math.random()*40);c=Math.floor(Math.random()*20);ans=a+b-c;txt=`${a} + ${b} − ${c} = ?`}else{b=2+Math.floor(Math.random()*8);ans=3+Math.floor(Math.random()*9);a=ans*b;txt=`${a} ÷ ${b} = ?`}
+   const opts=[ans,ans+pickr([1,2,10,-1]),ans-pickr([2,3,10,-10])].filter((v,i,s)=>s.indexOf(v)===i);while(opts.length<3)opts.push(ans+opts.length*7);opts.sort(()=>Math.random()-.5);
+   A.innerHTML=`<div class="jq"><div class="jw">${pickr(who)}：「這題怎麼算？」<small>第 ${q+1} / 5 題</small></div><div class="jx">${txt}</div><div class="jt"><i></i></div><div class="jo">${opts.map(o=>`<button class="btn" data-v="${o}">${o}</button>`).join('')}</div></div>`;
+   const bar=A.querySelector('.jt i');requestAnimationFrame(()=>{bar.style.transition='width 7s linear';bar.style.width='0'});
+   const pick=v=>{clearTimeout(tm);A.querySelectorAll('[data-v]').forEach(b=>{b.disabled=true;if(+b.dataset.v===ans)b.classList.add('right');else if(+b.dataset.v===v)b.classList.add('wrong')});if(v===ans){ok++;sfx('good');tone(1200,.08,'square',.05)}else{sfx('bad')}q++;setTimeout(next,650)};
+   A.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>pick(+b.dataset.v));tm=setTimeout(()=>pick(null),7000)};next()},
+ shelf(A,done){const C=[['🥤 飲料',['🥤','🧃','🥛','🧋','🍶']],['🍪 零食',['🍪','🍫','🍙','🍮','🍬','🍩']],['✏️ 文具',['✏️','📏','📒','✂️','🖍️','📎']]];
+  let t=20,ok=0,combo=0,best=0,bonus=0,cur=null,cat=0,end=false;
+  A.innerHTML=`<div class="js"><div class="jsh"><span id="jT">⏱ 20</span><span id="jC"></span><span id="jP">NT$0</span></div><div class="jitem" id="jI"></div><div class="jbins">${C.map((c,i)=>`<button class="btn" data-b="${i}">${c[0]}<small>${i+1}</small></button>`).join('')}</div></div>`;
+  const I=$('#jI');const nx=()=>{cat=Math.floor(Math.random()*3);cur=pickr(C[cat][1]);I.textContent=cur;I.classList.remove('in');void I.offsetWidth;I.classList.add('in')};
+  const pay=()=>Math.min(220,ok*6+bonus);const upd=()=>{$('#jC').textContent=combo>1?combo+' 連擊！':'';$('#jP').textContent='NT$'+pay()};
+  const put=i=>{if(end)return;if(i===cat){ok++;combo++;best=Math.max(best,combo);if(combo%5===0){bonus+=10;sfx('perfect');FX.burst(innerWidth/2,innerHeight/2,'confetti',16)}else tone(700+combo*30,.06,'triangle',.07)}else{combo=0;t-=1;sfx('bad');shake()}upd();nx()};
+  A.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>put(+b.dataset.b));const kd=e=>{if(/^Digit[1-3]$/.test(e.code))put(+e.code.slice(5)-1)};addEventListener('keydown',kd);
+  nx();upd();const iv=setInterval(()=>{t--;$('#jT').textContent='⏱ '+Math.max(0,t);if(t<=0){clearInterval(iv);end=true;removeEventListener('keydown',kd);if(best>=15)ST.f.a_shelf=1;A.innerHTML=`<div class="jres">放對 ${ok} 件・最高 ${best} 連擊</div>`;sfx('win');done(pay(),null,best>=15)}},1000)},
+ errand(A,done){let r=0,pf=0,gd=0,streak=0,bonus=0,pos=0,dir=1,sp=1.1,raf,lock=false;
+  A.innerHTML=`<div class="je"><div class="jw">阿福：「幫我把這包東西送去${pickr(['三班','福利社','學務處','操場'])}！」<small id="jR">第 1 / 5 趟</small></div><div class="jbar"><div class="jz"></div><div class="jzp"></div><div class="jcur" id="jK"></div></div><div class="jmsg" id="jM"></div><button class="btn mbig" id="jGo">📦 送！</button></div>`;
+  const K=$('#jK'),Mg=$('#jM');let zc=50;const setZ=()=>{zc=25+Math.random()*50;A.querySelector('.jz').style.left=(zc-9)+'%';A.querySelector('.jzp').style.left=(zc-2.5)+'%'};setZ();
+  const loop=()=>{pos+=dir*sp;if(pos>=100){pos=100;dir=-1}if(pos<=0){pos=0;dir=1}K.style.left=pos+'%';raf=requestAnimationFrame(loop)};raf=requestAnimationFrame(loop);
+  const hit=()=>{if(lock)return;lock=true;const d=Math.abs(pos-zc);let m;if(d<=2.5){pf++;streak++;if(streak>=2)bonus+=10;m='✨ 完美！'+(streak>=2?' 連續 '+streak+' 次 +NT$10':'');sfx('perfect')}else if(d<=9){gd++;streak=0;m='👍 不錯';sfx('good')}else{streak=0;m='💦 送錯地方了……';sfx('bad')}
+   Mg.textContent=m;r++;sp+=.35;if(r>=5){cancelAnimationFrame(raf);removeEventListener('keydown',kd);setTimeout(()=>{A.innerHTML=`<div class="jres">完美 ${pf}・不錯 ${gd}</div>`;sfx('win');done(pf*20+gd*10+bonus,null,pf>=4)},500);return}setTimeout(()=>{lock=false;setZ();$('#jR').textContent=`第 ${r+1} / 5 趟`},450)};
+  $('#jGo').onclick=hit;const kd=e=>{if(e.code==='Space'){e.preventDefault();hit()}};addEventListener('keydown',kd)},
+ chores(A,done){let t=10,clean=0,end=false;A.innerHTML=`<div class="jc"><div class="jsh"><span id="jT">⏱ 10</span><span>姐姐：「謝啦小餅～」</span><span id="jP">0 個</span></div><div class="jsink" id="jS"></div></div>`;
+  const S=$('#jS');const spawn=()=>{if(end)return;const d=document.createElement('button');d.className='dish';d.textContent='🍽️';d.dataset.h='3';d.style.left=rnd(5,80)+'%';d.style.top=rnd(5,70)+'%';
+   d.onclick=()=>{if(end)return;let h=+d.dataset.h-1;d.dataset.h=h;tone(500+(3-h)*200,.05,'triangle',.06);d.style.filter=`brightness(${1+(3-h)*.15})`;if(h<=0){clean++;$('#jP').textContent=clean+' 個';d.textContent='✨';d.disabled=true;setTimeout(()=>d.remove(),250);spawn()}};S.appendChild(d)};
+  for(let i=0;i<3;i++)spawn();const iv=setInterval(()=>{t--;$('#jT').textContent='⏱ '+Math.max(0,t);if(t<=0){clearInterval(iv);end=true;A.innerHTML=`<div class="jres">洗好 ${clean} 個盤子 ✨</div>`;sfx('win');done(Math.min(100,clean*6),null,clean>=12)}},1000)}};
+/* entry points */
+const _locBar2=locBar;locBar=function(sel){_locBar2(sel);if(sel||!ST)return;const acts=$('#locbar .acts');if(!acts)return;
+ for(const k in JOBS){const J=JOBS[k];if(k==='chores'||!J.loc.includes(ST.at))continue;const u=jobUses(k);const b=document.createElement('button');b.className='btn gold';b.dataset.job=k;b.disabled=u>=2||ST.energy<1;
+  b.innerHTML=`💼 ${J.n} <small>-1⚡ ${u>=2?'今天做完了':u===1?'6折':''}</small>`;b.onclick=()=>{$$('#locbar button').forEach(x=>x.disabled=true);openJob(k,()=>{$('#loc').classList.remove('show');finishSlot()})};acts.insertBefore(b,acts.children[1]||null)}};
+const _eveMenu2=eveMenu;eveMenu=function(){_eveMenu2();const box=$('#choices');if(!box||TEST)return;const u=jobUses('chores');const b=document.createElement('button');b.className='opt';b.disabled=u>=1;b.innerHTML=`🧽 幫姐姐洗碗（打工賺零用錢）<span class="eff">NT$↑ 親情↑</span>`;b.onclick=e=>{e.stopPropagation();box.classList.remove('show');openJob('chores',()=>endDay())};box.insertBefore(b,box.children[2]||null)};
+window.DZ31.job=openJob;window.DZ31.tasks=tasksToday;window.DZ31.tick=taskTick;window.DZ31.flyCoins=flyCoins;
 /* ================= test hooks ================= */
 window.DZ={get st(){return ST},P,advance,redeem,parseCode,newGame,restore,
  jump(b,i){hideOverlays();clearTimeout(autoT);lineTok++;ST=ST||fresh();ST.mode='vn';ST.b=b;ST.i=i||0;waiting=false;$('#title').classList.remove('show');run()},
