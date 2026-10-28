@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>蛋渣模擬器 2.0｜你會成為姐姐的小餅，還是蛋渣？</title>
-<meta name="description" content="《蛋渣模擬器》2.0：自由探索校園、排行程、回訊息、躲八卦，用十三歲小餅的視角經歷姐姐被渣、決定當渣男、運動會翻車的那一年。9款小遊戲＋7種結局＋旁白配音。">
+<title>蛋渣模擬器 3.0｜你會成為姐姐的小餅，還是蛋渣？</title>
+<meta name="description" content="《蛋渣模擬器》3.0：自由探索校園、排行程、回訊息、躲八卦，用十三歲小餅的視角經歷姐姐被渣、決定當渣男、運動會翻車的那一年。9款小遊戲＋7種結局＋全角色配音＋原創配樂。">
 <meta name="theme-color" content="#ff8a65">
 <meta property="og:type" content="website">
-<meta property="og:title" content="蛋渣模擬器 2.0 🥚 你會成為姐姐的小餅，還是蛋渣？">
+<meta property="og:title" content="蛋渣模擬器 3.0 🥚 你會成為姐姐的小餅，還是蛋渣？">
 <meta property="og:description" content="2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的小餅決定——「我要當渣男！」逛校園、排行程、同時回三個人的訊息、躲過阿福的八卦電台……9款小遊戲＋7種結局。">
 <meta property="og:locale" content="zh_TW">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蛋渣模擬器 2.0 🥚">
+<meta name="twitter:title" content="蛋渣模擬器 3.0 🥚">
 <meta name="twitter:description" content="你會成為姐姐的小餅，還是蛋渣？">
-<meta name="dz-version" content="2.0">
+<meta name="dz-version" content="3.0">
+<meta property="og:image" content="https://hhaa405.github.io/danzha-simulator/assets/img/bg/key_title.webp">
+<link rel="preload" as="image" href="assets/img/bg/key_title.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%9A%3C/text%3E%3C/svg%3E">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -299,12 +301,73 @@ body.idle #hud{opacity:.12;transform:translateY(-6px)}body.idle #hud:hover{opaci
 #ping.show{animation:slidein .45s cubic-bezier(.3,1.6,.5,1),pingwob .4s .45s 2}
 @keyframes pingwob{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
 @media (prefers-reduced-motion:reduce){#scene,body.anx2 #scene{animation:none}}
+/* ===== v3 realistic layer ===== */
+#sky{background-size:cover!important;background-position:center!important;transform-origin:50% 55%;animation:sway 22s ease-in-out infinite;transition:background 1s,filter .8s}
+@keyframes sway{0%,100%{transform:scale(1.07) translate(0,0) rotate(0)}25%{transform:scale(1.08) translate(-.6%,.3%) rotate(-.15deg)}50%{transform:scale(1.075) translate(.4%,-.35%) rotate(.12deg)}75%{transform:scale(1.08) translate(.5%,.25%) rotate(-.08deg)}}
+body.dof #sky{filter:blur(2.4px) brightness(.88)}
+body.dof.narr #sky{filter:blur(1px) brightness(.8)}
+#l1,#l2{display:none}
+#grain{position:absolute;inset:0;background-size:220px 220px;z-index:6;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain .5s steps(4) infinite}
+@keyframes grain{0%{background-position:0 0}25%{background-position:-60px 40px}50%{background-position:50px -70px}75%{background-position:-30px 80px}100%{background-position:70px 20px}}
+html,body{overflow:hidden;overscroll-behavior:none}
+#vign{background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.5))!important}
+#lbox{position:absolute;inset:0;pointer-events:none;z-index:7}
+#lbox:before,#lbox:after{content:"";position:absolute;left:0;right:0;height:3.2vh;background:#000;z-index:7;pointer-events:none}
+#lbox:before{top:0}#lbox:after{bottom:0}
+.cw img.ph,.lp img.ph,.g img.ph{display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.cw img.ph{height:100%;width:auto;max-width:46vw;object-fit:contain;object-position:bottom;filter:drop-shadow(0 10px 22px rgba(0,0,0,.45)) contrast(1.02);-webkit-mask-image:linear-gradient(#000 82%,transparent 99%);mask-image:linear-gradient(#000 82%,transparent 99%)}
+.cw{max-width:52vw}
+.cw.talk img.ph{animation:breath2 .9s ease-in-out 1}
+.cw.breath img.ph{animation:breath 4.2s ease-in-out infinite}
+.cw.angry img.ph{animation:shake .4s}
+.cw.dim img.ph{filter:brightness(.55) saturate(.6) blur(1px)}
+.cw.swap img.ph{animation:xfade .25s}
+@keyframes breath2{0%,100%{transform:translateY(0)}50%{transform:translateY(-.6%)}}
+@keyframes xfade{from{opacity:.6}to{opacity:1}}
+#chars{height:86%}
+.lp img.ph{width:100%;height:auto;max-height:70vh;object-fit:contain;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));-webkit-mask-image:linear-gradient(#000 80%,transparent 99%);mask-image:linear-gradient(#000 80%,transparent 99%)}
+.lp{width:min(24vw,300px)}
+@media (max-width:760px){.lp{width:33vw}}
+.g img.ph{height:100%;width:auto;border-radius:10px;object-fit:cover;object-position:top}
+/* title */
+#title{background:#0d0a1c url(assets/img/bg/key_title.webp) center/cover no-repeat!important}
+#title:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,30,.55),rgba(10,6,30,.15) 40%,rgba(10,6,30,.75));pointer-events:none}
+#title .tsvg{display:none}
+#title h1{text-shadow:0 4px 24px rgba(0,0,0,.7),0 2px 0 rgba(0,0,0,.5)!important;font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;letter-spacing:.12em}
+#title .intro{background:rgba(10,8,25,.55)!important;color:#f3ecff!important;backdrop-filter:blur(8px)}
+#title .v{background:#fff!important;color:#c0392b!important}
+/* dialogue box: cinematic */
+#box{background:linear-gradient(180deg,rgba(18,14,30,.82),rgba(10,8,20,.9))!important;box-shadow:0 12px 40px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.12)!important;backdrop-filter:blur(6px)}
+#box #text{color:#f4f1ff!important}
+#box #text.inner{color:#c8c2e8!important}
+#vopill{position:absolute;right:16px;top:8px;font-size:12px;color:#bbb;opacity:0;transition:opacity .3s}
+#vopill.on{opacity:.9}
+#vopill i{display:inline-block;width:3px;height:10px;margin:0 1px;background:#ffeaa7;animation:eq .5s ease-in-out infinite alternate}
+#vopill i:nth-child(2){animation-delay:.15s}#vopill i:nth-child(3){animation-delay:.3s}
+@keyframes eq{from{transform:scaleY(.3)}to{transform:scaleY(1)}}
+.vol{display:grid;grid-template-columns:5.5em 1fr 3em;gap:8px;align-items:center;margin:6px 0}
+.vol input{width:100%}
+#ctitle{background:rgba(0,0,0,.6)!important;backdrop-filter:blur(3px)}
+img.ph.face{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;-webkit-mask-image:none;mask-image:none;filter:none}
+#map{background:#111 url(assets/img/bg/field.webp) center/cover!important}
+#map:before{content:"";position:absolute;inset:0;backdrop-filter:blur(6px) brightness(.45) saturate(.8);-webkit-backdrop-filter:blur(6px) brightness(.45) saturate(.8);background:radial-gradient(ellipse at center,rgba(20,14,40,.2),rgba(8,6,18,.75))}
+.node .pin{display:flex;flex-direction:column;align-items:center;gap:4px;background:rgba(18,14,30,.72)!important;color:#fff;border:2px solid rgba(255,255,255,.35)!important;padding:5px!important;border-radius:14px!important;backdrop-filter:blur(4px);font-size:13px!important}
+.node .pin .ph2{display:block;width:clamp(84px,11vw,140px);aspect-ratio:16/10;border-radius:10px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+.node.plan .pin{border-color:#ffb38a!important;box-shadow:0 0 0 3px rgba(255,138,101,.45),0 8px 18px rgba(0,0,0,.4)!important}
+.node .ppl span{background:#222!important;border:2px solid rgba(255,255,255,.8)}
+#avatar{width:60px!important;height:60px!important}
+#avatar img.ph.face{border:3px solid #ffb38a;box-shadow:0 6px 14px rgba(0,0,0,.5)}
+#avatar.walk img{animation:hop .25s infinite}
+#mapbar{background:rgba(18,14,30,.85)!important;color:#eee;backdrop-filter:blur(6px)}
+#mapbar b{color:#ffb38a!important}
+#app{overflow:clip!important}
+
 </style>
 </head>
 <body>
 <div id="app">
  <div id="scene"><div class="lay" id="sky"></div><div class="lay" id="l1"></div><div class="lay" id="l2"></div></div>
- <div id="mood"></div><div id="vign"></div>
+ <div id="mood"></div><div id="grain"></div><div id="lbox"></div><div id="vign"></div>
  <div id="chars"></div>
  <canvas id="fx"></canvas><div id="flash"></div>
  <div id="tapl"></div>
@@ -336,9 +399,9 @@ body.idle #hud{opacity:.12;transform:translateY(-6px)}body.idle #hud:hover{opaci
  <div class="ov show" id="title">
   <svg class="tsvg" id="tsvg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice"></svg>
   <div class="inner">
-  <h1>蛋渣<span class="egg">🥚</span>模擬器<span class="v">2.0</span></h1>
+  <h1>蛋渣<span class="egg">🥚</span>模擬器<span class="v">3.0</span></h1>
   <div class="sub">「你不是我的小餅，你是蛋渣。」</div>
-  <div class="intro">2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的我決定——<b>「我要當渣男！」</b><br>🗺️ 自由逛校園・📅 排行程・📱 同時回三個人的訊息・👀 躲過阿福的八卦電台<br>🎮 9 款小遊戲 ｜ 🏁 7 種結局 ｜ 🎙️ 旁白配音</div>
+  <div class="intro">2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的我決定——<b>「我要當渣男！」</b><br>🗺️ 自由逛校園・📅 排行程・📱 同時回三個人的訊息・👀 躲過阿福的八卦電台<br>🎮 9 款小遊戲 ｜ 🏁 7 種結局 ｜ 🎙️ 全角色配音・🎵 原創配樂</div>
   <div class="menu">
    <button class="btn big" id="tStart">🥚 開始遊戲</button>
    <button class="btn" id="tCont">📖 續閱</button>
@@ -508,7 +571,7 @@ function charSVG(id,e='n',opt={}){
  return `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">${hb}${body}<rect x="86" y="160" width="28" height="36" fill="${SKIN}"/><ellipse cx="${100-rx}" cy="112" rx="9" ry="13" fill="${SKIN}"/><ellipse cx="${100+rx}" cy="112" rx="9" ry="13" fill="${SKIN}"/><ellipse cx="100" cy="106" rx="${rx}" ry="66" fill="${SKIN}"/>${blush}${eyes(e)}${mouth(e)}${gl}${hf}${P.acc||''}${sweat}${anger}</svg>`}
 function dogSVG(e){return `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"><ellipse cx="100" cy="250" rx="70" ry="44" fill="#2d3436"/><path d="M150 230 Q190 200 186 170" stroke="#2d3436" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="96" cy="160" r="56" fill="#2d3436"/><path d="M46 130 Q30 190 60 196 Q66 160 70 130Z M146 130 Q162 190 132 196 Q126 160 122 130Z" fill="#1e2224"/><ellipse cx="96" cy="182" rx="28" ry="20" fill="#636e72"/><ellipse cx="96" cy="172" rx="10" ry="7" fill="#111"/><circle cx="76" cy="150" r="7" fill="#fff"/><circle cx="116" cy="150" r="7" fill="#fff"/><circle cx="77" cy="151" r="4" fill="#111"/><circle cx="117" cy="151" r="4" fill="#111"/><path d="M90 194 Q96 210 102 194" fill="#ff7675"/><rect x="70" y="208" width="52" height="10" rx="5" fill="#d63031"/><circle cx="96" cy="222" r="7" fill="#fdcb6e"/></svg>`}
 function crowdSVG(){let s='';const C=['#74b9ff','#fd79a8','#55efc4','#fdcb6e','#a29bfe'];for(let k=0;k<5;k++){const x=30+k*35,y=200+(k%2)*20;s+=`<circle cx="${x}" cy="${y-50}" r="22" fill="${SKIN}"/><path d="M${x-22} ${y-56} Q${x} ${y-90} ${x+22} ${y-56}Z" fill="#333"/><path d="M${x-28} 300 Q${x-28} ${y-24} ${x} ${y-26} Q${x+28} ${y-24} ${x+28} 300Z" fill="${C[k]}"/>`}return `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">${s}</svg>`}
-const faceSVG=(id,e)=>charSVG(id,e).replace('viewBox="0 0 200 300"','viewBox="24 30 152 152"');
+let faceSVG=(id,e)=>charSVG(id,e).replace('viewBox="0 0 200 300"','viewBox="24 30 152 152"');
 /* ---------- scenes ---------- */
 const S=(inner)=>`<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
 const win=(x,y,w,h,sky='#a8e6ff')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${sky}" stroke="#fff" stroke-width="12"/><path d="M${x+w/2} ${y} V${y+h} M${x} ${y+h/2} H${x+w}" stroke="#fff" stroke-width="8"/>`;
@@ -899,7 +962,7 @@ function showText(s){
  const who=s[1];let t=typeof s[2]==='function'?s[2](ST.st,ST.f):s[2];const key=ST.b+':'+ST.i;const wasRead=READ.has(key);markRead(key);
  if(skip&&!wasRead){skip=false;$('#bSkip').classList.remove('on');toast('⏭ 遇到沒讀過的內容，停止跳過')}
  curWho=who;const nar=who==='nar';
- if(PEOPLE[who]||who==='dog'||who==='crowd'){setShow(who,s[3]);const w=$('#chars .cw');if(w){w.classList.remove('talk');void w.offsetWidth;w.classList.add('talk')}}
+ if((PEOPLE[who]&&who!=='me')||who==='dog'||who==='crowd'){setShow(who,s[3]);const w=$('#chars .cw');if(w){w.classList.remove('talk');void w.offsetWidth;w.classList.add('talk')}}
  $('#chars').querySelectorAll('.cw').forEach(w=>w.classList.toggle('dim',nar));
  $('#nar').classList.toggle('show',nar);$('#box').classList.toggle('show',!nar);
  let tx;if(nar){tx=$('#nar .tx');const n=$('#nar');n.classList.remove('show');void n.offsetWidth;n.classList.add('show')}
@@ -1444,6 +1507,125 @@ addEventListener('pointermove',e=>{if(matchMedia('(pointer:coarse)').matches)ret
 document.addEventListener('visibilitychange',()=>{if(!AC)return;document.hidden?AC.suspend().catch(()=>{}):AC.resume().catch(()=>{})});
 setInterval(musicTick,260);setInterval(anxTick,200);
 addEventListener('pointerdown',()=>{if(!IM.kind&&ST&&ST.bg)ambience(AMBK[ST.bg]??'');else if(!IM.kind)ambience('cicada')},{once:true});
+/* ================= v3: realistic art + voice acting + BGM ================= */
+const DZV='3.0';
+const VKEYS=new Set('00391902 0148d31f 01fe3141 027474e2 044f5bca 046fe55e 049608d8 05bd63e3 061546f6 06339654 0859ebd2 089a3c7f 08c5d4ce 0ae08e2b 0b2f3fc0 0b3bde35 0bb7566e 0c298a11 0c91145e 0ca12eb8 0cb1674b 0d50e149 0e03bab2 0e11fe35 0e67a782 0e743000 0ec2bdbc 0f3586d1 0fb6f3e2 0fce6a0f 0fd8e180 0fe36e4a 0fe4f035 1085065f 1223ca8b 12ee73df 13040744 135d03d8 1580f41b 16369036 166525a0 167bfc37 16e22ff7 16f29361 17b47193 17d30ac2 17e62a59 1921e13f 1b1cbb89 1c00163b 1c43ab84 1c7c2261 1d45dbc4 1dde6656 1e337be9 1f0dd44a 1fbce0b9 1fcb08d0 200487c2 20b0e5e9 20ec2a54 2118b5b2 2122cf16 216ba025 23b25450 23f7303d 23fb8981 25638666 25d66075 25e69183 2784b067 284bae5c 291d1a5a 297e7fcc 29c5b01d 29d0e940 2b611586 2bb60d0a 2c9812fd 2cd97336 2dbab0cb 2f84b2fa 31e9d03c 320fc2ea 329c74f8 32ce29ae 330b0725 33adf14e 33c906cb 34e485c2 353c6b00 359b8720 3666627d 379aba18 37c9403b 37fc6e50 39b7aa83 39f1aec2 3a6e1ae7 3b08c57b 3b420fd9 3bbe53f4 3c86098e 3e2cd18d 3e4e65fd 3ed2e8ac 3f910e8d 413f119b 41a7ac2d 427d90ea 436e1d53 4394f531 444bbe31 448f0b55 45152876 4575aaae.raw.mp3 45e73c73 463508bb 469278e4 47d99bf1 48c2fd02 48ed8c62 492a19ac 498e626f 4a0559ef 4b021b62 4b3c7c15 4c12cf6d 4cd576ae 4d4ed839 4d97ace7 4ed34237 4efdc2e1 4fd72364 51e1d2a2 52821a76 5309593a 53501b91 53dcb527 5488d991 56daa85e 57e29164 57ea1ad9 58816d91 58db73c3 58f4d95d 59a00ca4 5a7c1ad4 5a834ad7 5b751a5f 5c610f93 5c7e4aab 5d2ee367 5f84967d 5fe842ab 602012cd 6134b89b 613b38fe 61649e24 619846ec 6283f3bc 62a645c7 63aff372 644089f6 64dd42b6 65dacd3a 673c76ab 6784c22a 67a0d6a6 6806a312 684ecdf3 68753f9c 689b86af 69218f0c 6954bea6 699d43bd 6b2768a8 6c13ffd9 6cd3e784 6cde2f68 6d73112c 6e961b6d 6f07642c 6fe30357 707551be 70d1bca9 70ee52aa 71367732 71b4201f 71cb3bb7 72742597 729429b7 73658172 73afac30 748607b1 74979257 7573eb79 75e5c2db 76750aa8 789bf05e 7902b23b 797e9f5c 79a54a83 79b5bc03 7a103e07 7a75eb1d 7ab0e29f 7b038465 7b178490 7d6cc9f4 7e17b7fd 7e6d2900 7e9e7230 813415c9 81462e51 830461b0 831c6d8c 841b75fb 84ce1dd7 85270466 8566a7ce 85c2ebbc 85db6d89 862bba36 87518838 8a0de894 8a29809d 8a75fc59 8aaae82c 8bdffce3 8da7a06f 8db51aa7 904457bc 9093576b 90d55969 922947e7 927ac086 930ff41a 9326509b 93aa912d 93ad69cb 94439a8a 96c25df9 976cee21 97a1f73a 9804f34e 9a0f7491 9b8a2972 9c37a51c 9c8dfcbc 9c8e3d49 9d1f8504 9fbec73e a0aae636 a0f2c041 a1fd8fc1 a2387538 a2448ed7 a2b949d4 a2efe545 a4ba1269 a50f3ece a66a9538 a66c33ed a7244b12 a7f36a1e aa651021 ac0bdccb ac18b568 ad07b4b6 ad1957e2 ad3a6c19 adb6547b adbcd08b ae3c223a af23ea20 b0c6585b b144e38c b1805deb b1f75acd b4325a2a b4b9071b b4e17d2d b61918bd b64185aa b67358d2 b68de8f8 b6ade598 b7119932 b7d1f21b b7ea0c30 b809ec79 b8990b41 b9c09490 bb77114e bbf3c452 bc0fe8e7 bde7cc70 bf4d41db c0f188b0 c105daf6 c1d417d1 c2f79733 c3f84fec c3f91e10 c4085da3 c4820129 c54da0c6 c8074181 c850b754 c858351b c8a5063d c8abc31a c98da4f9 ca4f3eee ca7274fd cada2a9b cdc6e14e cfb953ea d04f2778 d0af07ae d1ba4ef2 d3059d69 d4078f55 d440a5a9 d5062f2d d5b11fc2 d5f400aa d61b1254 d67db1bf d6830350 d732933e d84d7ce7 d8e7d235 d9ef35e6 db25d626 dc3a0836 dcdd3160 de329571 df36f16f e0200be5 e1846658 e1dfe5a7 e2bec868 e2d76cdb e4193ab8 e4734446 e6d076de e7b8a2d5 e8936800 e8ee514d e8ee9cb7 e91a7414 e9b20f49 ea3de963 ec1c5597 ec79bf23 ed4f7ac2 ed7bcc74 ee68c0a2 f111fd64 f2c178b3 f3457263 f40be2b2 f61e675a f6c993c9 f79726d1 f8185c20 f8580635 f8d6f4a5 fa315448 fa9049d8 fdbb8c5e fde53b99 fe91b3ad ff0b1fb4'.split(' '));
+const ASSET='assets/';
+/* ---------- portraits ---------- */
+const PORT={sis:'n happy cry angry shock shy',desk:'n happy shy cry angry shock',ai:'n happy angry cry shock shy',mei:'n happy shy angry cry shock',qing:'n happy shy angry cry shock',fat:'n happy shock',dir:'n angry',teacher:'n',me:'n cry',dog:'n'};
+for(const k in PORT)PORT[k]=new Set(PORT[k].split(' '));
+function portExpr(id,e){const A=PORT[id];if(!A)return null;e=e||'n';
+ let x={happy:'happy',smile:'happy',love:'happy',wow:'shock',shy:'shy',tease:'shy',smug:'shy',angry:'angry',cry:'cry',sad:'cry',hurt:'cry',shock:'shock'}[e]||'n';
+ if((e==='tease'||e==='smug')&&id!=='sis')x='happy';
+ if(e==='love'&&A.has('shy')&&id!=='sis')x='shy';
+ if(!A.has(x)){x=(x==='shy'&&A.has('happy'))?'happy':(x==='shock'&&A.has('angry')&&id==='dir')?'angry':'n'}
+ return ASSET+'img/char/'+id+'_'+x+'.webp'}
+const _charSVG=charSVG;
+charSVG=function(id,e='n',opt={}){const u=portExpr(id,e);if(!u)return _charSVG(id,e,opt);return `<img class="ph" src="${u}" alt="${(CH[id]&&CH[id].n)||''}" draggable="false" decoding="async">`};
+/* expression swap: keep element, crossfade */
+const _setShow2=setShow;setShow=function(c,e){const box=$('#chars');const prev=ST&&ST.show;
+ if(c&&prev&&prev.c===c&&PORT[c]){e=e||prev.e;ST.show={c,e};const w=box.querySelector('.cw');const im=w&&w.querySelector('img.ph');const u=portExpr(c,e);
+  if(im){if(!im.src.endsWith(u)){im.src=u;w.classList.remove('swap');void w.offsetWidth;w.classList.add('swap')}w.className='cw breath pov'+(e==='angry'?' angry':'');return}}
+ _setShow2(c,e);document.body.classList.toggle('dof',!!c)};
+/* ---------- photo backgrounds ---------- */
+const BGF={street:'street',home:'home',dawn:'home',sisroom:'sisroom',night:'night',classroom:'classroom',hall:'hall',field:'field',shop:'shop',stairs:'stairs',nurse:'nurse',country:'country',fair:'fair',office:'office',sunset:'sunset',podium:'podium'};
+const BGTINT={dawn:'linear-gradient(rgba(40,25,90,.55),rgba(190,110,140,.35)),',night:'',sisroom:''};
+for(const k in BGF){if(!SCN[k])SCN[k]={amb:'dust'};SCN[k].sky=(BGTINT[k]||'')+`url(${ASSET}img/bg/${BGF[k]}.webp) center/cover no-repeat, #111`;SCN[k].l1='';SCN[k].l2=''}
+SCN.black.sky='#07060d';
+const PRE={done:new Set(),q:[],busy:0};
+function preload(u){if(PRE.done.has(u))return;PRE.done.add(u);PRE.q.push(u);pump()}
+function pump(){while(PRE.busy<3&&PRE.q.length){const u=PRE.q.shift();PRE.busy++;const i=new Image();i.onload=i.onerror=()=>{PRE.busy--;pump()};i.src=u}}
+const _setBg3=setBg;setBg=function(k){_setBg3(k);try{lookahead()}catch(e){}};
+/* look ahead in the current block: prefetch next backgrounds, portraits and voice lines */
+function lookahead(){if(!ST||!P[ST.b])return;const blk=P[ST.b];let n=0;
+ for(let j=ST.i;j<blk.length&&j<ST.i+40;j++){const s=blk[j];if(!s||s.op)continue;
+  if(s[0]==='bg'&&BGF[s[1]])preload(ASSET+'img/bg/'+BGF[s[1]]+'.webp');
+  if(s[0]==='show'&&s[1]){const u=portExpr(s[1],s[2]);u&&preload(u)}
+  if(s[0]==='t'){if(PORT[s[1]]){const u=portExpr(s[1],s[3]);u&&preload(u)}if(typeof s[2]==='string'&&n<6){const k=vkey(s[1],s[2]);if(k){VO.load(k);n++}}}}}
+/* ---------- audio buses ---------- */
+const VOLD={vVoice:1,vMusic:.55,vSfx:.7,voiceOn:true,ttsFb:true};for(const k in VOLD)if(!(k in CFG))CFG[k]=VOLD[k];
+Object.defineProperty(CFG,'music',{get(){return false},set(){},enumerable:false,configurable:true});
+const BUS={};
+function buses(){const a=ac();if(!a)return null;if(!BUS.sfx){BUS.sfx=a.createGain();BUS.sfx.connect(a.destination);BUS.mus=a.createGain();BUS.mus.connect(a.destination);BUS.duck=a.createGain();BUS.duck.connect(BUS.mus);BUS.vo=a.createGain();BUS.vo.connect(a.destination);applyVol()}return a}
+function applyVol(){if(!BUS.sfx)return;const m=CFG.mute?0:1;BUS.sfx.gain.value=CFG.vSfx*m;BUS.mus.gain.value=CFG.vMusic*m;BUS.vo.gain.value=CFG.vVoice*m;try{imBus();IM.bus.gain.value=CFG.vSfx*m}catch(e){}}
+tone=function(f,d,type='square',v=.06,t0=0,slide=0){if(CFG.mute)return;const a=buses();if(!a)return;const t=a.currentTime+t0;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(BUS.sfx);o.start(t);o.stop(t+d+.02)};
+noise=function(d,v=.15,t0=0,hp=0){if(CFG.mute)return;const a=buses();if(!a)return;const b=a.createBuffer(1,Math.floor(a.sampleRate*d),a.sampleRate),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=(Math.random()*2-1)*(1-i/x.length);const s=a.createBufferSource(),g=a.createGain();s.buffer=b;g.gain.value=v;let n=s;if(hp){const f=a.createBiquadFilter();f.type='highpass';f.frequency.value=hp;s.connect(f);n=f}n.connect(g);g.connect(BUS.sfx);s.start(a.currentTime+t0)};
+SFX.blip=()=>{};/* typing blips off: real voices now */
+/* ---------- voice acting ---------- */
+function fnv(s){let h=0x811c9dc5;for(const ch of s){h^=ch.codePointAt(0);h=Math.imul(h,0x01000193)>>>0}return ('0000000'+h.toString(16)).slice(-8)}
+function vkey(who,text){if(typeof text!=='string')return null;const base=text.replace(/^「|」$/g,'');
+ for(const t of [text,base,'「'+base+'」','「'+base,base+'」']){const k=fnv(who+'|'+t);if(VKEYS.has(k))return k}return null}
+const VO={cache:new Map(),src:null,el:null,tok:0,
+ url(k){return ASSET+'voice/'+k+'.mp3'},
+ load(k){if(this.cache.has(k))return this.cache.get(k);const a=buses();
+  const p=fetch(this.url(k)).then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(b=>a?new Promise((res,rej)=>a.decodeAudioData(b,res,rej)):null).catch(e=>{this.cache.delete(k);return null});
+  this.cache.set(k,p);if(this.cache.size>80){const f=this.cache.keys().next().value;this.cache.delete(f)}return p},
+ stop(){this.tok++;try{this.src&&this.src.stop()}catch(e){}this.src=null;if(this.el){try{this.el.pause()}catch(e){}this.el=null}vpill(false);duck(false)},
+ play(k){this.stop();const tok=this.tok;return new Promise(res=>{const done=v=>{if(tok===this.tok){this.src=null;vpill(false);duck(false)}res(v)};
+  const a=buses();if(!a){const el=new Audio(this.url(k));el.volume=CFG.vVoice;this.el=el;el.onended=()=>done(true);el.onerror=()=>done(false);el.play().catch(()=>done(false));return}
+  this.load(k).then(buf=>{if(tok!==this.tok){res(false);return}if(!buf){done(false);return}
+   const s=a.createBufferSource();s.buffer=buf;s.connect(BUS.vo);s.onended=()=>done(true);this.src=s;vpill(true);duck(true);s.start();
+   setTimeout(()=>done(true),buf.duration*1000+1500)})})}};
+function vpill(on){const b=$('#vopill');b&&b.classList.toggle('on',on)}
+function duck(on){if(!BUS.duck||!AC)return;BUS.duck.gain.setTargetAtTime(on?.45:1,AC.currentTime,.25)}
+const _ttsSpeak=TTS.speak.bind(TTS),_ttsStop=TTS.stop.bind(TTS);
+TTS.speak=function(text,who){const k=vkey(who,text);
+ if(TEST){if(k)VO.load(k);return Promise.resolve(false)}
+ if(CFG.mute||CFG.voiceOn===false){return Promise.resolve(false)}
+ if(k)return VO.play(k);
+ if(!CFG.ttsFb)return Promise.resolve(false);
+ const v=CFG.voice;CFG.voice='all';const p=_ttsSpeak(text,who);CFG.voice=v;return p};
+TTS.stop=function(){VO.stop();_ttsStop()};
+const _showText3=showText;showText=function(s){_showText3(s);document.body.classList.toggle('narr',s[1]==='nar');try{lookahead()}catch(e){}};
+/* ---------- BGM (self-composed loops) with crossfade ---------- */
+const MUS={tracks:{daily:18.4615,crush:23.4146,tense:16,sports:13.3333,sad:29.0909,ending:26.6667},buf:{},cur:null,name:'',want:''};
+function musLoad(n){if(MUS.buf[n])return MUS.buf[n];const a=buses();MUS.buf[n]=fetch(ASSET+'music/'+n+'.mp3').then(r=>r.arrayBuffer()).then(b=>new Promise((res,rej)=>a.decodeAudioData(b,res,rej))).catch(()=>{delete MUS.buf[n];return null});return MUS.buf[n]}
+function musWant(){if($('#ending').classList.contains('show'))return 'ending';if($('#title').classList.contains('show'))return 'ending';if(!ST)return 'daily';
+ const m=ST.mood||'';if(m==='red')return 'tense';if(m==='blue'||m==='dark')return 'sad';if(m==='pink')return 'crush';if(m==='warm')return 'ending';
+ if($('#mini').classList.contains('show'))return (ST.bg==='field'||ST.bg==='podium')?'sports':'tense';
+ if(ST.bg==='field'||ST.bg==='podium'||ST.bg==='fair')return 'sports';if(ST.st&&ST.st.exp>=70&&ST.mode==='roam')return 'tense';
+ if(ST.bg==='sunset'||ST.bg==='night')return 'crush';return 'daily'}
+function musSwitch(n){if(n===MUS.name||!AC||AC.state!=='running')return;MUS.name=n;const a=buses();
+ const old=MUS.cur;if(old){old.g.gain.cancelScheduledValues(a.currentTime);old.g.gain.setTargetAtTime(0,a.currentTime,.7);setTimeout(()=>{try{old.s.stop()}catch(e){}},4000)}MUS.cur=null;
+ musLoad(n).then(buf=>{if(!buf||MUS.name!==n)return;const d=buf.getChannelData(0);let st=0;while(st<d.length&&st<4000&&Math.abs(d[st])<1e-5)st++;
+  const s=a.createBufferSource();s.buffer=buf;s.loop=true;s.loopStart=st/buf.sampleRate;s.loopEnd=Math.min(buf.duration,s.loopStart+MUS.tracks[n]);
+  const g=a.createGain();g.gain.value=0;s.connect(g);g.connect(BUS.duck);s.start(a.currentTime,s.loopStart);g.gain.setTargetAtTime(1,a.currentTime,.8);MUS.cur={s,g,n}})}
+setInterval(()=>{if(TEST||!AC||document.hidden)return;const w=musWant();musSwitch(w);const nx={daily:'crush',crush:'sad',tense:'sports'}[w];if(nx&&MUS.cur)musLoad(nx)},600);
+addEventListener('pointerdown',()=>{buses();applyVol()},{passive:true});
+/* ---------- settings: volumes ---------- */
+const VOLN=[['vVoice','🎙️ 配音'],['vMusic','🎵 音樂'],['vSfx','🔔 音效／環境']];
+settings=function(){const r=()=>{modal(`<h2>⚙️ 設定</h2><div>文字速度</div><div class="row seg">${SPEEDN.map((x,k)=>`<button data-s="${k}" class="${CFG.speed===k?'on':''}">${x}</button>`).join('')}</div>
+ <div style="margin-top:8px">音量</div>${VOLN.map(([k,n])=>`<div class="vol"><span>${n}</span><input type="range" min="0" max="100" value="${Math.round(CFG[k]*100)}" data-vol="${k}"><em>${Math.round(CFG[k]*100)}</em></div>`).join('')}
+ <div class="row seg"><button id="sVo" class="${CFG.voiceOn?'on':''}">🎙️ 角色配音：${CFG.voiceOn?'開':'關'}</button><button id="sFb" class="${CFG.ttsFb?'on':''}">🤖 缺檔時用瀏覽器朗讀：${CFG.ttsFb?'開':'關'}</button><button id="sTest">▶ 試聽</button></div>
+ <div class="row seg"><button id="sAuto" class="${CFG.auto?'on':''}">⏯ 自動播放：${CFG.auto?'開':'關'}</button><button id="sStat" class="${CFG.stats?'on':''}">📊 數值：${CFG.stats?'顯示':'隱藏'}</button><button id="sMute" class="${CFG.mute?'':'on'}">${CFG.mute?'🔇 全部靜音':'🔊 聲音開'}</button></div>
+ <div class="row"><button class="btn gray" id="sClr">🗑️ 清除存檔與圖鑑</button></div><p style="font-size:13px;color:#888">點畫面任何地方：讓字跑完／跳到下一句。自動播放會等角色講完話才翻頁。</p>`);
+ $$('[data-s]').forEach(b=>b.onclick=()=>{CFG.speed=+b.dataset.s;saveCfg();r()});
+ $$('[data-vol]').forEach(i=>{i.oninput=()=>{CFG[i.dataset.vol]=i.value/100;i.nextElementSibling.textContent=i.value;buses();applyVol()};i.onchange=()=>{saveCfg();if(i.dataset.vol==='vSfx')sfx('ding');if(i.dataset.vol==='vVoice')TTS.speak('旁白測試。這是我十三歲那年的蠢事。','nar')}});
+ $('#sVo').onclick=()=>{CFG.voiceOn=!CFG.voiceOn;saveCfg();if(!CFG.voiceOn)TTS.stop();voiceBtn();r()};
+ $('#sFb').onclick=()=>{CFG.ttsFb=!CFG.ttsFb;saveCfg();r()};
+ $('#sTest').onclick=()=>{ac();buses();TTS.speak('旁白測試。這是我十三歲那年的蠢事。','nar')};
+ $('#sAuto').onclick=()=>{CFG.auto=!CFG.auto;saveCfg();autoBtn();r()};
+ $('#sStat').onclick=()=>{CFG.stats=!CFG.stats;saveCfg();renderStats();r()};
+ $('#sMute').onclick=()=>{CFG.mute=!CFG.mute;saveCfg();if(CFG.mute)TTS.stop();applyVol();r()};
+ $('#sClr').onclick=()=>{if(confirm('確定要清除所有存檔和結局圖鑑嗎？')){['auto2','s0','s1','s2','endings','pend','read2'].forEach(k=>LS.set(k,null));READ.clear();r();titleBtns()}}};r()};
+$('#bSet').onclick=settings;$('#tSet').onclick=settings;
+voiceBtn=function(){const b=$('#bVoice');if(!b)return;b.textContent=CFG.voiceOn?'🎙️ 配音':'🔈 無配音';b.classList.toggle('on',!!CFG.voiceOn)};
+$('#bVoice').onclick=()=>{ac();buses();CFG.voiceOn=!CFG.voiceOn;saveCfg();voiceBtn();if(!CFG.voiceOn)TTS.stop();toast(CFG.voiceOn?'🎙️ 角色配音：開':'🔈 角色配音：關')};
+voiceBtn();
+(function(){const n=$('#name');if(n&&!$('#vopill'))n.insertAdjacentHTML('afterend','<span id="vopill"><i></i><i></i><i></i> 配音中</span>')})();
+/* idle preload of everything visual after the title shows */
+setTimeout(()=>{const go=()=>{Object.values(BGF).forEach(b=>preload(ASSET+'img/bg/'+b+'.webp'));['sis','desk','ai','mei','qing'].forEach(c=>PORT[c].forEach(e=>preload(ASSET+'img/char/'+c+'_'+e+'.webp')))};(window.requestIdleCallback?requestIdleCallback(go,{timeout:2500}):setTimeout(go,2500))},TEST?0:4000);
+
+/* photo faces for map avatar, chat tabs and canvas minigames */
+const _faceSVG0=(id,e)=>_charSVG(id,e).replace('viewBox="0 0 200 300"','viewBox="24 30 152 152"');
+faceSVG=(id,e)=>{const u=portExpr(id,e);return u?`<img class="ph face" src="${u.replace('/char/','/face/')}" alt="" draggable="false">`:_faceSVG0(id,e)};
+const FIMG={};fimg=function(id,e='n'){const k=id+e;if(!FIMG[k]){const im=new Image();const u=portExpr(id,e);im.src=u?u.replace('/char/','/face/'):'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(id==='dog'?dogSVG():_faceSVG0(id,e));FIMG[k]=im}return FIMG[k]};
+
+/* realistic campus map: blurred photo + photo cards */
+mapSVG=function(){const ks=Object.keys(LOCS).filter(l=>l!=='home');const E=[['class','hall'],['hall','stairs'],['hall','shop'],['hall','field'],['field','shop'],['stairs','shop']].filter(([a,b])=>LOCS[a]&&LOCS[b]);
+ return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">${E.map(([a,b])=>`<line x1="${LOCS[a].x}" y1="${LOCS[a].y}" x2="${LOCS[b].x}" y2="${LOCS[b].y}" stroke="rgba(255,236,190,.55)" stroke-width=".45" stroke-dasharray="1.2 1" vector-effect="non-scaling-stroke" style="stroke-width:3px"/>`).join('')}</svg>`};
+const _renderMap=renderMap;renderMap=function(t,i){_renderMap(t,i);$$('#nodes .node').forEach(n=>{const L=LOCS[n.dataset.l];const b=L&&BGF[L.bg];const pin=n.querySelector('.pin');if(b&&pin&&!pin.querySelector('.ph2')){pin.insertAdjacentHTML('afterbegin',`<span class="ph2" style="background-image:url(${ASSET}img/bg/${b}.webp)"></span>`)}})};
+window.DZ3={VO,MUS,vkey,fnv,musWant,PORT,portExpr,CFG};
 /* ================= test hooks ================= */
 window.DZ={get st(){return ST},P,advance,redeem,parseCode,newGame,restore,
  jump(b,i){hideOverlays();clearTimeout(autoT);lineTok++;ST=ST||fresh();ST.mode='vn';ST.b=b;ST.i=i||0;waiting=false;$('#title').classList.remove('show');run()},
