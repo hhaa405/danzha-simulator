@@ -1984,8 +1984,29 @@ const _locBar2=locBar;locBar=function(sel){_locBar2(sel);if(sel||!ST)return;cons
   b.innerHTML=`💼 ${J.n} <small>-1⚡ ${u>=2?'今天做完了':u===1?'6折':''}</small>`;b.onclick=()=>{$$('#locbar button').forEach(x=>x.disabled=true);openJob(k,()=>{$('#loc').classList.remove('show');finishSlot()})};acts.insertBefore(b,acts.children[1]||null)}};
 const _eveMenu2=eveMenu;eveMenu=function(){_eveMenu2();const box=$('#choices');if(!box||TEST)return;const u=jobUses('chores');const b=document.createElement('button');b.className='opt';b.disabled=u>=1;b.innerHTML=`🧽 幫姐姐洗碗（打工賺零用錢）<span class="eff">NT$↑ 親情↑</span>`;b.onclick=e=>{e.stopPropagation();box.classList.remove('show');openJob('chores',()=>endDay())};box.insertBefore(b,box.children[2]||null)};
 window.DZ31.job=openJob;window.DZ31.tasks=tasksToday;window.DZ31.tick=taskTick;window.DZ31.flyCoins=flyCoins;
+/* ================= v3.1c: 短兌換碼 (DZ + 8 碼) ================= */
+const SHORT_ABC='23456789ABCDEFGHJKMNPQRSTUVWXYZ',SHORT_SALT='dz-short-v1|';
+function normCode(raw){return String(raw||'').toUpperCase().replace(/[\s\-_]/g,'')}
+function isShort(s){return s.length===10&&s.startsWith('DZ')}
+function hexOf(b){return Array.from(b).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function redeemAny(raw){const s=normCode(raw);if(!isShort(s))return redeem(raw);
+ const body=s.slice(2);if([...body].some(c=>!SHORT_ABC.includes(c)))return{err:'兌換碼格式不對喔，請檢查有沒有打錯字（短碼不會有 0、O、1、I、L）。'};
+ const h=hexOf(sha256(new TextEncoder().encode(SHORT_SALT+s)));const id='s:'+h.slice(0,20);
+ const used=LS.get('used',[])||[];if(used.includes(id))return{err:'這個兌換碼已經使用過了。'};
+ let db;try{const r=await fetch(ASSET+'codes.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;db=await r.json()}catch(e){return{err:'連不上兌換資料，請檢查網路後再試一次。'}}
+ const text=db&&db.codes&&db.codes[h];if(!text)return{err:'兌換碼無效，請確認每個字都正確。（剛產生的新碼可能要等 1～2 分鐘才生效）'};
+ const items=text.split(';').filter(Boolean).map(x=>{const j=x.indexOf('=');return[x.slice(0,j),x.slice(j+1)]});
+ for(const [k,v] of items){const g=grantFor(k);if(!g)return{err:`這個兌換碼含有此版本遊戲不認識的獎勵「${k}」，請重新整理網頁更新遊戲後再試。`};const e=g.check(v);if(e)return{err:e}}
+ const got=items.map(([k,v])=>grantFor(k).apply(k,v)).filter(Boolean);used.push(id);LS.set('used',used);titleBtns();return{ok:true,got}}
+GRANTS.money.check=v=>/^\+?\d{1,7}$/.test(v)&&+v>0?null:'零用錢數字格式錯誤';
+codeModal=function(){modal(`<h2>🎁 兌換碼</h2><p style="font-size:14px;color:#666">輸入你拿到的兌換碼（例如 DZ-8K3Q9M2X，大小寫、空格、- 都沒關係），每組只能使用一次。舊的長兌換碼也能用。</p><input class="codein" id="cIn" placeholder="DZ-" autocomplete="off" spellcheck="false"><div class="row"><button class="btn" id="cGo">兌換</button></div><div class="cres" id="cRes"></div>`);
+ let busy=false;const go=async()=>{if(busy)return;busy=true;const el=$('#cRes');el.className='cres';el.textContent='⏳ 兌換中……';const r=await redeemAny($('#cIn').value);busy=false;
+  if(r.err){el.className='cres err';el.textContent='❌ '+r.err;sfx('bad');return}
+  el.className='cres ok';el.innerHTML='✅ 兌換成功！<br>'+(r.got.length?r.got.map(x=>'・'+x).join('<br>'):'（沒有內容）');sfx('win');r.got.forEach((x,k)=>setTimeout(()=>toast('🎁 '+x,'up',3000),k*250));$('#cIn').value=''};
+ $('#cGo').onclick=go;$('#cIn').onkeydown=e=>{if(e.key==='Enter')go()};setTimeout(()=>$('#cIn').focus(),50)};
+$('#bCode').onclick=codeModal;$('#tCode').onclick=codeModal;
 /* ================= test hooks ================= */
-window.DZ={get st(){return ST},P,advance,redeem,parseCode,newGame,restore,
+window.DZ={get st(){return ST},P,advance,redeem:redeemAny,redeemLong:redeem,parseCode,newGame,restore,
  jump(b,i){hideOverlays();clearTimeout(autoT);lineTok++;ST=ST||fresh();ST.mode='vn';ST.b=b;ST.i=i||0;waiting=false;$('#title').classList.remove('show');run()},
  pick:k=>{const s=P[ST.b][ST.i];pick(s,k)},
  mode(){if($('#ending').classList.contains('show'))return 'end';if($('#modal').classList.contains('show'))return 'modal';if($('#choices').classList.contains('show'))return 'choice';if($('#mini').classList.contains('show'))return 'mini';if($('#ctitle').classList.contains('show'))return 'title';if($('#loc').classList.contains('show')||$('#map').classList.contains('show'))return 'roam';if($('#title').classList.contains('show'))return 'home';return waiting?'text':'busy'},
