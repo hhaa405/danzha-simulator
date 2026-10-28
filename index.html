@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>蛋渣模擬器｜一個十三歲男孩最錯誤的決定</title>
+<meta name="description" content="《蛋渣模擬器》：用十三歲小餅的視角，經歷姐姐被渣、決定當渣男、運動會翻車的那一年。文字冒險＋小遊戲＋六種結局。">
+<meta name="theme-color" content="#ff9f43">
+<meta property="og:type" content="website">
+<meta property="og:title" content="蛋渣模擬器 🥚 你會成為姐姐的小餅，還是蛋渣？">
+<meta property="og:description" content="2018年2月14日，最愛的姐姐被渣男劈腿了。十三歲的小餅做了一個大大的決定——「我要當渣男！」文字冒險＋被狗追、三線約會、百米衝刺小遊戲＋六種結局。">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="蛋渣模擬器 🥚">
+<meta name="twitter:description" content="你會成為姐姐的小餅，還是蛋渣？">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%9A%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:#1e1b2e;font-family:"PingFang TC","Noto Sans TC","Noto Sans CJK TC","Microsoft JhengHei","Heiti TC",sans-serif;color:#2d2a3e;user-select:none;-webkit-user-select:none}
+button{font-family:inherit;cursor:pointer}
+#app{position:fixed;inset:0;overflow:hidden}
+#bg{position:absolute;inset:0;transition:background 1s}
+#deco{position:absolute;inset:0;pointer-events:none}
+#deco span{position:absolute;opacity:.55;transition:all 1s}
+#mood{position:absolute;inset:0;pointer-events:none;transition:background 1.2s;mix-blend-mode:multiply}
+#app.shake{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}20%{transform:translate(-12px,4px)}40%{transform:translate(10px,-6px)}60%{transform:translate(-8px,3px)}80%{transform:translate(6px,-2px)}}
+#por{position:absolute;left:50%;bottom:clamp(170px,30vh,260px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;transition:opacity .4s;pointer-events:none}
+#por.hidden{opacity:0}
+#por .ring{width:clamp(130px,24vh,210px);height:clamp(130px,24vh,210px);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#f3eefc);border:7px solid var(--c,#ccc);box-shadow:0 10px 30px rgba(0,0,0,.25),0 0 0 6px rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;position:relative}
+#por .face{font-size:clamp(80px,15vh,135px);line-height:1}
+#por .badge{position:absolute;right:-6px;top:-6px;font-size:clamp(30px,5vh,46px);background:#fff;border-radius:50%;width:1.6em;height:1.6em;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.2)}
+#por.pop .ring{animation:pop .35s}
+#por.angry .ring{animation:shake .5s}
+#por.cry .face{animation:sob 1.2s infinite}
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes sob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+#top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:6px;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;z-index:20;flex-wrap:wrap}
+#chap{color:#fff;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.6);font-size:15px;margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45vw}
+.tb{background:rgba(30,27,46,.62);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 11px;font-size:13px;backdrop-filter:blur(4px)}
+.tb.on{background:#ff9f43;border-color:#ff9f43}
+#stats{position:absolute;top:calc(50px + env(safe-area-inset-top));right:10px;z-index:15;background:rgba(255,255,255,.9);border-radius:14px;padding:10px 12px;width:200px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.2);display:none}
+#stats.show{display:block}
+.srow{display:flex;align-items:center;gap:6px;margin:4px 0}
+.srow b{width:72px;font-weight:600}
+.sbar{flex:1;height:8px;background:#eee;border-radius:9px;overflow:hidden}
+.sbar i{display:block;height:100%;border-radius:9px;transition:width .6s}
+.srow em{font-style:normal;width:26px;text-align:right;color:#777}
+#box{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));width:min(940px,calc(100% - 20px));min-height:clamp(140px,24vh,200px);background:rgba(255,253,248,.95);border-radius:20px;padding:30px 24px 22px;box-shadow:0 10px 40px rgba(0,0,0,.35);border:3px solid #fff;z-index:10;cursor:pointer}
+#name{position:absolute;top:-18px;left:20px;background:#ff9f43;color:#fff;padding:5px 16px;border-radius:999px;font-weight:700;font-size:16px;box-shadow:0 3px 8px rgba(0,0,0,.2);display:none}
+#text{font-size:clamp(17px,2.4vh,21px);line-height:1.75;min-height:3.4em;white-space:pre-wrap}
+#text.inner{color:#6c5ce7;font-style:italic}
+#text.narr{color:#3d3a50}
+#text.sys{color:#0984e3;font-weight:700}
+#next{position:absolute;right:20px;bottom:10px;font-size:18px;animation:bob 1s infinite;opacity:0}
+#next.show{opacity:.7}
+@keyframes bob{50%{transform:translateY(4px)}}
+#choices{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:30;background:rgba(20,16,36,.45);padding:70px 14px 14px;overflow:auto}
+#choices.show{display:flex}
+#choices .q{color:#fff;font-weight:700;font-size:18px;text-shadow:0 2px 6px #000;margin-bottom:4px;text-align:center}
+.opt{width:min(640px,100%);background:#fff;border:3px solid #ffeaa7;border-radius:16px;padding:14px 18px;font-size:clamp(16px,2.2vh,19px);text-align:left;color:#2d2a3e;box-shadow:0 6px 0 #e1b12c,0 8px 18px rgba(0,0,0,.25);transition:transform .1s;position:relative;line-height:1.5}
+.opt:hover{transform:translateY(-2px)}
+.opt:active{transform:translateY(3px);box-shadow:0 2px 0 #e1b12c}
+.opt .tag{display:inline-block;font-size:12px;background:#ffeaa7;color:#8a6d00;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.timer{width:min(640px,100%);height:10px;background:rgba(255,255,255,.3);border-radius:9px;overflow:hidden}
+.timer i{display:block;height:100%;background:linear-gradient(90deg,#ff7675,#fdcb6e);width:100%}
+.ov{position:absolute;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:14px}
+.ov.show{display:flex}
+.card{background:#fffdf8;border-radius:22px;padding:22px;width:min(560px,100%);max-height:calc(100% - 20px);overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.card h2{margin:0 0 12px;font-size:22px}
+.card .row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.btn{background:#ff9f43;color:#fff;border:0;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:700;box-shadow:0 4px 0 #d9822b}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #d9822b}
+.btn.gray{background:#b2bec3;box-shadow:0 4px 0 #8c999e}
+.btn:disabled{opacity:.45}
+.seg button{border:2px solid #ff9f43;background:#fff;color:#d9822b;border-radius:10px;padding:6px 12px;font-size:15px}
+.seg button.on{background:#ff9f43;color:#fff}
+.slot{display:flex;justify-content:space-between;align-items:center;border:2px dashed #ddd;border-radius:12px;padding:10px;margin:8px 0;gap:8px}
+.slot small{color:#888}
+#log .l{padding:6px 0;border-bottom:1px solid #eee;font-size:15px;line-height:1.6}
+#log .l b{color:#d9822b}
+#ctitle{background:radial-gradient(circle,#2d2050,#0e0b18);color:#fff;flex-direction:column;text-align:center;cursor:pointer;z-index:60}
+#ctitle .n{font-size:clamp(18px,3vh,24px);letter-spacing:.4em;opacity:.8}
+#ctitle .t{font-size:clamp(30px,6vh,54px);font-weight:900;margin-top:12px;padding:0 10px;text-shadow:0 0 30px rgba(255,159,67,.6)}
+#ctitle.show .t,#ctitle.show .n{animation:fadeup 1s both}
+#ctitle.show .t{animation-delay:.3s}
+@keyframes fadeup{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+#title{z-index:80;background:linear-gradient(160deg,#ffecd2,#fcb69f 45%,#ff8a9a);flex-direction:column;text-align:center;overflow:auto;padding:30px 16px}
+#title .eggs span{position:absolute;font-size:40px;opacity:.35;animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-30px) rotate(20deg)}}
+#title h1{font-size:clamp(46px,11vw,96px);margin:0;color:#fff;text-shadow:0 5px 0 #e17055,0 10px 25px rgba(0,0,0,.25);letter-spacing:.05em;position:relative}
+#title h1 .egg{display:inline-block;animation:wobble 2.4s infinite}
+@keyframes wobble{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+#title .sub{font-size:clamp(16px,2.6vh,22px);color:#6d214f;font-weight:700;margin:10px 0 6px;position:relative}
+#title .intro{max-width:560px;font-size:15px;line-height:1.8;color:#5a3d4a;background:rgba(255,255,255,.55);border-radius:16px;padding:12px 16px;margin:10px auto;position:relative}
+#title .menu{display:flex;flex-direction:column;gap:12px;width:min(320px,90%);margin-top:12px;position:relative}
+#title .menu .btn{font-size:20px;padding:14px}
+#title .foot{margin-top:14px;font-size:12px;color:#7a4a5a;position:relative}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.gi{border-radius:14px;padding:12px;background:#f5f0ff;min-height:120px;font-size:13px;line-height:1.5}
+.gi .ge{font-size:34px}
+.gi b{display:block;font-size:15px;margin:4px 0}
+.gi.lock{background:#eee;color:#999}
+#ending{z-index:70;background:rgba(10,8,20,.85);flex-direction:column}
+#ending .card{text-align:center}
+#ending .big{font-size:64px}
+#ending .en{font-size:14px;color:#999;letter-spacing:.3em}
+#ending .et{font-size:28px;font-weight:900;margin:6px 0}
+#ending .eq{font-size:17px;color:#6c5ce7;margin:10px 0 16px;line-height:1.7}
+#toasts{position:absolute;left:50%;transform:translateX(-50%);top:calc(56px + env(safe-area-inset-top));z-index:40;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.toast{background:rgba(30,27,46,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:14px;animation:toast 2.2s forwards;white-space:nowrap}
+@keyframes toast{0%{opacity:0;transform:translateY(-8px)}12%,75%{opacity:1;transform:none}100%{opacity:0}}
+#modal{z-index:90}
+#mini{z-index:55;background:rgba(20,16,36,.8)}
+#mini .card{width:min(720px,100%);text-align:center;touch-action:manipulation}
+.mhint{color:#666;font-size:14px;margin:4px 0 12px}
+.mstat{font-weight:700;margin:8px 0;min-height:1.5em}
+.bar{position:relative;height:44px;background:#dfe6e9;border-radius:22px;overflow:hidden;margin:16px 0}
+.zone{position:absolute;top:0;bottom:0;background:linear-gradient(#55efc4,#00b894)}
+.mark{position:absolute;top:-2px;bottom:-2px;width:8px;margin-left:-4px;background:#d63031;border-radius:4px;box-shadow:0 0 8px #d63031}
+.eggduo{font-size:56px;height:90px;display:flex;justify-content:center;gap:30px;align-items:flex-end;background:linear-gradient(#a29bfe,#fd79a8);border-radius:16px;padding-bottom:6px}
+.eggduo span{transition:transform .25s;display:inline-block}
+.eggduo span.jump{transform:translateY(-26px) rotate(-15deg)}
+.eggduo span.fall{transform:translateY(30px) rotate(90deg);opacity:.4}
+.mbig{font-size:22px;padding:16px 28px;width:100%;max-width:340px}
+.lanes{position:relative;height:clamp(240px,44vh,380px);background:linear-gradient(#9be15d,#6ab04c);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:repeat(3,1fr)}
+.lanes .ln{border-right:3px dashed rgba(255,255,255,.4)}
+.lanes .ln:last-child{border:0}
+.ent{position:absolute;font-size:44px;transform:translate(-50%,-50%);transition:left .12s}
+.ent.hurt{animation:shake .4s;filter:drop-shadow(0 0 8px red)}
+.ctrl{display:flex;gap:10px;justify-content:center;margin-top:10px}
+.ctrl .btn{flex:1;max-width:200px;font-size:26px;padding:14px}
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.spot{background:#fff;border:3px solid #dfe6e9;border-radius:16px;padding:10px 6px;font-size:14px;cursor:pointer;position:relative;min-height:150px}
+.spot.here{border-color:#ff9f43;background:#fff4e6}
+.spot .g{font-size:40px}
+.spot .pb{height:10px;background:#eee;border-radius:9px;overflow:hidden;margin-top:6px}
+.spot .pb i{display:block;height:100%;background:#00b894}
+.spot .you{position:absolute;top:4px;left:6px;font-size:22px}
+.track{position:relative;height:clamp(200px,38vh,320px);background:repeating-linear-gradient(#e17055 0 calc(16.66% - 2px),#fff calc(16.66% - 2px) 16.66%);border-radius:12px;overflow:hidden}
+.track .fin{position:absolute;right:6%;top:0;bottom:0;width:10px;background:repeating-linear-gradient(#000 0 10px,#fff 10px 20px)}
+.runner{position:absolute;font-size:clamp(26px,5vh,38px);transform:translate(-50%,-50%) scaleX(-1);left:4%}
+.runner.me{filter:drop-shadow(0 0 6px #ffeaa7)}
+.runner .lb{position:absolute;font-size:11px;transform:scaleX(-1);top:-10px;left:0;background:#ff9f43;color:#fff;border-radius:6px;padding:0 4px}
+.bigmsg{font-size:clamp(24px,5vh,40px);font-weight:900;color:#d63031;min-height:1.4em}
+@media (max-width:600px){
+ #stats{width:170px;font-size:12px}
+ .tb{padding:5px 8px;font-size:12px}
+ #box{padding:26px 16px 18px}
+ #chap{font-size:13px;max-width:100%;width:100%}
+ .eggduo{font-size:44px}
+}
+.mitems{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+.mitems .btn{font-size:14px;padding:7px 12px}
+.item{display:flex;align-items:center;gap:10px;border:2px solid #f1e6d6;border-radius:12px;padding:8px 10px;margin:6px 0}
+.item .ie{font-size:30px}.item .id{flex:1;font-size:13px;color:#666}.item .id b{color:#2d2a3e;font-size:15px}
+.codein{width:100%;font-size:18px;padding:12px;border:2px solid #ff9f43;border-radius:12px;font-family:monospace;text-transform:uppercase}
+.cres{margin-top:10px;font-size:15px;line-height:1.7;min-height:1.5em}
+.cres.ok{color:#00895f}.cres.err{color:#d63031}
+.ttl{display:inline-block;border:2px solid #a29bfe;border-radius:999px;padding:3px 10px;margin:3px;font-size:13px;background:#fff}
+.ttl.on{background:#a29bfe;color:#fff}
+.chs{display:grid;gap:8px}
+</style>
+</head>
+<body>
+<div id="app">
+ <div id="bg"></div><div id="deco"></div><div id="mood"></div>
+ <div id="por" class="hidden"><div class="ring"><span class="face"></span><span class="badge"></span></div></div>
+ <div id="top">
+  <div id="chap"></div>
+  <button class="tb" id="bStats">📊 數值</button>
+  <button class="tb" id="bAuto">▶ 自動</button>
+  <button class="tb" id="bSkip">⏩ 快進</button>
+  <button class="tb" id="bLog">📜 回顧</button>
+  <button class="tb" id="bCode">🎁 兌換碼</button>
+  <button class="tb" id="bSave">💾 存讀</button>
+  <button class="tb" id="bSet">⚙️</button>
+  <button class="tb" id="bMute">🔊</button>
+  <button class="tb" id="bHome">🏠</button>
+ </div>
+ <div id="stats"></div>
+ <div id="toasts"></div>
+ <div id="box"><div id="name"></div><div id="text"></div><div id="next">▼</div></div>
+ <div id="choices"></div>
+ <div class="ov" id="ctitle"><div class="n"></div><div class="t"></div></div>
+ <div class="ov" id="mini"><div class="card" id="minic"></div></div>
+ <div class="ov" id="ending"><div class="card" id="endc"></div></div>
+ <div class="ov" id="modal"><div class="card" id="modalc"></div></div>
+ <div class="ov show" id="title">
+  <div class="eggs"></div>
+  <h1>蛋渣<span class="egg">🥚</span>模擬器</h1>
+  <div class="sub">「你不是我的小餅，你是蛋渣。」</div>
+  <div class="intro">2018年2月14日，我最愛的姐姐被渣男劈腿了。<br>那年我十三歲，做了一個大大的決定——<b>「我要當渣男！」</b><br>用小餅的視角走過這一年：每一個選擇，都會改變你和姐姐、同桌、小愛、小美、小晴的關係。<br>🎮 被狗追・三線約會・百米衝刺小遊戲 ｜ 🏁 六種結局</div>
+  <div class="menu">
+   <button class="btn" id="tStart">🥚 開始遊戲</button>
+   <button class="btn" id="tCont">📖 續閱</button>
+   <button class="btn gray" id="tCode">🎁 兌換碼</button>
+   <button class="btn gray" id="tGal">🖼️ 結局圖鑑</button>
+   <button class="btn gray" id="tSet">⚙️ 設定</button>
+  </div>
+  <div class="foot" id="tInfo"></div>
+  <div class="foot">原作故事：Djdjjdjjd ｜ 建議開聲音遊玩 🔊 ｜ 進度自動儲存在此瀏覽器</div>
+ </div>
+</div>
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const TEST=/[?&]test/.test(location.search);
+const LS={get(k,d){try{const v=localStorage.getItem('dz_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('dz_'+k,JSON.stringify(v))}catch(e){}}};
+const CFG=Object.assign({speed:2,mute:false,stats:window.innerWidth>700},LS.get('cfg',{}));
+function saveCfg(){LS.set('cfg',CFG)}
+const SPEEDS=[55,32,16,0],SPEEDN=['慢','中','快','瞬間'];
+let AC=null;
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC}
+function tone(f,d,type='square',v=.06,t0=0,slide=0){if(CFG.mute)return;const a=ac();if(!a)return;const t=a.currentTime+t0;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f+slide),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.02)}
+function noise(d,v=.15,t0=0){if(CFG.mute)return;const a=ac();if(!a)return;const b=a.createBuffer(1,Math.floor(a.sampleRate*d),a.sampleRate),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=(Math.random()*2-1)*(1-i/x.length);const s=a.createBufferSource(),g=a.createGain();s.buffer=b;g.gain.value=v;s.connect(g);g.connect(a.destination);s.start(a.currentTime+t0)}
+const SFX={
+ blip:()=>tone(520+Math.random()*80,.03,'square',.018),
+ click:()=>tone(660,.06,'triangle',.08),
+ choice:()=>{tone(523,.08,'triangle',.1);tone(784,.12,'triangle',.1,.07)},
+ good:()=>{tone(659,.1,'square',.06);tone(880,.12,'square',.06,.08);tone(1046,.16,'square',.06,.16)},
+ bad:()=>{tone(300,.25,'sawtooth',.06,0,-150)},
+ door:()=>{tone(110,.15,'square',.12);noise(.12,.2,.02);tone(90,.2,'square',.1,.15)},
+ whistle:()=>{tone(2200,.12,'sine',.12);tone(2200,.35,'sine',.12,.18)},
+ sob:()=>{tone(440,.4,'sine',.05,0,-120);tone(392,.5,'sine',.05,.45,-100)},
+ hit:()=>{noise(.35,.4);tone(80,.3,'square',.15,0,-40)},
+ win:()=>{[523,659,784,1046,1318].forEach((f,i)=>tone(f,.18,'square',.06,i*.09))},
+ ding:()=>{tone(1318,.25,'sine',.1);tone(1760,.35,'sine',.08,.12)},
+ heart:()=>{tone(90,.12,'sine',.25);tone(90,.12,'sine',.25,.2)},
+ end:()=>{[392,330,262,196].forEach((f,i)=>tone(f,.5,'triangle',.07,i*.3))},
+ bark:()=>{tone(400,.08,'sawtooth',.08,0,-200);tone(380,.1,'sawtooth',.08,.14,-200)}
+};
+function sfx(k){try{SFX[k]&&SFX[k]()}catch(e){}}
+const CH={
+ me:{n:'小餅',c:'#ff9f43'},
+ sis:{n:'姐姐',c:'#ff6b9d',b:'🌸',f:{n:'👩',happy:'😊',cry:'😭',sad:'😢',angry:'😠',shock:'😨',smile:'🥲',tease:'😏'}},
+ desk:{n:'同桌',c:'#74b9ff',b:'🎧',f:{n:'👧',shy:'☺️',happy:'😄',sad:'😞',love:'🥰',cry:'😢',smile:'🙂'}},
+ ai:{n:'小愛',c:'#ff7675',b:'🩹',f:{n:'👧🏻',shy:'😳',happy:'😊',angry:'😤',hurt:'😣',cry:'😭'}},
+ mei:{n:'小美',c:'#a29bfe',b:'📚',f:{n:'👧🏽',angry:'😠',shy:'😳',happy:'😁',smug:'😏',cry:'😭',shock:'😧'}},
+ qing:{n:'小晴',c:'#fdcb6e',b:'☀️',f:{n:'👧🏼',happy:'🤩',shy:'🥰',angry:'😡',sad:'😢',shock:'😲'}},
+ fat:{n:'阿福',c:'#55efc4',b:'🍙',f:{n:'😄',shock:'😮',smug:'😏'}},
+ dir:{n:'學務主任',c:'#636e72',b:'👓',f:{n:'😠',angry:'😡'}},
+ teacher:{n:'體育老師',c:'#00b894',b:'📣',f:{n:'😃',wow:'🤩'}},
+ dog:{n:'小黑',c:'#2d3436',b:'🐾',f:{n:'🐕'}},
+ crowd:{n:'同學們',c:'#b2bec3',b:'📢',f:{n:'🗣️'}},
+ boy:{n:'隔壁跑道的男生',c:'#81ecec',b:'🏃',f:{n:'🤕'}},
+ sys:{n:'系統',c:'#0984e3'}
+};
+const BG={
+ street:['linear-gradient(#a1c4fd 0%,#c2e9fb 55%,#b8b8b8 55%,#9e9e9e)',[['🏠',8,40,70],['🌳',75,38,80],['🏫',45,30,60],['🚲',60,62,40]]],
+ home:['linear-gradient(#ffe8c2,#ffd59e 60%,#c79a6b 60%)',[['📺',15,45,70],['🛋️',70,55,90],['🪴',90,50,50],['🖼️',45,18,50]]],
+ night:['linear-gradient(#0c1445,#2b2d6e)',[['🌙',80,12,60],['✨',20,15,30],['✨',55,25,24],['⭐',35,8,20],['🛏️',50,62,110]]],
+ dawn:['linear-gradient(#5f4b8b,#e69a8d 70%,#c79a6b 70%)',[['📺',22,50,80],['🛋️',70,58,80],['⭐',80,10,20]]],
+ sisroom:['linear-gradient(#b8a3b5,#7d6b7d)',[['🛏️',25,58,100],['🧸',75,55,60],['🪟',70,18,60],['💔',15,20,30]]],
+ classroom:['linear-gradient(#2d6a4f 0%,#2d6a4f 28%,#f6e7c1 28%,#e9d29c)',[['📚',10,60,50],['✏️',85,62,40],['🪟',88,20,50],['🕒',50,12,36]]],
+ gamebg:['linear-gradient(135deg,#a29bfe,#fd79a8,#ffeaa7)',[['🥚',15,30,60],['🎮',80,25,60],['🎧',50,15,40],['🥚',70,60,50]]],
+ corridor:['linear-gradient(#dfe6e9,#b2bec3 70%,#8395a7 70%)',[['🚪',15,45,90],['🚪',85,45,90],['🧯',50,40,30]]],
+ nurse:['linear-gradient(#e0fff4,#b8f2e6)',[['🩹',15,25,40],['🛏️',75,55,90],['💊',30,60,30],['🧴',88,30,30]]],
+ track:['linear-gradient(#74b9ff 0%,#a8e6ff 40%,#55a630 40%,#55a630 52%,#e17055 52%,#d35400)',[['🏁',85,47,60],['🏫',15,25,70],['🎌',50,20,40],['📣',30,44,30]]],
+ country:['linear-gradient(#89f7fe 0%,#66a6ff 45%,#7bc950 45%,#4e9a2f)',[['🏡',20,35,80],['🌾',60,60,50],['🌾',80,70,50],['🐔',40,68,34],['☀️',85,10,50]]],
+ fair:['linear-gradient(#ffeaa7,#fab1a0)',[['🎪',20,35,80],['🍢',55,55,40],['🎈',80,20,50],['🍕',75,60,40],['🎯',40,22,40]]],
+ office:['linear-gradient(#b2bec3,#7f8c8d)',[['🗄️',12,45,80],['☎️',80,50,40],['🏆',55,20,40],['📋',30,25,30]]],
+ sunset:['linear-gradient(#f8a5c2 0%,#f19066 40%,#e15f41 60%,#574b90 60%,#303952)',[['🌇',80,30,80],['🏠',15,48,60],['🌳',45,45,60],['🐦',60,15,24]]],
+ podium:['linear-gradient(#ffeaa7,#fdcb6e 60%,#e17055 60%)',[['🥇',50,22,70],['🎉',20,20,40],['🎊',80,18,40],['🏟️',50,50,90]]],
+ black:['#0e0b18',[]]
+};
+const MOOD={'':'transparent',blue:'rgba(70,90,180,.35)',red:'rgba(214,48,49,.28)',warm:'rgba(255,190,120,.25)',dark:'rgba(0,0,0,.45)',pink:'rgba(255,150,200,.22)'};
+const STATN={sis:['姐姐親情','#ff6b9d'],zha:['渣度','#636e72'],con:['良心','#00b894'],desk:['同桌好感','#74b9ff'],ai:['小愛好感','#ff7675'],mei:['小美好感','#a29bfe'],qing:['小晴好感','#fdcb6e']};
+const ENDS=[
+ {id:'E1',e:'🥚',t:'蛋渣',k:'原作結局',q:'「你不是我的小餅，你是蛋渣。」',h:'照著原作的路走到最後……'},
+ {id:'E2',e:'🎂',t:'我的小餅',k:'真心結局',q:'「你是我的小餅，永遠都是。」',h:'不要成為傷害別人的人。'},
+ {id:'E3',e:'📝',t:'東窗事發',k:'提早翻車結局',q:'「渣男的第一課：不要複製貼上。」',h:'有些事，同時做兩次就會穿幫。'},
+ {id:'E4',e:'🍰',t:'遲來的道歉',k:'苦甜結局',q:'「蛋糕你自己吃……生日快樂。」',h:'闖禍之後，說出真正該說的話。'},
+ {id:'E5',e:'🎮',t:'蛋仔派對的告白',k:'初戀結局',q:'「下次換我帶你飛。」',h:'那一秒，如果你答應了呢？'},
+ {id:'E6',e:'🥇',t:'孤獨的冠軍',k:'寂寞結局',q:'「我跑贏了所有人，卻輸掉了所有人。」',h:'當一個不會翻車的渣男。'}
+];
+const n=t=>['t','n',t], i=t=>['t','i',t], me=t=>['t','me',t], sy=(c,t,e)=>['t',c,t,e];
+const bg=k=>['bg',k], show=(c,e)=>['show',c,e], hide=()=>['hide'], IF=(f,a,b)=>['?',f,a,b], go=b=>['go',b];
+const fx=o=>['fx',o], set=o=>['set',o], sf=k=>['sfx',k], mood=m=>['mood',m], title=(a,b)=>['title',a,b];
+const ch=(q,...o)=>['ch',q,o], tch=(sec,q,def,...o)=>['tch',q,o,sec,def], mini=k=>['mini',k], end=k=>['end',k], route=f=>['route',f], shake=()=>['shake'];
+const D=s=>[s.ai,s.mei,s.qing].filter(v=>v>=40).length;
+const LOYAL=(s,f)=>!!(f.deskYes&&!f.deskBetray);
+const ZHA=(s,f)=>s.zha>=40&&D(s)>=2&&!LOYAL(s,f);
+const RAW={
+ch1:[
+ title('第一篇','那糟糕的一天'),bg('street'),mood(''),hide(),
+ n('一切的一切，都是那糟糕的一天。'),
+ n('不對……應該說，一切的一切，都是從那「看起來很美好」的一天開始的。'),
+ i('放學鐘聲一響，我就衝出校門。今天姐姐說她會早點回家！'),
+ bg('home'),sf('door'),
+ n('一打開家門，我就看到了——'),show('sis','happy'),
+ me('姐！！！'),
+ n('書包都還沒放下，我就激動地衝了過去。'),
+ sy('sis','小餅回來啦～今天在學校有沒有乖？','happy'),
+ sy('sis','對了，三天後就是我們家小餅的生日了吧？','tease'),
+ sy('sis','姐姐到時候跟男朋友帶你去買玩具、吃大餐，好嗎？','happy'),
+ i('……男朋友？'),sf('heart'),
+ i('姐姐的男朋友？他會分走姐姐的愛嗎？他會跟我搶姐姐嗎？'),
+ i('我的腦袋瞬間裝滿了一個十三歲小孩所有的幻想。'),
+ ch('姐姐在等我回答……',
+  {t:'「好啊！耶～大餐！」（裝作十分開心的模樣）',tag:'原作',k:'zg',fx:{sis:5},r:[i('嘴巴說好，心裡卻像打翻了一整罐醬油。')]},
+  {t:'「……我不要他來。」',fx:{sis:-5},r:[sy('sis','小餅～不要這樣嘛，他人很好的啦。','sad'),me('……好啦。'),i('姐姐皺眉的樣子，讓我後悔了一下下。')]},
+  {t:'「他是好人嗎？他對你好不好？」',k:'g',fx:{sis:8,con:5},r:[sy('sis','呵呵，你在擔心姐姐喔？他對我很好啦。','happy'),n('姐姐揉了揉我的頭。那時候的她，笑得好甜。')]}
+ ),
+ bg('night'),hide(),mood('blue'),
+ n('夜裡，我翻來覆去，徹夜難眠。'),
+ i('姐姐跟他在一起，會比跟我在一起更幸福嗎？更快樂嗎？'),
+ i('那時小小的我，在一番奇思妙想後，做了一個大大的決定——'),
+ ch('我的大大決定是……',
+  {t:'如果姐姐跟他在一起會更幸福，那我就讓給他！',tag:'原作',k:'zg',fx:{con:5}},
+  {t:'我要偷偷調查他，確認他配不配得上姐姐！（小偵探模式）',set:{detective:true},r:[n('我用姐姐的平板偷偷點開他的社群……奇怪，怎麼有好多女生的留言都是愛心？'),i('……一定是我想太多了。')]}
+ ),
+ i('還有——我要跟他說：「如果你敢欺負我姐姐，我不會放過你的！」'),
+ n('我對著天花板，用力揮了一拳。'),
+ mood('dark'),
+ n('沒想到三天後，事情會打翻我之前所有的幻想，並且改變了我的一生。'),
+ go('ch2')
+],
+ch2:[
+ title('第二篇','憑什麼是我姐！不公平！'),bg('dawn'),mood(''),hide(),
+ n('我永遠忘不了那一天，至今仍印象深刻——2018年2月14日。'),
+ n('一大早我就起來了。那時候太陽公公還沒起床，小星星們已經離開了。'),
+ ch('電視遙控器在我手上……',
+  {t:'看《仙劍奇俠傳》重播',r:[n('李逍遙又在喊「靈兒——」了。我連看兩集，太陽公公才終於起床。')]},
+  {t:'直接轉到最愛的《蠟筆小新》',r:[n('小新又在跳大象舞，我笑到在沙發上打滾。')]}
+ ),
+ n('我以為快樂的時光很快就會到來，於是轉到我最愛看的蠟筆小新，希望時間能過得快一點。'),
+ n('時間確實過得好快，一下子就到了中午。'),
+ i('奇怪，姐姐怎麼還沒叫我換衣服準備出門？今天要去遊樂園耶！'),
+ mood('blue'),sf('sob'),
+ n('……我隱約聽到了啜泣聲。'),
+ n('一開始以為是我聽錯，所以我屏住呼吸，臉漲得通紅。'),
+ n('一陣一陣的啜泣聲傳入我的耳朵。爸媽昨天去打麻將還沒回來，這個時間，家裡只有我跟姐姐。'),
+ i('發生了什麼！為什麼她在哭！'),
+ n('我急忙往姐姐的房間走。每往前一步，啜泣聲就越大聲，我的心就又刺痛了一下。'),
+ bg('sisroom'),sf('door'),show('sis','cry'),
+ n('打開房門，映入眼簾的是我從沒看過的姐姐。'),
+ n('哭得面目全非的樣子，狠狠地刺痛我的心。'),
+ n('見到我進來，姐姐再也克制不住情緒，放聲大哭。'),
+ n('頓時彷彿有一台台火車輪番輾過我的心，壓得我喘不過氣。'),
+ ch('我該怎麼做？',
+  {t:'抱住姐姐：「怎麼了？別哭……」',tag:'原作',k:'zg',fx:{sis:10,con:5}},
+  {t:'站在門口，不知所措',fx:{sis:-5},r:[n('我的腳像被釘在地板上。過了好久，我才終於走過去，抱住了她。')]},
+  {t:'衝去冰箱拿姐姐最愛的養樂多，再抱住她',fx:{sis:12},r:[sy('sis','……你怎麼知道我現在想喝這個……','smile'),n('她一邊哭一邊插吸管，插了三次都沒插進去。')]}
+ ),
+ i('當時的我也好想哭，但我知道我不能哭。'),
+ i('以往那個高大的姐姐，第一次顯得那麼的弱小無助。'),
+ sy('sis','小餅……對不起，今天沒辦法帶你去遊樂園了……','cry'),
+ me('沒關係。姐姐，怎麼了？'),
+ sy('sis','我被出軌了……他是個渣男。他跟好幾個女生……同時在一起了。','cry'),
+ IF((s,f)=>f.detective,[i('我就知道！那些愛心留言根本不是我想太多！'),fx({sis:3})]),
+ n('那天，那個一向開朗陽光的姐姐好弱小，說了好多好多話，哭得好傷心。'),
+ ch('姐姐哭到說不出話了……',
+  {t:'「姐，我去揍他！」',fx:{sis:3,zha:5},r:[sy('sis','笨蛋……你打不過他啦。','smile'),n('她破涕為笑了一秒鐘。就一秒鐘。')]},
+  {t:'什麼都不說，安靜地聽她說完',k:'g',fx:{sis:10,con:5},r:[n('我拍著她的背，一下、兩下、三下……直到她的呼吸慢慢平穩。')]},
+  {t:'「沒關係，你還有我！我永遠不會離開你！」',fx:{sis:8},r:[sy('sis','……嗯。','smile')]}
+ ),
+ hide(),mood('red'),sf('heart'),
+ i('憑什麼是我姐！不公平！'),
+ i('為什麼受傷的是她，那個渣男卻可以繼續笑嘻嘻的？'),
+ ch('十三歲的我，在心裡做了一個決定——',
+  {t:'「我要讓其他人也體會被渣的痛苦，不能只有我姐。對！我要當渣男！」',tag:'原作',k:'z',fx:{zha:35,con:-10},set:{route:'zha'}},
+  {t:'「我要成為一個，絕對不會讓女生哭的人。」',k:'gy',fx:{zha:-10,con:20,sis:5},set:{route:'good'}}
+ ),
+ IF((s,f)=>f.route==='zha',[mood('dark'),n('那一天，一個十三歲的男孩，做出了一個天大的錯誤決定。')],[mood('warm'),n('那一天，我在心裡發誓：我要保護好姐姐的笑容。')]),
+ go('ch3')
+],
+ch3:[
+ title('第三篇','我們不是一直都只是朋友嗎？'),bg('classroom'),mood(''),hide(),
+ n('開學了，我國一了，但我並不快樂。'),
+ n('從那天之後，姐姐的笑容明顯少了很多。以往無話不談的我們，隨著姐姐的狀態每況愈下，有時甚至像陌生人一樣擦肩而過。'),
+ i('我知道她只是需要一點時間恢復。可我還是會很失落，非常非常的失落。'),
+ i('那個該死的渣男。'),
+ bg('home'),mood('blue'),
+ n('放學後沒有姐姐的笑容、放假後沒有姐姐的陪伴、失落時也沒有姐姐的關心。一切彷彿沒變，卻又什麼都變了。'),
+ n('晚上，姐姐的房門又關著。'),
+ ch('站在姐姐的房門口……',
+  {t:'在門縫塞一張紙條：「姐，我幫你留了一顆滷蛋 🥚」',k:'g',fx:{sis:8},r:[n('隔天早上，滷蛋不見了。紙條背面多了一行字：「謝謝你，小餅。」'),i('我把那張紙條夾進了數學課本。')]},
+  {t:'敲門找她聊天',fx:{sis:3},r:[sy('sis','小餅……姐姐今天有點累，明天再說好不好？','sad'),hide(),i('門又關上了。我站在走廊，數著地板的磁磚。')]},
+  {t:'算了，回房間打電動',fx:{sis:-3}}
+ ),
+ bg('classroom'),mood(''),hide(),
+ n('直到這天，一如往常地上著無聊的課——'),
+ i('我感覺有一股炙熱的目光正盯著我。'),
+ show('desk','shy'),
+ n('轉過頭的瞬間，我們四目相對。她臉一紅，迅速轉了過去。'),
+ i('但我知道她喜歡我。因為她看我時的神情，簡直跟我姐當初如出一轍。'),
+ ch('面對我的同桌……',
+  {t:'開始「有意無意」找她請教課業、聊天',tag:'原作',k:'z',fx:{zha:10,desk:15}},
+  {t:'真心想跟她當朋友，認真問她數學怎麼解',k:'gy',fx:{desk:15,con:5}},
+  {t:'假裝沒發現',fx:{desk:-5},r:[n('結果她還是主動來借了我的立可帶。命運就是這麼奇妙。'),fx({desk:10})]}
+ ),
+ n('我們的關係越來越好，好到會有同學跑來詢問我們的關係，甚至有時候還會起鬨。'),
+ sy('crowd','喔～～蛋餅跟同桌～～在一起～～'),
+ sy('desk','你、你們不要亂講啦！','shy'),
+ bg('gamebg'),
+ sy('desk','欸蛋餅，放學後要玩蛋仔派對嗎？','happy'),
+ me('好啊！'),
+ n('我們配合得十分默契，一路闖到了最後一關。'),
+ sy('desk','哇！我們是不是天生一對……我是說，天生一隊！','love'),
+ i('好久沒有笑得那麼開心了。'),
+ i('我不禁回想，上次笑得這麼開心是什麼時候？好像是……姐姐說要帶我去遊樂園的時候。'),
+ sf('ding'),
+ n('這時，耳機裡傳來一道聲音，打斷了我的回想。'),
+ sy('desk','……蛋餅，我喜歡你。我們可以在一起嗎？','shy'),
+ sf('heart'),i('心臟碰碰碰地跳。就在我要答應的那一秒——'),
+ sf('door'),
+ n('喀啦——客廳傳來了姐姐回家的開門聲。'),
+ i('姐姐的腳步聲好輕、好累。'),
+ IF(s=>s.zha>=30,[mood('red'),i('對！我要當渣男！')],[mood('blue'),i('我想起姐姐哭腫的眼睛。如果有一天，我也讓別人那樣哭……')]),
+ ch('耳機那頭，她在等我的回答……',
+  {t:'「我們不是一直都只是朋友嗎？」',tag:'原作',k:'z',fx:{zha:15,con:-10,desk:-50},r:[
+   mood('dark'),n('對面傳來的是無盡的沉默。'),sy('sys','【蛋仔派對】玩家已退出房間。'),hide(),
+   i('這就是當渣男的感覺嗎？'),i('可是我怎麼……開心不起來。')]},
+  {t:'「好。我也喜歡你。」',k:'y',fx:{desk:30,con:5},set:{deskYes:true},r:[
+   mood('pink'),sy('desk','真、真的嗎！！！','love'),n('耳機裡傳來她的尖叫，接著是她弟弟大罵「吵死了！」的聲音。'),i('我笑了。這一次，是真的開心。')]},
+  {t:'「我……還不知道怎麼喜歡一個人。可以先當好朋友嗎？」',k:'g',fx:{con:10,desk:-5},set:{honest:true},r:[
+   sy('desk','……嗯，好。那明天也要一起打蛋仔喔！','smile'),i('她的聲音有點抖，但她還是笑了。'),i('我也是。')]}
+ ),
+ go('ch4')
+],
+ch4:[
+ title('第四篇','小愛・小美回憶篇'),bg('classroom'),mood(''),hide(),
+ n('今天終於要換座位了。'),
+ IF((s,f)=>!f.deskYes&&!f.honest,[n('自從那天以後，我跟我的同桌就再也沒有交流。')]),
+ IF(s=>s.zha>=30,[n('這半年來，關於我的議論聲不少——但已經不再只屬於我跟同桌了，而是屬於我跟我們班的小愛、小美、小晴。'),n('情況不同的是，她們原本都不是喜歡我的，甚至還有討厭我的。')],[n('這半年來，我跟班上的小愛、小美、小晴都變成了好朋友。至少……我是這麼以為的。')]),
+ sy('sys','── 回憶・小愛 ──'),
+ bg('track'),
+ n('那天體育課跑步，小愛不慎滑倒，膝蓋擦傷了。'),
+ sy('ai','好痛……','hurt'),
+ n('大家都在看，卻沒有人要陪她去保健室。'),
+ ch('小愛坐在跑道上……',
+  {t:'「我陪你去保健室吧，傷口感染就不好了。」',tag:'原作',k:'zgy',fx:{ai:20,con:5}},
+  {t:'「誰叫你跑那麼慢～」（中二嘴砲）',fx:{ai:-10},r:[sy('ai','……你很煩欸。','angry'),i('說完我就後悔了。'),n('最後我還是扶著她去了保健室。'),fx({ai:12})]}
+ ),
+ bg('nurse'),
+ n('酒精的消毒刺痛著她如十元硬幣大的傷口，她疼得「嘶」了一聲。'),
+ sy('ai','……謝謝你喔，蛋餅。','shy'),
+ n('或許她還不太適應傷口處的包紮，走路有些踉蹌、不自在。'),
+ bg('corridor'),
+ n('中午，剛好輪到小愛抬餐桶。'),
+ ch('看著一拐一拐的小愛……',
+  {t:'主動陪她一起抬（這樣才能多一點獨處的時間）',tag:'原作',k:'z',fx:{ai:25,zha:10},r:[i('你問我為什麼不直接幫她抬就好？'),i('其實答案很簡單——因為我想增加獨處的時間。幫她抬就沒有了。')]},
+  {t:'直接幫她把餐桶抬完，叫她回教室休息',k:'gy',fx:{ai:12,con:8},r:[sy('ai','你……人也太好了吧。','happy')]},
+  {t:'拉阿福一起來幫忙抬',k:'g',fx:{ai:6,con:5},r:[sy('fat','為什麼是我！……好啦，等一下雞腿給我。','smug')]}
+ ),
+ IF(s=>s.zha>=30,[n('就這樣，半年了，我跟小愛發展成了心照不宣的曖昧關係。')],[n('就這樣，小愛成了我很好的朋友。')]),
+ sy('sys','── 回憶・小美 ──'),
+ bg('corridor'),hide(),
+ n('小美很特別。我們的初見並不愉快。說起初見還是覺得很好笑——夾雜著幼稚與青澀的回憶。'),
+ n('那天放假，我急忙趕回家想見到姐姐，在路上撞到了剛上完廁所出來的她。'),
+ sf('hit'),me('對不起！'),
+ sy('mei','你走路不看路的喔？國一了還在走廊上跑，你知不知道很危險？我跟你說……','angry'),
+ n('她以年長者的姿態，不依不饒地對我說教。'),
+ ch('被說教了五分鐘……',
+  {t:'「你憑什麼教訓我！明明是你在那邊東張西望，突然走到路中間我才會撞到你的！」',tag:'原作',k:'z',fx:{mei:-5},r:[sy('mei','你說什麼！？','angry'),n('於是我跟她誰也不讓誰地吵了起來。獨屬於兩個幼稚鬼的仇，就此結下。')]},
+  {t:'「……好啦，是我的錯。」',k:'gy',fx:{mei:8,con:3},r:[sy('mei','哼，知道就好。','smug'),n('她轉身走了。但我好像看到她的嘴角，有那麼一點點上揚。')]}
+ ),
+ hide(),
+ n('後來，我看到她抱著一大疊改好的英文習作，走得搖搖晃晃。'),
+ me('欸，討厭鬼，需不需要幫忙啊？'),
+ sy('mei','我才不需要你咧！','angry'),
+ ch('她的習作已經快掉了……',
+  {t:'「好啦對不起，幫你搬習作，你就原諒我好嗎？」',tag:'原作',k:'zgy',fx:{mei:25}},
+  {t:'「不要就算了。」轉頭就走',fx:{mei:-5},r:[sf('hit'),n('走沒兩步，身後傳來「嘩啦啦」一聲。習作掉了一地。'),n('我嘆了口氣，還是回頭蹲下來幫她撿。'),fx({mei:20})]}
+ ),
+ i('當時的我真不知道少了哪根筋。或許她是搬累了，又或許是沒那麼討厭我了——她答應了。'),
+ n('年少時的關係來得快去得也快。上一秒還「你是我最好的朋友」，下一秒就「我們絕交吧」，反之亦是如此。'),
+ n('一次、兩次、三次……已經數不清第幾次幫她搬書了。'),
+ show('mei','happy'),
+ n('稱呼從「討厭鬼」變成了「小美」，對話從「我不要」變成了「謝謝你」，甚至無話不談。'),
+ fx({mei:15}),
+ bg('classroom'),hide(),
+ n('某天下課，小美把她粉紅色的交換日記推到我桌上。'),
+ sy('mei','欸……你也寫一頁啦。寫……寫你覺得我是什麼樣的人。','shy'),
+ n('同一節下課，小愛也偷偷遞給我一張小卡片。'),
+ sy('ai','蛋餅，可以寫一句話給我嗎？……要寫好一點喔。','shy'),
+ hide(),i('兩個都要寫？好麻煩喔……'),
+ ch('我拿起筆……',
+  {t:'兩張都寫一樣的：「你是我心中最特別的人」（省時間！）',k:'s',fx:{zha:20,ai:10,mei:10},set:{same:true}},
+  {t:'認真幫兩個人各寫不一樣的話',k:'z',fx:{ai:8,mei:8},r:[IF(s=>s.zha>=30,[fx({zha:5}),i('給小愛：「你笑起來很可愛。」給小美：「其實你不兇的時候很溫柔。」……我真是個天才。')],[i('給小愛：「膝蓋要好好擦藥喔！」給小美：「謝謝你每次都借我英文筆記。」')])]},
+  {t:'寫：「謝謝你當我的好朋友！」',k:'gy',fx:{ai:-3,mei:-3,con:10,zha:-10}}
+ ),
+ IF((s,f)=>f.same,[go('chE3')]),
+ IF((s,f)=>f.deskYes&&s.zha>=40,[
+  bg('gamebg'),show('desk','sad'),
+  sy('desk','蛋餅……你最近跟小愛、小美好像很好喔？','sad'),
+  ch('同桌——我的女朋友——低著頭問我。',
+   {t:'「對不起。我會注意，不會再讓你難過。」',k:'gy',fx:{zha:-25,con:10,desk:5},r:[sy('desk','……嗯。我相信你。','smile')]},
+   {t:'「只是朋友啦，你想太多了。」',k:'z',fx:{zha:10,desk:-10},set:{deskBetray:true},r:[sy('desk','……喔。','sad'),i('她沒有再問了。我卻覺得，好像有什麼東西碎掉了。')]}
+  )
+ ]),
+ go('ch5')
+],
+ch5:[
+ title('第五篇','跑步健將蛋餅'),bg('classroom'),mood(''),hide(),
+ IF(s=>s.zha>=30,[n('小晴，是我最好「攻略」的那個。')],[n('小晴，是班上最愛笑的女生。')]),
+ n('和同桌一樣，她也是主動喜歡我的。儘管已經過了多年，我仍不知道當年的她到底是如何喜歡上我的。'),
+ sy('qing','蛋餅！早安！這個給你～','happy'),
+ n('她每天都會在我抽屜裡放一瓶養樂多。'),
+ ch('小晴笑咪咪地看著我……',
+  {t:'收下養樂多，對她眨個眼 😉',k:'z',fx:{qing:20,zha:10}},
+  {t:'「謝謝！但你不用每天帶給我啦，你自己也要喝。」',k:'gy',fx:{qing:5,con:5}},
+  {t:'回送她一顆姐姐教我摺的紙星星',k:'g',fx:{qing:12,sis:3},r:[sy('qing','好漂亮！我要放在鉛筆盒裡！','shy')]}
+ ),
+ hide(),
+ n('換座位了。我旁邊是一個胖嘟嘟的男生——阿福。他總是話很多。'),
+ sy('fat','蛋餅蛋餅！你到底在跟誰交往啊？'),
+ sy('fat','那你最喜歡誰？小愛？小美？還是小晴？','smug'),
+ ch('阿福的臉越湊越近……',
+  {t:'「拜託，我哪知道啊。我每個都很喜歡啊。」',tag:'原作',k:'z',fx:{zha:10}},
+  {t:'「我最喜歡我姐。」',k:'gy',fx:{sis:5,con:5},r:[sy('fat','……姐控。','smug'),me('你說什麼！'),n('我追著阿福繞了教室三圈。')]},
+  {t:'「噓！你小聲一點啦！」',fx:{zha:5},set:{loud:true},r:[sy('fat','（超大聲）蛋餅叫我小聲一點——！！','shock'),n('全班都轉過頭來看我。')]}
+ ),
+ bg('track'),hide(),
+ n('我愛體育課，我更愛跑步。'),
+ bg('country'),mood('warm'),sy('sys','── 回憶・鄉下阿公阿嬤家 ──'),
+ n('早年我們住在鄉下阿公阿嬤家時，我經常被狗咬，導致我每次一看到狗就會害怕。'),
+ n('多年跟狗的追逐，練就了我超快的速度——'),
+ mini('dog'),
+ IF((s,f)=>f.m_dog===0,[i('一次都沒被咬到！我果然是天生的飛毛腿！')],[i('……我的屁股到現在想起來還會痛。')]),
+ sf('bark'),show('dog'),
+ n('後來，有了阿嬤養的小黑，小黑都會保護我。漸漸的，我跟這群狗勾成為了朋友。'),
+ n('還記得當初離開的時候，這群狗比阿嬤還不捨，追著老媽的車追到了離家三條街的檳榔攤，後來跟不上了才沒追著回去。'),
+ sy('dog','汪！汪汪！'),
+ bg('track'),mood(''),hide(),
+ sy('teacher','各就各位——'),sf('whistle'),
+ n('逼逼！哨聲一響，刻在骨子裡的DNA立刻啟動，我迅速衝到了終點。'),
+ i('好久沒跑了，狀態不好，應該被同學超過了吧……'),
+ n('喘了一下，轉頭看——同學們才剛穿過終點。'),
+ sy('crowd','蛋餅好帥！什麼鬼，蛋餅跑好快！'),
+ sy('teacher','蛋餅……100公尺，11.2秒！？','wow'),
+ n('11.2秒震驚了旁邊的男同學，也得到了老師的誇獎。'),
+ sy('teacher','蛋餅你跑得很快！下禮拜的運動會，你代表班上去比100公尺。'),
+ sy('teacher','以你現在的成績，就算跟高年級組的比也會第一。加油，為班級爭光，我看好你！'),
+ hide(),mood('dark'),
+ n('此時的我並不會想到，這場比賽會為姐姐的失望埋下伏筆。'),
+ bg('home'),mood(''),
+ ch('晚上回到家，姐姐在客廳滑手機。',
+  {t:'跟姐姐說運動會要比100公尺的事',k:'gy',fx:{sis:10},set:{sisKnows:true},r:[show('sis','smile'),sy('sis','真的嗎？我們家小餅這麼厲害喔？','smile'),sy('sis','那天……姐姐看看能不能請假去看你。','happy'),i('那是那天之後，我第一次看到姐姐笑。')]},
+  {t:'先不說，等拿到冠軍再給她一個驚喜',tag:'原作',k:'z'}
+ ),
+ hide(),
+ bg('fair'),
+ n('時光飛快，轉眼就到了運動會當天。因為下午才比賽，上午有大把時間。'),
+ IF(ZHA,[
+  i('問題是——我答應小晴去逛園遊會、答應小愛去看班際比賽、又答應小美在樓梯間吃披薩。'),
+  i('三個人。同一個上午。'),
+  i('沒關係，我可是100公尺跑11.2秒的男人。'),
+  mini('juggle'),
+  IF((s,f)=>!f.m_juggle,[go('chE3b')]),
+  n('我在三個地方之間來回狂奔，汗流浹背，居然……一次都沒被發現。'),
+  i('我真是個天才。'),fx({zha:5})
+ ],[IF(LOYAL,[show('desk','happy'),n('上午，我跟同桌一起逛園遊會。她把撈到的金魚取名叫「蛋仔」。'),sy('desk','下午要加油喔！我會在終點等你！','love'),fx({desk:10})],
+   [n('上午，我跟阿福、小愛、小美、小晴一群人一起逛園遊會、看班際比賽、在樓梯間分一整盒披薩。'),i('好朋友，大概就是這樣吧。'),fx({con:5})])]),
+ bg('track'),hide(),
+ IF(s=>s.zha>=40,[n('下午了。看到旁邊的選手都在熱身，我露出了不屑的表情。')],[n('下午了。看到旁邊的選手都在熱身，我緊張得一直原地跳。')]),
+ sy('crowd','哇，他好快！那個跑最快的男生好帥！'),
+ IF(s=>s.zha>=40,[n('享受著大家的目光——此時的我沒想到，現在的我有多風光，待會的我就會有多狼狽。')]),
+ go('ch6')
+],
+ch6:[
+ title('第六篇','我好像闖禍了……'),bg('track'),mood(''),hide(),
+ n('下午的100公尺決賽終於到了。'),
+ IF(s=>s.zha>=40,[n('站在起跑線上，我看著旁邊各個跑道的對手，心裡根本沒把他們放在眼裡。')],[n('站在起跑線上，我深吸一口氣。'),IF((s,f)=>f.sisKnows,[i('看台上……那個揮手的人，是姐姐嗎？')])]),
+ mini('sprint'),
+ IF((s,f)=>f.m_sprint.rank>1,[set({lost:true}),n(()=>'衝過終點——第 '+ST.f.m_sprint.rank+' 名。'),i('我……居然輸了？'),i('原來太驕傲的人，連終點線都會跟你作對。'),go('ch6safe')]),
+ n('風一直吹在我臉上。因為我實在跑太快了，其他人一下子就被我甩在後面。'),
+ i('聽著場邊大家的尖叫聲，我心裡想著：我也太強了吧，這場決賽第一名絕對是我！'),
+ n('第一個衝過終點線的那一瞬間——觀眾席的尖叫聲好大聲！'),
+ tch(4,'⚡ 快決定！身體已經在動了！',(s)=>s.zha>=40?0:1,
+  {t:'橫切跑道，衝去對觀眾席比耶 ✌️',tag:'原作',k:'zx',set:{crash:true}},
+  {t:'慢慢減速，回頭跟其他選手擊掌',k:'gyn',fx:{con:10}}
+ ),
+ route((s,f)=>f.crash?'ch6crash':'ch6safe')
+],
+ch6crash:[
+ n('為了耍帥，我居然興奮到直接橫切跑到旁邊的跑道，想對著觀眾席比耶。'),
+ n('但我完全忘了自己速度有多快，也忘了旁邊跑道的選手正低著頭拼命壓線衝刺。'),
+ shake(),sf('hit'),
+ n('碰！！！'),
+ n('旁邊跑道的男生根本來不及閃，兩個人高速重重撞在一起。'),
+ n('我整個人飛了出去，在跑道上滾了好幾圈。手肘跟膝蓋直接破皮流血，痛得我要死，滿臉都是操場上的沙子。'),
+ i('剛才有多帥，現在就有多丟臉。'),
+ route((s,f)=>ZHA(s,f)?'ch6fight':(LOYAL(s,f)?'chE5':'ch6nice'))
+],
+ch6fight:[
+ n('我還躺在地上起不來，旁邊就傳來急急忙忙的腳步聲。'),
+ sy('qing','蛋餅你流好多血喔！你還好嗎……','sad'),
+ n('小晴第一個蹲下來，拿著運動飲料，快哭出來了。'),
+ sy('ai','欸你擋著幹嘛啊！他流血了，你拿飲料要幹嘛啦！','angry'),
+ n('小愛衝過來，把小晴擠開。'),
+ sy('qing','你幹嘛推我啊！關你什麼事！','angry'),
+ sy('mei','……等一下，你們現在是在幹嘛？','angry'),
+ n('小美拿著毛巾跑過來，看到這一幕整個人傻眼，站在那邊瞪著我跟她們兩個。'),
+ sy('qing','我關心我喜歡的人不行喔！','angry'),
+ sy('mei','蛤？什麼你喜歡的人？他不是跟我很好嗎？','angry'),
+ sy('ai','神經病喔！蛋餅明明每天都跟我在一起，你們到底在講什麼！','angry'),
+ IF((s,f)=>f.deskBetray,[sy('desk','……你們在說的，是我男朋友。','cry'),n('同桌站在人群最後面，手上拿著寫著「蛋餅加油」的紙板。')]),
+ hide(),mood('red'),
+ n('三個女生就這樣當著全校的面互罵了起來。圍過來看笑話的人越來越多，指指點點的，甚至還有人在笑。'),
+ i('我躺在地上，整個人都麻了。'),
+ i('完了，這次真的芭比Q了。'),
+ show('dir','angry'),
+ sy('dir','你們幾個在幹什麼！通通給我過來！','angry'),
+ bg('office'),mood(''),
+ n('主任把我們四個全部抓去學務處。'),
+ sf('hit'),
+ sy('dir','才國一就在搞什麼男女關係！還在學校大吵大鬧，丟人現眼！','angry'),
+ sy('dir','立刻把家長叫來！','angry'),
+ go('ch7')
+],
+ch7:[
+ title('第七篇','你不是我的小餅，你是蛋渣（完結篇）'),bg('office'),mood(''),hide(),
+ n('爸媽都在外地出差，根本接不到電話。沒辦法，在主任的逼問下，我只好打給姐姐。'),
+ n('過了半個小時，姐姐趕來了。'),
+ show('sis','n'),
+ n('她手上還提著一個小蛋糕——應該是特地買來，要幫我慶祝拿到決賽第一名的。'),
+ IF((s,f)=>f.sisKnows,[i('她說過要請假來看我比賽的。她真的來了。')]),
+ n('但一進辦公室，看到我滿身是傷，旁邊坐著三個哭得稀裡嘩啦的女生，再聽主任說我同時跟好幾個女生搞曖昧——'),
+ show('sis','shock'),sf('heart'),
+ n('姐姐臉上的表情瞬間垮了下來，一句話都說不出來。'),
+ n('主任訓完話後，姐姐默默簽完名，一句話都沒跟我說，直接轉頭走出校門。'),
+ hide(),bg('sunset'),mood('blue'),
+ n('我一瘸一拐地跟在後面。'),
+ n('走在回家的路上，太陽快下山了。我手腳痛得要死，但姐姐不說話的樣子更讓我害怕。'),
+ me('姐……對不起。'),
+ n('我走上前想拉姐姐的衣角，姐姐一把甩開我的手。'),
+ show('sis','cry'),sf('sob'),
+ n('她停下腳步，轉過頭看著我。那眼神，就跟那天她被渣男欺騙時哭的一模一樣。'),
+ n('眼淚一直從她臉上流下來，手上提著的蛋糕盒子一直在發抖。'),
+ sy('sis','你知不知道……被騙有多痛？','cry'),
+ sy('sis','我以為你懂我。結果你居然去學那個渣男？','cry'),
+ ch('夕陽下，我只能說一句話——',
+  {t:'「姐，我只是想讓所有人都懂你的痛……」',tag:'原作',k:'z',go:'endE1'},
+  {t:'「……我錯了。我讓她們跟你一樣難過了。我會去跟每一個人道歉。」',k:'a',r:[route(s=>(s.con>=40||s.sis>=60)?'endE4':'endE1b')]},
+  {t:'什麼都不說，把口袋裡的冠軍獎牌掛到姐姐脖子上',r:[route(s=>s.sis>=60?'endE4':'endE1b')]} 
+ )
+],
+endE1:[
+ sy('sis','閉嘴！不要叫我姐！','angry'),
+ n('姐姐哭著打斷我。她絕望地搖搖頭——'),
+ mood('dark'),
+ sy('sis','你不是我的小餅。','cry'),
+ sy('sis','你是蛋渣。','cry'),
+ hide(),bg('black'),
+ n('蛋糕盒子掉在地上。夕陽把我的影子拉得好長、好長。'),
+ i('我想讓全世界懂她的痛。最後，我變成了讓她最痛的那個人。'),
+ end('E1')
+],
+endE1b:[
+ sy('sis','你以為說對不起……就沒事了嗎？','angry'),
+ n('她看著我，好像在看一個陌生人。'),
+ go('endE1')
+],
+endE4:[
+ n('姐姐愣住了。'),
+ n('她看著我好久好久，眼淚還是一直掉。'),
+ sy('sis','……你知道就好。','cry'),
+ n('她把蛋糕盒塞進我手裡，自己先走了。'),
+ sy('sis','（背對著我）……蛋糕，你自己吃。生日快樂。','sad'),
+ hide(),
+ n('那一個禮拜，我一個一個去道歉。小愛哭了，小晴沒理我，小美罵我「討厭鬼」——跟我們第一次見面時一模一樣。'),
+ IF((s,f)=>!f.deskYes&&!f.honest,[n('我也終於鼓起勇氣，跟同桌說了那句遲到半年的「對不起」。')]),
+ n('我跟姐姐，再也回不到從前那樣無話不談了。'),
+ n('但某天晚上，我的房門縫裡塞進了一張紙條：「滷蛋幫你留在冰箱了。—姐」'),
+ mood('warm'),
+ i('多年後我才懂，那天姐姐哭，不是因為我丟了她的臉。'),
+ i('而是因為她害怕——害怕自己最愛的弟弟，變成傷害她的那種人。'),
+ end('E4')
+],
+ch6nice:[
+ n('我還躺在地上，一群人就衝了過來。'),
+ sy('ai','蛋餅！上次你陪我去保健室，這次換我！','hurt'),
+ n('小愛拿著急救箱，熟練地幫我消毒——看來她那次真的有在認真記。'),
+ sy('mei','你是笨蛋嗎？誰會在終點線亂跑啊！','angry'),
+ sy('qing','蛋餅……運動飲料，給你。','sad'),
+ sy('fat','哈哈哈哈哈，蛋餅你剛剛飛起來的樣子我錄下來了！','smug'),
+ hide(),
+ n('旁邊跑道的男生也摔得不輕，抱著膝蓋坐在地上。'),
+ ch('我一拐一拐地站起來……',
+  {t:'先去扶他起來，跟他道歉',k:'gy',fx:{con:10},r:[sy('boy','……沒事啦。你跑超快的，下次教我。'),n('我們兩個滿臉沙子，互相看著，然後一起笑了出來。')]},
+  {t:'先擦自己臉上的沙子',fx:{con:-5},r:[i('……我在幹嘛？'),n('我還是走過去，跟他說了聲對不起。')]}
+ ),
+ sy('teacher','雖然很亂來……但蛋餅還是第一名！'),
+ n('老師叫我打電話給家長來接我。爸媽在出差，我只好打給姐姐。'),
+ go('chE2')
+],
+ch6safe:[
+ IF((s,f)=>ZHA(s,f),[go('chE6')]),
+ IF(LOYAL,[go('chE5')]),
+ IF((s,f)=>!f.lost,[sf('win'),n('我放慢腳步，回頭跟其他選手一一擊掌。'),sy('crowd','蛋餅！蛋餅！蛋餅！'),sy('teacher',()=>'第一名！'+(ST.f.m_sprint&&ST.f.m_sprint.time||11.02)+' 秒！我就知道你可以！','wow')],[n('我喘著氣，走過去跟第一名握手。'),sy('teacher','輕敵了喔，蛋餅。但跑得很好！')]),
+ go('chE2')
+],
+chE2:[
+ title('第七篇','這才是我的小餅'),bg('sunset'),mood('warm'),hide(),
+ n('太陽快下山的時候，姐姐出現在校門口。'),
+ show('sis','happy'),
+ n('她手上提著一個小蛋糕——特地買來，要幫我慶祝的。'),
+ IF((s,f)=>f.crash,[sy('sis','你是笨蛋嗎？跑第一名還自己去撞人！','tease'),n('她一邊罵，一邊小心翼翼地幫我把OK繃貼好。')]),
+ IF((s,f)=>f.lost,[sy('sis','第二名也很棒啊！我們家小餅最帥了。','happy')]),
+ IF((s,f)=>!f.crash&&!f.lost,[sy('sis','我都看到了！你衝過終點的時候，姐姐叫到喉嚨都啞了！','happy')]),
+ sy('sis','小餅……那天，謝謝你抱著我。','smile'),
+ sy('sis','那時候姐姐覺得全世界都在騙我。可是你一直在。','smile'),
+ ch('看著姐姐的笑容，我想說——',
+  {t:'「姐，以後換我保護你。」',k:'gyz',r:[sy('sis','哈哈，你先保護好你的膝蓋吧。','tease')]},
+  {t:'「姐，你下次一定要找一個不會讓你哭的人喔。」',r:[sy('sis','……嗯，我會的。','smile')]},
+  {t:'（把獎牌掛到姐姐脖子上）「這個給你。」',r:[sy('sis','……傻瓜，這是你的耶。','cry'),n('她哭了。但這次，是笑著哭的。')]}
+ ),
+ sy('sis','你是我的小餅。永遠都是。','happy'),
+ hide(),
+ n('那天的晚霞好漂亮。我們一路走回家，邊走邊吃那個小蛋糕，奶油沾得滿臉都是。'),
+ i('我沒有成為渣男。我只是，成為了一個不會讓別人哭的人。'),
+ i('原來，這才是保護姐姐最好的方式。'),
+ end('E2')
+],
+chE5:[
+ title('第七篇','蛋仔派對的告白'),bg('track'),mood('pink'),hide(),
+ IF((s,f)=>f.crash,[n('我躺在地上還沒爬起來，就有人拿著毛巾衝進跑道。'),sy('desk','蛋餅！！你是笨蛋嗎！！','cry'),n('同桌一邊哭一邊幫我擦臉上的沙子，擦得比砂紙還用力。')],[n('衝過終點的那一刻，我第一眼找的，是終點線旁邊那個舉著「蛋餅加油」紙板的女生。'),sy('desk','蛋餅！！你好帥！！','love')]),
+ n('看台上，姐姐提著小蛋糕走了過來。'),
+ show('sis','tease'),
+ sy('sis','喔～～這位是？','tease'),
+ sy('desk','姐、姐姐好！我是蛋餅的……的……','shy'),
+ me('女朋友。'),
+ n('同桌的臉紅到像我膝蓋上的傷口。'),
+ sy('sis','小餅，要好好對人家喔。不可以讓女生哭。','smile'),
+ me('我知道。'),
+ i('因為我看過，姐姐哭的樣子。'),
+ hide(),bg('gamebg'),
+ n('那天晚上，我們三個人一起開了一場蛋仔派對。姐姐超爛，一直掉下去，笑到停不下來。'),
+ sy('desk','蛋餅，下次換我帶你飛。','love'),
+ i('如果那天，我說的是「我們不是一直都只是朋友嗎」……'),
+ i('還好，我沒有。'),
+ end('E5')
+],
+chE6:[
+ title('第七篇','我跑贏了所有人'),bg('podium'),mood(''),hide(),
+ IF((s,f)=>!f.lost,[sf('win'),n('我站上了頒獎台的最高處。金牌好重，陽光好刺眼。')],[n('我站在頒獎台的第二階。旁邊的冠軍笑得好燦爛。')]),
+ n('我往看台看——想找她們。'),
+ n('小愛、小美、小晴，三個人坐在一起。'),
+ IF((s,f)=>f.loud,[n('聽說，是阿福那天大喊「蛋餅叫我小聲一點」之後，她們開始互相問的。')],[n('聽說，她們在樓梯間撿到了同一盒披薩的收據，上面有三個時間。')]),
+ n('她們沒有看我。三個人有說有笑地，一起走出了操場。'),
+ i('原來……她們早就知道了。'),
+ bg('home'),mood('blue'),
+ n('回到家，姐姐的房門關著。'),
+ n('冰箱上貼著一張便利貼：「小餅，恭喜。—姐」'),
+ IF((s,f)=>f.sisKnows,[i('她說她會請假來看我比賽的。看台上，我沒有找到她。')]),
+ n('我把獎牌掛在房門把上，躺在床上，看著天花板。'),
+ i('我沒有翻車。沒有人罵我，也沒有人哭。'),
+ i('我跑贏了所有人，卻好像輸掉了所有人。'),
+ i('這就是當渣男的感覺嗎？可是我……還是開心不起來。'),
+ end('E6')
+],
+chE3:[
+ bg('classroom'),mood(''),hide(),
+ n('隔天，福利社排隊的時候，小愛和小美聊到了「蛋餅寫給我的話」。'),
+ sy('ai','他寫給我：「你是我心中最特別的人」……嘻嘻。','shy'),
+ sy('mei','……蛤？他寫給我的，也是這句。','shock'),
+ n('空氣突然凝結了。兩個人慢慢拿出卡片跟交換日記，放在一起比對。'),
+ sy('ai','……連標點符號都一樣。','angry'),
+ go('chE3end')
+],
+chE3b:[
+ bg('fair'),mood(''),hide(),
+ sf('bad'),
+ n('就在我從樓梯間衝回園遊會的時候——'),
+ n('小晴、小愛、小美，三個人同時站在了撈金魚攤的前面。'),
+ sy('qing','蛋餅不是說，他上午要陪我嗎？','sad'),
+ sy('ai','他跟我說，他上午要陪我看比賽耶。','angry'),
+ sy('mei','……他手上那片披薩，是我買的。','angry'),
+ go('chE3end')
+],
+chE3end:[
+ mood('red'),hide(),
+ n('消息傳得比我跑一百公尺還快。不到一節課，全年級都知道了。'),
+ sy('fat','蛋餅……你完蛋了。','shock'),
+ bg('home'),mood('blue'),
+ n('那天晚上，姐姐坐在客廳等我。她的手機上，是同學傳給她的截圖。'),
+ sy('sis','小餅……這是真的嗎？','sad'),
+ me('姐，我……'),
+ sy('sis','你知道嗎，那個人當初，也是這樣同時跟好幾個人說一樣的話。','cry'),
+ hide(),
+ n('姐姐沒有罵我。她只是回房間，關上了門。'),
+ n('那一聲關門聲，比主任拍桌子還大聲。'),
+ i('我還沒來得及當上「真正的渣男」，就先被拆穿了。'),
+ i('也許……這樣也好。'),
+ end('E3')
+]
+};
+/* ---------- compiler ---------- */
+const P={};
+function compile(name,steps){const out=[];P[name]=out;
+ const sub=arr=>{for(const s of arr){
+  if(s[0]==='?'){const k=out.length;out.push({op:'unless',fn:s[1],to:0});sub(s[2]);if(s[3]){const j=out.length;out.push({op:'jmp',to:0});out[k].to=out.length;sub(s[3]);out[j].to=out.length}else out[k].to=out.length}
+  else if(s[0]==='ch'||s[0]==='tch'){const k=out.length;s[2].forEach((o,oi)=>{if(o.r){const bn=name+'#'+k+'_'+oi;o.rb=bn;compile(bn,[...o.r,['ret',name,k+1]])}});out.push(s)}
+  else out.push(s)}};
+ sub(steps)}
+for(const k in RAW)compile(k,RAW[k]);
+/* ---------- state ---------- */
+let ST=null;
+function fresh(){return{b:'ch1',i:0,st:{sis:50,zha:0,con:50,desk:20,ai:0,mei:0,qing:30},f:{},bg:'street',show:null,mood:'',chap:'',log:[],last:null}}
+const clone=o=>JSON.parse(JSON.stringify(o));
+function inGame(){return !!ST&&!$('#title').classList.contains('show')&&!$('#ending').classList.contains('show')}
+/* ---------- render helpers ---------- */
+function setBg(k){if(ST)ST.bg=k;const b=BG[k]||BG.black;$('#bg').style.background=b[0];$('#deco').innerHTML=b[1].map(d=>`<span style="left:${d[1]}%;top:${d[2]}%;font-size:${d[3]}px">${d[0]}</span>`).join('')}
+function setMood(m){ST.mood=m;$('#mood').style.background=MOOD[m]||'transparent'}
+function setShow(c,e){const p=$('#por');if(!c){ST.show=null;p.classList.add('hidden');return}
+ const C=CH[c];if(!C||!C.f)return;const prev=ST.show;e=e||(prev&&prev.c===c?prev.e:'n');ST.show={c,e};
+ p.classList.remove('hidden');p.querySelector('.ring').style.setProperty('--c',C.c);p.querySelector('.face').textContent=C.f[e]||C.f.n;p.querySelector('.badge').textContent=C.b||'';
+ const same=prev&&prev.c===c&&prev.e===e;p.className='';void p.offsetWidth;if(!same)p.classList.add('pop');if(e==='angry')p.classList.add('angry');if(e==='cry')p.classList.add('cry')}
+function setChap(t){ST.chap=t;$('#chap').textContent=t}
+function renderStats(){const el=$('#stats');el.classList.toggle('show',CFG.stats&&!!ST);if(!ST)return;
+ el.innerHTML=Object.keys(STATN).map(k=>`<div class="srow"><b>${STATN[k][0]}</b><div class="sbar"><i style="width:${ST.st[k]}%;background:${STATN[k][1]}"></i></div><em>${ST.st[k]}</em></div>`).join('')}
+function toast(t,ms){const d=document.createElement('div');d.className='toast';d.textContent=t;if(ms)d.style.animationDuration=ms+'ms';$('#toasts').appendChild(d);setTimeout(()=>d.remove(),(ms||2200)+100)}
+function applyFx(o,quiet){if(!o)return;for(const k in o){if(!(k in STATN))continue;const v=o[k];ST.st[k]=Math.max(0,Math.min(100,(ST.st[k]||0)+v));if(v&&!quiet)toast(`${STATN[k][0]} ${v>0?'+':''}${v}`)}renderStats()}
+/* ---------- text / typewriter ---------- */
+let typing=null,full='',waiting=false,auto=false,skip=false,autoT=null;
+function showText(s){
+ const who=s[1];let t=typeof s[2]==='function'?s[2](ST.st,ST.f):s[2];
+ if(CH[who]&&CH[who].f)setShow(who,s[3]);
+ const nm=$('#name'),tx=$('#text');tx.className='';
+ if(who==='n'){nm.style.display='none';tx.classList.add('narr')}
+ else if(who==='i'){nm.style.display='block';nm.textContent='小餅（心聲）';nm.style.background='#6c5ce7';tx.classList.add('inner')}
+ else{nm.style.display='block';nm.textContent=CH[who].n;nm.style.background=CH[who].c;if(who==='sys')tx.classList.add('sys')}
+ if(who==='me'||(CH[who]&&CH[who].f))t='「'+t.replace(/^「|」$/g,'')+'」';
+ ST.log.push([who==='n'?'':who==='i'?'小餅（心聲）':CH[who].n,t]);if(ST.log.length>150)ST.log.shift();
+ autosave();
+ full=t;waiting=true;$('#next').classList.remove('show');
+ const sp=skip||TEST?0:SPEEDS[CFG.speed];
+ clearInterval(typing);
+ if(!sp){tx.textContent=t;doneTyping();return}
+ let k=0;tx.textContent='';
+ typing=setInterval(()=>{k++;tx.textContent=t.slice(0,k);if(k%2===0)sfx('blip');if(k>=t.length)doneTyping()},sp)}
+function doneTyping(){clearInterval(typing);typing=null;$('#text').textContent=full;$('#next').classList.add('show');
+ clearTimeout(autoT);if(skip)autoT=setTimeout(advance,70);else if(auto)autoT=setTimeout(advance,1200+full.length*40)}
+function advance(){if(!ST||!waiting)return;if(typing){doneTyping();return}waiting=false;clearTimeout(autoT);ST.i++;run()}
+/* ---------- engine ---------- */
+function run(){
+ for(let guard=0;guard<500;guard++){
+  const blk=P[ST.b];if(!blk){console.error('no block '+ST.b);return}
+  const s=blk[ST.i];if(!s){console.error('fell off '+ST.b+' @'+ST.i);return}
+  if(s.op){ST.i=s.op==='unless'?(s.fn(ST.st,ST.f)?ST.i+1:s.to):s.to;continue}
+  switch(s[0]){
+   case 't':showText(s);return;
+   case 'bg':setBg(s[1]);ST.i++;break;
+   case 'show':setShow(s[1],s[2]);ST.i++;break;
+   case 'hide':setShow(null);ST.i++;break;
+   case 'mood':setMood(s[1]);ST.i++;break;
+   case 'sfx':if(!skip)sfx(s[1]);ST.i++;break;
+   case 'shake':{const a=$('#app');a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake');ST.i++;break}
+   case 'fx':applyFx(s[1]);ST.i++;break;
+   case 'set':Object.assign(ST.f,s[1]);ST.i++;break;
+   case 'go':ST.b=s[1];ST.i=0;break;
+   case 'ret':ST.b=s[1];ST.i=s[2];break;
+   case 'route':ST.b=s[1](ST.st,ST.f);ST.i=0;break;
+   case 'title':chapterCard(s[1],s[2]);return;
+   case 'ch':case 'tch':showChoice(s);return;
+   case 'mini':startMini(s[1]);return;
+   case 'end':showEnding(s[1]);return;
+   default:console.error('bad op',s);ST.i++}
+ }}
+function chapterCard(a,b){setChap(a+'《'+b+'》');skip=false;$('#bSkip').classList.remove('on');sfx('ding');
+ const o=$('#ctitle');o.querySelector('.n').textContent=a;o.querySelector('.t').textContent=b;o.classList.remove('show');void o.offsetWidth;o.classList.add('show');
+ let done=false;const fin=()=>{if(done)return;done=true;o.classList.remove('show');o.onclick=null;ST.i++;run()};
+ o.onclick=fin;setTimeout(fin,TEST?10:2600)}
+let choiceT=null;
+function showChoice(s){skip=false;$('#bSkip').classList.remove('on');
+ const [op,q,opts,sec,def]=s;const box=$('#choices');ST.last=clone(Object.assign({},ST,{last:null,log:[]}));autosave();
+ box.innerHTML=`<div class="q">${q}</div>`+(op==='tch'?'<div class="timer"><i></i></div>':'')+opts.map((o,k)=>`<button class="opt" data-k="${k}">${o.t}${o.tag?'<span class="tag">📖 '+o.tag+'</span>':''}</button>`).join('');
+ box.classList.add('show');
+ box.querySelectorAll('.opt').forEach(b=>b.onclick=e=>{e.stopPropagation();pick(s,+b.dataset.k)});
+ if(op==='tch'&&!TEST){const bar=box.querySelector('.timer i');const t0=performance.now();
+  const tick=()=>{const r=1-(performance.now()-t0)/(sec*1000);bar.style.width=Math.max(0,r*100)+'%';if(r<=0){const k=def(ST.st,ST.f);toast(k===0?'身體比腦袋先動了……':'你下意識地放慢了腳步');pick(s,k)}else choiceT=requestAnimationFrame(tick)};choiceT=requestAnimationFrame(tick)}}
+function pick(s,k){cancelAnimationFrame(choiceT);if(!$('#choices').classList.contains('show'))return;const o=s[2][k];$('#choices').classList.remove('show');sfx('choice');
+ ST.log.push(['➤ 選擇',o.t]);applyFx(o.fx);if(o.set)Object.assign(ST.f,o.set);
+ if(o.rb){ST.b=o.rb;ST.i=0}else if(o.go){ST.b=o.go;ST.i=0}else ST.i++;run()}
+/* ---------- save/load ---------- */
+function snap(){return clone(Object.assign({},ST,{log:ST.log.slice(-60)}))}
+function autosave(){if(ST)LS.set('auto',snap())}
+function restore(d){ST=d;setBg(d.bg);setMood(d.mood);const sh=d.show;ST.show=null;if(sh)setShow(sh.c,sh.e);else setShow(null);setChap(d.chap||'');renderStats();$('#title').classList.remove('show');waiting=false;run()}
+/* ---------- ending ---------- */
+function unlockEnding(id){const got=LS.get('endings',[]);if(got.includes(id))return false;got.push(id);LS.set('endings',got);return true}
+function showEnding(id){const E=ENDS.find(e=>e.id===id);const isNew=unlockEnding(id);const got=LS.get('endings',[]);
+ skip=false;auto=false;$('#bSkip').classList.remove('on');$('#bAuto').classList.remove('on');sfx(id==='E2'||id==='E5'?'win':'end');
+ window.__lastEnding=id;
+ $('#endc').innerHTML=`<div class="en">ENDING ${id.slice(1)} / ${ENDS.length}${isNew?' ・ 新解鎖！':''}</div><div class="big">${E.e}</div><div class="et">${E.t}</div><div style="color:#888">${E.k}</div><div class="eq">${E.q}</div><div style="font-size:14px;color:#666">已收集結局：${got.length} / ${ENDS.length}</div><div class="row" style="justify-content:center"><button class="btn" id="eLast">↩ 回到上一個選擇</button><button class="btn gray" id="eGal">🖼️ 結局圖鑑</button><button class="btn gray" id="eHome">🏠 回標題</button></div>`;
+ $('#ending').classList.add('show');LS.set('auto',null);
+ $('#eLast').onclick=()=>{$('#ending').classList.remove('show');if(ST.last){const l=ST.last;l.log=ST.log;restore(l)}};
+ $('#eGal').onclick=()=>gallery();
+ $('#eHome').onclick=()=>{$('#ending').classList.remove('show');toTitle()}}
+/* ---------- modals ---------- */
+function modal(html){$('#modalc').innerHTML=html+'<div class="row" style="justify-content:flex-end"><button class="btn gray" id="mClose">關閉</button></div>';$('#modal').classList.add('show');$('#mClose').onclick=closeModal}
+function closeModal(){$('#modal').classList.remove('show')}
+function gallery(){const got=LS.get('endings',[]);
+ modal(`<h2>🖼️ 結局圖鑑（${got.length}/${ENDS.length}）</h2><div class="gal">`+ENDS.map(e=>got.includes(e.id)?`<div class="gi"><div class="ge">${e.e}</div><b>${e.t}</b><div style="color:#888">${e.k}</div><div>${e.q}</div></div>`:`<div class="gi lock"><div class="ge">🔒</div><b>？？？</b><div>提示：${e.h}</div></div>`).join('')+'</div>')}
+function settings(){const r=()=>{modal(`<h2>⚙️ 設定</h2><div>文字速度</div><div class="row seg">${SPEEDN.map((x,k)=>`<button data-s="${k}" class="${CFG.speed===k?'on':''}">${x}</button>`).join('')}</div><div class="row seg"><button id="sStat" class="${CFG.stats?'on':''}">📊 顯示數值：${CFG.stats?'開':'關'}</button><button id="sMute" class="${CFG.mute?'':'on'}">🔊 音效：${CFG.mute?'關':'開'}</button></div><div class="row"><button class="btn gray" id="sClr">🗑️ 清除所有存檔與圖鑑</button></div><p style="font-size:13px;color:#888">操作：點擊對話框或按 空白鍵／Enter 前進。把數值關掉，玩起來更有「沉浸感」。</p>`);
+  document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{CFG.speed=+b.dataset.s;saveCfg();r()});
+  $('#sStat').onclick=()=>{CFG.stats=!CFG.stats;saveCfg();renderStats();r()};
+  $('#sMute').onclick=()=>{CFG.mute=!CFG.mute;saveCfg();muteBtn();r()};
+  $('#sClr').onclick=()=>{if(confirm('確定要清除所有存檔和結局圖鑑嗎？（已使用的兌換碼紀錄會保留）')){['auto','s0','s1','s2','endings','pend'].forEach(k=>LS.set(k,null));r();titleBtns()}}};r()}
+function saveload(){const r=()=>{let h='<h2>💾 存檔／讀檔</h2>';for(let k=0;k<3;k++){const d=LS.get('s'+k,null);h+=`<div class="slot"><div><b>存檔 ${k+1}</b><br><small>${d?(d.chap||'序章')+'・'+d.time:'（空）'}</small></div><div><button class="btn" data-sv="${k}" ${ST?'':'disabled'}>存</button> <button class="btn gray" data-ld="${k}" ${d?'':'disabled'}>讀</button></div></div>`}
+  modal(h);
+  document.querySelectorAll('[data-sv]').forEach(b=>b.onclick=()=>{const d=snap();d.time=new Date().toLocaleString('zh-TW',{hour12:false});LS.set('s'+b.dataset.sv,d);sfx('good');toast('已存檔');r()});
+  document.querySelectorAll('[data-ld]').forEach(b=>b.onclick=()=>{const d=LS.get('s'+b.dataset.ld,null);if(d){closeModal();hideOverlays();restore(d)}})};r()}
+function hideOverlays(){['#choices','#ending','#mini','#ctitle'].forEach(s=>$(s).classList.remove('show'));miniCleanup()}
+function backlog(){if(!ST)return;modal('<h2>📜 回顧</h2><div id="log">'+ST.log.slice(-80).map(l=>`<div class="l">${l[0]?'<b>'+l[0]+'：</b>':''}${l[1]}</div>`).join('')+'</div>');const c=$('#modalc');c.scrollTop=c.scrollHeight}
+function muteBtn(){$('#bMute').textContent=CFG.mute?'🔇':'🔊'}
+function toTitle(){hideOverlays();if(ST&&!$('#ending').classList.contains('show'))autosave();$('#title').classList.add('show');titleBtns()}
+function titleBtns(){const a=LS.get('auto',null);$('#tCont').disabled=!a;const g=LS.get('endings',[]);$('#tGal').textContent=`🖼️ 結局圖鑑（${g.length}/${ENDS.length}）`;
+ const p=LS.get('pend',null);$('#tInfo').textContent=p&&Object.keys(p).length?'🎁 有兌換獎勵將在下一次「開始遊戲」時生效：'+Object.keys(p).map(k=>STATN[k][0]+(p[k]>0?'+':'')+p[k]).join('、'):''}
+function newGame(){hideOverlays();ST=fresh();setBg('street');setMood('');setShow(null);setChap('');
+ const p=LS.get('pend',null);if(p&&Object.keys(p).length){applyFx(p,true);LS.set('pend',null);setTimeout(()=>toast('🎁 兌換獎勵已生效！',2600),300)}
+ renderStats();$('#title').classList.remove('show');run()}
+/* ---------- 兌換碼 (signed redeem codes) ---------- */
+const CODE_SECRET='danzha-xiaobing-20180214-v1';
+const B32='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+function b32dec(str){str=str.toUpperCase().replace(/[IL]/g,'1').replace(/O/g,'0');let bits=0,val=0;const out=[];for(const c of str){const v=B32.indexOf(c);if(v<0)return null;val=(val<<5)|v;bits+=5;if(bits>=8){out.push((val>>>(bits-8))&255);bits-=8}}return new Uint8Array(out)}
+function sha256(msg){const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+ const H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+ const l=msg.length,nb=((l+9+63)>>6)<<6,m=new Uint8Array(nb);m.set(msg);m[l]=0x80;const bl=l*8;m[nb-4]=(bl>>>24)&255;m[nb-3]=(bl>>>16)&255;m[nb-2]=(bl>>>8)&255;m[nb-1]=bl&255;
+ const w=new Uint32Array(64),r=(x,n)=>(x>>>n)|(x<<(32-n));
+ for(let o=0;o<nb;o+=64){for(let t=0;t<16;t++)w[t]=(m[o+t*4]<<24)|(m[o+t*4+1]<<16)|(m[o+t*4+2]<<8)|m[o+t*4+3];
+  for(let t=16;t<64;t++){const s0=r(w[t-15],7)^r(w[t-15],18)^(w[t-15]>>>3),s1=r(w[t-2],17)^r(w[t-2],19)^(w[t-2]>>>10);w[t]=(w[t-16]+s0+w[t-7]+s1)>>>0}
+  let [a,b,c,d,e,f,g,h]=H;
+  for(let t=0;t<64;t++){const S1=r(e,6)^r(e,11)^r(e,25),chh=(e&f)^(~e&g),t1=(h+S1+chh+K[t]+w[t])>>>0,S0=r(a,2)^r(a,13)^r(a,22),mj=(a&b)^(a&c)^(b&c),t2=(S0+mj)>>>0;h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0}
+  H[0]=(H[0]+a)>>>0;H[1]=(H[1]+b)>>>0;H[2]=(H[2]+c)>>>0;H[3]=(H[3]+d)>>>0;H[4]=(H[4]+e)>>>0;H[5]=(H[5]+f)>>>0;H[6]=(H[6]+g)>>>0;H[7]=(H[7]+h)>>>0}
+ const out=new Uint8Array(32);H.forEach((v,k)=>{out[k*4]=v>>>24;out[k*4+1]=(v>>>16)&255;out[k*4+2]=(v>>>8)&255;out[k*4+3]=v&255});return out}
+function hmac(key,msg){const enc=new TextEncoder();let k=enc.encode(key);if(k.length>64)k=sha256(k);const kp=new Uint8Array(64);kp.set(k);const ip=new Uint8Array(64+msg.length),op=new Uint8Array(96);for(let x=0;x<64;x++){ip[x]=kp[x]^0x36;op[x]=kp[x]^0x5c}ip.set(msg,64);op.set(sha256(ip),64);return sha256(op)}
+/* Grant registry — add new resource types here (and in gen_code.js / CODES.md). */
+const GRANTS={
+ stat:{ // keys: sis con zha desk ai mei qing
+  test:k=>k in STATN,
+  check:v=>/^[+-]?\d{1,3}$/.test(v)?null:'數值格式錯誤',
+  apply(k,v){v=parseInt(v,10);const nm=STATN[k][0];
+   if(inGame()){applyFx({[k]:v},true);return `${nm} ${v>0?'+':''}${v}`}
+   const p=LS.get('pend',{})||{};p[k]=(p[k]||0)+v;LS.set('pend',p);return `${nm} ${v>0?'+':''}${v}（下次開始遊戲時生效）`}},
+ u:{ // unlock ending: E1..E6 or ALL
+  check:v=>(v==='ALL'||ENDS.some(e=>e.id===v))?null:'未知的結局 '+v,
+  apply(k,v){const ids=v==='ALL'?ENDS.map(e=>e.id):[v];ids.forEach(unlockEnding);return v==='ALL'?'解鎖全部結局圖鑑':'解鎖結局「'+ENDS.find(e=>e.id===v).t+'」'}},
+ n:{check:()=>null,apply:()=>null} // nonce — makes every code unique
+};
+function grantFor(k){if(GRANTS[k]&&k!=='stat')return GRANTS[k];if(GRANTS.stat.test(k))return GRANTS.stat;return null}
+function parseCode(raw){
+ let s=String(raw||'').toUpperCase().replace(/[\s\-_]/g,'');
+ if(!s.startsWith('DZ'))return{err:'兌換碼格式不對喔，要以 DZ- 開頭。'};
+ const bytes=b32dec(s.slice(2));if(!bytes||bytes.length<7)return{err:'兌換碼格式不對喔，請檢查有沒有打錯字。'};
+ const body=bytes.slice(0,-5),sig=bytes.slice(-5),h=hmac(CODE_SECRET,body);
+ for(let x=0;x<5;x++)if(h[x]!==sig[x])return{err:'兌換碼無效（驗證失敗），請確認每個字都正確。'};
+ let text;try{text=new TextDecoder('utf-8',{fatal:true}).decode(body)}catch(e){return{err:'兌換碼內容損壞。'}}
+ const items=text.split(';').filter(Boolean).map(x=>{const j=x.indexOf('=');return[x.slice(0,j),x.slice(j+1)]});
+ for(const [k,v] of items){const g=grantFor(k);if(!g)return{err:`這個兌換碼含有此版本遊戲不認識的獎勵「${k}」，請重新整理網頁更新遊戲後再試。`};const e=g.check(v);if(e)return{err:e}}
+ return{id:Array.from(sig).map(b=>b.toString(16).padStart(2,'0')).join(''),items}}
+function redeem(raw){const r=parseCode(raw);if(r.err)return r;
+ const used=LS.get('used',[])||[];if(used.includes(r.id))return{err:'這個兌換碼已經使用過了。'};
+ const got=r.items.map(([k,v])=>grantFor(k).apply(k,v)).filter(Boolean);
+ used.push(r.id);LS.set('used',used);titleBtns();return{ok:true,got}}
+function codeModal(){modal(`<h2>🎁 兌換碼</h2><div class="mhint" style="text-align:left">輸入你拿到的兌換碼（例如 DZ-XXXXX-XXXXX-…），每組只能使用一次。</div><input class="codein" id="cIn" placeholder="DZ-" autocomplete="off" spellcheck="false"><div class="row"><button class="btn" id="cGo">兌換</button></div><div class="cres" id="cRes"></div>`);
+ const go=()=>{const r=redeem($('#cIn').value);const el=$('#cRes');if(r.err){el.className='cres err';el.textContent='❌ '+r.err;sfx('bad');return}
+  el.className='cres ok';el.innerHTML='✅ 兌換成功！<br>'+(r.got.length?r.got.map(x=>'・'+x).join('<br>'):'（沒有內容）');sfx('win');r.got.forEach((x,k)=>setTimeout(()=>toast('🎁 '+x,3000),k*250));$('#cIn').value=''};
+ $('#cGo').onclick=go;$('#cIn').onkeydown=e=>{if(e.key==='Enter')go()};setTimeout(()=>$('#cIn').focus(),50)}
+/* ---------- minigames ---------- */
+let miniKey=null,miniRAF=null,miniTimers=[];
+function miniCleanup(){if(miniKey)window.removeEventListener('keydown',miniKey);miniKey=null;cancelAnimationFrame(miniRAF);miniTimers.forEach(clearTimeout);miniTimers=[]}
+function startMini(name){skip=false;auto=false;$('#bSkip').classList.remove('on');$('#bAuto').classList.remove('on');
+ const fin=r=>{miniCleanup();ST.f['m_'+name]=r;$('#mini').classList.remove('show');ST.i++;run()};
+ const F=window.DZ_FORCE;if(TEST||(F&&name in F)){const d={dog:0,juggle:true,sprint:{rank:1,time:11.02,fs:0}};fin(F&&name in F?F[name]:d[name]);return}
+ $('#mini').classList.add('show');MINI[name](fin)}
+const later=(f,t)=>miniTimers.push(setTimeout(f,t));
+const MINI={
+dog(fin){const c=$('#minic');c.innerHTML=`<h2>🐕 回憶：被狗追的童年</h2><div class="mhint">左右閃躲衝過來的狗！撐過 15 秒。（← → 鍵／點左右按鈕／點畫面左右半邊）</div><div class="mstat" id="dm">剩餘 15 秒　被咬：0</div><div class="lanes" id="ln"><div class="ln"></div><div class="ln"></div><div class="ln"></div></div><div class="ctrl"><button class="btn" id="dl">◀</button><button class="btn" id="dr">▶</button></div>`;
+ const ln=$('#ln');const pl=document.createElement('div');pl.className='ent';pl.textContent='🧒';ln.appendChild(pl);
+ let lane=1,bites=0,inv=0,dogs=[],t0=performance.now(),last=t0,spawn=0,over=false;const X=l=>(l*33.33+16.66)+'%';
+ const place=()=>{pl.style.left=X(lane);pl.style.top='82%'};place();
+ const mv=d=>{lane=Math.max(0,Math.min(2,lane+d));place();sfx('click')};
+ $('#dl').onpointerdown=e=>{e.preventDefault();e.stopPropagation();mv(-1)};$('#dr').onpointerdown=e=>{e.preventDefault();e.stopPropagation();mv(1)};
+ ln.onpointerdown=e=>{const r=ln.getBoundingClientRect();mv(e.clientX<r.left+r.width/2?-1:1)};
+ miniKey=e=>{if(e.code==='ArrowLeft'||e.code==='KeyA')mv(-1);if(e.code==='ArrowRight'||e.code==='KeyD')mv(1)};window.addEventListener('keydown',miniKey);
+ const loop=t=>{if(over)return;const dt=Math.min(.05,(t-last)/1000);last=t;const el=(t-t0)/1000;spawn-=dt;
+  if(spawn<=0&&el<14){spawn=Math.max(.4,.95-el*.04);const l=Math.floor(Math.random()*3);const d=document.createElement('div');d.className='ent';d.textContent='🐕';d.style.left=X(l);d.style.top='-8%';ln.appendChild(d);dogs.push({l,y:-8,d,v:45+el*4+Math.random()*15});if(Math.random()<.3)sfx('bark')}
+  dogs=dogs.filter(g=>{g.y+=g.v*dt;g.d.style.top=g.y+'%';if(g.l===lane&&g.y>72&&g.y<92&&inv<=0){bites++;inv=.9;sfx('bad');pl.classList.remove('hurt');void pl.offsetWidth;pl.classList.add('hurt');g.d.remove();return false}if(g.y>110){g.d.remove();return false}return true});
+  inv-=dt;$('#dm').textContent=`剩餘 ${Math.max(0,Math.ceil(15-el))} 秒　被咬：${bites}`;
+  if(el>=15){over=true;dogs.forEach(g=>g.d.remove());const k=document.createElement('div');k.className='ent';k.textContent='🐕‍🦺';k.style.left=X(lane);k.style.top='55%';k.style.fontSize='64px';ln.appendChild(k);sfx('bark');$('#dm').textContent=bites===0?'完美閃避！小黑跑來搖尾巴了！':`被咬了 ${bites} 口……還好小黑來了！`;later(()=>fin(bites),1600);return}
+  miniRAF=requestAnimationFrame(loop)};miniRAF=requestAnimationFrame(loop)},
+juggle(fin){const c=$('#minic');const G=[['qing','🎪 園遊會','小晴'],['ai','🏐 班際比賽','小愛'],['mei','🍕 樓梯間披薩','小美']];
+ c.innerHTML=`<h2>🏃 運動會上午：三線約會大作戰</h2><div class="mhint">點地點（或按 1/2/3）移動過去。陪在誰身邊，她的耐心就會回升；任何一人耐心歸零就會跑來找你——然後穿幫！撐過 20 秒。</div><div class="mstat" id="jm">剩餘 20 秒</div><div class="spots">${G.map((g,k)=>`<div class="spot" data-k="${k}"><span class="you"></span><div class="g">${CH[g[0]].f.n}</div><b>${g[1]}</b><div>${g[2]}</div><div class="pb"><i></i></div></div>`).join('')}</div><div class="bigmsg" id="jb"></div>`;
+ const P=[100,100,100],sp=[...c.querySelectorAll('.spot')];let at=0,travel=0,t0=performance.now(),last=t0,over=false,target=0;
+ const draw=()=>sp.forEach((s,k)=>{const here=at===k&&travel<=0;s.classList.toggle('here',here);s.querySelector('.you').textContent=here?'🧒':(travel>0&&target===k?'💨':'');const b=s.querySelector('.pb i');b.style.width=Math.max(0,P[k])+'%';b.style.background=P[k]<30?'#d63031':P[k]<60?'#fdcb6e':'#00b894'});
+ const goTo=k=>{if(over||(k===at&&travel<=0))return;target=k;travel=.45;at=-1;sfx('click')};
+ sp.forEach(s=>s.onpointerdown=e=>{e.preventDefault();goTo(+s.dataset.k)});
+ miniKey=e=>{const m={Digit1:0,Digit2:1,Digit3:2,Numpad1:0,Numpad2:1,Numpad3:2};if(e.code in m)goTo(m[e.code])};window.addEventListener('keydown',miniKey);
+ const loop=t=>{if(over)return;const dt=Math.min(.05,(t-last)/1000);last=t;const el=(t-t0)/1000;
+  if(travel>0){travel-=dt;if(travel<=0)at=target}
+  for(let k=0;k<3;k++){if(k===at&&travel<=0)P[k]=Math.min(100,P[k]+38*dt);else P[k]-=(6.5+el*.4+k*.6)*dt}
+  draw();const z=P.findIndex(v=>v<=0);$('#jm').textContent=`剩餘 ${Math.max(0,Math.ceil(20-el))} 秒`;
+  if(z>=0){over=true;sfx('bad');$('#jb').textContent=`${G[z][2]}：「蛋餅人呢？」……穿幫了！`;later(()=>fin(false),1600);return}
+  if(el>=20){over=true;sfx('good');$('#jb').style.color='#00b894';$('#jb').textContent='成功瞞天過海！（但良心有點痛）';later(()=>fin(true),1500);return}
+  miniRAF=requestAnimationFrame(loop)};miniRAF=requestAnimationFrame(loop)},
+sprint(fin){const c=$('#minic');const bonus=(3-Math.min(3,ST.f.m_dog||0))*.15;
+ c.innerHTML=`<h2>🏁 運動會 100 公尺決賽</h2><div class="mhint">聽到「逼逼！」才能起跑（偷跑要重來）。之後狂按「衝！」或空白鍵！${bonus>0?'<br>🐕 童年被狗追的經驗讓你起步更快（+'+bonus.toFixed(2)+'）':''}</div><div class="bigmsg" id="sm">各就各位……</div><div class="track" id="tr"><div class="fin"></div></div><div class="mstat" id="st">0.00 秒</div><button class="btn mbig" id="sg">衝！</button>`;
+ const tr=$('#tr');const R=[];const sp=[0,8.0,7.8,7.7,7.6,7.5];
+ for(let k=0;k<6;k++){const d=document.createElement('div');d.className='runner'+(k===0?' me':'');d.innerHTML='🏃'+(k===0?'<span class="lb">你</span>':'');d.style.top=(k*16.66+8.3)+'%';tr.appendChild(d);R.push({d,x:0,v:0,done:0})}
+ let phase=0,fs=0,boost=0,t0=0,last=0,place=[];
+ const ready=()=>{phase=0;$('#sm').textContent='各就各位……';$('#sm').style.color='#2d3436';later(()=>{$('#sm').textContent='預備……'},900);later(()=>{phase=1;t0=last=performance.now();$('#sm').textContent='逼逼！！';$('#sm').style.color='#d63031';sfx('whistle');miniRAF=requestAnimationFrame(loop)},1900+Math.random()*1600)};
+ const tap=()=>{if(phase===0){fs++;sfx('bad');miniTimers.forEach(clearTimeout);miniTimers=[];$('#sm').textContent='偷跑！重新來過！';later(ready,1100);return}if(phase===1){boost=Math.min(4.6,boost+.55);sfx('click')}};
+ const loop=t=>{const dt=Math.min(.05,(t-last)/1000);last=t;const el=(t-t0)/1000;boost-=boost*.6*dt;
+  R.forEach((r,k)=>{if(r.done)return;const acc=Math.min(1,.25+el/1.2);r.v=k===0?(6.3+bonus+boost)*acc:(sp[k]+Math.sin(el*3+k)*.3)*acc;r.x+=r.v*dt;r.d.style.left=(4+Math.min(100,r.x)*.9)+'%';if(r.x>=100){r.done=el;place.push(k)}});
+  const TS=1.18;$('#st').textContent=((R[0].done||el)*TS).toFixed(2)+' 秒';
+  if(R[0].done&&phase===1){phase=2;const rank=place.indexOf(0)+1;$('#sm').textContent=rank===1?`🥇 第一名！${(R[0].done*TS).toFixed(2)} 秒`:`第 ${rank} 名…… ${(R[0].done*TS).toFixed(2)} 秒`;sfx(rank===1?'win':'bad');later(()=>fin({rank,time:+(R[0].done*TS).toFixed(2),fs}),1500)}
+  if(R.every(r=>r.done))return;miniRAF=requestAnimationFrame(loop)};
+ $('#sg').onpointerdown=e=>{e.preventDefault();tap()};miniKey=e=>{if(['Space','ArrowLeft','ArrowRight','Enter','KeyA','KeyD'].includes(e.code)){e.preventDefault();if(!e.repeat)tap()}};window.addEventListener('keydown',miniKey);
+ later(ready,300)}
+};
+/* ---------- input wiring ---------- */
+$('#box').onclick=()=>{ac();advance()};
+window.addEventListener('keydown',e=>{if(miniKey||$('#modal').classList.contains('show')||$('#title').classList.contains('show'))return;if(e.code==='Space'||e.code==='Enter'){e.preventDefault();if($('#ctitle').classList.contains('show')){$('#ctitle').onclick&&$('#ctitle').onclick();return}advance()}});
+$('#bStats').onclick=()=>{CFG.stats=!CFG.stats;saveCfg();renderStats()};
+$('#bAuto').onclick=()=>{auto=!auto;$('#bAuto').classList.toggle('on',auto);if(auto&&waiting&&!typing)advance()};
+$('#bSkip').onclick=()=>{skip=!skip;$('#bSkip').classList.toggle('on',skip);if(skip&&waiting)advance()};
+$('#bLog').onclick=backlog;$('#bSave').onclick=saveload;$('#bSet').onclick=settings;$('#bCode').onclick=codeModal;
+$('#bMute').onclick=()=>{CFG.mute=!CFG.mute;saveCfg();muteBtn()};
+$('#bHome').onclick=toTitle;
+$('#tStart').onclick=()=>{ac();sfx('choice');if(LS.get('auto',null)&&!TEST&&!confirm('要開始新遊戲嗎？（自動存檔會被覆蓋，手動存檔不受影響）'))return;newGame()};
+$('#tCont').onclick=()=>{ac();const a=LS.get('auto',null);if(a)restore(a)};
+$('#tGal').onclick=gallery;$('#tSet').onclick=settings;$('#tCode').onclick=codeModal;
+(function(){const e=$('#title .eggs');let h='';for(let k=0;k<14;k++)h+=`<span style="left:${Math.random()*95}%;top:${Math.random()*92}%;animation-delay:${-Math.random()*8}s">${['🥚','🍳','🐣','🥚','💔','🎂'][k%6]}</span>`;e.innerHTML=h})();
+muteBtn();titleBtns();setBg('street');
+/* test hooks */
+window.DZ={get st(){return ST},P,advance,redeem,parseCode,newGame,
+ jump(b,i){hideOverlays();clearInterval(typing);ST.b=b;ST.i=i;waiting=false;$("#title").classList.remove("show");run()},
+ pick:k=>{const s=P[ST.b][ST.i];pick(s,k)},
+ mode(){if($('#ending').classList.contains('show'))return 'end';if($('#choices').classList.contains('show'))return 'choice';if($('#mini').classList.contains('show'))return 'mini';if($('#ctitle').classList.contains('show'))return 'title';return waiting?'text':'busy'},
+ opts(){const s=P[ST.b][ST.i];return s&&(s[0]==='ch'||s[0]==='tch')?s[2].map(o=>({t:o.t,k:o.k||''})):[]}};
+</script>
+</body>
+</html>
