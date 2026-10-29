@@ -1,0 +1,1548 @@
+## ===== 序章／第一篇 =====
+# start
+@ bg=black bgm=none amb=none time=
+nar(平靜): 先說好，這是我十三歲那年的蠢事。
+nar(平靜): 你可以笑，但不要學。
+! title 第一篇｜那糟糕的一天
+@ bg=h_sofa amb=home bgm=wholesome time=週三·傍晚
+! sfx door_open
+me(開心): 姐！我回來了！
+sis(開心): 小餅回來啦～
+sis(開心): 三天後就是你生日了吧？
+sis(溫柔): 姐姐跟男朋友，帶你去遊樂園、吃大餐，好不好？
+i(平靜): ……男朋友？
+i(緊張): 他會跟我搶姐姐嗎？
+? t=7 d=2
+- 「好耶！遊樂園！」 {sis+3} -> p1_yes
+- 「……喔，好啦。」 {sis+1} -> p1_meh
+- 「我才不要跟他去。」 {sis-1} -> p1_no
+
+# p1_yes
+sis(開心): 我就知道你會開心！
+nar(平靜): 嘴巴說好，心裡其實打翻了一整罐醬油。
+! go p1_b
+
+# p1_meh
+sis(撒嬌): 小餅～不要這樣嘛。
+nar(吐槽): 嘴巴說好，心裡打翻了一整罐醬油。演技派從小就有跡可循。
+! go p1_b
+
+# p1_no
+sis(撒嬌): 欸～不要這樣嘛，他人很好的。
+sis(溫柔): 你在擔心姐姐喔？
+nar(平靜): 她揉了揉我的頭。那時候的她，笑得好甜。
+! go p1_b
+
+# p1_b
+sis(開心): 你看，這是他。帥吧？
+! ig ex
+nar(平靜): 她把手機遞給我。照片底下，留言區一排女生的愛心。
+i(緊張): 這些女生……是誰？
+? t=8 d=1
+- 「姐，他的留言好多女生喔。」 {sis+2 con+2 warned=1} -> p1_warn
+- 把手機還給她，什麼也沒說 -> p1_quiet
+
+# p1_warn
+sis(開心): 那是他學妹啦，你想太多了。
+sis(溫柔): 他很好啦。
+nar(平靜): 十三歲的我選擇相信：一定是我想太多了。
+! go p1_night
+
+# p1_quiet
+nar(平靜): 我把手機還給她。十三歲的我選擇相信：一定是想太多了。
+! go p1_night
+
+# p1_night
+@ bg=h_phone amb=night bgm=none time=週三·深夜
+nar(平靜): 那天晚上，我躺在床上，偷偷點進他的帳號。
+! phone ex_ig
+i(小聲): 好多愛心。好多不一樣的女生。
+i(悲傷): 姐姐跟他在一起，會比跟我在一起更快樂嗎？
+nar(悲傷): 三天後，事情打翻了我所有的幻想。
+
+# p2
+@ bg=black amb=birds bgm=none time=週六·清晨
+nar(平靜): 我永遠記得那天。
+nar(開心): 太陽公公還沒起床，我已經看完兩集仙劍。
+i(開心): 今天要去遊樂園！姐姐怎麼還沒叫我？
+! sfx sob
+nar(緊張): 然後，我聽到了啜泣聲。
+@ bg=h_door amb=night
+i(緊張): 是姐姐的房間……
+? 
+- 敲門 -> p2_knock
+- 直接推開門 -> p2_open
+
+# p2_knock
+! sfx knock
+sis(哭): ……小餅？不要進來……
+nar(平靜): 我沒有聽話。
+! go p2_open
+
+# p2_open
+! sfx door_open
+@ bg=h_cry amb=room bgm=sad
+nar(悲傷): 那是我第一次看到，那個高大的姐姐，哭得像個小孩。
+sis(哭): 小餅……對不起，今天沒辦法去遊樂園了……
+sis(哭): 他出軌了……跟好幾個女生同時在一起……
+i(悲傷): 那些愛心……原來不是我想太多。
+nar(悲傷): 我不知道該說什麼。只知道，不能讓她一個人哭。
+? t=10 d=1
+- 坐到她旁邊，拍拍她的背 {sis+5 con+3} -> p2_pat
+- 「我去揍他！」 {sis+2 zha+2} -> p2_angry
+- 站在門口，不知道怎麼辦 {sis-2} -> p2_freeze
+
+# p2_freeze
+nar(悲傷): 我在門口站了好久。腳像黏在地上。
+sis(哭): ……小餅，過來一下好不好。
+! go p2_pat
+
+# p2_angry
+sis(哭): 笨蛋……你打不過他啦。
+nar(平靜): 她一邊哭，一邊笑了一下。然後又哭得更大聲。
+! go p2_pat
+
+# p2_pat
+@ bg=h_comfort
+nar(溫柔): 我坐到她旁邊。手好笨，不知道放哪。
+! act pat
+sis(哭): ……謝謝你，小餅。
+nar(溫柔): 她的呼吸，終於慢慢平穩下來。
+nar(平靜): 那天我沒去遊樂園。我在她房間，坐了一整天。
+
+# p3
+! title 第二篇｜憑什麼是我姐！不公平！
+@ bg=h_door amb=night bgm=tense time=週六·深夜
+nar(平靜): 那天晚上，我翻來覆去睡不著。
+i(生氣): 憑什麼是我姐！
+i(生氣): 憑什麼那種人，可以讓那麼多女生喜歡？
+i(生氣): 不公平！
+nar(平靜): 十三歲的我，在心裡做了一個決定。
+? t=12 d=1
+- 「我要保護姐姐的笑容。」 {con+5 sis+2} -> p3_protect
+- 「我要讓那些人，也嘗嘗被騙的滋味。」 {zha+8} -> p3_revenge
+
+# p3_protect
+nar(溫柔): 那天我在心裡發誓：要保護好姐姐的笑容。
+nar(吐槽): 很好的開始。可惜，十三歲的我，想到的方法很爛。
+! go p4
+
+# p3_revenge
+nar(吐槽): 恭喜，一個國一生，選了一條全世界最爛的復仇路線。
+! go p4
+
+## ===== 第三篇 =====
+# p4
+! title 第三篇｜我們不是一直都只是朋友嗎？
+@ bg=s_class amb=class bgm=easy time=開學·第一週
+! sfx bell
+nar(平靜): 開學了。姐姐的笑容少了很多。
+nar(悲傷): 我們有時，像陌生人一樣擦肩而過。
+i(生氣): 那個該死的渣男。
+@ bg=s_desk
+nar(平靜): 然後，我發現隔壁的同桌，一直在偷看我。
+i(緊張): 那眼神……
+i(悲傷): 跟姐姐當初看那個人的時候，一模一樣。
+desk(害羞): ……幹嘛啦。
+? t=6 d=3
+- 「你一直在看我耶。」 {desk+3} -> p4_tease
+- 「你的筆借我。」 {desk+1} -> p4_pen
+- 假裝看黑板 -> p4_board
+
+# p4_tease
+desk(害羞): 我、我才沒有！
+crowd(開心): 喔～～蛋餅跟同桌～～
+nar(吐槽): 全班起鬨。她的耳朵紅得跟番茄一樣。
+! go p4_b
+
+# p4_pen
+desk(小聲): ……喔。給你。
+nar(平靜): 她把筆遞給我，手指碰了一下，又飛快縮回去。
+crowd(開心): 喔～～蛋餅跟同桌～～
+! go p4_b
+
+# p4_board
+nar(吐槽): 我盯著黑板，假裝很認真。其實一個字都沒看進去。
+! go p4_b
+
+# p4_b
+@ bg=h_pc amb=night bgm=dreamer time=週五·晚上 11:20
+nar(平靜): 那陣子，我每天晚上都跟她連線打電動。
+nar(平靜): 某天晚上，遊戲打到一半，她突然沒有說話。
+! call desk
+desk(電話): ……蛋餅。
+desk(電話害羞): 我喜歡你。
+desk(電話害羞): 我們……可以在一起嗎？
+i(緊張): 就在我要開口的那一秒——
+! sfx door_soft
+nar(悲傷): 客廳傳來姐姐回家的開門聲。好輕。好累。
+? t=8 d=2
+- 「……好。」 {desk+12 desk_gf=1 con+3} -> p4_yes
+- 「我們……先當朋友好不好？」 {desk-4 zha+5} -> p4_friend
+- 拔掉耳機 {desk-8 zha+3} -> p4_unplug
+
+# p4_yes
+desk(電話開心): 真、真的嗎！！
+nar(開心): 耳機裡傳來尖叫，然後是她弟弟大罵「吵死了」。
+desk(電話開心): ……嗯！那明天也要一起玩喔！
+nar(平靜): 我掛掉語音。客廳很安靜。姐姐的房門，又關上了。
+i(平靜): 如果有一天，我也讓別人那樣哭……
+? t=12 d=1
+- 「我不會變成那種人。」 {con+8 honest=1} -> p4_honest
+- 「……可是，我還是想讓那些人知道痛。」 {zha+6} -> p4_zha
+
+# p4_friend
+desk(電話): ……喔。
+desk(電話): 好啊。……朋友。
+nar(悲傷): 有些東西碎掉的時候，是沒有聲音的。
+! go p4_zha
+
+# p4_unplug
+nar(悲傷): 我拔掉耳機。螢幕上，她的角色站在原地，一動也不動。
+! go p4_zha
+
+# p4_honest
+nar(溫柔): 那一秒我做的決定，後來救了我很多次。
+nar(平靜): 不過，十三歲的人生，沒那麼簡單。
+! go p5
+
+# p4_zha
+nar(平靜): 我聽著姐姐關門的聲音，做了一個大大的決定。
+i(生氣): 對。我要當渣男。
+i(平靜): 我要讓那些女生，知道被騙是什麼感覺。
+nar(吐槽): 邏輯滿分。人性零分。
+! fx zha+5 playboy=1
+! go p5
+
+# p5
+@ bg=black bgm=none amb=none time=
+nar(平靜): 接下來的六天，換你來過我的國一生活。
+nar(平靜): 上課、下課、回訊息、回家。
+nar(吐槽): 順便……小心阿福的嘴。
+! go d1
+## ===== 第四篇：六天 =====
+# d1
+! title 第四篇｜小愛・小美・小晴
+! day 1
+@ bg=s_class amb=class bgm=easy time=週一·早上 7:40
+! money +300 這週的零用錢
+nar(平靜): 週一早上。爸媽出差前，留了這週的零用錢。
+@ bg=s_qing
+nar(平靜): 抽屜裡多了一瓶養樂多。旁邊有個女生，正在偷笑。
+qing(開心): 早安蛋餅！明天也會有喔～
+? t=7 d=1
+- 「謝啦，你人好好。」 {qing+5} -> d1_q1
+- 「你幹嘛對我這麼好？」 {qing+3} -> d1_q2
+- 「我不喝這個。」 {qing-5 con-1} -> d1_q3
+
+# d1_q1
+qing(害羞): 嘿嘿……
+nar(吐槽): 小晴，是我最好「攻略」的那個。到現在我都不知道她喜歡我什麼。
+! go d1_fat
+
+# d1_q2
+qing(開心): 因為你跑步很帥啊！
+qing(害羞): ……開玩笑的啦。
+nar(吐槽): 她沒有在開玩笑。
+! go d1_fat
+
+# d1_q3
+qing(悲傷): 喔……好吧。
+nar(悲傷): 她把養樂多拿回去，一整節課都沒有回頭。
+! go d1_fat
+
+# d1_fat
+@ bg=s_fat
+fat(開心): 嘿！我是阿福！本班八卦電台台長！
+fat(得意): 你跟誰好、誰跟誰吵架，三分鐘內全班都會知道。
+fat(得意): 我什麼都知道喔～
+nar(平靜): 這個人，後來成了我人生最大的變數之一。
+? t=6 d=1
+- 「那你知道明天考什麼嗎？」 {fat+3} -> d1_fat2
+- 「你很吵耶。」 {exp+5} -> d1_fat3
+
+# d1_fat2
+fat(吐槽): 這種沒營養的我不管。
+! go d1_pe
+
+# d1_fat3
+fat(得意): 我記下來了。蛋餅，嫌台長吵。
+nar(吐槽): 他真的寫進筆記本了。
+! go d1_pe
+
+# d1_pe
+@ bg=s_track amb=field bgm=none time=週一·第三節 體育課
+nar(平靜): 體育課，跑操場。小愛跑在我前面。
+nar(緊張): 然後，她腳一滑——
+! act catch
+! if caught -> d1_caught
+nar(悲傷): 我慢了半拍。
+@ bg=s_ai_fall bgm=none
+ai(哭): 好痛……
+nar(悲傷): 她的膝蓋，擦破了一塊十元硬幣大的傷口。
+! go d1_nurse
+
+# d1_caught
+@ bg=s_ai_fall
+ai(驚訝): ……你、你接住我了？
+nar(吐槽): 漫畫裡才有的情節，被一個國一生完成了。
+ai(害羞): 可是……膝蓋還是擦到了啦。
+! fx ai+8 exp+5
+! go d1_nurse
+
+# d1_nurse
+? t=8 d=1
+- 「我陪你去保健室。」 {ai+6 con+2} -> d1_n1
+- 「老師！小愛受傷了！」 {ai+2 con+3} -> d1_n2
+
+# d1_n2
+nar(平靜): 老師叫我陪她去保健室。結果一樣。
+! go d1_n1
+
+# d1_n1
+@ bg=s_nurse amb=room bgm=dreamer
+ai(害羞): 謝謝你陪我來保健室。
+ai(開心): 你人也太好了吧。
+? t=8 d=1
+- 「下次跑慢一點啦，笨蛋。」 {ai+4} -> d1_n3
+- 「你笑起來比較好看。」 {ai+8 zha+4 exp+5} -> d1_n4
+
+# d1_n3
+ai(生氣): 你才笨蛋！
+ai(害羞): ……謝啦。
+! go d1_home
+
+# d1_n4
+ai(驚訝): 蛤？！
+ai(害羞): 蛋、蛋餅你很煩欸！
+nar(吐槽): 她臉紅到耳根。我心裡偷偷記了一分。這種事，我學得很快。
+! go d1_home
+
+# d1_home
+@ bg=h_door amb=night bgm=sadtrio time=週一·晚上 9:10
+nar(悲傷): 晚上，姐姐的房門又關著。
+nar(平靜): 門縫底下，透出一點點光。
+? t=10 d=2
+- 敲門 -> d1_knock
+- 寫一張紙條，從門縫塞進去 {sis+5 con+2} -> d1_note
+- 回房間 -> d1_line
+
+# d1_knock
+! sfx knock
+sis(疲倦): 姐姐今天有點累，明天好不好？
+nar(悲傷): 我在門口站了一下，然後回房間。
+! fx sis+1
+! go d1_line
+
+# d1_note
+nar(溫柔): 我寫了：「冰箱有滷蛋，我留一顆給你。」
+nar(平靜): 隔天滷蛋不見了。紙條背面多了一行字。
+sis(溫柔): 謝謝你，小餅。
+! go d1_line
+
+# d1_line
+@ bg=h_phone amb=night bgm=none time=週一·晚上 11:02
+! line ai
+>ai: 欸 今天謝謝你喔
+>ai: 膝蓋好多了啦
+? 
+- 「那就好，早點睡」 {ai+3} -> d1_l1
+- 「明天我幫你抬餐桶」 {ai+6 zha+2} -> d1_l2
+
+# d1_l1
+>ai: 好啦 晚安
+! endline
+! go d1_l3
+
+# d1_l2
+>ai: 真的假的
+>ai: 那說好了喔！
+! endline
+! fx carry=1
+! go d1_l3
+
+# d1_l3
+! if playboy -> d1_l4
+nar(平靜): 我把手機蓋在胸口，盯著天花板。
+! go d2
+
+# d1_l4
+! line qing
+>qing: 蛋餅蛋餅 你明天也要喝養樂多喔
+>qing: 晚安～～
+? 
+- 「你也晚安♡」 {qing+6 zha+4} -> d1_l5
+- 「晚安」 {qing+2} -> d1_l6
+
+# d1_l5
+>qing: 天啊！！！
+>qing: 我要截圖！！
+! endline
+! fx exp+5
+nar(吐槽): 她截圖了。我那時還不知道，截圖是渣男的天敵。
+! go d2
+
+# d1_l6
+>qing: 嘿嘿 晚安
+! endline
+! go d2
+
+## ===== Day 2 =====
+# d2
+! day 2
+@ bg=s_hall amb=hall bgm=easy time=週二·早上 7:55
+nar(平靜): 週二。我急著去福利社，在走廊撞到了剛走出廁所的她。
+! sfx thud
+@ bg=s_mei_books
+mei(生氣): 你走路不看路的喔？國一了還在走廊跑！
+? t=6 d=2
+- 「是你自己走出來的好不好！」 {mei+3} -> d2_m1
+- 「對不起，你沒事吧？」 {mei+5 con+2} -> d2_m2
+
+# d2_m1
+mei(生氣): 你說什麼！？
+nar(吐槽): 兩個幼稚鬼的仇，就此結下。
+! fx mei_rival=1
+! go d2_lunch
+
+# d2_m2
+mei(冷淡): ……哼，知道就好。
+nar(平靜): 她抱著一大疊英文習作，搖搖晃晃地走了。
+! go d2_lunch
+
+# d2_lunch
+@ bg=s_class amb=class bgm=easy time=週二·中午 12:10
+nar(平靜): 午休，輪到小愛抬餐桶。她的膝蓋還沒好。
+? t=8 d=1
+- 直接幫她抬 {ai+4 con+3} -> d2_c1
+- 跟她一起抬，多一點獨處時間 {ai+7 zha+3 exp+3} -> d2_c2
+- 假裝沒看到 {ai-4} -> d2_c3
+
+# d2_c1
+ai(開心): 謝謝你！你人真好。
+nar(平靜): 她一拐一拐地走在我旁邊，一路都在笑。
+! go d2_rec
+
+# d2_c2
+nar(吐槽): 為什麼不直接幫她抬？因為幫她抬，就沒有獨處時間了。十三歲的我，已經很會算。
+ai(害羞): 欸……明天，也要一起抬餐桶喔。
+! go d2_rec
+
+# d2_c3
+ai(冷淡): ……喔，好。
+nar(悲傷): 她自己抬過去。湯灑了一點出來。
+! go d2_rec
+
+# d2_rec
+@ bg=s_hall amb=hall bgm=easy time=週二·午休
+nar(平靜): 午休還有二十分鐘。要去哪？
+? 
+- 福利社 -> d2_coop
+- 操場 -> d2_track
+- 留在教室 -> d2_desk
+
+# d2_coop
+@ bg=s_coop amb=coop
+qing(緊張): 蛋餅！福利社只剩最後一個布丁了！幫我搶！
+! act grab
+! if grabbed -> d2_coop_ok
+qing(悲傷): 被搶走了……
+qing(開心): 沒關係啦，我們分一包乖乖。
+! fx qing+4
+! go d2_rain
+
+# d2_coop_ok
+qing(開心): 蛋餅最棒了！！
+! fx qing+7 exp+3
+! go d2_rain
+
+# d2_track
+@ bg=s_qing_watch amb=field bgm=dreamer
+qing(開心): 蛋餅！我幫你計時！跑一次給我看！
+! act sprint
+nar(平靜): 我跑了一趟。她按下碼錶的時候，眼睛閃閃發亮。
+qing(驚訝): 好快！！
+qing(害羞): 我最喜歡你跑步的樣子了。
+? t=7 d=1
+- 「那你以後都來幫我計時。」 {qing+8 zha+3 exp+3} -> d2_rain
+- 「謝啦，我去喝水。」 {qing+2} -> d2_rain
+
+# d2_desk
+@ bg=s_desk amb=class bgm=dreamer
+! if desk_gf -> d2_desk_gf
+desk(平靜): 昨天的數學你會嗎？
+nar(平靜): 同桌教我解數學。她講題目的時候，會把筆轉來轉去。
+desk(小聲): 欸，你上次說要先當朋友……
+desk(溫柔): 我覺得，這樣也很好。
+! fx desk+5
+! go d2_rain
+
+# d2_desk_gf
+desk(害羞): ……嗨，男朋友。
+nar(平靜): 她在課本角落畫了一條線，寫著：「越線要付錢」。
+desk(害羞): 你要越線的話……一次十塊。
+? t=6 d=1
+- 掏出十塊錢，放到她那邊 {desk+8 money-10} -> d2_dg1
+- 「那我不越了。」 {desk+2} -> d2_dg2
+
+# d2_dg1
+desk(害羞): 笨、笨蛋！我是開玩笑的！
+nar(平靜): 她把十塊錢收進鉛筆盒，說要幫我存起來。
+! go d2_rain
+
+# d2_dg2
+desk(吐槽): ……小氣鬼。
+! go d2_rain
+
+# d2_rain
+@ bg=s_rain amb=rain bgm=dreamer time=週二·放學 4:30
+nar(平靜): 放學，突然下大雨。我的傘只有一把。
+nar(平靜): 小愛站在走廊邊，沒帶傘。
+! if desk_gf -> d2_rain_gf
+? t=8 d=1
+- 撐傘送小愛回家 {ai+9 zha+2 exp+6 wet=1} -> d2_r1
+- 把傘借她，自己淋雨跑回家 {ai+6 con+3 wet=1} -> d2_r2
+- 假裝沒看到，先走 {ai-3} -> d2_tv
+
+# d2_rain_gf
+nar(緊張): 同桌也在。她看看我，又看看小愛。
+? t=8 d=1
+- 撐傘送同桌回家 {desk+8 con+3} -> d2_rg1
+- 撐傘送小愛回家 {ai+9 desk-10 zha+6 exp+10 wet=1} -> d2_r1
+- 傘給她們兩個，自己淋雨 {desk+4 ai+4 con+5 wet=1} -> d2_r2
+
+# d2_rg1
+desk(害羞): 欸……我們這樣，算是在約會嗎？
+nar(平靜): 我們第一次一起走回家。手背碰到了三次。
+! go d2_tv
+
+# d2_r1
+ai(害羞): 欸……你對每個人都這麼好嗎？
+? t=6 d=1
+- 「只對你。」 {ai+6 zha+6 exp+5} -> d2_r1a
+- 「對啊，大家都是朋友。」 {ai-2 con+2} -> d2_r1b
+
+# d2_r1a
+ai(害羞): ……你肩膀都濕了啦。
+nar(平靜): 阿福在二樓看到了。我當時不知道。
+! fx fat_saw=1
+! go d2_tv
+
+# d2_r1b
+ai(平靜): ……喔。也是啦。
+nar(平靜): 她低頭看著地上的水窪。一路都沒有再說話。
+! go d2_tv
+
+# d2_r2
+ai(驚訝): 蛋餅！你會感冒啦！
+nar(吐槽): 隔天我真的感冒了。值得。
+! go d2_tv
+
+# d2_tv
+@ bg=h_tv amb=tv bgm=wholesome time=週二·晚上 8:30
+nar(平靜): 晚上，姐姐坐在我旁邊看電視。
+nar(悲傷): 她一直滑著那個人的IG。
+? t=8 d=1
+- 「姐，看小新啦。」 {sis+5} -> d2_tv1
+- 搶走她的手機 {sis+2 con-1} -> d2_tv2
+- 不說話，陪她坐著 {sis+3} -> d2_tv3
+
+# d2_tv1
+sis(吐槽): ……你還是只會看這個喔。
+nar(溫柔): 小新跳大象舞的時候，她笑了一下。就一下。
+! go d2_vib
+
+# d2_tv2
+sis(生氣): 小餅！還我！
+sis(悲傷): ……好啦。你說得對。
+! go d2_vib
+
+# d2_tv3
+nar(平靜): 我們就這樣坐著。電視在演什麼，我一點都沒看進去。
+! go d2_vib
+
+# d2_vib
+! if playboy -> d2_vib2
+! go d3
+
+# d2_vib2
+! sfx buzz
+nar(緊張): 然後，我的手機開始狂震。
+i(緊張): 不行！螢幕上全是愛心貼圖！
+! act hide
+! if hid -> d2_hid
+sis(驚訝): ……誰一直傳愛心給你？
+? t=5 d=1
+- 「同學啦，在亂鬧。」 {sis-3 zha+3} -> d2_h1
+- 「……一個女生。」 {sis+2 con+3} -> d2_h2
+
+# d2_h1
+sis(懷疑): 喔～～同學喔～～
+sis(認真): 小餅，不可以讓女生難過喔。
+! go d3
+
+# d2_h2
+sis(溫柔): 那就慢慢來。不要騙人就好。
+! go d3
+
+# d2_hid
+nar(平靜): 我在最後一秒，把手機翻過來。姐姐什麼都沒看到。
+i(悲傷): ……為什麼，我有一點點難過？
+! fx con+2
+! go d3
+## ===== Day 3 =====
+# d3
+! day 3
+@ bg=s_hall amb=hall bgm=easy time=週三·早上 10:00
+! if wet -> d3_cold
+! go d3_a
+
+# d3_cold
+nar(吐槽): 我感冒了。鼻涕流個不停，但心情莫名很好。
+! go d3_a
+
+# d3_a
+@ bg=s_mei_books
+nar(平靜): 下課，小美又抱著一大疊英文習作，搖搖晃晃。
+? t=7 d=1
+- 「欸，討厭鬼，需要幫忙嗎？」 {mei+5} -> d3_m1
+- 「要不要我幫你？」 {mei+4 con+1} -> d3_m1
+- 從旁邊繞過去 -> d3_m0
+
+# d3_m0
+nar(平靜): 我繞過去。身後傳來習作嘩啦啦掉一地的聲音。
+? t=4 d=1
+- 回頭幫她撿 {mei+6 con+2} -> d3_m2
+- 繼續走 {mei-5} -> d3_dir
+
+# d3_m1
+mei(生氣): 我才不需要你咧！
+! sfx books
+nar(吐槽): 話剛說完，習作嘩啦啦掉了一地。
+! go d3_m2
+
+# d3_m2
+nar(溫柔): 我們蹲在地上一起撿。撿著撿著，就笑了。
+mei(害羞): ……謝啦。
+nar(平靜): 稱呼從「討厭鬼」開始，慢慢變成了「小美」。
+mei(小聲): 交換日記……你也寫一頁啦。
+mei(害羞): 寫你覺得我是什麼樣的人。
+i(緊張): 等等，小愛昨天也要我寫卡片……
+? t=10 d=2
+- 認真寫一頁只屬於她的 {mei+8 con+3} -> d3_w1
+- 把寫給小愛的那句，抄一遍 {mei+6 zha+8 copy=1} -> d3_w2
+
+# d3_w1
+nar(溫柔): 我寫了：「嘴巴很壞，但會偷偷幫別人撿東西。」
+mei(害羞): ……算你有良心。
+! go d3_dir
+
+# d3_w2
+nar(平靜): 我寫：「你是我心中最特別的人。」
+nar(吐槽): 複製貼上。渣男界的大忌。我那時還不知道。
+! go d3_dir
+
+# d3_dir
+! if exp<15 -> d3_fat
+@ bg=s_dir amb=office bgm=investigations time=週三·午休
+dir(大喊): 一年三班蛋餅！過來！
+dir(嚴肅): 我聽說，你跟好幾個女同學走很近？
+? t=6 d=1
+- 「我們只是朋友。」 {zha+2} -> d3_d1
+- 「……主任，我知道了。」 {con+3 exp-5} -> d3_d2
+
+# d3_d1
+dir(嚴肅): 最好是。我會盯著你。
+nar(吐槽): 「我們只是朋友」。這句話，後來我說了很多次。
+! go d3_fat
+
+# d3_d2
+dir(平靜): 知道就好。國一，好好念書，好好跑步。
+! go d3_fat
+
+# d3_fat
+@ bg=s_fat amb=class bgm=investigations time=週三·午餐
+nar(開心): 今天午餐有雞腿！
+fat(得意): 蛋餅～你知道大家最近都在傳什麼嗎？
+fat(得意): 「蛋餅到底跟誰在一起」，已經開賭盤了喔。
+? t=8 d=1
+- 把雞腿給他：「嘴巴拉鍊拉起來。」 {exp-15 zha+2 bribe=1} -> d3_f1
+- 「關你什麼事！」 {exp+10} -> d3_f2
+- 「我誰都沒在一起。」 {exp+3 con+1} -> d3_f3
+
+# d3_f1
+fat(開心): 成交！雞腿萬歲！
+nar(吐槽): 雞腿封口費。我人生第一筆賄賂。
+! go d3_after
+
+# d3_f2
+fat(得意): 哇，蛋餅生氣了！我要跟全班說！
+! go d3_after
+
+# d3_f3
+fat(吐槽): 你自己最清楚吧。
+nar(平靜): 阿福偶爾，也會說出很有道理的話。
+! go d3_after
+
+# d3_after
+@ bg=s_hall amb=street bgm=wholesome time=週三·放學
+nar(平靜): 放學了。口袋裡有零用錢。
+? 
+- 去便利商店逛逛 -> d3_shop
+- 直接回家 -> d3_home
+
+# d3_shop
+@ bg=w_cvs amb=cvs bgm=beetle
+! sfx cvs_door
+! shop
+! go d3_home
+
+# d3_home
+@ bg=h_door amb=night bgm=sadtrio time=週三·晚上 10:40
+! if sis>=58 -> d3_noodle
+nar(悲傷): 姐姐在廚房煮泡麵，煮了一碗，就自己端回房間了。
+i(悲傷): ……我們什麼時候變成這樣的？
+? t=8 d=1
+- 去廚房把碗洗了 {sis+3 con+2} -> d3_dish
+- 回房間滑手機 -> d3_line
+
+# d3_noodle
+@ bg=h_kitchen amb=kitchen bgm=wholesome
+sis(開心): 小餅，要不要吃宵夜？姐姐煮泡麵加蛋！
+? t=6 d=1
+- 「要！我要兩顆蛋！」 {sis+5} -> d3_n1
+- 「我吃過了。」 {sis-2} -> d3_line
+
+# d3_n1
+sis(大笑): 兩顆？你想得美！
+nar(溫柔): 那是那天之後，姐姐第一次笑得那麼大聲。
+! go d3_dish
+
+# d3_dish
+@ bg=w_dishes amb=kitchen bgm=wholesome
+nar(平靜): 我把水槽裡的碗都洗了。
+! act dishes
+sis(溫柔): 欸，碗是你洗的？這給你，不准跟爸媽說。
+! money +50 姐姐偷偷塞的
+! fx sis+3
+! go d3_line
+
+# d3_line
+@ bg=h_phone amb=night bgm=none time=週三·晚上 11:30
+! if mei<20 -> d4
+! line mei
+>mei: 喂 日記我看了
+! if copy -> d3_l2
+>mei: 寫得很爛
+>mei: 不過……謝了
+>mei: 明天午休 樓梯間 我有話跟你說
+! endline
+! fx mei_date=1
+! go d4
+
+# d3_l2
+>mei: 最特別的人？
+>mei: 你很會講耶
+? 
+- 「真的啦」 {mei+5 zha+3} -> d3_l3
+- 「……抄的啦，開玩笑」 {mei-8 con+4 copy=0} -> d3_l4
+
+# d3_l3
+>mei: 哼
+>mei: 明天午休 樓梯間
+! endline
+! fx mei_date=1
+! go d4
+
+# d3_l4
+>mei: ……討厭鬼
+>mei: 重寫一份給我
+! endline
+! go d4
+
+## ===== Day 4 =====
+# d4
+! day 4
+@ bg=s_track amb=field bgm=none time=週四·第二節 體育課
+teacher(大喊): 測一百公尺！各就各位——
+! act sprint
+teacher(驚訝): 蛋餅……十一點二秒！？
+crowd(大喊): 蛋餅好帥！！
+teacher(開心): 運動會你代表班上跑一百公尺。跟高年級比也會第一！
+nar(平靜): 我跑這麼快，要感謝鄉下阿嬤家的狗。
+@ bg=w_dogs amb=country bgm=wholesome
+nar(吐槽): 被追了好幾年，練出來的。
+nar(溫柔): 後來阿嬤養了小黑。小黑會保護我，我也和那群狗勾變成了朋友。
+nar(溫柔): 搬走那天，牠們追著老媽的車，一路追到三條街外的檳榔攤。
+@ bg=s_track amb=field bgm=easy
+nar(平靜): 此時的我並不知道，這場比賽，會為姐姐的失望埋下伏筆。
+! go d4_fat
+
+# d4_fat
+@ bg=s_fat amb=class bgm=investigations time=週四·下課
+fat(得意): 蛋餅！你到底在跟誰交往？最喜歡誰？
+? t=6 d=3
+- 「我每個都喜歡啊。」 {exp+20 zha+5} -> d4_f1
+- 「……我姐。」 {exp+5} -> d4_f2
+- 「小聲一點啦！」 {exp+12} -> d4_f3
+
+# d4_f1
+fat(得意): 記下來。蛋餅說，他每個都喜歡……
+nar(緊張): 我追著他，繞了教室三圈。
+! go d4_stairs
+
+# d4_f2
+fat(吐槽): ……姐控。
+nar(吐槽): 全班都聽到了。這個外號跟了我三年。
+! go d4_stairs
+
+# d4_f3
+fat(大喊): 蛋餅叫我小聲一點——！！
+nar(悲傷): 全班安靜了一秒。然後所有人都轉過來看我。
+! go d4_stairs
+
+# d4_stairs
+! if mei_date -> d4_sneak
+! go d4_mei
+
+# d4_sneak
+@ bg=s_hall amb=hall bgm=interloper time=週四·午休
+nar(緊張): 小美約我午休在樓梯間。問題是——小愛和小晴，正在走廊上巡邏。
+i(緊張): 不能讓她們看到我往樓梯間走。
+! act sneak
+! if sneak_ok -> d4_sneak_ok
+ai(驚訝): 蛋餅？你要去哪？樓梯間？
+nar(緊張): 小愛和小晴互看了一眼。八卦的種子，就此種下。
+! fx exp+12
+! go d4_mei
+
+# d4_sneak_ok
+nar(緊張): 我成功溜過去了。心跳快到可以去參加運動會。
+! go d4_mei
+
+# d4_mei
+@ bg=s_mei_stairs amb=stairs bgm=gymno time=週四·午休
+nar(平靜): 午休，小美一個人坐在樓梯間。
+mei(悲傷): 我爸媽一直在加班。回家都沒人講話。
+? t=12 d=1
+- 坐到她旁邊，聽她說 {mei+8 con+3} -> d4_m1
+- 「那你以後，可以傳訊息給我。」 {mei+10 zha+3} -> d4_m2
+- [inv] 從書包拿出買的東西 -> d4_mgift
+
+# d4_mgift
+! give mei
+! go d4_m1
+
+# d4_m1
+nar(平靜): 她講了很多。我第一次知道，嘴巴很壞的人，心裡可能很安靜。
+mei(害羞): ……討厭鬼。
+! go d4_ai
+
+# d4_m2
+mei(害羞): ……誰要傳給你。
+mei(小聲): 不過，有空的話……也可以啦。
+! go d4_ai
+
+# d4_ai
+@ bg=s_nurse amb=room bgm=dreamer time=週四·放學
+ai(害羞): 蛋餅，這個……給你。
+nar(平靜): 一條紅色的手作護腕，上面歪歪的繡著「蛋」。
+ai(害羞): 運動會那天……戴著。
+i(悲傷): 她以為我只對她好。
+! if playboy -> d4_ai2
+? t=8 d=1
+- 「謝謝，我會戴著跑。」 {ai+6} -> d4_desk
+- 「小愛……我們是朋友，對吧？」 {ai-2 con+5 honest=1} -> d4_ai3
+
+# d4_ai2
+nar(悲傷): 我口袋裡，還有小晴給的紙星星。
+? t=8 d=1
+- 「我只戴你的。」 {ai+8 zha+6} -> d4_desk
+- 「謝謝。」 {ai+3} -> d4_desk
+
+# d4_ai3
+ai(平靜): ……嗯。對啊。朋友。
+ai(開心): 那你也要戴著喔！朋友的護腕！
+nar(溫柔): 她笑得很用力。我知道那樣說會痛。但不說，以後會更痛。
+! go d4_desk
+
+# d4_desk
+@ bg=s_desk_walk amb=street bgm=dreamer time=週四·放學 5:10
+! if desk_gf -> d4_dg
+desk(平靜): 欸，蛋餅。
+desk(小聲): 你很爛。但我原諒你一半。
+nar(平靜): 自從那晚以後，同桌就很少跟我說話。今天她陪我走到巷口。
+desk(溫柔): 運動會我會去終點等你。……以朋友的身分！
+! fx desk+4
+! go d4_home
+
+# d4_dg
+desk(平靜): 蛋餅……你最近跟小愛、小美好像很好喔？
+? t=7 d=1
+- 「她們只是朋友，我只喜歡你。」 {desk+6} -> d4_dg1
+- 「……嗯，還好吧。」 {desk-6 zha+3} -> d4_dg2
+
+# d4_dg1
+! if zha>=30 -> d4_dg_lie
+desk(溫柔): ……嗯。我相信你。
+! go d4_home
+
+# d4_dg_lie
+desk(溫柔): ……嗯。我相信你。
+i(悲傷): 她相信我。可是，我自己都不相信我自己。
+! fx con-3
+! go d4_home
+
+# d4_dg2
+desk(悲傷): ……喔。
+nar(悲傷): 有些東西碎掉的時候，是沒有聲音的。
+! go d4_home
+
+# d4_home
+@ bg=h_tv amb=tv bgm=wholesome time=週四·晚上 9:00
+nar(平靜): 姐姐跟我一起看蠟筆小新。廣告的時候，她突然說——
+sis(溫柔): 小餅，你最近好像長大了。
+sis(調皮): 欸，你最近是不是有喜歡的人？
+? t=8 d=1
+- 「才、才沒有！」 {sis+2} -> d4_h1
+- 「……有一個。」 {sis+5 con+2} -> d4_h2
+- 「有好幾個。」 {sis-4 zha+3} -> d4_h3
+
+# d4_h1
+sis(大笑): 臉紅了！姐控居然有喜歡的人了！
+me(生氣): 姐控是阿福亂講的啦！
+! go d4_h2b
+
+# d4_h2
+sis(溫柔): 那就慢慢來。不要騙人就好。
+! go d4_h2b
+
+# d4_h3
+sis(冷淡): ……好幾個？
+nar(悲傷): 她笑容停了一下。然後轉回去看電視。
+sis(平靜): 小餅，不可以讓女生難過喔。
+! go d4_h2b
+
+# d4_h2b
+sis(開心): 對了，運動會是什麼時候？
+me(平靜): 下週六。我跑一百公尺。
+! if sis>=55 -> d4_h4
+sis(疲倦): 姐姐那天……可能要打工。再看看好不好？
+! go d4_night
+
+# d4_h4
+sis(驚訝): 真的嗎？那天……姐姐請假去看你！
+! fx sis_come=1
+! go d4_night
+
+# d4_night
+@ bg=h_phone amb=night bgm=none time=週四·晚上 11:48
+nar(平靜): 晚上，手機又響了。不只一個人。
+! if playboy -> d4_multi
+! line desk
+>desk: 明天見
+>desk: 早點睡喔
+? 
+- 「明天見」 {desk+2} -> d4_n_end
+- 「你也是，晚安」 {desk+3} -> d4_n_end
+
+# d4_n_end
+! endline
+! go d5
+
+# d4_multi
+! line multi
+>ai: 護腕你會戴吧？
+>qing: 明天的養樂多你要原味還是葡萄！
+>mei: 你睡了沒
+nar(緊張): 三個對話框，同時在閃。
+? t=5 to=d4_wrong
+- 回小愛：「會啊，只戴你的。」 {ai+3 zha+2} -> d4_mc2
+- 回小晴：「葡萄！」 {qing+3} -> d4_mc2
+- 回小美：「還沒。」 {mei+3} -> d4_mc2
+
+# d4_mc2
+>qing: 蛋餅你在跟誰聊天？怎麼都不回我
+>ai: 蛤？？
+? t=4 to=d4_wrong
+- 回小晴：「在洗澡啦」 {zha+3} -> d4_mc3
+- 回小愛：「剛剛在洗澡」 {zha+3} -> d4_mc3
+
+# d4_mc3
+>mei: 討厭鬼 晚安
+? t=4 to=d4_wrong
+- 回小美：「晚安」 {mei+2} -> d4_mc_ok
+- 回小美：「晚安♡」 {mei+4 zha+3} -> d4_mc_ok
+
+# d4_mc_ok
+! endline
+nar(平靜): 全部回完了。
+nar(吐槽): 我盯著天花板，覺得自己好像一台客服機器人。
+! go d5
+
+# d4_wrong
+>me: 只戴你的啦，晚安♡
+>qing: 蛤？？？
+>qing: 什麼東西只戴我的？
+! endline
+nar(緊張): 有一則訊息，傳錯人了。
+nar(悲傷): 螢幕上顯示「已讀」。
+! fx exp+20
+nar(平靜): 我盯著那兩個字，一整晚沒睡著。
+! go d5
+## ===== Day 5 =====
+# d5
+! day 5
+! if exp>=70 -> x_exposed
+@ bg=s_class amb=class bgm=easy time=週五·早上 7:50
+nar(平靜): 週五。離運動會，只剩一個週末。
+@ bg=s_fat
+fat(得意): 今天的八卦：福利社布丁漲價了！
+fat(小聲): 還有……下週運動會，好像有人約了好幾個女生喔～
+! if playboy -> d5_inv
+! go d5_q
+
+# d5_inv
+nar(平靜): 那天，三個女生，分別來約我運動會上午。
+@ bg=s_qing
+qing(撒嬌): 蛋餅～運動會上午陪我逛園遊會好不好？
+? t=6 d=1
+- 「好啊。」 {qing+5 dates+1 date_qing=1} -> d5_i2
+- 「我要熱身耶……」 {qing-2} -> d5_i2
+
+# d5_i2
+@ bg=s_nurse
+ai(害羞): 運動會上午，有班際比賽……你、你會來看我吧？
+? t=6 d=1
+- 「一定去。」 {ai+5 dates+1 date_ai=1} -> d5_i3
+- 「看情況啦。」 {ai-2} -> d5_i3
+
+# d5_i3
+@ bg=s_mei_books
+mei(冷淡): 運動會上午，樓梯間。我會買披薩。不准遲到。
+? t=6 d=1
+- 「好。」 {mei+5 dates+1 date_mei=1} -> d5_i4
+- 「那天我很忙欸。」 {mei-3} -> d5_i4
+
+# d5_i4
+! if dates>=2 -> d5_i5
+nar(平靜): 我在心裡數了一下。還好，排得過來。
+! go d5_q
+
+# d5_i5
+nar(吐槽): 三個人。同一個上午。
+i(得意): 沒關係，我可是跑十一點二秒的男人。
+! fx zha+8
+! go d5_q
+
+# d5_q
+@ bg=s_hall amb=hall bgm=easy time=週五·午休
+nar(平靜): 午休。這週的最後一個午休。
+? 
+- 去福利社 -> d5_coop
+- 去樓梯間 -> d5_stairs
+- 留在教室 -> d5_desk
+
+# d5_coop
+@ bg=s_coop amb=coop
+qing(開心): 蛋餅！今天我搶到布丁了！分你一半！
+? 
+- 「謝啦！」 {qing+4} -> d5_after
+- [inv] 「我也有東西給你。」 -> d5_qgift
+
+# d5_qgift
+! give qing
+! go d5_after
+
+# d5_stairs
+@ bg=s_stairs amb=stairs bgm=gymno
+nar(平靜): 樓梯間沒有人。窗戶透進來一點點光。
+i(平靜): （樓梯間，秘密最多的地方。）
+i(悲傷): （我是不是……越來越像那個人了？）
+? t=10 d=1
+- 坐一下，想清楚 {con+6} -> d5_after
+- 傳訊息給姐姐 {sis+4} -> d5_sisline
+
+# d5_sisline
+@ bg=h_phone
+! line sis
+>me: 姐 你今天要吃什麼
+>sis: 咖哩
+>sis: 你怎麼突然關心我
+>sis: 好可怕喔
+! endline
+! go d5_after
+
+# d5_desk
+@ bg=s_desk amb=class bgm=dreamer
+desk(溫柔): 你今天好像很累耶。
+? 
+- 「有一點。」 {desk+3} -> d5_d1
+- [inv] 把買的東西拿給她 -> d5_dgift
+
+# d5_dgift
+! give desk
+! go d5_after
+
+# d5_d1
+desk(溫柔): 那……這個給你。
+nar(平靜): 一顆薄荷糖。包裝紙上畫了一個歪歪的笑臉。
+desk(害羞): 你其實……人還不錯。
+! go d5_after
+
+# d5_after
+@ bg=w_cvs amb=cvs bgm=beetle time=週五·放學 4:50
+! sfx cvs_door
+nar(平靜): 放學，我走進巷口那間便利商店。
+! shop
+@ bg=h_fridge amb=home bgm=wholesome time=週五·晚上
+nar(平靜): 回到家，冰箱上貼著一張便利貼。
+! note 晚餐自己熱。我今天會晚回來。—姐
+! if sis>=60 -> d5_sis_ok
+nar(悲傷): 字很工整。工整到，有點陌生。
+! go d6
+
+# d5_sis_ok
+! note 晚餐在微波爐，記得吃。運動會加油。—姐
+nar(溫柔): 最後面，還畫了一個醜醜的笑臉。
+! go d6
+
+## ===== Day 6 (Sat) =====
+# d6
+! day 6
+@ bg=h_sofa amb=home bgm=wholesome time=週六·早上 6:30
+nar(平靜): 週六。運動會前最後一天。
+? 
+- 去巷口早餐店打工 -> d6_job
+- 在家幫忙打掃 -> d6_home
+- 再去一趟便利商店 -> d6_shop
+
+# d6_job
+@ bg=w_breakfast amb=breakfast bgm=beetle
+aunt(開心): 小餅來啦！今天人多，蛋餅交給你！
+nar(吐槽): 一個叫蛋餅的人，在煎蛋餅。命運很幽默。
+! act flip
+aunt(開心): 不錯喔！比我兒子還會煎！這給你！
+! money +300 早餐店阿姨的工錢
+! go d6_end
+
+# d6_home
+@ bg=w_dishes amb=kitchen bgm=wholesome
+! act dishes
+sis(驚訝): 你今天怎麼這麼乖？
+sis(溫柔): 是不是做了什麼壞事？
+? t=7 d=1
+- 「沒有啦！」 {sis+3} -> d6_h1
+- 「……姐，如果我做錯事，你會原諒我嗎？」 {sis+6 con+4} -> d6_h2
+
+# d6_h1
+sis(調皮): 最好是。
+! money +100 姐姐給的打掃費
+! go d6_end
+
+# d6_h2
+sis(認真): 那要看是什麼事。
+sis(溫柔): 不過，你先說實話的話，姐姐會考慮。
+! money +100 姐姐給的打掃費
+! go d6_end
+
+# d6_shop
+@ bg=w_cvs amb=cvs bgm=beetle
+! sfx cvs_door
+! shop
+! go d6_end
+
+# d6_end
+@ bg=h_phone amb=night bgm=none time=週六·晚上 11:50
+nar(平靜): 那天晚上，我很早就躺上床。
+i(緊張): 明天……運動會。
+! if dates>=2 -> d6_end2
+nar(平靜): 我把護腕放在枕頭旁邊，閉上眼睛。
+! go sd
+
+# d6_end2
+i(得意): 三個約會、一場比賽。我真是個天才。
+nar(吐槽): 不，你不是。
+! go sd
+
+## ===== 第五～六篇：運動會 =====
+# sd
+! title 第五篇｜跑步健將蛋餅
+@ bg=s_hall amb=sports bgm=easy time=運動會·上午 9:00
+nar(平靜): 運動會，二〇一八，秋天。
+! if dates>=2 -> sd_juggle
+! if desk_gf -> sd_desk
+nar(平靜): 上午，我跟阿福、小愛、小美、小晴，一群人一起逛園遊會、分一盒披薩。
+fat(開心): 蛋餅！最後一片給你！
+! fx con+3 friends=1
+! go sd_race
+
+# sd_desk
+@ bg=s_desk_walk
+nar(溫柔): 上午我跟同桌逛園遊會。她把撈到的金魚，取名叫「蛋仔」。
+desk(開心): 蛋仔要幫你加油喔。
+! fx desk+5
+! go sd_race
+
+# sd_juggle
+nar(緊張): 我答應小晴逛園遊會、答應小愛看班際比賽、又答應小美在樓梯間吃披薩。
+nar(緊張): 三個人。同一個上午。
+! act juggle
+! if juggle_ok -> sd_j_ok
+qing(生氣): 蛋餅不是說要陪我嗎？
+ai(冷淡): 他跟我說要陪我看比賽耶。
+mei(冷淡): ……他手上那片披薩，是我買的。
+nar(悲傷): 三個女生看著彼此。沒有人說話。
+! fx exp+30
+! go sd_race
+
+# sd_j_ok
+nar(緊張): 我在三個地方來回狂奔，居然一次都沒被發現。
+i(得意): 我真是個天才。
+! fx zha+5 exp+10
+! go sd_race
+
+# sd_race
+@ bg=s_track amb=race bgm=none time=運動會·下午 2:30
+teacher(大喊): 一百公尺決賽！選手就位！
+! if sis_come -> sd_sis
+! go sd_r2
+
+# sd_sis
+i(驚訝): 看台上……那是姐姐嗎？
+! fx sis+3
+! go sd_r2
+
+# sd_r2
+nar(緊張): 我緊張得一直原地跳。
+teacher(大喊): 各就各位——
+! act start
+! act race
+crowd(大喊): 蛋餅！蛋餅！蛋餅！
+nar(開心): 第一個衝過終點線——全場尖叫！
+nar(緊張): 衝過終點的那一瞬間，我想做什麼？
+? t=4 d=1
+- 轉頭看看台上的姐姐 -> sd_crash
+- 舉起雙手慶祝 {zha+2} -> sd_crash
+- 看旁邊跑道的選手 {con+5 helped=1} -> sd_help
+
+# sd_crash
+nar(緊張): 我完全忘了，旁邊跑道的選手，正低著頭拼命壓線。
+! sfx crash
+! shake
+nar(大喊): 碰！！！
+nar(悲傷): 我飛出去，在跑道上滾了好幾圈。
+i(悲傷): 剛才有多帥，現在就有多丟臉。
+! fx crashed=1
+! go sd_after
+
+# sd_help
+nar(平靜): 我放慢腳步，往旁邊一閃。隔壁跑道的男生，腳一軟，往前撲。
+? t=3 d=1
+- 伸手拉住他 {con+5} -> sd_help2
+- 讓開 -> sd_crash
+
+# sd_help2
+! sfx thud
+boy(喘): 謝……謝謝。
+boy(開心): 沒事啦……你跑超快，下次教我。
+! go sd_after
+
+# sd_after
+! title 第六篇｜我好像闖禍了……
+! if exp>=45 -> sd_fight
+! if zha>=80 -> sd_fight
+! if crashed -> sd_hurt_ok
+! go sd_win_clean
+
+# sd_fight
+@ bg=s_three amb=sports bgm=tense
+qing(哭): 蛋餅你流好多血！
+ai(生氣): 你擋著幹嘛！你拿飲料要幹嘛啦！
+qing(生氣): 我關心我喜歡的人不行喔！
+mei(驚訝): 蛤？他不是跟我很好嗎？
+ai(大喊): 神經病！蛋餅每天都跟我在一起！
+! if desk_gf -> sd_fight_desk
+nar(悲傷): 三個女生，當著全校的面吵了起來。
+! go sd_fight2
+
+# sd_fight_desk
+desk(冷淡): ……你們說的，是我男朋友。
+nar(悲傷): 四個女生。全校的人都在看。
+! go sd_fight2
+
+# sd_fight2
+ai(生氣): 「你是我心中最特別的人」……
+! if copy -> sd_fight3
+! go sd_fight4
+
+# sd_fight3
+mei(悲傷): ……他寫給我的，也是這句。連標點符號都一樣。
+! go sd_fight4
+
+# sd_fight4
+i(悲傷): 完了。這次真的芭比Q了。
+@ bg=s_dir amb=office bgm=investigations
+dir(大喊): 才國一就搞什麼男女關係！叫家長來！
+nar(平靜): 爸媽出差。我只好打給姐姐。
+! go sd_sis_come
+
+# sd_sis_come
+@ bg=s_sis_gate amb=street bgm=sadtrio time=運動會·傍晚 5:20
+nar(悲傷): 她提著一個小蛋糕來了——要幫我慶祝第一名的。
+nar(悲傷): 然後，她聽完了主任說的一切。
+nar(悲傷): 她簽完名，一句話都沒說，走出校門。
+i(悲傷): 我手腳痛得要死。但她不說話的樣子，更讓我害怕。
+! go ch7_bad
+
+# sd_hurt_ok
+@ bg=s_desk_finish amb=sports bgm=dreamer
+! if desk_gf -> e_desk
+@ bg=s_nurse
+ai(開心): 蛋餅！上次你陪我去保健室，這次換我！
+mei(生氣): 笨蛋！誰會在終點線亂跑啊！
+fat(開心): 你飛起來的樣子我錄下來了！
+! go sd_endcheck
+
+# sd_win_clean
+@ bg=s_track amb=sports bgm=easy
+crowd(大喊): 蛋餅！蛋餅！蛋餅！
+teacher(開心): 跑得很好！
+! if desk_gf -> e_desk
+! go sd_endcheck
+
+# sd_endcheck
+! if zha>=45 -> e_lonely
+! if friends -> e_class
+! if helped -> e_class
+! go e_good
+## ===== 第七篇 & 結局 =====
+# ch7_bad
+! title 第七篇｜你不是我的小餅，你是蛋渣
+@ bg=s_hall amb=street bgm=tense time=傍晚 5:40
+nar(緊張): 我終於追上她，拉住她的衣角。她甩開了我的手。
+! act chase
+@ bg=s_sis_angry amb=street bgm=heartbreak
+nar(悲傷): 我追不上。她在路口停下來，背對著我。
+nar(悲傷): 然後，轉過身來。
+sis(哭): 你知不知道……被騙有多痛？
+sis(哭喊): 我以為你懂我。結果你去學那個渣男？
+? t=6 d=0
+- 「姐……」 -> ch7_b2
+- 「我只是想讓她們知道你有多痛！」 {sis-5} -> ch7_b3
+- 什麼都說不出來 -> ch7_b2
+
+# ch7_b3
+sis(哭喊): 所以你就讓別人也那樣痛？
+! go ch7_b2
+
+# ch7_b2
+sis(哭喊): 閉嘴！不要叫我姐！
+sis(哭): 你不是我的小餅。
+sis(冷淡): 你是蛋渣。
+@ bg=s_cake bgm=heartbreak
+! sfx box_drop
+nar(悲傷): 蛋糕盒掉在地上。夕陽把我的影子，拉得好長。
+nar(悲傷): 我想讓全世界懂她的痛。最後，我變成了讓她最痛的人。
+nar(平靜): 夕陽下，我只能說一句話。
+? t=8 d=1
+- 「對不起。我會一個一個去道歉。」 {con+10} -> e_sorry_chk
+- 「……對不起。」 -> e_zha
+- 轉身離開 -> e_zha
+
+# e_sorry_chk
+! if con>=25 -> e_sorry
+! go e_zha
+
+# e_sorry
+@ bg=s_sis_angry
+sis(哭): 你以為說對不起，就沒事了嗎？
+nar(悲傷): 姐姐愣住了。眼淚還是一直掉。
+me(哭): 我知道沒事不了。所以……我會去道歉。每一個人。
+sis(哭): ……你知道就好。
+sis(悲傷): 蛋糕你自己吃。生日快樂。
+@ bg=h_door amb=night bgm=lasting
+nar(平靜): 那一週，我一個一個去道歉。
+nar(吐槽): 小美罵我「討厭鬼」，跟第一次見面時一模一樣。
+nar(溫柔): 某天晚上，門縫塞進一張紙條。
+! note 滷蛋幫你留在冰箱了。—姐
+nar(溫柔): 多年後我才懂：她哭，是因為害怕最愛的弟弟，變成傷害她的那種人。
+! end E4
+
+# e_zha
+@ bg=black bgm=heartbreak amb=none
+nar(悲傷): 她沒有回頭。
+nar(悲傷): 那天以後，家裡變得很安靜。
+nar(平靜): 姐姐沒有再叫過我「小餅」。
+! end E1
+
+# x_exposed
+! title 東窗事發
+@ bg=s_fat amb=class bgm=tense time=週五·早上 7:30
+fat(驚訝): 蛋餅……你完蛋了。
+nar(緊張): 曝光值，滿了。
+@ bg=s_three
+ai(生氣): 「你是我心中最特別的人」……
+mei(冷淡): ……他寫給我的，也是這句。連標點符號都一樣。
+qing(哭): 所以，你跟小愛、小美，也都說過一樣的話？
+nar(悲傷): 消息傳得比我跑一百公尺還快。不到一節課，全年級都知道了。
+@ bg=h_cry amb=room bgm=heartbreak time=週五·晚上
+sis(哭): 小餅……同學傳截圖給我。這是真的嗎？
+sis(哭): 那個人當初，也是這樣同時跟好幾個人說一樣的話。
+nar(悲傷): 她沒有罵我。只是回房間，關上了門。
+! sfx door_slam
+nar(悲傷): 那聲關門聲，比主任拍桌子還大聲。
+! end E3
+
+# e_good
+! title 第七篇｜這才是我的小餅
+! if sis<45 -> e_lonely
+@ bg=s_sis_gate amb=street bgm=touching time=運動會·傍晚 5:30
+nar(溫柔): 夕陽下，姐姐提著小蛋糕，在校門口等我。
+! if crashed -> e_good2
+sis(開心): 第一名耶！姐姐的弟弟好帥！
+! go e_good3
+
+# e_good2
+sis(吐槽): 你是笨蛋嗎？跑第一還自己撞人！
+sis(開心): 不過……很帥啦。
+! go e_good3
+
+# e_good3
+sis(溫柔): 小餅……那天，謝謝你一直陪著我。
+sis(溫柔): 你是我的小餅。永遠都是。
+? t=8 d=1
+- 「姐，我以後也會保護你。」 -> e_good4
+- 「生日快樂……是我的耶，蛋糕給我！」 -> e_good5
+
+# e_good4
+sis(大笑): 你先保護好你的膝蓋吧。
+me(溫柔): ……嗯，我會的。
+! go e_good6
+
+# e_good5
+sis(大笑): 對啦對啦，壽星最大。
+! go e_good6
+
+# e_good6
+nar(溫柔): 我沒有成為渣男。只是成為了一個，不會讓別人哭的人。
+nar(溫柔): 原來，這才是保護姐姐最好的方式。
+! end E2
+
+# e_desk
+! title 第七篇｜下次換我帶你飛
+@ bg=s_desk_finish amb=sports bgm=touching time=運動會·下午 3:00
+! if crashed -> e_desk1
+desk(大喊): 蛋餅！！你好帥！！
+! go e_desk2
+
+# e_desk1
+desk(哭喊): 蛋餅！！你是笨蛋嗎！！
+nar(溫柔): 她一邊哭一邊幫我擦沙子，比砂紙還用力。
+! go e_desk2
+
+# e_desk2
+@ bg=s_sis_gate
+! if sis<45 -> e_desk4
+sis(調皮): 喔～～這位是？
+desk(緊張): 姐、姐姐好！我是蛋餅的……
+me(平靜): 女朋友。
+sis(溫柔): 要好好對人家喔。不可以讓女生哭。
+me(溫柔): 我知道。因為我看過，姐姐哭的樣子。
+! go e_desk3
+
+# e_desk4
+nar(平靜): 姐姐沒有來。但晚上，冰箱上多了一張便利貼。
+! note 聽說你有女朋友了？帶回來給我看。—姐
+! go e_desk3
+
+# e_desk3
+@ bg=s_desk_walk bgm=touching
+desk(溫柔): 蛋餅，下次換我帶你飛。
+nar(溫柔): 還好那一秒，我說的不是「我們不是一直都只是朋友嗎」。
+! end E5
+
+# e_lonely
+! title 第七篇｜我跑贏了所有人
+@ bg=s_podium amb=sports bgm=peaceful time=運動會·下午 4:00
+nar(平靜): 我站上頒獎台最高處。金牌好重，陽光好刺眼。
+nar(悲傷): 看台上，小愛、小美、小晴坐在一起。她們沒有看我。
+nar(悲傷): 聽說，是阿福那句話之後，她們開始互相問的。
+nar(悲傷): 聽說，她們在樓梯間撿到了同一盒披薩的收據。
+@ bg=h_fridge amb=home
+nar(平靜): 回到家，冰箱上貼著便利貼。
+! note 小餅，恭喜。—姐
+nar(悲傷): 我跑贏了所有人，卻輸掉了所有人。
+i(悲傷): 這就是當渣男的感覺嗎？我還是……開心不起來。
+! end E6
+
+# e_class
+! title 第七篇｜全班的蛋餅
+@ bg=s_toss amb=sports bgm=touching time=運動會·傍晚
+fat(大喊): 全班！把蛋餅拋起來！！
+nar(開心): 那天，我被全班拋到半空中。
+nar(溫柔): 小愛、小美、小晴、同桌、阿福，全都在。
+@ bg=s_sis_gate
+! if sis<45 -> e_class2
+sis(開心): 小餅，你的朋友好多喔。
+! go e_class2
+
+# e_class2
+nar(溫柔): 我沒有騙任何人。原來被大家喜歡，不用騙任何人。
+! end E7
+
+## ===== 禮物反應（子程序）=====
+# g_desk_love
+desk(害羞): 你、你怎麼知道我喜歡這個……
+desk(溫柔): 這個……我會一直留著。
+! ret
+# g_desk_like
+desk(溫柔): 謝謝……蛋餅。
+! ret
+# g_desk_meh
+desk(平靜): 你不用買東西給我啦。
+! ret
+# g_desk_dup
+desk(冷淡): ……你是不是也送別人一樣的？
+! ret
+# g_ai_love
+ai(開心): 哇啊！這個超讚的！我要天天帶著！
+ai(開心): 蛋餅你最懂我了！
+! ret
+# g_ai_like
+ai(開心): 喔？給我的？謝謝啦。
+! ret
+# g_ai_meh
+ai(吐槽): 呃……這個好少女喔。你把我當誰啊？
+! ret
+# g_ai_dup
+ai(懷疑): 欸，小晴好像也有一個一樣的耶？
+! ret
+# g_mei_love
+mei(害羞): ……哼，勉強收下。我很喜歡，不准說出去。
+! ret
+# g_mei_like
+mei(冷淡): ……還不錯。謝了。
+! ret
+# g_mei_meh
+mei(冷淡): 這種東西，你是不是隨便買的？
+! ret
+# g_mei_dup
+mei(冷淡): 這個……我在別人的書包上看過一樣的。
+! ret
+# g_qing_love
+qing(大喊): 啊啊啊！蛋餅！我要告訴全世界！
+qing(開心): 這是我收過最棒的禮物！！
+! ret
+# g_qing_like
+qing(開心): 哇～謝謝蛋餅！
+! ret
+# g_qing_meh
+qing(悲傷): 欸……這個我不太喜歡耶。
+! ret
+# g_qing_dup
+qing(懷疑): 蛋餅……你是不是買了很多個？
+! ret
+# g_big
+fat(驚訝): 這、這是什麼排場？！我要發號外！
+! ret

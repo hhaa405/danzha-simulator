@@ -29,3 +29,30 @@
 
 ## 程式
 - 遊戲引擎、小遊戲、兌換碼系統：本專案原創。
+
+
+---
+
+# 第一人稱版（/fp/）— 素材來源與授權
+
+## 背景音樂
+全部來自 Kevin MacLeod（incompetech.com），授權 **Creative Commons: By Attribution 4.0**（http://creativecommons.org/licenses/by/4.0/）。
+"Wholesome"、"Easy Lemon"、"Dreamer"、"Sad Trio"、"Gymnopedie No 1"、"Interloper"、"Comfortable Mystery 4"、"Investigations"、"Heartbreaking"、"Lasting Hope"、"Touching Moments Two - Higher"、"Peaceful Desolation"、"Daily Beetle"、"Volatile Reaction"、"At Rest" — Kevin MacLeod (incompetech.com), Licensed under Creative Commons: By Attribution 4.0 License。
+
+## 環境音（Wikimedia Commons）
+- "Cicada orni (Singing).ogg" — Travus，CC BY-SA 2.5
+- "Rain against the window.ogg" — cori，公眾領域
+- "Close door (Gravity Sound).wav" — Gravity Sound，CC BY 4.0
+- "Ambient classroom mono.ogg" — rcrossley，公眾領域
+- "Birdsong morning 01.ogg" — Matutinho，CC BY-SA 4.0
+- "Applause i.ogg" — thore，公眾領域
+- "F1-Race-Crowd-Applause-Air-Horns.wav" — WebbFilmsUK，CC BY 4.0
+- "Musi-No-Koe2.ogg" — 公眾領域
+- "Squeaky door.ogg" — leonmire，公眾領域
+以上有裁切、循環、調整音量。其餘音效（鐘聲、手機震動、敲門、腳步、煎鍋等）用 Python 合成，CC0。
+
+## 配音
+每一句（旁白、內心獨白、路人、手機訊息）都用 Microsoft Edge 神經網路語音（edge-tts）預先合成，依情緒調語速／音高／音量，再用 ffmpeg 加內心回音、電話音質等效果。語音版權屬 Microsoft，依其服務條款作非商業使用。
+
+## 美術
+第一人稱場景圖全部由 AI 圖像生成，人物和場景都是虛構的。

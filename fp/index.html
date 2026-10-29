@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>蛋渣模擬器・第一人稱</title>
+<!-- dz-version fp-1.0 -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fp.css?v=1">
+</head>
+<body>
+<div id="stage">
+ <div id="cam"><div class="layer" id="L0"></div><div class="layer" id="L1"></div></div>
+ <div id="tint"></div><div id="vig"></div><div id="grain"></div>
+ <div id="lidT" class="lid"></div><div id="lidB" class="lid"></div>
+ <div id="hud"><div id="clock"></div><div id="hudR"><div id="wallet" title="錢包"></div><button id="menuBtn" aria-label="選單">≡</button></div></div>
+ <div id="sub"><div id="who"></div><div id="txt"></div></div>
+ <div id="choices"><div id="tbar"><i></i></div><div id="opts"></div></div>
+ <div id="note"><div class="paper"><div id="noteTxt"></div></div></div>
+ <div id="toastL"></div>
+ <div id="act"></div>
+ <div id="phone"><div class="dev"><div class="sbar"><span id="pTime">23:02</span><span class="sic">▮▮▮ ◔ ▭</span></div><div id="pScr"></div></div></div>
+ <div id="shop"></div>
+ <div id="card"><div id="cardT"></div><div id="cardS"></div></div>
+ <div id="tap"></div>
+</div>
+<div id="title" class="show">
+ <div class="tbg"></div>
+ <div class="tin">
+  <div class="tlogo">蛋渣模擬器</div>
+  <div class="tsub">第一人稱</div>
+  <div class="tq">「這是我十三歲那年的蠢事。」</div>
+  <div class="tbtns">
+   <button id="bNew">開始</button>
+   <button id="bCont">繼續</button>
+   <button id="bEnds">結局</button>
+   <button id="bCode">兌換碼</button>
+  </div>
+  <div class="thp">🎧 建議戴上耳機，在安靜的地方遊玩</div>
+  <a class="tback" href="../">← 回到原版</a>
+ </div>
+</div>
+<div id="gate"><div class="gin"><div class="ghp">🎧</div><div class="gt">戴上耳機</div><div class="gs">接下來的六天，你就是小餅。<br>全程配音・建議全螢幕</div><div class="gport">↻ 橫放手機，畫面更完整（直放可以左右拖曳看四周）</div><button id="gGo">進入</button></div></div>
+<div id="menu"><div class="mbox">
+ <button data-m="resume">繼續</button>
+ <div class="vol"><label>配音</label><input type="range" min="0" max="100" id="vVoice"></div>
+ <div class="vol"><label>音樂</label><input type="range" min="0" max="100" id="vBgm"></div>
+ <div class="vol"><label>環境音</label><input type="range" min="0" max="100" id="vAmb"></div>
+ <div class="vol"><label>字幕</label><select id="vSub"><option value="1">顯示</option><option value="0">隱藏</option></select></div>
+ <button data-m="code">兌換碼</button>
+ <button data-m="full">全螢幕</button>
+ <button data-m="title">回到標題</button>
+</div></div>
+<div id="modal"><div class="mbox" id="modalBox"></div></div>
+<script src="parse.js?v=1"></script>
+<script src="codes.js?v=1"></script>
+<script src="fp.js?v=1"></script>
+</body>
+</html>
