@@ -8,6 +8,7 @@ const LS={get(k,d){try{const v=localStorage.getItem('dz_'+k);return v==null?d:JS
 const NAMES={nar:'',i:'',me:'我',sis:'姐姐',desk:'同桌',ai:'小愛',mei:'小美',qing:'小晴',fat:'阿福',dir:'學務主任',teacher:'體育老師',boy:'隔壁跑道的男生',crowd:'同學們',aunt:'早餐店阿姨'};
 const CONTACT={ai:'小愛',mei:'林小美',qing:'小晴 ☀',desk:'同桌',sis:'姐',multi:'聊天',fat:'阿福'};
 const AV=w=>w==='me'?'':`url(../assets/img/face/${w}_n.webp)`;
+const ENDS_ALT={E6:{t:'孤獨的亞軍',q:'「我誰都沒贏，也輸掉了所有人。」'}};
 const ENDS=[
  {id:'E1',t:'蛋渣',q:'「你不是我的小餅，你是蛋渣。」',h:'照著那條最爛的復仇路線，走到最後。'},
  {id:'E2',t:'我的小餅',q:'「你是我的小餅，永遠都是。」',h:'不要成為傷害別人的人。'},
@@ -33,10 +34,10 @@ const ITEMS={
  pen:{n:'中性筆三入',p:79,c:'小東西',d:'0.38，寫起來很順。'},
  card:{n:'空白小卡',p:35,c:'小東西',d:'可以自己寫字。'},
  keychain:{n:'絨毛小吊飾',p:149,c:'小東西',d:'一隻胖胖的小鯨魚。'},
- earbuds:{n:'藍牙耳機',p:990,c:'型錄預購',d:'櫃檯的型錄上看到的。'},
- plush:{n:'大隻絨毛娃娃',p:1290,c:'型錄預購',d:'比我的書包還大。'},
- watch:{n:'運動手錶',p:1990,c:'型錄預購',d:'可以計時、測心跳。'},
- roses:{n:'玫瑰花束（預購）',p:1680,c:'型錄預購',d:'……十三歲送這個，好像太誇張了。'}};
+ earbuds:{n:'藍牙耳機',p:690,c:'型錄預購',d:'櫃檯的型錄上看到的。'},
+ plush:{n:'大隻絨毛娃娃',p:890,c:'型錄預購',d:'比我的書包還大。'},
+ watch:{n:'運動手錶',p:1290,c:'型錄預購',d:'可以計時、測心跳。'},
+ roses:{n:'玫瑰花束（預購）',p:990,c:'型錄預購',d:'……十三歲送這個，好像太誇張了。'}};
 const PREF={desk:{love:['notebook','pen','keychain'],like:['gummy','choco','card','clip','cocoa']},
  ai:{love:['scrunchie','towel','watch'],like:['milk','choco','yakult','earbuds','pudding']},
  mei:{love:['notebook','pen','cocoa'],like:['choco','card','keychain','earbuds']},
@@ -294,12 +295,12 @@ function give(who){return new Promise(res=>{const A=$('#act');A.className='on';
   const dup=Object.entries(G.given).some(([w,ks])=>w!==who&&ks.includes(k));(G.given[who]=G.given[who]||[]).push(k);
   let cat=dup?'dup':pf.love.includes(k)?'love':pf.like.includes(k)?'like':'meh';
   applyFx([[who,'+',{love:10,like:5,meh:1,dup:0}[cat]]]);if(dup)applyFx([['exp','+',8],['zha','+',3]]);
-  const big=ITEMS[k].p>=900;if(big)applyFx([['exp','+',10],['zha','+',2]]);
+  const big=ITEMS[k].c==='型錄預購';if(big)applyFx([['exp','+',10],['zha','+',2]]);
   G.stack.push({node:G.node,i:G.i});if(big)G.stack.push({node:'g_big',i:0});
   res({go:`g_${who}_${cat}`})});
  if(AUTO())setTimeout(()=>{const b=A.querySelector('button');b&&b.click()},40)})}
 /* ---------------- endings ---------------- */
-async function ending(id){const E=ENDS.find(e=>e.id===id)||ENDS[0];const got=new Set(LS.get('fp_ends',[]));got.add(id);LS.set('fp_ends',[...got]);LS.set('fp_save',null);
+async function ending(id){let E=ENDS.find(e=>e.id===id)||ENDS[0];if(id==='E6'&&G&&G.V.race_lost)E={...E,...ENDS_ALT.E6};const got=new Set(LS.get('fp_ends',[]));got.add(id);LS.set('fp_ends',[...got]);LS.set('fp_save',null);
  hideSub();closePhone();cancelChoice();await sleep(600);AU.loop('amb','none');
  const c=$('#card');$('#cardT').textContent=`結局　${E.t}`;$('#cardS').innerHTML=`${E.q}<br><br><span style="font-size:12px">已收集 ${got.size} / ${ENDS.length}</span><br><button id="eT">回到標題</button><button id="eA">再過一次那六天</button>`;c.classList.add('on');
  const key=DZP.vkey('nar','標題',`結局，${E.t}。`);const my=RUN;
@@ -330,30 +331,31 @@ function actOpen(html){const A=$('#act');A.innerHTML=html;A.className='on';retur
 function actClose(){const A=$('#act');A.className='';A.innerHTML='';A.onpointerdown=A.onpointerup=A.onpointerleave=null;$('#cam').classList.remove('run');$('#cam').classList.add('sway');camFx('')}
 function hint(t){return `<div class="hint">${t}</div>`}
 const AUTO=()=>TEST&&!!window.__autoPick;
-const tst=(v,ms=60)=>AUTO()?sleep(ms).then(()=>v):null;
+const tst=(v,ms=60,lv=v)=>AUTO()?sleep(ms).then(()=>window.__lose?lv:v):null;
 const ACTS={
  async pat(){const A=actOpen(hint('跟著她的呼吸——在她吐氣的時候，輕輕拍')+'<div class="ring" id="r"></div>');const r=$('#r');
   const cx=innerWidth*.6,cy=innerHeight*.58;let good=0,n=0;const t0=performance.now();let raf;AU.sfx('sob',.7);
   const loop=()=>{const ph=((performance.now()-t0)/2600)%1;const s=60+40*Math.cos(ph*2*Math.PI);r.style.cssText=`left:${cx-s}px;top:${cy-s}px;width:${2*s}px;height:${2*s}px;opacity:${.35+.4*(1-(s-20)/80)}`;r.dataset.s=s;raf=requestAnimationFrame(loop)};loop();
   const bi=setInterval(()=>AU.sfx('breath',.5),2600);AU.sfx('breath',.5);
   await (tst(0,200)||new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();n++;const s=+r.dataset.s;if(s<45){good++;AU.sfx('thud',.15)}else AU.sfx('thud',.25);navigator.vibrate&&navigator.vibrate(20);if(n>=6)res()};setTimeout(res,30000)}));
+  if(AUTO())good=window.__lose?0:4;G.V.pat_ok=good>=3?1:0;
   cancelAnimationFrame(raf);clearInterval(bi);actClose();applyFx([['sis','+',good],['con','+',good>3?2:0]])},
  async catch(){camFx('blur(.6px) saturate(.9)');AU.sfx('heart',.9);AU.loop('bgm','none');
   const A=actOpen(hint('她要摔倒了——')+'<div class="ring" id="r"></div>');const r=$('#r');const cx=innerWidth*(.4+Math.random()*.2),cy=innerHeight*(.5+Math.random()*.15);
   await sleep(TEST?10:700+Math.random()*900);const t0=performance.now();AU.sfx('whoosh',.6);let ok=0;
   const loop=()=>{const f=(performance.now()-t0)/1100;const s=Math.max(28,160*(1-f)+28);r.style.cssText=`left:${cx-s}px;top:${cy-s}px;width:${2*s}px;height:${2*s}px`;if(f<1.4)raf=requestAnimationFrame(loop)};let raf;loop();
-  ok=await (tst(1)||new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();const t=performance.now()-t0;res(t>450&&t<1350?1:0)};setTimeout(()=>res(0),1500)}));
+  ok=await (tst(1,60,0)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();const t=performance.now()-t0;res(t>450&&t<1350?1:0)};setTimeout(()=>res(0),1500)}));
   cancelAnimationFrame(raf);G.V.caught=ok;if(ok){AU.sfx('thud',.5);shake()}else{AU.sfx('crash',.5)}actClose()},
  async hide(){AU.sfx('buzz',.9);navigator.vibrate&&navigator.vibrate([200,100,200,100,200]);
   const A=actOpen(hint('快——把手機翻過來')+`<div style="position:absolute;left:50%;bottom:6vh;transform:translateX(-50%) rotate(-4deg);width:min(48vw,190px);height:min(30vh,170px);background:#111;border-radius:18px;border:2px solid #333;padding:14px 10px;display:flex;flex-direction:column;gap:6px;box-shadow:0 0 40px rgba(255,255,255,.15)" id="pp">${['小晴 ☀：♡♡♡','小愛：晚安♡','林小美：♡'].map(t=>`<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:5px 8px;font-size:12px">${t}</div>`).join('')}</div>`);
-  const ok=await (tst(1)||new Promise(res=>{$('#pp').onpointerdown=e=>{e.preventDefault();e.stopPropagation();res(1)};A.onpointerdown=()=>{};setTimeout(()=>res(0),1700)}));
+  const ok=await (tst(1,60,0)??new Promise(res=>{$('#pp').onpointerdown=e=>{e.preventDefault();e.stopPropagation();res(1)};A.onpointerdown=()=>{};setTimeout(()=>res(0),1700)}));
   G.V.hid=ok;if(ok){$('#pp').style.transition='transform .25s';$('#pp').style.transform='translateX(-50%) rotateY(180deg) scale(.9)';AU.sfx('thud',.3);await sleep(300)}actClose()},
  async grab(){const A=actOpen(hint('擠進去——連續點，伸手搶！')+'<div class="pbar"><i id="pb"></i></div>');let n=0;const need=12;
-  const ok=await (tst(1)||new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();n++;$('#pb').style.width=(n/need*100)+'%';AU.sfx('step',.4);$('#cam').style.transform=`translate(${(Math.random()-.5)*14}px,${(Math.random()-.5)*10}px)`;if(n>=need)res(1)};setTimeout(()=>res(0),3600)}));
+  const ok=await (tst(1,60,0)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();n++;$('#pb').style.width=(n/need*100)+'%';AU.sfx('step',.4);$('#cam').style.transform=`translate(${(Math.random()-.5)*14}px,${(Math.random()-.5)*10}px)`;if(n>=need)res(1)};setTimeout(()=>res(0),3600)}));
   $('#cam').style.transform='';G.V.grabbed=ok;actClose()},
- async sprint(){return runAct({label:'左右交替點擊（或鍵盤 F / J）——跑！',final:'11.2',taps:36})},
- async race(){AU.loop('bgm','race',0,.5);return runAct({label:'左右交替——衝！',final:'11.0',taps:40,race:1})},
- async chase(){return runAct({label:'追上她——',final:null,taps:28,chase:1})},
+ async sprint(){return runAct({label:'左右交替點擊（或鍵盤 F / J）——跑！',taps:36})},
+ async race(){AU.loop('bgm','race',0,.5);return runAct({label:'左右交替——衝！',taps:40,race:1})},
+ async chase(){return runAct({label:'追上她——',taps:28,chase:1})},
  async start(){const A=actOpen(hint('預備……槍響的瞬間點擊螢幕')+'<div class="bigt" id="bt"></div>');AU.sfx('heart',.8);
   for(let k=0;k<2;k++){let fired=false,t0=0;const wait=1500+Math.random()*1800;
    const r=await (tst('ok')||new Promise(res=>{const tm=setTimeout(()=>{fired=true;t0=performance.now();AU.sfx('pistol',1);shake()},wait);A.onpointerdown=e=>{e.preventDefault();if(!fired){clearTimeout(tm);res('false')}else res(performance.now()-t0)};setTimeout(()=>{if(fired)res(900)},wait+1500)}));
@@ -365,7 +367,7 @@ const ACTS={
   const dn=e=>{e.preventDefault&&e.preventDefault();hold=true},up=()=>{hold=false};A.onpointerdown=dn;A.onpointerup=up;A.onpointerleave=up;
   const kd=e=>{if(e.code==='Space'){e.preventDefault();hold=true}},ku=e=>{if(e.code==='Space')hold=false};addEventListener('keydown',kd);addEventListener('keyup',ku);
   let stepT=0;
-  const ok=await (tst(1)||new Promise(res=>{let last=performance.now();const loop=now=>{const dt=now-last;last=now;const el=now-t;
+  const ok=await (tst(1,60,0)??new Promise(res=>{let last=performance.now();const loop=now=>{const dt=now-last;last=now;const el=now-t;
     if(!looking&&el>nextLook-650&&!warn){warn=1;$('#eye').style.opacity=.5}
     if(!looking&&el>nextLook){looking=true;lookEnd=el+1300;$('#eye').style.opacity=1;AU.sfx('heart',.8)}
     if(looking&&el>lookEnd){looking=false;warn=0;$('#eye').style.opacity=0;nextLook=el+1500+Math.random()*1600}
@@ -377,20 +379,20 @@ const ACTS={
   const blobs=[];for(let k=0;k<26;k++)blobs.push([W*(.36+Math.random()*.26),H*(.52+Math.random()*.26),18+Math.random()*30]);
   c.fillStyle='rgba(120,80,30,.55)';blobs.forEach(([x,y,r])=>{c.beginPath();c.ellipse(x,y,r,r*.7,Math.random()*3,0,7);c.fill()});
   const total=()=>{const d=c.getImageData(W*.3,H*.45,W*.4,H*.4).data;let n=0;for(let k=3;k<d.length;k+=64)if(d[k]>20)n++;return n};const t0=total()||1;let lastS=0;
-  await (tst(0)||new Promise(res=>{let down=false;cv.onpointerdown=e=>{down=true};cv.onpointerup=()=>down=false;cv.onpointerleave=()=>down=false;
-   cv.onpointermove=e=>{if(!down&&e.pointerType==='mouse'&&e.buttons===0)return;c.globalCompositeOperation='destination-out';c.beginPath();c.arc(e.clientX,e.clientY,34,0,7);c.fill();c.globalCompositeOperation='source-over';const now=performance.now();if(now-lastS>300){lastS=now;AU.sfx('scrub',.5)}if(total()/t0<.12)res()};setTimeout(res,20000)}));
-  AU.sfx('step',.3);actClose()},
+  const clean=await (tst(1,60,0)??new Promise(res=>{let down=false;cv.onpointerdown=e=>{down=true};cv.onpointerup=()=>down=false;cv.onpointerleave=()=>down=false;
+   cv.onpointermove=e=>{if(!down&&e.pointerType==='mouse'&&e.buttons===0)return;c.globalCompositeOperation='destination-out';c.beginPath();c.arc(e.clientX,e.clientY,34,0,7);c.fill();c.globalCompositeOperation='source-over';const now=performance.now();if(now-lastS>300){lastS=now;AU.sfx('scrub',.5)}if(total()/t0<.12)res(1)};setTimeout(()=>res(0),20000)}));
+  G.V.dish_ok=clean?1:0;AU.sfx('step',.3);actClose()},
  async flip(){let good=0;for(let k=0;k<3;k++){const A=actOpen(hint(`第 ${k+1} 份——看顏色，金黃的時候翻面`)+`<div style="position:absolute;left:34%;top:56%;width:26%;height:18%;border-radius:50%;background:radial-gradient(rgba(150,80,10,0),rgba(0,0,0,0));mix-blend-mode:multiply" id="cr"></div><div class="pbar"><i id="pb" style="background:linear-gradient(90deg,#f3e3a0,#e0a030 62%,#7a3a00)"></i></div>`);
   const t0=performance.now(),D=3600+Math.random()*900;let raf;const cr=$('#cr');
   const loop=()=>{const f=(performance.now()-t0)/D;$('#pb').style.width=Math.min(100,f*100)+'%';cr.style.background=`radial-gradient(rgba(${200-f*120},${120-f*90},0,${Math.min(.75,f*.6)}),rgba(0,0,0,0) 70%)`;if(f<1.25)raf=requestAnimationFrame(loop)};loop();
-  const f=await (tst(.7)||new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();res((performance.now()-t0)/D)};setTimeout(()=>res(1.3),D*1.3)}));
+  const f=await (tst(.7,60,1.3)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();res((performance.now()-t0)/D)};setTimeout(()=>res(1.3),D*1.3)}));
   cancelAnimationFrame(raf);AU.sfx('flip',.8);const ok=f>.55&&f<.85;if(ok)good++;$('.hint').textContent=ok?'漂亮。':(f>=.85?'有點焦了……':'還沒熟……');await sleep(TEST?10:900)}
   actClose();G.V.flips=good},
  async juggle(){const spots=[['qing','園遊會攤位','s_coop',7],['ai','班際比賽看台','s_track',9],['mei','樓梯間','s_stairs',11]];const pat=[100,100,100];let here=0,moving=false;
   const A=actOpen(hint('三個地方、三個人——不要讓任何一個人等太久')+`<div class="bigt" id="bt" style="font-size:42px">20</div><div class="jug">${spots.map((s,i)=>`<button data-i="${i}" style="background-image:url(img/${s[2]}.webp)"><b style="width:100%"></b><span>${s[1]}</span></button>`).join('')}</div>`);
   const bs=A.querySelectorAll('.jug button');const t0=performance.now();let last=t0;
   bs.forEach(b=>b.onclick=async e=>{e.stopPropagation();const i=+b.dataset.i;if(moving||i===here)return;moving=true;$('#cam').classList.add('run');AU.sfx('step',.5);setTimeout(()=>AU.sfx('step',.5),300);await sleep(800);$('#cam').classList.remove('run');here=i;moving=false;pat[i]=100;AU.sfx('whoosh',.4)});
-  const ok=await (tst(1)||new Promise(res=>{const loop=now=>{const dt=(now-last)/1000;last=now;for(let i=0;i<3;i++){if(i===here&&!moving)pat[i]=Math.min(100,pat[i]+dt*30);else pat[i]-=dt*100/spots[i][3]}
+  const ok=await (tst(1,60,0)??new Promise(res=>{const loop=now=>{const dt=(now-last)/1000;last=now;for(let i=0;i<3;i++){if(i===here&&!moving)pat[i]=Math.min(100,pat[i]+dt*30);else pat[i]-=dt*100/spots[i][3]}
     bs.forEach((b,i)=>{b.querySelector('b').style.width=Math.max(0,pat[i])+'%';b.classList.toggle('here',i===here);b.classList.toggle('low',pat[i]<30)});
     const left=20-(now-t0)/1000;$('#bt').textContent=Math.max(0,Math.ceil(left));
     if(pat.some(p=>p<=0)){res(0);return}if(left<=0){res(1);return}requestAnimationFrame(loop)};requestAnimationFrame(loop)}));
@@ -403,10 +405,16 @@ async function runAct(o){const A=actOpen(hint(o.label)+'<div class="zones"><div 
  const kd=e=>{if(e.code==='KeyF'||e.code==='ArrowLeft')tap('L');if(e.code==='KeyJ'||e.code==='ArrowRight')tap('R')};addEventListener('keydown',kd);
  $('#zL').onpointerdown=e=>{e.preventDefault();tap('L')};$('#zR').onpointerdown=e=>{e.preventDefault();tap('R')};
  let raf;const tick=()=>{const t=(performance.now()-t0)/1000;if(!o.chase)$('#bt').textContent=(Math.min(t*11.2/Math.max(4,o.taps/5.2),99)).toFixed(2);raf=requestAnimationFrame(tick)};tick();
- await (tst(0,80)||new Promise(res=>{const chk=setInterval(()=>{if(n>=o.taps||performance.now()-t0>(o.chase?6000:20000)){clearInterval(chk);res()}},50)}));
+ const auto=await (tst(1,80,0)??new Promise(res=>{const chk=setInterval(()=>{if(n>=o.taps||performance.now()-t0>(o.chase?6000:20000)){clearInterval(chk);res(null)}},50)}));
  cancelAnimationFrame(raf);clearInterval(hb);removeEventListener('keydown',kd);c.style.animationDuration='';
- if(o.final){$('#bt').textContent=o.final;AU.sfx('applause',.6)}
- G.V.race_t=(performance.now()-t0)/1000;await sleep(TEST?10:1300);actClose()}
+ const el=(performance.now()-t0)/1000;let ok,eff=el;
+ if(auto!==null)ok=auto;
+ else if(o.chase)ok=n>=o.taps?1:0;
+ else{const limit=o.taps/4+(G.V.runbonus?1:0);if(o.race){const r=G.V.react;eff+=typeof r==='number'?Math.max(0,(r-300)/250):1}ok=n>=o.taps&&eff<=limit?1:0}
+ if(o.chase)G.V.chase_ok=ok;else G.V.run_ok=ok;
+ if(!o.chase){const t=ok?(o.race?Math.min(11.4,10.9+Math.max(0,eff-o.taps/7)*.15):11.2):(o.race?Math.min(12.4,11.6+Math.max(0,eff-o.taps/4)*.1):13.4);
+  $('#bt').textContent=t.toFixed(2).replace(/0$/,'');if(ok)AU.sfx('applause',.6);else AU.sfx('thud',.3)}
+ G.V.race_t=el;await sleep(TEST?10:1300);actClose()}
 /* ---------------- redeem codes (same codes as the original; separate one-use record for this version) ---------------- */
 const STATK={sis:'姐姐',zha:'渣度',con:'良心',exp:'流言',spd:'速度',desk:'同桌',ai:'小愛',mei:'小美',qing:'小晴'};
 function inGame(){return !!G&&!$('#title').classList.contains('show')}
@@ -447,7 +455,7 @@ setInterval(()=>{try{const titleOn=$('#title').classList.contains('show');
  if(!phoneVisible()&&document.body.classList.contains('phoneOn'))document.body.classList.remove('phoneOn');
  updChip()}catch(e){}},1000);
 /* ---------------- boot ---------------- */
-async function boot(){const txt=await (await fetch('story.txt?v=3')).text();P=DZP.parse(txt);renderWallet();
+async function boot(){const txt=await (await fetch('story.txt?v=4')).text();P=DZP.parse(txt);renderWallet();
  $('#bCont').disabled=!LS.get('fp_save',null);
  $('#bNew').onclick=()=>{LS.get('fp_save',null)?confirmNew():newGame()};$('#bCont').onclick=contGame;$('#bEnds').onclick=endsModal;$('#bCode').onclick=codeModal;
  const gate=$('#gate');gate.classList.add('on');

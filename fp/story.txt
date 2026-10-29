@@ -107,7 +107,14 @@ nar(平靜): 她一邊哭，一邊笑了一下。然後又哭得更大聲。
 nar(溫柔): 我坐到她旁邊。手好笨，不知道放哪。
 ! act pat
 sis(哭): ……謝謝你，小餅。
+! if pat_ok<1 -> p2_pat_bad
 nar(溫柔): 她的呼吸，終於慢慢平穩下來。
+! go p2_pat_end
+
+# p2_pat_bad
+nar(悲傷): 我拍得亂七八糟，一下快一下慢。她哭了很久很久，才終於哭累了。
+
+# p2_pat_end
 nar(平靜): 那天我沒去遊樂園。我在她房間，坐了一整天。
 
 # p3
@@ -228,7 +235,7 @@ nar(吐槽): 順便……小心阿福的嘴。
 ! title 第四篇｜小愛・小美・小晴
 ! day 1
 @ bg=s_class amb=class bgm=easy time=週一·早上 7:40
-! money +300 這週的零用錢
+! money +500 這週的零用錢
 nar(平靜): 週一早上。爸媽出差前，留了這週的零用錢。
 @ bg=s_qing
 nar(平靜): 抽屜裡多了一瓶養樂多。旁邊有個女生，正在偷笑。
@@ -463,12 +470,21 @@ qing(開心): 蛋餅最棒了！！
 @ bg=s_qing_watch amb=field bgm=dreamer
 qing(開心): 蛋餅！我幫你計時！跑一次給我看！
 ! act sprint
+! if run_ok<1 -> d2_track_slow
 nar(平靜): 我跑了一趟。她按下碼錶的時候，眼睛閃閃發亮。
 qing(驚訝): 好快！！
 qing(害羞): 我最喜歡你跑步的樣子了。
 ? t=7 d=1
 - 「那你以後都來幫我計時。」 {qing+8 zha+3 exp+3} -> d2_rain
 - 「謝啦，我去喝水。」 {qing+2} -> d2_rain
+
+# d2_track_slow
+nar(吐槽): 我跑了一趟。跑到一半，鞋帶鬆了。
+qing(大笑): 蛋餅你在散步喔！十三秒多耶！
+qing(害羞): 不過……我還是喜歡看你跑步。
+? t=7 d=1
+- 「下次一定跑給你看。」 {qing+5} -> d2_rain
+- 「……不准說出去喔。」 {qing+2} -> d2_rain
 
 # d2_desk
 @ bg=s_desk amb=class bgm=dreamer
@@ -725,9 +741,17 @@ nar(溫柔): 那是那天之後，姐姐第一次笑得那麼大聲。
 @ bg=w_dishes amb=kitchen bgm=wholesome
 nar(平靜): 我把水槽裡的碗都洗了。
 ! act dishes
+! if dish_ok<1 -> d3_dish_bad
 sis(溫柔): 欸，碗是你洗的？這給你，不准跟爸媽說。
 ! money +50 姐姐偷偷塞的
 ! fx sis+3
+! go d3_line
+
+# d3_dish_bad
+sis(吐槽): 欸，碗是你洗的？……怎麼還油油的啦。
+sis(大笑): 算了，心意收到了。這給你，去買糖吃。
+! money +20 姐姐給的糖果錢
+! fx sis+2
 ! go d3_line
 
 # d3_line
@@ -769,9 +793,20 @@ sis(溫柔): 欸，碗是你洗的？這給你，不准跟爸媽說。
 @ bg=s_track amb=field bgm=none time=週四·第二節 體育課
 teacher(大喊): 測一百公尺！各就各位——
 ! act sprint
+! if run_ok<1 -> d4_slow
 teacher(驚訝): 蛋餅……十一點二秒！？
 crowd(大喊): 蛋餅好帥！！
 teacher(開心): 運動會你代表班上跑一百公尺。跟高年級比也會第一！
+! go d4_dogs
+
+# d4_slow
+teacher(懷疑): 十三秒四？蛋餅，你今天是沒吃早餐喔？
+crowd(大笑): 哈哈哈，蛋餅腿軟了啦！
+i(生氣): 起跑的時候，腳根本使不上力……
+teacher(認真): 看你平常跑那麼快。運動會還是你上，這幾天給我好好練。
+! go d4_dogs
+
+# d4_dogs
 nar(平靜): 我跑這麼快，要感謝鄉下阿嬤家的狗。
 @ bg=w_dogs amb=country bgm=wholesome
 nar(吐槽): 被追了好幾年，練出來的。
@@ -940,7 +975,7 @@ sis(平靜): 小餅，不可以讓女生難過喔。
 
 # d4_h2b
 sis(開心): 對了，運動會是什麼時候？
-me(平靜): 下週六。我跑一百公尺。
+me(平靜): 這個禮拜天。我跑一百公尺。
 ! if sis>=55 -> d4_h4
 sis(疲倦): 姐姐那天……可能要打工。再看看好不好？
 ! go d4_night
@@ -1013,7 +1048,7 @@ nar(平靜): 我盯著那兩個字，一整晚沒睡著。
 nar(平靜): 週五。離運動會，只剩一個週末。
 @ bg=s_fat
 fat(得意): 今天的八卦：福利社布丁漲價了！
-fat(小聲): 還有……下週運動會，好像有人約了好幾個女生喔～
+fat(小聲): 還有……禮拜天的運動會，好像有人約了好幾個女生喔～
 ! if playboy -> d5_inv
 ! go d5_q
 
@@ -1129,17 +1164,54 @@ nar(溫柔): 最後面，還畫了一個醜醜的笑臉。
 nar(平靜): 週六。運動會前最後一天。
 ? 
 - 去巷口早餐店打工 -> d6_job
+- 睡到中午 -> d6_sleep
+
+# d6_sleep
+nar(吐槽): 我睡到中午。週六的被窩，是全世界最強的封印。
+! go d6_pm
+
+# d6_pm
+@ bg=h_sofa amb=home bgm=wholesome time=週六·下午 2:00
+nar(平靜): 下午。離運動會，只剩半天了。
+? 
 - 在家幫忙打掃 -> d6_home
-- 再去一趟便利商店 -> d6_shop
+- 去便利商店逛逛 -> d6_shop
+- 去河堤練起跑 {con+2} -> d6_run
+
+# d6_run
+@ bg=s_track amb=field bgm=easy
+nar(平靜): 我去河堤練了十趟起跑。腿很痠，但心裡踏實多了。
+! fx runbonus=1
+! go d6_end
 
 # d6_job
 @ bg=w_breakfast amb=breakfast bgm=beetle
 aunt(開心): 小餅來啦！今天人多，蛋餅交給你！
 nar(吐槽): 一個叫蛋餅的人，在煎蛋餅。命運很幽默。
 ! act flip
+! if flips>=3 -> d6_f3
+! if flips>=2 -> d6_f2
+! if flips>=1 -> d6_f1
+aunt(生氣): 哎唷！怎麼三份都煎焦了啦！
+aunt(認真): 客人都在等耶……今天的工錢先不算，就當阿姨請你吃早餐。
+nar(吐槽): 我賺到一份燒焦的蛋餅，和零元。
+! go d6_pm
+
+# d6_f1
+aunt(吐槽): 只有一份能賣喔……沒關係啦，阿姨以前也是這樣過來的。
+! money +150 早餐店阿姨的工錢
+! go d6_pm
+
+# d6_f2
+aunt(開心): 有兩份煎得漂漂亮亮！不錯不錯，下禮拜再來喔！
+! money +400 早餐店阿姨的工錢
+! go d6_pm
+
+# d6_f3
 aunt(開心): 不錯喔！比我兒子還會煎！這給你！
-! money +300 早餐店阿姨的工錢
-! go d6_end
+aunt(得意): 三份都完美！今天生意好，多給你一點小費！
+! money +700 早餐店阿姨的工錢＋小費
+! go d6_pm
 
 # d6_home
 @ bg=w_dishes amb=kitchen bgm=wholesome
@@ -1152,13 +1224,21 @@ sis(溫柔): 是不是做了什麼壞事？
 
 # d6_h1
 sis(調皮): 最好是。
-! money +100 姐姐給的打掃費
-! go d6_end
+! go d6_hpay
 
 # d6_h2
 sis(認真): 那要看是什麼事。
 sis(溫柔): 不過，你先說實話的話，姐姐會考慮。
+! go d6_hpay
+
+# d6_hpay
+! if dish_ok<1 -> d6_hpay_half
 ! money +100 姐姐給的打掃費
+! go d6_end
+
+# d6_hpay_half
+sis(調皮): 不過碗還油油的喔。打掃費，只能給一半。
+! money +50 姐姐給的打掃費（打對折）
 ! go d6_end
 
 # d6_shop
@@ -1183,6 +1263,11 @@ nar(吐槽): 不，你不是。
 ## ===== 第五～六篇：運動會 =====
 # sd
 ! title 第五篇｜跑步健將蛋餅
+@ bg=w_cvs amb=cvs bgm=beetle time=運動會·早上 7:30
+! sfx cvs_door
+nar(平靜): 運動會當天早上，我提早出門，先繞去巷口的便利商店。
+i(平靜): 口袋裡，是這個禮拜攢下來的錢。
+! shop
 @ bg=s_hall amb=sports bgm=easy time=運動會·上午 9:00
 nar(平靜): 運動會，二〇一八，秋天。
 ! if dates>=2 -> sd_juggle
@@ -1190,14 +1275,14 @@ nar(平靜): 運動會，二〇一八，秋天。
 nar(平靜): 上午，我跟阿福、小愛、小美、小晴，一群人一起逛園遊會、分一盒披薩。
 fat(開心): 蛋餅！最後一片給你！
 ! fx con+3 friends=1
-! go sd_race
+! go sd_gift
 
 # sd_desk
 @ bg=s_desk_walk
 nar(溫柔): 上午我跟同桌逛園遊會。她把撈到的金魚，取名叫「蛋仔」。
 desk(開心): 蛋仔要幫你加油喔。
 ! fx desk+5
-! go sd_race
+! go sd_gift
 
 # sd_juggle
 nar(緊張): 我答應小晴逛園遊會、答應小愛看班際比賽、又答應小美在樓梯間吃披薩。
@@ -1209,13 +1294,50 @@ ai(冷淡): 他跟我說要陪我看比賽耶。
 mei(冷淡): ……他手上那片披薩，是我買的。
 nar(悲傷): 三個女生看著彼此。沒有人說話。
 ! fx exp+30
-! go sd_race
+! go sd_gift
 
 # sd_j_ok
 nar(緊張): 我在三個地方來回狂奔，居然一次都沒被發現。
 i(得意): 我真是個天才。
 ! fx zha+5 exp+10
-! go sd_race
+! go sd_gift
+
+# sd_gift
+! if inv<1 -> sd_race
+@ bg=s_hall amb=sports bgm=easy time=運動會·中午 12:10
+nar(平靜): 中午，大家都在看台上吃便當。我書包裡的東西，還沒送出去。
+? 
+- [inv] 拿給小愛 -> sd_g_ai
+- [inv] 拿給小美 -> sd_g_mei
+- [inv] 拿給小晴 -> sd_g_qing
+- [inv] 拿給同桌 -> sd_g_desk
+- 先不要，專心準備比賽 -> sd_race
+
+# sd_g_ai
+! give ai
+! go sd_gift_more
+
+# sd_g_mei
+! give mei
+! go sd_gift_more
+
+# sd_g_qing
+! give qing
+! go sd_gift_more
+
+# sd_g_desk
+! give desk
+! go sd_gift_more
+
+# sd_gift_more
+! if inv<1 -> sd_race
+nar(平靜): 書包裡，還有東西。
+? 
+- [inv] 拿給小愛 -> sd_g_ai
+- [inv] 拿給小美 -> sd_g_mei
+- [inv] 拿給小晴 -> sd_g_qing
+- [inv] 拿給同桌 -> sd_g_desk
+- 不送了，去熱身 -> sd_race
 
 # sd_race
 @ bg=s_track amb=race bgm=none time=運動會·下午 2:30
@@ -1233,12 +1355,23 @@ nar(緊張): 我緊張得一直原地跳。
 teacher(大喊): 各就各位——
 ! act start
 ! act race
+! if run_ok<1 -> sd_lost
 crowd(大喊): 蛋餅！蛋餅！蛋餅！
 nar(開心): 第一個衝過終點線——全場尖叫！
 nar(緊張): 衝過終點的那一瞬間，我想做什麼？
 ? t=4 d=1
 - 轉頭看看台上的姐姐 -> sd_crash
 - 舉起雙手慶祝 {zha+2} -> sd_crash
+- 看旁邊跑道的選手 {con+5 helped=1} -> sd_help
+
+# sd_lost
+! fx race_lost=1
+nar(悲傷): 隔壁跑道的高年級，硬是比我早了半步。
+nar(悲傷): 第二名。看台上，有人輕輕嘆了一口氣。
+nar(緊張): 衝過終點的那一瞬間，我想做什麼？
+? t=4 d=1
+- 轉頭看看台上的姐姐 -> sd_crash
+- 低頭用力搥自己的腿 -> sd_crash
 - 看旁邊跑道的選手 {con+5 helped=1} -> sd_help
 
 # sd_crash
@@ -1304,7 +1437,15 @@ nar(平靜): 爸媽出差。我只好打給姐姐。
 
 # sd_sis_come
 @ bg=s_sis_gate amb=street bgm=sadtrio time=運動會·傍晚 5:20
+! if race_lost -> sd_sc_lost
 nar(悲傷): 她提著一個小蛋糕來了——要幫我慶祝第一名的。
+! go sd_sc2
+
+# sd_sc_lost
+nar(悲傷): 她提著一個小蛋糕來了——本來是要幫我慶祝的。
+! go sd_sc2
+
+# sd_sc2
 nar(悲傷): 然後，她聽完了主任說的一切。
 nar(悲傷): 她簽完名，一句話都沒說，走出校門。
 i(悲傷): 我手腳痛得要死。但她不說話的樣子，更讓我害怕。
@@ -1320,8 +1461,15 @@ fat(開心): 你飛起來的樣子我錄下來了！
 
 # sd_win_clean
 @ bg=s_track amb=sports bgm=easy
+! if race_lost -> sd_wc_lost
 crowd(大喊): 蛋餅！蛋餅！蛋餅！
 teacher(開心): 跑得很好！
+! go sd_wc2
+
+# sd_wc_lost
+teacher(開心): 第二名！跟高年級跑成這樣，很不錯了！
+
+# sd_wc2
 ! if desk_gf -> e_desk
 ! go sd_endcheck
 
@@ -1335,7 +1483,14 @@ teacher(開心): 跑得很好！
 ! title 第七篇｜你不是我的小餅，你是蛋渣
 @ bg=s_hall amb=street bgm=tense time=傍晚 5:40
 ! act chase
+! if chase_ok<1 -> ch7_lag
 nar(緊張): 我終於追上她，拉住她的衣角。她甩開了我的手。
+! go ch7_turn
+
+# ch7_lag
+nar(悲傷): 膝蓋的傷一直在流血。我拚命追，她卻越走越遠。
+
+# ch7_turn
 @ bg=s_sis_angry amb=street bgm=heartbreak
 nar(悲傷): 我追不上。她在路口停下來，背對著我。
 nar(悲傷): 然後，轉過身來。
@@ -1414,11 +1569,23 @@ nar(悲傷): 那聲關門聲，比主任拍桌子還大聲。
 @ bg=s_sis_gate amb=street bgm=touching time=運動會·傍晚 5:30
 nar(溫柔): 夕陽下，姐姐提著小蛋糕，在校門口等我。
 ! if crashed -> e_good2
+! if race_lost -> e_good_l
 sis(開心): 第一名耶！姐姐的弟弟好帥！
 ! go e_good3
 
+# e_good_l
+sis(溫柔): 第二名也很帥啦！姐姐都看到了。
+! go e_good3
+
 # e_good2
+! if race_lost -> e_good2l
 sis(吐槽): 你是笨蛋嗎？跑第一還自己撞人！
+! go e_good2b
+
+# e_good2l
+sis(吐槽): 你是笨蛋嗎？沒跑第一就算了，還自己撞人！
+
+# e_good2b
 sis(開心): 不過……很帥啦。
 ! go e_good3
 
@@ -1447,7 +1614,12 @@ nar(溫柔): 原來，這才是保護姐姐最好的方式。
 ! title 第七篇｜下次換我帶你飛
 @ bg=s_desk_finish amb=sports bgm=touching time=運動會·下午 3:00
 ! if crashed -> e_desk1
+! if race_lost -> e_desk_l
 desk(大喊): 蛋餅！！你好帥！！
+! go e_desk2
+
+# e_desk_l
+desk(大喊): 蛋餅！！第二名也超帥的！！
 ! go e_desk2
 
 # e_desk1
@@ -1478,6 +1650,7 @@ nar(溫柔): 還好那一秒，我說的不是「我們不是一直都只是朋�
 ! end E5
 
 # e_lonely
+! if race_lost -> e_lonely_l
 ! title 第七篇｜我跑贏了所有人
 @ bg=s_podium amb=sports bgm=peaceful time=運動會·下午 4:00
 nar(平靜): 我站上頒獎台最高處。金牌好重，陽光好刺眼。
@@ -1488,6 +1661,20 @@ nar(悲傷): 聽說，她們在樓梯間撿到了同一盒披薩的收據。
 nar(平靜): 回到家，冰箱上貼著便利貼。
 ! note 小餅，恭喜。—姐
 nar(悲傷): 我跑贏了所有人，卻輸掉了所有人。
+i(悲傷): 這就是當渣男的感覺嗎？我還是……開心不起來。
+! end E6
+
+# e_lonely_l
+! title 第七篇｜我誰都沒贏
+@ bg=s_track amb=sports bgm=peaceful time=運動會·下午 4:00
+nar(悲傷): 我站在頒獎台的第二階。銀牌很輕，輕到我差點感覺不到。
+nar(悲傷): 看台上，小愛、小美、小晴坐在一起。她們沒有看我。
+nar(悲傷): 聽說，是阿福那句話之後，她們開始互相問的。
+nar(悲傷): 聽說，她們在樓梯間撿到了同一盒披薩的收據。
+@ bg=h_fridge amb=home
+nar(平靜): 回到家，冰箱上貼著便利貼。
+! note 小餅，辛苦了。—姐
+nar(悲傷): 我誰都沒贏，也輸掉了所有人。
 i(悲傷): 這就是當渣男的感覺嗎？我還是……開心不起來。
 ! end E6
 
