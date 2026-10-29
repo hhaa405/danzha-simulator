@@ -137,7 +137,7 @@ let curCh=null; // the pending choice; its buttons can move between the phone an
 function choose(ch){return new Promise(res=>{
  const opts=ch.opts.filter(o=>!o.cond||cond(o.cond));
  // a non-chat phone screen (IG post, call) never sits on top of a choice: put it down first
- if(phoneVisible()&&phoneMode&&phoneMode.kind!=='line')minimizePhone();
+ if(phoneVisible()&&phoneMode&&phoneMode.kind==='ig')closePhone();else if(phoneVisible()&&phoneMode&&phoneMode.kind!=='line')minimizePhone();
  let done=false,timer=null,raf=0;
  const tbP=document.createElement('div');tbP.className='tb';tbP.innerHTML='<i></i>';
  const btns=opts.map((o,i)=>{const b=document.createElement('button');b.dataset.i=i;b._o=o;b.onclick=e=>{e.stopPropagation();AU.sfx('step',.25);finish(o,i)};return b});
@@ -191,7 +191,7 @@ async function cmd(s){const a=s.a;
  case'shake':shake();navigator.vibrate&&navigator.vibrate(200);return;
  case'wait':await sleep(+a||500);return;
  case'day':G.V.day=+a;saveG();return;
- case'money':addMoney(s.v,s.why);await sleep(500);return;
+ case'money':addMoney(s.v,s.why);saveG();await sleep(500);return;
  case'note':return await note(s);
  case'ig':openIgPost();return;
  case'phone':await igFeed();return;
@@ -295,8 +295,9 @@ function give(who){return new Promise(res=>{const A=$('#act');A.className='on';
 async function ending(id){const E=ENDS.find(e=>e.id===id)||ENDS[0];const got=new Set(LS.get('fp_ends',[]));got.add(id);LS.set('fp_ends',[...got]);LS.set('fp_save',null);
  hideSub();closePhone();cancelChoice();await sleep(600);AU.loop('amb','none');
  const c=$('#card');$('#cardT').textContent=`結局　${E.t}`;$('#cardS').innerHTML=`${E.q}<br><br><span style="font-size:12px">已收集 ${got.size} / ${ENDS.length}</span><br><button id="eT">回到標題</button><button id="eA">再過一次那六天</button>`;c.classList.add('on');
- const key=DZP.vkey('nar','標題',`結局，${E.t}。`);await AU.voice(key);
- await new Promise(r=>{$('#eT').onclick=()=>{c.classList.remove('on');toTitle();r()};$('#eA').onclick=()=>{c.classList.remove('on');newGame();r()}})}
+ const key=DZP.vkey('nar','標題',`結局，${E.t}。`);const my=RUN;
+ const done=new Promise(r=>{$('#eT').onclick=e=>{e.stopPropagation();c.classList.remove('on');toTitle();r()};$('#eA').onclick=e=>{e.stopPropagation();c.classList.remove('on');newGame();r()}});
+ AU.voice(key);await done}
 /* ---------------- title / menu ---------------- */
 function resetUI(){AU.stopVoice();tapWaiter=null;closePhone();cancelChoice();hideSub();$('#act').className='';$('#act').innerHTML='';$('#shop').classList.remove('on');$('#shop').innerHTML='';$('#note').classList.remove('on');$('#card').classList.remove('on')}
 function toTitle(){RUN++;resetUI();
@@ -439,7 +440,7 @@ setInterval(()=>{try{const titleOn=$('#title').classList.contains('show');
  if(!phoneVisible()&&document.body.classList.contains('phoneOn'))document.body.classList.remove('phoneOn');
  updChip()}catch(e){}},1000);
 /* ---------------- boot ---------------- */
-async function boot(){const txt=await (await fetch('story.txt?v=1')).text();P=DZP.parse(txt);renderWallet();
+async function boot(){const txt=await (await fetch('story.txt?v=3')).text();P=DZP.parse(txt);renderWallet();
  $('#bCont').disabled=!LS.get('fp_save',null);
  $('#bNew').onclick=()=>{LS.get('fp_save',null)?confirmNew():newGame()};$('#bCont').onclick=contGame;$('#bEnds').onclick=endsModal;$('#bCode').onclick=codeModal;
  const gate=$('#gate');gate.classList.add('on');

@@ -185,6 +185,7 @@ nar(悲傷): 客廳傳來姐姐回家的開門聲。好輕。好累。
 desk(電話開心): 真、真的嗎！！
 nar(開心): 耳機裡傳來尖叫，然後是她弟弟大罵「吵死了」。
 desk(電話開心): ……嗯！那明天也要一起玩喔！
+! endline
 nar(平靜): 我掛掉語音。客廳很安靜。姐姐的房門，又關上了。
 i(平靜): 如果有一天，我也讓別人那樣哭……
 ? t=12 d=1
@@ -194,10 +195,12 @@ i(平靜): 如果有一天，我也讓別人那樣哭……
 # p4_friend
 desk(電話): ……喔。
 desk(電話): 好啊。……朋友。
+! endline
 nar(悲傷): 有些東西碎掉的時候，是沒有聲音的。
 ! go p4_zha
 
 # p4_unplug
+! endline
 nar(悲傷): 我拔掉耳機。螢幕上，她的角色站在原地，一動也不動。
 ! go p4_zha
 
@@ -793,6 +796,7 @@ nar(緊張): 我追著他，繞了教室三圈。
 
 # d4_f2
 fat(吐槽): ……姐控。
+! fx jiekong=1
 nar(吐槽): 全班都聽到了。這個外號跟了我三年。
 ! go d4_stairs
 
@@ -853,12 +857,18 @@ i(悲傷): 她以為我只對她好。
 ? t=8 d=1
 - 「謝謝，我會戴著跑。」 {ai+6} -> d4_desk
 - 「小愛……我們是朋友，對吧？」 {ai-2 con+5 honest=1} -> d4_ai3
+- [inv] 「我也有東西給你。」 -> d4_agift
 
 # d4_ai2
 nar(悲傷): 我口袋裡，還有小晴給的紙星星。
 ? t=8 d=1
 - 「我只戴你的。」 {ai+8 zha+6} -> d4_desk
 - 「謝謝。」 {ai+3} -> d4_desk
+- [inv] 「我也有東西給你。」 -> d4_agift
+
+# d4_agift
+! give ai
+! go d4_desk
 
 # d4_ai3
 ai(平靜): ……嗯。對啊。朋友。
@@ -909,8 +919,13 @@ sis(調皮): 欸，你最近是不是有喜歡的人？
 - 「有好幾個。」 {sis-4 zha+3} -> d4_h3
 
 # d4_h1
+! if jiekong<1 -> d4_h1b
 sis(大笑): 臉紅了！姐控居然有喜歡的人了！
 me(生氣): 姐控是阿福亂講的啦！
+! go d4_h2b
+
+# d4_h1b
+sis(調皮): 最好是。
 ! go d4_h2b
 
 # d4_h2
@@ -1296,9 +1311,8 @@ i(悲傷): 我手腳痛得要死。但她不說話的樣子，更讓我害怕。
 ! go ch7_bad
 
 # sd_hurt_ok
-@ bg=s_desk_finish amb=sports bgm=dreamer
 ! if desk_gf -> e_desk
-@ bg=s_nurse
+@ bg=s_nurse amb=sports bgm=dreamer
 ai(開心): 蛋餅！上次你陪我去保健室，這次換我！
 mei(生氣): 笨蛋！誰會在終點線亂跑啊！
 fat(開心): 你飛起來的樣子我錄下來了！
@@ -1320,8 +1334,8 @@ teacher(開心): 跑得很好！
 # ch7_bad
 ! title 第七篇｜你不是我的小餅，你是蛋渣
 @ bg=s_hall amb=street bgm=tense time=傍晚 5:40
-nar(緊張): 我終於追上她，拉住她的衣角。她甩開了我的手。
 ! act chase
+nar(緊張): 我終於追上她，拉住她的衣角。她甩開了我的手。
 @ bg=s_sis_angry amb=street bgm=heartbreak
 nar(悲傷): 我追不上。她在路口停下來，背對著我。
 nar(悲傷): 然後，轉過身來。
@@ -1357,8 +1371,8 @@ nar(平靜): 夕陽下，我只能說一句話。
 # e_sorry
 @ bg=s_sis_angry
 sis(哭): 你以為說對不起，就沒事了嗎？
-nar(悲傷): 姐姐愣住了。眼淚還是一直掉。
 me(哭): 我知道沒事不了。所以……我會去道歉。每一個人。
+nar(悲傷): 姐姐愣住了。眼淚還是一直掉。
 sis(哭): ……你知道就好。
 sis(悲傷): 蛋糕你自己吃。生日快樂。
 @ bg=h_door amb=night bgm=lasting
@@ -1395,8 +1409,8 @@ nar(悲傷): 那聲關門聲，比主任拍桌子還大聲。
 ! end E3
 
 # e_good
+! if sis<50 -> e_lonely
 ! title 第七篇｜這才是我的小餅
-! if sis<45 -> e_lonely
 @ bg=s_sis_gate amb=street bgm=touching time=運動會·傍晚 5:30
 nar(溫柔): 夕陽下，姐姐提著小蛋糕，在校門口等我。
 ! if crashed -> e_good2
@@ -1442,8 +1456,8 @@ nar(溫柔): 她一邊哭一邊幫我擦沙子，比砂紙還用力。
 ! go e_desk2
 
 # e_desk2
+! if sis<50 -> e_desk4
 @ bg=s_sis_gate
-! if sis<45 -> e_desk4
 sis(調皮): 喔～～這位是？
 desk(緊張): 姐、姐姐好！我是蛋餅的……
 me(平靜): 女朋友。
@@ -1452,12 +1466,13 @@ me(溫柔): 我知道。因為我看過，姐姐哭的樣子。
 ! go e_desk3
 
 # e_desk4
+@ bg=h_fridge amb=home
 nar(平靜): 姐姐沒有來。但晚上，冰箱上多了一張便利貼。
 ! note 聽說你有女朋友了？帶回來給我看。—姐
 ! go e_desk3
 
 # e_desk3
-@ bg=s_desk_walk bgm=touching
+@ bg=s_desk_walk amb=street bgm=touching
 desk(溫柔): 蛋餅，下次換我帶你飛。
 nar(溫柔): 還好那一秒，我說的不是「我們不是一直都只是朋友嗎」。
 ! end E5
@@ -1482,8 +1497,8 @@ i(悲傷): 這就是當渣男的感覺嗎？我還是……開心不起來。
 fat(大喊): 全班！把蛋餅拋起來！！
 nar(開心): 那天，我被全班拋到半空中。
 nar(溫柔): 小愛、小美、小晴、同桌、阿福，全都在。
+! if sis<50 -> e_class2
 @ bg=s_sis_gate
-! if sis<45 -> e_class2
 sis(開心): 小餅，你的朋友好多喔。
 ! go e_class2
 
