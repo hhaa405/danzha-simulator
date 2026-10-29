@@ -84,7 +84,7 @@ function camFx(f){const c=$('#cam');c.style.filter=f||''}
 function shake(){const c=$('#cam');c.classList.remove('sway');c.classList.add('shake');setTimeout(()=>{c.classList.remove('shake');c.classList.add('sway')},520)}
 function toast(t){const d=document.createElement('div');d.className='tst';d.textContent=t;$('#toastL').appendChild(d);setTimeout(()=>d.remove(),3600)}
 /* ---------------- subtitles ---------------- */
-function showSub(who,text,phoneMode){const s=$('#sub');s.className='on '+(who==='nar'?'nar':who==='i'?'inner':who==='me'?'me':'');
+function showSub(who,text){const s=$('#sub');s.className='on '+(who==='nar'?'nar':who==='i'?'inner':who==='me'?'me':'');
  $('#who').textContent=NAMES[who]||'';$('#txt').textContent=who==='i'?'（'+text.replace(/^（|）$/g,'')+'）':text}
 function hideSub(){$('#sub').classList.remove('on')}
 /* ---------------- input: tap to skip ---------------- */
@@ -92,10 +92,13 @@ let tapWaiter=null;
 function waitTap(){return new Promise(r=>{tapWaiter=r})}
 function onTap(){if(tapWaiter){const r=tapWaiter;tapWaiter=null;r(true)}}
 $('#tap').addEventListener('pointerdown',e=>{e.preventDefault();onTap()});
-addEventListener('keydown',e=>{if($('#menu').classList.contains('on')||$('#modal').classList.contains('on'))return;
+addEventListener('keydown',e=>{
+ if(e.code==='Escape'){if($('#menu').classList.contains('on')){$('#menu').classList.remove('on');return}if($('#modal').classList.contains('on')){$('#modal').classList.remove('on');return}
+  if(phoneVisible()){e.preventDefault();putDown();return}openMenu();return}
+ if($('#menu').classList.contains('on')||$('#modal').classList.contains('on'))return;
  if(e.code==='Space'||e.code==='Enter'){if(/INPUT|BUTTON|SELECT/.test(e.target.tagName))return;e.preventDefault();onTap()}
  if(/^Digit[1-4]$/.test(e.code)){const b=$$('#opts button, .lnFoot button[data-i]')[+e.code.slice(5)-1];if(b)b.click()}
- if(e.code==='Escape')openMenu()});
+});
 /* look around: drag (portrait) & pointer parallax */
 let drag=null;
 $('#stage').addEventListener('pointerdown',e=>{drag={x:e.clientX,l:look,t:Date.now()}});
@@ -130,20 +133,31 @@ function cond(c){const V=G.V;const px=new Proxy({},{has:()=>true,get:(t,k)=>k===
 function applyFx(list){for(const[k,op,v]of list){if(k==='money'){addMoney(op==='-'?-v:v);continue}const V=G.V;if(op==='=')V[k]=v;else V[k]=(V[k]||0)+(op==='-'?-v:v);if(['sis','con','desk','ai','mei','qing','exp','zha'].includes(k))V[k]=Math.max(0,Math.min(120,V[k]))}}
 function addMoney(v,why){setWallet(wallet()+v);LS.set('fp_wshow',1);renderWallet();AU.sfx('coin',.6);toast(`錢包 ${v>=0?'+':'−'}NT$${Math.abs(v)}${why?'　'+why:''}`)}
 /* ---------------- choices ---------------- */
+let curCh=null; // the pending choice; its buttons can move between the phone and the normal choice panel
 function choose(ch){return new Promise(res=>{
  const opts=ch.opts.filter(o=>!o.cond||cond(o.cond));
- const inPhone=phoneMode&&phoneMode.kind==='line';
- const host=inPhone?$('#lnFoot'):$('#opts');let done=false,timer=null,raf=0;
- const finish=(o,idx)=>{if(done)return;done=true;clearTimeout(timer);cancelAnimationFrame(raf);if(inPhone){host.innerHTML='<div class="inp">輸入訊息</div>'}else{$('#choices').classList.remove('on');host.innerHTML=''}res(o)};
- if(inPhone){host.innerHTML=''}else host.innerHTML='';
- opts.forEach((o,i)=>{const b=document.createElement('button');b.dataset.i=i;b.textContent=inPhone?(o.say||o.t):o.t;if(!o.say)b.className='act';b.onclick=e=>{e.stopPropagation();AU.sfx('step',.25);finish(o,i)};host.appendChild(b)});
- const tb=inPhone?(()=>{const d=document.createElement('div');d.className='tb';d.innerHTML='<i></i>';host.prepend(d);return d})():$('#tbar');
- if(ch.t&&!FAST){tb.style.display='block';const bar=tb.querySelector('i');const T=ch.t*1000,t0=performance.now();
-  const step=()=>{const f=1-(performance.now()-t0)/T;bar.style.transform=`scaleX(${Math.max(0,f)})`;if(f>0&&!done)raf=requestAnimationFrame(step)};step();
+ // a non-chat phone screen (IG post, call) never sits on top of a choice: put it down first
+ if(phoneVisible()&&phoneMode&&phoneMode.kind!=='line')minimizePhone();
+ let done=false,timer=null,raf=0;
+ const tbP=document.createElement('div');tbP.className='tb';tbP.innerHTML='<i></i>';
+ const btns=opts.map((o,i)=>{const b=document.createElement('button');b.dataset.i=i;b._o=o;b.onclick=e=>{e.stopPropagation();AU.sfx('step',.25);finish(o,i)};return b});
+ const C={btns,tbP,timed:!!(ch.t&&!FAST),kill(){done=true;clearTimeout(timer);cancelAnimationFrame(raf)}};
+ const finish=(o,idx)=>{if(done)return;C.kill();if(curCh===C)curCh=null;clearChoiceUI();res(o)};
+ curCh=C;placeChoice();
+ if(C.timed){const T=ch.t*1000,t0=performance.now();
+  const step=()=>{const f=1-(performance.now()-t0)/T;const tr=`scaleX(${Math.max(0,f)})`;$('#tbar i').style.transform=tr;tbP.firstChild.style.transform=tr;if(f>0&&!done)raf=requestAnimationFrame(step)};step();
   timer=setTimeout(()=>{if(ch.to)finish({go:ch.to,fx:[],timeout:true});else{const d=(ch.d||1)-1;finish(opts[Math.max(0,Math.min(opts.length-1,d))]||opts[0])}},T)}
- else tb.style.display='none';
- if(!inPhone)$('#choices').classList.add('on');
- if(TEST&&window.__autoPick!=null)setTimeout(()=>{const k=typeof window.__autoPick==='function'?window.__autoPick(opts,G):0;finish(opts[k]||opts[0])},30)})}
+ if(TEST&&window.__autoPick!=null&&!window.__manual)setTimeout(()=>{const k=typeof window.__autoPick==='function'?window.__autoPick(opts,G):0;finish(opts[k]||opts[0])},30)})}
+function chatOpen(){return phoneMode&&phoneMode.kind==='line'&&phoneVisible()&&$('#lnFoot')}
+function placeChoice(){updChip();const C=curCh;if(!C)return;const foot=chatOpen();
+ if(foot){$('#choices').classList.remove('on');$('#opts').innerHTML='';foot.innerHTML='';if(C.timed)foot.appendChild(C.tbP);
+  C.btns.forEach(b=>{b.textContent=b._o.say||b._o.t;b.className=b._o.say?'':'act';foot.appendChild(b)});const lb=$('#lnBody');if(lb)lb.scrollTop=1e6}
+ else{const f=$('#lnFoot');if(f&&C.btns.some(b=>b.parentNode===f))f.innerHTML='<div class="inp">輸入訊息</div>';
+  const host=$('#opts');host.innerHTML='';$('#tbar').style.display=C.timed?'block':'none';
+  C.btns.forEach(b=>{b.textContent=b._o.t;b.className=b._o.say?'':'act';host.appendChild(b)});$('#choices').classList.add('on')}
+ updChip()}
+function clearChoiceUI(){$('#choices').classList.remove('on');$('#opts').innerHTML='';$('#tbar').style.display='none';const f=$('#lnFoot');if(f)f.innerHTML='<div class="inp">輸入訊息</div>';updChip()}
+function cancelChoice(){if(curCh){curCh.kill();curCh=null}clearChoiceUI()}
 /* ---------------- runner ---------------- */
 async function run(){const my=++RUN;
  while(my===RUN){let B=P.N[G.node];if(!B){console.error('no node',G.node);return}
@@ -154,7 +168,7 @@ async function run(){const my=++RUN;
   if(r&&r.end)return;
   if(r&&r.go){G.node=r.go;G.i=0;saveG()}}}
 async function step(s){
- if(s.k==='scene'){Object.assign(G.scene,Object.fromEntries(Object.entries(s).filter(([k])=>k!=='k')));if(phoneMode&&phoneMode.kind!=='line')closePhone();
+ if(s.k==='scene'){Object.assign(G.scene,Object.fromEntries(Object.entries(s).filter(([k])=>k!=='k')));if(phoneMode||phoneVisible()||phoneMin)closePhone();
   if(s.time!=null)$('#clock').textContent=s.time;
   const ps=[];if(s.amb)AU.loop('amb',s.amb,AMBG[s.amb]||0);if(s.bgm)AU.loop('bgm',s.bgm,0,2.5);if(s.bg){preImg(s.bg);ps.push(setBg(s.bg))}
   await Promise.all(ps);saveG();return}
@@ -189,36 +203,65 @@ async function cmd(s){const a=s.a;
  case'give':return await give(a);
  case'end':await ending(a);return{end:true};}
  console.warn('unknown cmd',s.c)}
-async function chapter(s){hideSub();const c=$('#card');$('#cardT').textContent=s.a.replace('｜','\n');$('#cardT').style.whiteSpace='pre-line';$('#cardS').innerHTML='';c.classList.add('on');
+async function chapter(s){hideSub();closePhone();const c=$('#card');$('#cardT').textContent=s.a.replace('｜','\n');$('#cardT').style.whiteSpace='pre-line';$('#cardS').innerHTML='';c.classList.add('on');
  await sleep(FAST?50:900);await sayLine('nar','標題',s.say,s.key,{keep:false});hideSub();await sleep(FAST?50:500);c.classList.remove('on');}
 async function note(s){$('#noteTxt').textContent=s.a.replace(/—/,'\n— ');$('#noteTxt').style.whiteSpace='pre-line';$('#note').classList.add('on');AU.sfx('scrub',.4);await sleep(400);
  await sayLine('sis','紙條',s.say,s.key);await sleep(300);$('#note').classList.remove('on')}
 /* ---------------- phone ---------------- */
 function nowStr(){const t=(G.scene.time||'').match(/(\d{1,2}):(\d{2})/);return t?`${t[1].padStart(2,'0')}:${t[2]}`:'23:0'+Math.floor(Math.random()*9)}
-function openPhone(html){$('#pTime').textContent=nowStr();$('#pScr').innerHTML=html;$('#phone').classList.add('on');AU.sfx('whoosh',.3)}
-function closePhone(){$('#phone').classList.remove('on');phoneMode=null;$('#pScr').innerHTML=''}
-function openLine(who){phoneMode={kind:'line',who};
- openPhone(`<div class="lnHead"><span class="back">‹</span><span>${CONTACT[who]||who}</span></div><div class="lnBody" id="lnBody"></div><div class="lnFoot" id="lnFoot"><div class="inp">輸入訊息</div></div>`)}
-async function bubble(s){const body=$('#lnBody');if(!body){await sayLine(s.who,s.emo,s.text,s.key);return}
+/* The phone can ALWAYS be put down: ▾ button, the ‹ back arrow, tapping outside it, Esc, or the browser/Android back button.
+   Chats and calls are minimized to a chip (tap it to pick the phone back up); a reply that is still pending moves to the normal choice panel. */
+let phoneCtl={},phoneMin=false;
+function phoneVisible(){return $('#phone').classList.contains('on')}
+function openPhone(html,ctl){const old=phoneCtl;phoneCtl=ctl||{};try{old.cleanup&&old.cleanup()}catch(e){}
+ $('#pTime').textContent=nowStr();$('#pScr').innerHTML=html;phoneMin=false;$('#phone').classList.add('on');document.body.classList.add('phoneOn');
+ const bk=$('#pScr .back');if(bk)bk.onclick=e=>{e.stopPropagation();putDown()};
+ pushBack();AU.sfx('whoosh',.3);placeChoice()}
+function closePhone(){const c=phoneCtl;phoneCtl={};try{c.cleanup&&c.cleanup()}catch(e){}
+ $('#phone').classList.remove('on');document.body.classList.remove('phoneOn');phoneMode=null;phoneMin=false;$('#pScr').innerHTML='';if(G)G.chat=null;popBack();placeChoice();updChip()}
+function minimizePhone(){if(!phoneVisible())return;phoneMin=true;$('#phone').classList.remove('on');document.body.classList.remove('phoneOn');popBack();AU.sfx('whoosh',.2);placeChoice();updChip()}
+function restorePhone(){if(!phoneMin||!phoneMode)return;phoneMin=false;$('#pTime').textContent=nowStr();$('#phone').classList.add('on');document.body.classList.add('phoneOn');pushBack();placeChoice();updChip();const lb=$('#lnBody');if(lb)lb.scrollTop=1e6}
+function putDown(){if(!phoneVisible())return;const k=phoneMode&&phoneMode.kind,d=phoneCtl.down;
+ if(k==='line'||k==='call'){try{d&&d()}catch(e){}minimizePhone()}else{closePhone();try{d&&d()}catch(e){}}}
+function updChip(){const c=$('#pChip');if(!c)return;const on=phoneMin&&!!phoneMode;c.classList.toggle('on',on);if(!on)return;
+ const pend=phoneMode.kind==='line'&&curCh;c.classList.toggle('pend',!!pend);
+ c.textContent=phoneMode.kind==='call'?'📞 通話中・點這裡拿起手機':pend?'📱 回到手機回覆':'📱 拿起手機'}
+$('#pChip').addEventListener('click',e=>{e.stopPropagation();restorePhone()});
+$('#pDownBtn').addEventListener('click',e=>{e.stopPropagation();putDown()});
+$('#phone').addEventListener('pointerdown',e=>{if(e.target.closest('button,input,a,select'))return;
+ if(!e.target.closest('.dev')){e.preventDefault();putDown();return}onTap()});
+// browser / Android back button puts the phone down
+let navBusy=0;
+function isArmed(){return !!(history.state&&history.state.dzPhone)}
+function syncBack(){if(navBusy)return;try{const want=phoneVisible(),armed=isArmed();
+ if(want&&!armed)history.pushState({dzPhone:1},'');
+ else if(!want&&armed){navBusy=setTimeout(()=>{navBusy=0;syncBack()},1500);history.back()}}catch(e){}}
+const pushBack=()=>setTimeout(syncBack,0),popBack=pushBack;
+addEventListener('popstate',()=>{const ours=!!navBusy;if(navBusy){clearTimeout(navBusy);navBusy=0}
+ if(!ours&&phoneVisible()&&!isArmed())putDown(); // the player pressed the browser / Android back button
+ syncBack()});
+function openLine(who){phoneMode={kind:'line',who};if(G)G.chat=who;
+ openPhone(`<div class="lnHead"><button class="back" aria-label="放下手機">‹</button><span>${CONTACT[who]||who}</span></div><div class="lnBody" id="lnBody"></div><div class="lnFoot" id="lnFoot"><div class="inp">輸入訊息</div></div>`)}
+async function bubble(s){const body=$('#lnBody');if(!body){await sayLine(s.who,s.emo,s.text,s.key);return}const hidden=!phoneVisible();
  const me=s.who==='me';const multi=phoneMode.who==='multi';
- if(!me){const ty=document.createElement('div');ty.className='msg typing';ty.innerHTML=`<div class="av" style="background-image:${AV(s.who)}"></div><div class="col"><div class="bb">•••</div></div>`;body.appendChild(ty);body.scrollTop=1e6;await sleep(FAST?20:500+Math.min(900,s.text.length*40));ty.remove()}
+ if(!me){const ty=document.createElement('div');ty.className='msg typing';ty.innerHTML=`<div class="av" style="background-image:${AV(s.who)}"></div><div class="col"><div class="bb">•••</div></div>`;body.appendChild(ty);body.scrollTop=1e6;await sleep(FAST||hidden?20:500+Math.min(900,s.text.length*40));ty.remove()}
  const m=document.createElement('div');m.className='msg'+(me?' me':'');
  m.innerHTML=(me?'':`<div class="av" style="background-image:${AV(s.who)}"></div>`)+`<div class="col">${!me&&multi?`<div class="nm">${CONTACT[s.who]||NAMES[s.who]}</div>`:''}<div class="bb"></div></div><div class="tm">${nowStr()}</div>`;
- m.querySelector('.bb').textContent=s.text;body.appendChild(m);body.scrollTop=1e6;AU.sfx(me?'send':'pop',.5);
- await sayLine(s.who,s.emo,s.text,s.key,{bubble:true})}
+ m.querySelector('.bb').textContent=s.text;body.appendChild(m);body.scrollTop=1e6;AU.sfx(me?'send':'pop',.5);if(hidden&&!me){const c=$('#pChip');c.classList.remove('ping');void c.offsetWidth;c.classList.add('ping')}
+ await sayLine(s.who,s.emo,s.text,s.key,{bubble:!hidden})}
 function openIgPost(){phoneMode={kind:'ig'};
  openPhone(`<div class="igFeed"><div class="igPost"><div class="hd"><b></b>ray.chen_0921</div><div class="im" style="background-image:url(img/ex_1.webp)"></div><div class="ac">♡ ◯ ➤</div><div class="lk">1,284 個讚</div><div class="cm"><span>ray.chen_0921</span>週末快樂</div><div class="cm"><span>yuu.0315</span>學長好帥♡♡</div><div class="cm"><span>miki_lin</span>上次那間我也想去♡</div><div class="cm"><span>chiaaa.c</span>欸我在這張旁邊耶😳♡</div></div></div>`)}
 function igFeed(){return new Promise(res=>{phoneMode={kind:'ig'};
  const posts=[['ex_1','週末快樂','學長好帥♡♡','yuu.0315'],['ex_2','練球完','下次也帶我去嘛♡','miki_lin'],['ex_3','深夜食堂','這是哪裡！想去♡','chiaaa.c']];
- openPhone(`<div class="igFeed" id="igF">${posts.map((p,i)=>`<div class="igPost"><div class="hd"><b></b>ray.chen_0921</div><div class="im" style="background-image:url(img/${p[0]}.webp)"></div><div class="ac">♡ ◯ ➤</div><div class="lk">${(1284-i*311).toLocaleString()} 個讚</div><div class="cm"><span>ray.chen_0921</span>${p[1]}</div><div class="cm"><span>${p[3]}</span>${p[2]}</div><div class="cm"><span>sis.0702</span>♡</div></div>`).join('')}</div><button class="pClose" id="pDown">放下手機</button>`);
- const b=$('#pDown');b.style.display='none';const f=$('#igF');let shown=false;const reveal=()=>{if(!shown){shown=true;b.style.display=''}};f.addEventListener('scroll',()=>{if(f.scrollTop>200)reveal()});setTimeout(reveal,FAST?10:5000);
- b.onclick=e=>{e.stopPropagation();closePhone();res()};if(AUTO())setTimeout(()=>b.click(),50)})}
-function openCall(who){return new Promise(res=>{phoneMode={kind:'call',who};
- openPhone(`<div class="call" id="callS"><div class="cav" style="background-image:${AV(who)}"></div><div class="cn">${CONTACT[who]||who}</div><div class="cs" id="callSt">語音通話來電…</div><div class="wave">${'<i></i>'.repeat(9)}</div><div class="ans"><button class="no" id="cNo">✕</button><button class="ok" id="cOk">✆</button></div></div>`);
+ openPhone(`<div class="igFeed" id="igF">${posts.map((p,i)=>`<div class="igPost"><div class="hd"><b></b>ray.chen_0921</div><div class="im" style="background-image:url(img/${p[0]}.webp)"></div><div class="ac">♡ ◯ ➤</div><div class="lk">${(1284-i*311).toLocaleString()} 個讚</div><div class="cm"><span>ray.chen_0921</span>${p[1]}</div><div class="cm"><span>${p[3]}</span>${p[2]}</div><div class="cm"><span>sis.0702</span>♡</div></div>`).join('')}</div><button class="pClose" id="pDown">放下手機</button>`,{down:()=>res()});
+ const b=$('#pDown');b.onclick=e=>{e.stopPropagation();putDown()};if(AUTO()&&!window.__manual)setTimeout(()=>b.click(),50)})}
+function openCall(who){return new Promise(res=>{phoneMode={kind:'call',who};let done=false,ring=null,iv=0,to=0;
+ const stopRing=()=>{clearInterval(iv);clearTimeout(to);try{ring&&ring.stop()}catch(x){}};
+ const go=e=>{e&&e.stopPropagation&&e.stopPropagation();if(done)return;done=true;stopRing();const cs=$('#callS');if(cs){cs.classList.add('live');$('#callSt').textContent='00:0'+Math.floor(Math.random()*9)}res()};
+ openPhone(`<div class="call" id="callS"><div class="cav" style="background-image:${AV(who)}"></div><div class="cn">${CONTACT[who]||who}</div><div class="cs" id="callSt">語音通話來電…</div><div class="wave">${'<i></i>'.repeat(9)}</div><div class="ans"><button class="no" id="cNo">✕</button><button class="ok" id="cOk">✆</button></div></div>`,{down:go,cleanup:()=>{stopRing();if(!done){done=true;res()}}});
  $$('.call .wave i').forEach((x,i)=>x.style.animationDelay=(i*.11)+'s');
- let ring=null;AU.sfx('ring',.5).then(s=>ring=s);const iv=setInterval(()=>AU.sfx('ring',.5),3300);
- const go=e=>{e&&e.stopPropagation();clearInterval(iv);try{ring&&ring.stop()}catch(x){}$('#callS').classList.add('live');$('#callSt').textContent='00:0'+Math.floor(Math.random()*9);res()};
- $('#cOk').onclick=go;$('#cNo').onclick=go;setTimeout(go,FAST?20:9000)})}
+ AU.sfx('ring',.5).then(s=>{ring=s;if(done)try{s&&s.stop()}catch(x){}});iv=setInterval(()=>{if(!done)AU.sfx('ring',.5)},3300);
+ $('#cOk').onclick=go;$('#cNo').onclick=go;to=setTimeout(go,FAST?20:9000)})}
 /* ---------------- shop ---------------- */
 function shop(){return new Promise(res=>{const S=$('#shop');let cat='飲料零食';const bask={};
  const total=()=>Object.entries(bask).reduce((a,[k,n])=>a+ITEMS[k].p*n,0);
@@ -250,17 +293,18 @@ function give(who){return new Promise(res=>{const A=$('#act');A.className='on';
  if(AUTO())setTimeout(()=>{const b=A.querySelector('button');b&&b.click()},40)})}
 /* ---------------- endings ---------------- */
 async function ending(id){const E=ENDS.find(e=>e.id===id)||ENDS[0];const got=new Set(LS.get('fp_ends',[]));got.add(id);LS.set('fp_ends',[...got]);LS.set('fp_save',null);
- hideSub();await sleep(600);AU.loop('amb','none');
+ hideSub();closePhone();cancelChoice();await sleep(600);AU.loop('amb','none');
  const c=$('#card');$('#cardT').textContent=`結局　${E.t}`;$('#cardS').innerHTML=`${E.q}<br><br><span style="font-size:12px">已收集 ${got.size} / ${ENDS.length}</span><br><button id="eT">回到標題</button><button id="eA">再過一次那六天</button>`;c.classList.add('on');
  const key=DZP.vkey('nar','標題',`結局，${E.t}。`);await AU.voice(key);
  await new Promise(r=>{$('#eT').onclick=()=>{c.classList.remove('on');toTitle();r()};$('#eA').onclick=()=>{c.classList.remove('on');newGame();r()}})}
 /* ---------------- title / menu ---------------- */
-function toTitle(){RUN++;AU.stopVoice();closePhone();$('#choices').classList.remove('on');hideSub();$('#act').className='';$('#shop').classList.remove('on');$('#card').classList.remove('on');
+function resetUI(){AU.stopVoice();tapWaiter=null;closePhone();cancelChoice();hideSub();$('#act').className='';$('#act').innerHTML='';$('#shop').classList.remove('on');$('#shop').innerHTML='';$('#note').classList.remove('on');$('#card').classList.remove('on')}
+function toTitle(){RUN++;resetUI();
  $('#title').classList.add('show');$('#bCont').disabled=!LS.get('fp_save',null);AU.loop('amb','night',-4);AU.loop('bgm','title',0,2)}
-function newGame(){G=freshG();applyPending();closeTitle();curBg='';$('#clock').textContent='';run()}
-function contGame(){const s=LS.get('fp_save',null);if(!s){newGame();return}G=s;applyPending();closeTitle();curBg='';const sc=G.scene;
+function newGame(){RUN++;resetUI();G=freshG();applyPending();closeTitle();curBg='';$('#clock').textContent='';run()}
+function contGame(){const s=LS.get('fp_save',null);if(!s){newGame();return}RUN++;resetUI();G=s;const chat=G.chat;applyPending();closeTitle();curBg='';const sc=G.scene;
  $('#clock').textContent=sc.time||'';setBg(sc.bg||'black','cut');AU.loop('amb',sc.amb||'none',AMBG[sc.amb]||0);AU.loop('bgm',sc.bgm||'none');
- if(G.i>0){let j=G.i-1;const B=P.N[G.node];while(j>0&&B[j].k!=='choice'&&B[j].k!=='scene')j--;G.i=B[j]&&B[j].k==='choice'?j:G.i}run()}
+ if(G.i>0){let j=G.i-1;const B=P.N[G.node];while(j>0&&B[j].k!=='choice'&&B[j].k!=='scene')j--;G.i=B[j]&&B[j].k==='choice'?j:G.i}if(chat)openLine(chat);run()}
 function closeTitle(){$('#title').classList.remove('show')}
 function openMenu(){if($('#title').classList.contains('show'))return;$('#menu').classList.add('on')}
 $('#menuBtn').onclick=e=>{e.stopPropagation();openMenu()};
@@ -387,7 +431,13 @@ function codeModal(){modal(`<h3>兌換碼</h3><p>輸入兌換碼（例如 DZ-8K3
  let busy=false;const go=async()=>{if(busy)return;busy=true;const el=$('#cRes');el.className='cres';el.textContent='兌換中……';const r=await redeemAny($('#cIn').value);busy=false;
   if(r.err){el.className='cres err';el.textContent=r.err;return}el.className='cres ok';el.innerHTML='兌換成功<br>'+(r.got.length?r.got.map(x=>'・'+x).join('<br>'):'');AU.sfx&&AU.sfx('coin',.7);$('#cIn').value=''};
  $('#cGo').onclick=go;$('#cIn').onkeydown=e=>{if(e.key==='Enter')go()};setTimeout(()=>$('#cIn').focus(),50)}
-window.FP={jump(n,vars){G=freshG();Object.assign(G.V,vars||{});G.node=n;G.i=0;closeTitle();curBg='';run()},redeemAny,get G(){return G},get P(){return P},AU,wallet};
+window.FP={jump(n,vars){RUN++;resetUI();G=freshG();Object.assign(G.V,vars||{});G.node=n;G.i=0;closeTitle();curBg='';run()},redeemAny,get G(){return G},get P(){return P},AU,wallet,putDown,get phone(){return{on:phoneVisible(),min:phoneMin,mode:phoneMode&&phoneMode.kind,choice:!!curCh}}};
+/* failsafe: never leave the phone stuck open with no way forward */
+setInterval(()=>{try{const titleOn=$('#title').classList.contains('show');
+ if((phoneVisible()||phoneMin)&&(titleOn||!phoneMode))closePhone();
+ if(curCh&&curCh.btns.length&&!curCh.btns.some(b=>b.isConnected))placeChoice();
+ if(!phoneVisible()&&document.body.classList.contains('phoneOn'))document.body.classList.remove('phoneOn');
+ updChip()}catch(e){}},1000);
 /* ---------------- boot ---------------- */
 async function boot(){const txt=await (await fetch('story.txt?v=1')).text();P=DZP.parse(txt);renderWallet();
  $('#bCont').disabled=!LS.get('fp_save',null);
