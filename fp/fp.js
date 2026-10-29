@@ -319,7 +319,7 @@ $('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('o
 function endsModal(){const got=new Set(LS.get('fp_ends',[]));modal(`<h3>結局</h3><div class="endl">${ENDS.map(e=>got.has(e.id)?`<div><b>${e.t}</b><br>${e.q}</div>`:`<div class="lock"><b>？？？</b><br>${e.h}</div>`).join('')}</div>`)}
 /* ---------------- interactions (in-world, minimal UI) ---------------- */
 function actOpen(html){const A=$('#act');A.innerHTML=html;A.className='on';return A}
-function actClose(){const A=$('#act');A.className='';A.innerHTML='';$('#cam').classList.remove('run');$('#cam').classList.add('sway');camFx('')}
+function actClose(){const A=$('#act');A.className='';A.innerHTML='';A.onpointerdown=A.onpointerup=A.onpointerleave=null;$('#cam').classList.remove('run');$('#cam').classList.add('sway');camFx('')}
 function hint(t){return `<div class="hint">${t}</div>`}
 const AUTO=()=>TEST&&!!window.__autoPick;
 const tst=(v,ms=60)=>AUTO()?sleep(ms).then(()=>v):null;
