@@ -231,14 +231,21 @@ $('#pDownBtn').addEventListener('click',e=>{e.stopPropagation();putDown()});
 $('#phone').addEventListener('pointerdown',e=>{if(e.target.closest('button,input,a,select'))return;
  if(!e.target.closest('.dev')){e.preventDefault();putDown();return}onTap()});
 // browser / Android back button puts the phone down
+// History guard: while playing, one entry guards the game (back = open/close the menu instead of leaving the site)
+// and a second entry exists while the phone is up (back = put the phone down).
 let navBusy=0;
-function isArmed(){return !!(history.state&&history.state.dzPhone)}
-function syncBack(){if(navBusy)return;try{const want=phoneVisible(),armed=isArmed();
- if(want&&!armed)history.pushState({dzPhone:1},'');
- else if(!want&&armed){navBusy=setTimeout(()=>{navBusy=0;syncBack()},1500);history.back()}}catch(e){}}
+function hDepth(){const st=history.state&&history.state.dz;return st==='p'?2:st==='g'?1:0}
+function wantDepth(){if(!G||$('#title').classList.contains('show'))return 0;return phoneVisible()?2:1}
+function syncBack(){if(navBusy)return;try{const want=wantDepth();let cur=hDepth();
+ while(cur<want){cur++;history.pushState({dz:cur===2?'p':'g'},'')}
+ if(cur>want){navBusy=setTimeout(()=>{navBusy=0;syncBack()},1500);history.back()}}catch(e){}}
 const pushBack=()=>setTimeout(syncBack,0),popBack=pushBack;
 addEventListener('popstate',()=>{const ours=!!navBusy;if(navBusy){clearTimeout(navBusy);navBusy=0}
- if(!ours&&phoneVisible()&&!isArmed())putDown(); // the player pressed the browser / Android back button
+ if(!ours&&hDepth()<wantDepth()){ // the player pressed the browser / Android back button
+  if(phoneVisible())putDown();
+  else if($('#modal').classList.contains('on'))$('#modal').classList.remove('on');
+  else if($('#menu').classList.contains('on'))$('#menu').classList.remove('on');
+  else openMenu()}
  syncBack()});
 function openLine(who){phoneMode={kind:'line',who};if(G)G.chat=who;
  openPhone(`<div class="lnHead"><button class="back" aria-label="放下手機">‹</button><span>${CONTACT[who]||who}</span></div><div class="lnBody" id="lnBody"></div><div class="lnFoot" id="lnFoot"><div class="inp">輸入訊息</div></div>`)}
@@ -301,12 +308,12 @@ async function ending(id){const E=ENDS.find(e=>e.id===id)||ENDS[0];const got=new
 /* ---------------- title / menu ---------------- */
 function resetUI(){AU.stopVoice();tapWaiter=null;closePhone();cancelChoice();hideSub();$('#act').className='';$('#act').innerHTML='';$('#shop').classList.remove('on');$('#shop').innerHTML='';$('#note').classList.remove('on');$('#card').classList.remove('on')}
 function toTitle(){RUN++;resetUI();
- $('#title').classList.add('show');$('#bCont').disabled=!LS.get('fp_save',null);AU.loop('amb','night',-4);AU.loop('bgm','title',0,2)}
+ $('#title').classList.add('show');pushBack();$('#bCont').disabled=!LS.get('fp_save',null);AU.loop('amb','night',-4);AU.loop('bgm','title',0,2)}
 function newGame(){RUN++;resetUI();G=freshG();applyPending();closeTitle();curBg='';$('#clock').textContent='';run()}
 function contGame(){const s=LS.get('fp_save',null);if(!s){newGame();return}RUN++;resetUI();G=s;const chat=G.chat;applyPending();closeTitle();curBg='';const sc=G.scene;
  $('#clock').textContent=sc.time||'';setBg(sc.bg||'black','cut');AU.loop('amb',sc.amb||'none',AMBG[sc.amb]||0);AU.loop('bgm',sc.bgm||'none');
  if(G.i>0){let j=G.i-1;const B=P.N[G.node];while(j>0&&B[j].k!=='choice'&&B[j].k!=='scene')j--;G.i=B[j]&&B[j].k==='choice'?j:G.i}if(chat)openLine(chat);run()}
-function closeTitle(){$('#title').classList.remove('show')}
+function closeTitle(){$('#title').classList.remove('show');pushBack()}
 function openMenu(){if($('#title').classList.contains('show'))return;$('#menu').classList.add('on')}
 $('#menuBtn').onclick=e=>{e.stopPropagation();openMenu()};
 $('#menu').onclick=e=>{if(e.target.id==='menu')$('#menu').classList.remove('on')};
