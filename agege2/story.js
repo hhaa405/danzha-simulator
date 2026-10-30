@@ -45,13 +45,13 @@ window.ENDINGS=[
   dA:'九歲的我，留了一張紙條給長大的我。\n原來時光機，一直在床底下。',
   dB:'他沒有時光機。\n他只是比所有人，早一點點看見。而我，看了他十多年。'}
 ];
-window.FOCUS={s_a_viv:.05,s_b_yu:0,s_b_viv:-.3,s_b_rain:0,s_b_reunion:0,s_river:-.25,s_a_exam:.1,s_a_library:.45,s_a_rechao:-.1,s_a_door:.7,s_a_note:.1,s_a_bento:-0.4,s_a_grad:-0.13,s_a_office:0.26,s_a_shop:-0.13,s_b_bento:-0.13,s_b_door:0.4,s_b_exam:0.32,s_b_soup:-0.13,s_b_tablet:0.13,s_b_window:0.13,s_dodge:-0.26,s_library:0.26,s_math:-0.13,s_meetup:-0.65,s_pc:-0.26,s_rest_yu:-0.4,s_reunion:-0.65,s_harbor:0.13,s_hidden:-0.2};
+window.FOCUS={s_a_viv:.05,s_b_yu:0,s_b_viv:-.3,s_b_rain:0,s_b_reunion:0,s_river:-.25,s_a_exam:.1,s_a_library:.45,s_a_rechao:-.1,s_a_door:.7,s_a_note:.1,s_a_bento:-0.4,s_a_grad:-0.13,s_a_office:0.26,s_a_shop:-0.13,s_b_bento:-0.13,s_b_door:0.4,s_b_exam:0.32,s_b_soup:-0.13,s_b_tablet:0.13,s_b_window:0.13,s_dodge:-0.26,s_library:0.26,s_math:-0.13,s_meetup:-0.65,s_pc:-0.26,s_rest_yu:-0.4,s_reunion:-0.65,s_harbor:0.13,s_hidden:-0.2,s_a_hw_brain:0.42,s_a_soup_drop:-0.23,s_a_greed:-0.39,s_b_rain_block:0.47,s_b_iq_ask:0.05,s_a_kai_help:0.15};
 
 window.STORY_SRC=`// ===================== 第一視角：阿葛 =====================
 == a1_start
 ! pov ag9
 ! hud none
-! title 第一篇|國小　孤僻的小孩
+! title 國小篇．第一章|孤僻的小孩
 @ bg=s_a_window time=週二_上午 bgm=calm amb=class tint=warm
 > 下課鐘響了。全班像被打開的汽水，一下子全衝出去。
 > 我沒動。窗外那棵榕樹的影子，每天這個時候會剛好碰到第三根欄杆。
@@ -65,6 +65,7 @@ tch.x: 阿葛，作業呢？
 - 繼續看窗外的影子 {hidden+=0} -> a1_hw_window
 
 == a1_hw_brain
+@ bg=s_a_hw_brain
 tch.u: 寫在……腦袋裡？
 mate.s: 哈哈哈，阿葛腦袋裡有作業簿！
 tch.x: 那你腦袋裡的第五題答案是多少？
@@ -102,11 +103,12 @@ tch: 好，數學小考，十五分鐘。不准講話。
 
 == a1_test_circle
 > 我在桌上畫了一個圈。再一個。圈和圈中間，答案就跑出來了。
+@ bg=s_a_quiz
 > 我忍不住笑了。旁邊的同學用很害怕的眼神看我。
 mate.u: 老師……阿葛在畫畫……
 tch.x: 阿葛，考試的時候不要玩！
 > 我沒有在玩。我只是在看它轉圈。
-@ time=週五_上午
+@ bg=s_a_100u time=週五_上午
 tch.u: ……阿葛，一百分。
 mate.u: 蛤？他明明在畫圈圈耶！
 ! go a1_dodge
@@ -114,7 +116,7 @@ mate.u: 蛤？他明明在畫圈圈耶！
 == a1_test_normal
 > 我一題一題寫。寫字很慢，比想的慢很多。
 > 寫完第十題的時候，下課鐘剛好響。
-@ time=週五_上午
+@ bg=s_a_100s time=週五_上午
 tch.s: 阿葛，一百分。很好，這次有好好寫。
 > 老師笑了。那是我這學期第一次看到她對我笑。
 ! go a1_dodge
@@ -128,6 +130,7 @@ mate.s: 阿葛！缺一個人啦！來打躲避球！
 - 「我在看影子。」 -> a1_dodge_no
 
 == a1_dodge_go
+@ bg=s_a_dodge_go
 > 我被打中了四次。每次都是同一個人，從同一個角度丟過來。
 > 第五次，我先往左邊躲了。他愣住了。
 mate.u: 你怎麼知道他要丟那邊？
@@ -143,7 +146,8 @@ mate: 影子喔……好啦。那你禮拜六要不要來我家？我家有電�
 ! go a1_pc
 
 == a1_pc
-@ bg=s_pc time=週六_下午 bgm=calm amb=room tint=none fade=blink
+! title 國小篇．第二章|Money game
+@ bg=s_a_pc time=週六_下午 bgm=calm amb=room tint=none fade=blink
 > 阿肥家的電腦很大，會嗡嗡叫。螢幕上卡著一個畫面。
 > 紅紅綠綠的數字，跑來跑去。我盯了很久。
 ag9: 這是什麼？
@@ -157,6 +161,7 @@ mate.s: 我也不知道耶，反正我爸每天都盯著看。
 - 只是看，把那個數字記在心裡 {hidden+=1} -> a1_pc_look
 
 == a1_pc_click
+@ bg=s_a_pc_click
 > 我按了一下。畫面跳出一個視窗，上面寫著「確認賣出」。
 mate.u: 啊啊啊不要按！我爸會殺了我！
 > 阿肥撲過來把視窗關掉。我們兩個在電腦前面喘了很久。
@@ -173,6 +178,7 @@ ag9.s: 不無聊。它在跟我講話。
 ! go a1_news
 
 == a1_news
+! title 國小篇．第三章|找到你了　名叫「規律」的東西
 @ bg=s_news time=週日_晚上 bgm=night amb=room tint=warm fade=blink
 > 家裡的報紙，有一頁全部都是數字。大人叫它股市版。
 > 別人看漫畫。我拿鉛筆，把每天的數字連起來。
@@ -195,6 +201,7 @@ mom: 老師打電話來，說你都不寫作業。
 - 低頭扒飯，假裝嘴巴很忙 -> a1_dinner_eat
 
 == a1_dinner_true
+@ bg=s_a_dinner_true
 mom.u: 規律？
 ag9: 嗯。像天氣一樣。看久了，就知道明天會不會下雨。
 mom.s: ……你這孩子。好啦，但作業還是要寫，知道嗎？
@@ -213,7 +220,7 @@ mom: 慢慢吃啦，又沒人跟你搶。
 ! go a1_six
 
 == a1_six
-@ bg=s_math time=週一_上午 bgm=school amb=class tint=none fade=blink
+@ bg=s_a_board time=週一_上午 bgm=school amb=class tint=none fade=blink
 tch: 阿葛，你上來解這題。
 > 黑板上的題目，是一條線。往下掉，掉到一個地方，就停了。
 > 跟股市版一模一樣。
@@ -223,8 +230,10 @@ tch: 阿葛，你上來解這題。
 
 == a1_six_say
 ag9: 答案是六，因為它會反彈。
+@ bg=s_a_laugh
 mate.s: 哈哈哈哈！反彈？又不是籃球！
 > 全班哄堂大笑。我站在講台上，有點想消失。
+@ bg=s_a_board
 tch.u: ……答案是六。
 > 笑聲停住了。像股價突然停在某個地方。
 > 我第一次知道，對的事情，有時候聽起來很好笑。
@@ -249,88 +258,139 @@ uncle.s: 小鬼頭，你在幹嘛？
 ag9: 我覺得這些數字有規律，碰到某些價位會漲，碰到某些價位會跌。
 uncle.u: 喔？
 > 他愣了一下。大人愣住的樣子，我已經看過很多次了。
+@ bg=s_shop_r1q
+! chart 1
 uncle.s: 好啊，那你猜，明天這檔會漲還是跌？
-> 我盯著那條線。它已經跌了三天，碰到上次停下來的地方。
-? t=mid def=3 | 大叔指著報紙上的一檔股票。
-- 「會漲。」 {candy+=3; hidden+=1} -> a1_shop_r1
-- 「會跌。」 -> a1_shop_r1x
-- 「……我不知道。」 -> a1_shop_r1x
+> 我盯著那條線。它跌了三天，跌回上次停下來的那條虛線。
+> 最後一天那一根，還有底下的量，跟前面都不一樣。
+? t=chart def=3 | 第一題：看最後一根Ｋ棒和成交量，明天會漲還是跌？
+- 「會漲。」 {guess=1} -> a1_shop_r1j
+- 「會跌。」 {guess=-1} -> a1_shop_r1j
+- 「……我不知道。」 {guess=0} -> a1_shop_r1j
+
+== a1_shop_r1j
+> 我用鉛筆，在報紙上畫了一個箭頭。
+! reveal
+! if cok -> a1_shop_r1
+! go a1_shop_r1x
 
 == a1_shop_r1
-ag9: 會漲。
-> 我隨手在報紙上畫了一個箭頭。
-@ time=週四_傍晚
+@ bg=s_shop_r1 time=週四_傍晚
 uncle.s: 小鬼，你猜對了。
 uncle.s: 規律不只可以看，還可以換糖果吃。
+! set candy+=3; hidden+=1
+! sfx coin
 > 一包糖果，塞進我手裡。
 > 我捧著它，沒有拆開。
 > 原來腦子裡看到的東西，可以變成真的東西。
 ! go a1_shop_r2
 
 == a1_shop_r1x
-@ time=週四_傍晚
+@ bg=s_shop_r1x time=週四_傍晚
+! when cdir>0
 uncle.s: 嘿，小鬼，昨天漲了喔。你猜錯啦。
-> 我看著報紙。它真的在那個地方轉彎了。我明明看到了。
+! when cdir<0
+uncle.s: 嘿，小鬼，昨天跌了喔。你猜錯啦。
+> 我看著報紙。最後那一根，其實早就在告訴我了。
 > 我看到了，卻不敢相信自己。
 uncle: 不過我看你很認真，這顆給你。
 ! set candy+=1
 ! go a1_shop_r2
 
 == a1_shop_r2
-@ time=週一_傍晚
+@ bg=s_shop_r2 time=週一_傍晚
+! chart 2
 uncle: 來來來，第二題。這檔連漲五天了，明天呢？
 > 線很陡。像溜滑梯倒過來。
 > 它頂到上個月的高點了。那裡，有一個看不見的天花板。
-? t=mid def=1 | 大叔把糖果罐搖了搖。
-- 「明天會累，會掉下來。」 {candy+=3; hidden+=1} -> a1_shop_r2ok
-- 「會繼續漲！漲到天上！」 -> a1_shop_r2x
+> 天花板會擋住它，還是被它撞破？要看最後一根，和量。
+? t=chart def=3 | 第二題：頂到前高了。明天會漲還是跌？
+- 「明天會累，會掉下來。」 {guess=-1} -> a1_shop_r2j
+- 「會衝過去，繼續漲！」 {guess=1} -> a1_shop_r2j
+- 「……我不知道。」 {guess=0} -> a1_shop_r2j
+
+== a1_shop_r2j
+! reveal
+! if cok -> a1_shop_r2ok
+! go a1_shop_r2x
 
 == a1_shop_r2ok
+@ bg=s_shop_r2a
+! when cdir<0
 uncle.u: 哈！我賭它繼續漲。
-@ time=週二_傍晚
+! when cdir>0
+uncle.u: 哈！我賭它會掉下來。
+@ bg=s_shop_r2ok time=週二_傍晚
+! when cdir<0
 uncle.s: ……跌了。你這小鬼，邪門喔。
+! when cdir>0
+uncle.s: ……還真的衝過去了。你這小鬼，邪門喔。
+! set candy+=3; hidden+=1
+! sfx coin
 ! go a1_shop_r3
 == a1_shop_r2x
-@ time=週二_傍晚
+@ bg=s_shop_r2x time=週二_傍晚
+! when cdir<0
 uncle.s: 跌啦！漲到天上？天上沒有天花板喔，報紙上有。
+! when cdir<0
 > 我記住了。天花板。
+! when cdir>0
+uncle.s: 漲啦！你看底下的量，那麼大一根，天花板被撞破啦。
+! when cdir>0
+> 我記住了。量大的時候，天花板也會破。
 ! go a1_shop_r3
 
 == a1_shop_r3
-@ time=週五_傍晚 tint=dusk
+@ bg=s_shop_r3 time=週五_傍晚 tint=dusk
 uncle: 最後一題，猜對了整罐給你。
 > 整罐。我的心臟跳得比報紙上的數字還快。
+! chart 3
 > 那檔股票，一整個禮拜都在同一個地方晃來晃去。不上，不下。
+> 可是它不是亂晃。它在呼吸。
 ! rhythm 6 數著它晃動的節拍
 ! if rh>=4 -> a1_shop_r3see
 > 我數亂了。線在我眼前晃，越看越不清楚。
-? t=high def=2 | 大叔把手放在糖果罐上。
-- 「會漲！」 -> a1_shop_r3x
-- 「不知道……」 -> a1_shop_r3x
+> 只能自己一根一根數了。
+! go a1_shop_r3q
 
 == a1_shop_r3see
-> 一、二、三、四。它每晃四天，就會往上跳一次。今天是第四天。
-? t=high def=3 | 大叔把手放在糖果罐上。
-- 「明天會往上跳。」 {candy+=10; hidden+=1} -> a1_shop_r3ok
-- 「會往下。」 -> a1_shop_r3x
-- 「……不知道。」 -> a1_shop_r3x
+! chart mark
+> 一、二、三、四。它每晃四天，就會往上跳一次。
+> 我在每個跳起來的地方，都點了一個點。
+! go a1_shop_r3q
+
+== a1_shop_r3q
+? t=chart def=3 | 最後一題：數一數它的節拍。明天呢？
+- 「明天會往上跳。」 {guess=1} -> a1_shop_r3j
+- 「會往下。」 {guess=-1} -> a1_shop_r3j
+- 「……不知道。」 {guess=0} -> a1_shop_r3j
+
+== a1_shop_r3j
+! reveal
+! if cok -> a1_shop_r3ok
+! go a1_shop_r3x
 
 == a1_shop_r3ok
-@ time=週六_傍晚
+@ bg=s_shop_r3ok time=週六_傍晚
 uncle.s: 小鬼頭，你真的……好啦，整罐都給你！
+! set candy+=10; hidden+=1
+! sfx coin
 uncle: 長大以後要是發財了，記得回來請我喝飲料。
 ag9.s: 好。
 > 我抱著糖果罐走回家。夕陽把我的影子拉得很長。
 ! go a1_end
 == a1_shop_r3x
-@ time=週六_傍晚
+@ bg=s_shop_r3x time=週六_傍晚
+! when cdir>0
 uncle: 哈，往上跳啦。沒關係，猜錯是正常的，大人也天天猜錯。
+! when cdir<0
+uncle: 哈，往下掉啦。沒關係，猜錯是正常的，大人也天天猜錯。
 ! set candy+=1
-> 我看著那條線往上跳。差一點點。只差一點點。
+> 我看著那條線。差一點點。只差一點點。
 ! go a1_end
 
 == a1_end
-@ bg=s_a_shop time=週六_晚上 bgm=emo tint=night
+@ bg=s_a_walkhome time=週六_晚上 bgm=emo tint=night
 > 回家的路上，我看著手裡的糖果。
 ? t=calm | 這些糖果……
 - 全部存在鐵盒裡，一顆都不吃 {hidden+=1} -> a1_end_keep
@@ -338,16 +398,19 @@ uncle: 哈，往上跳啦。沒關係，猜錯是正常的，大人也天天猜�
 - 現在吃一顆，甜甜的 -> a1_end_eat
 
 == a1_end_keep
+@ bg=s_a_tin
 > 我把它們放進餅乾鐵盒，放在床底下。
 > 糖果只是開端。我心裡知道，這條路能換到的，遠遠不止糖果。
 ! go a2_start
 == a1_end_share
+@ bg=s_a_share
 > 隔天我分了一半給阿肥。他高興得在教室裡轉圈。
 mate.s: 阿葛，你是我最好的朋友！
 > 最好的朋友。這個詞，我想了很久。
 > 糖果只是開端。這條路能換到的，遠遠不止糖果。
 ! go a2_start
 == a1_end_eat
+@ bg=s_a_eat
 > 我拆開一顆。好甜。
 > 原來規律，是甜的。
 > 糖果只是開端。這條路能換到的，遠遠不止糖果。
@@ -356,11 +419,12 @@ mate.s: 阿葛，你是我最好的朋友！
 // ---------- 國中 ----------
 == a2_start
 ! pov ag14
-! title 第二篇|國中　還是那個他
+! title 國中篇．第一章|還是那個他
 @ bg=s_a_exam time=週一_早上 bgm=calm amb=class tint=cold
 ! hud none
 > 國中了。制服變白了，書包變重了。
 > 其他的，都沒變。
+@ bg=s_a_blank
 tch.x: 阿葛，你這次的小卷，又是白卷。
 > 白卷不是因為不會。是因為那些題目，跟昨天的長得一樣。
 ? t=calm | 老師把白卷放在你桌上。
@@ -374,6 +438,7 @@ ag14: 我每次都有做到。
 > 她沒辦法反駁。這比白卷更讓她生氣。
 ! go a2_rank
 == a2_blank_draw
+@ bg=s_a_blank_draw
 tch.u: 你在畫什麼？
 ag14: 下個月的段考平均分數。會比這次低四分。
 tch.x: ……出去罰站。
@@ -384,7 +449,7 @@ tch.x: ……出去罰站。
 ! go a2_rank
 
 == a2_rank
-@ time=段考放榜日 bgm=school
+@ bg=s_a_rank time=段考放榜日 bgm=school
 mate.u: 全校第一……又是阿葛？！
 mate: 他小卷不是都交白卷嗎？這不合理啦！
 > 阿肥跟我同一所國中。他長高了，但還是會在丟東西之前退左腳。
@@ -400,7 +465,7 @@ me12.x: 你就是阿葛？
 ag14: 嗯。
 me12.s: 我會超越你的。
 > 他說完就走了。我不太懂。我又沒有在跑。
-@ time=智力測驗發還
+@ time=智力測驗發還 keep=1
 > 智力測驗發回來了。我看著上面的數字，皺著眉頭。
 > 這個數字，好像不太對。測驗題太少了，沒辦法量到上面。
 me12.s: 欸欸，你幾分？我138耶，全班第二高。
@@ -411,6 +476,7 @@ me12.s: 你眉頭皺成那樣……該不會很低吧？哈哈，智商低喔？
 - 繼續皺眉，不說話 -> a2_iq_silent
 
 == a2_iq_show
+@ bg=s_a_iq_show
 > 我把試卷翻開。
 > 208。
 me12.u: ……
@@ -418,6 +484,7 @@ me12.u: ……
 > 那一整個禮拜，他都沒有跟我說話。後來我才知道，那叫啞口無言。
 ! go a2_mock
 == a2_iq_hide
+@ bg=s_a_iq_lunch
 me12.u: 你……你在誇我？
 ag14: 嗯。138真的很高。
 me12.x: 那你幾分？
@@ -434,7 +501,7 @@ me12.u: 兩……兩百零八？
 ! go a2_mock
 
 == a2_mock
-@ bg=s_a_tablet time=週五_放學 bgm=school amb=class tint=warm
+@ bg=s_a_mock3 time=週五_放學 bgm=school amb=class tint=warm
 > 放學後，我會趴在桌上看行情。手指在計算機上輕輕滑。
 mate.s: 阿葛，你又在瞎掰什麼？
 > 阿肥帶著兩個同學圍過來。他們看我的平板，像在看外星文字。
@@ -469,12 +536,14 @@ mate.u: 哇，好跩喔！
 > 0.1美元。一顆糖果都比它貴。
 > 可是它的線，跟我在報紙上畫過的所有線都不一樣。它在慢慢長大。
 me12: 阿葛，你在幹嘛？
+@ bg=s_a_zhe14
 > 阿哲湊過來。他現在每天放學都會來我這裡，假裝只是路過。
 ag14: 我在看數字，你懂嗎？這些東西長大會變成錢。
 me12.s: 變錢？我們還小，錢都是爸媽給的，不是你畫線就能出來的。
 ag14.s: 你不懂，我看到規律。就像國小大叔給我糖果一樣，這些數字也是有規則的。
 ag14: 只要抓對時機，零用錢也能變很多。
 ! hud btc
+@ bg=s_a_forum
 > 我的零用錢，存了一整個學期。一共十塊美金左右。
 ? t=mid def=3 | 你的手指停在「買入」上面。
 - ALL IN。全部，買一百顆 {btc+=100; hidden+=1} -> a2_buy_all
@@ -482,6 +551,7 @@ ag14: 只要抓對時機，零用錢也能變很多。
 - 算了，再觀察一陣子 -> a2_buy_none
 
 == a2_buy_all
+@ bg=s_a_buy_all
 > 我按下去了。一百顆。0.1美元一顆。
 me12.u: 為什麼要買這個？
 ag14.s: 因為它會長大啊。
@@ -517,6 +587,7 @@ qing14: 我們……順路。要不要一起撐？
 - 低頭說不出話 -> a2_rain_freeze
 
 == a2_rain_share
+@ bg=s_a_rain_share
 > 我把傘接過來。傘很小，我把它往她那邊歪。
 > 我的左肩濕了一整片。可是我一點都不覺得冷。
 qing14.s: 你肩膀濕掉了啦。
@@ -526,6 +597,7 @@ qing14.u: 你連這個都知道？
 > 那個笑，我沒有辦法計算。
 ! go a2_crash
 == a2_rain_run
+@ bg=s_a_rain_run
 ag14: 不用！我跑很快！
 > 我衝進雨裡。跑了十公尺，回頭看了一眼。
 > 她撐著傘站在原地，好像在笑。
@@ -540,6 +612,7 @@ qing14.s: ……那傘借你。我等我媽來接。
 ! go a2_crash
 
 == a2_crash
+! title 國中篇．第三章|歸零的那一晚
 @ bg=s_night_crash time=週六_凌晨_2:14 bgm=night amb=night tint=night fade=blink
 > 半夜兩點。睡不著。我打開平板。
 ! phone 行情|#BTC  ▼ 61%|BTC/USD  $2.01  ▼ 61%|交易所 Mt.G：暫停提領|論壇：完了，全部歸零|論壇：快逃啊啊啊|論壇：我早說是騙局
@@ -558,20 +631,20 @@ qing14.s: ……那傘借你。我等我媽來接。
 > 我把平板蓋起來。閉上眼睛。
 > 規律說，這裡是地板。我選擇相信規律，不相信尖叫。
 ! blink
-@ time=三週後 bgm=calm tint=gold
+@ bg=s_a_recover time=三週後 bgm=calm tint=gold
 > 三週後，它回來了。比原來更高。
 ! go a2_note
 == a2_crash_half
 ! fx none
 > 我賣了一半。手在抖。賣完那一刻，我就知道錯了。
-@ time=三週後 bgm=calm tint=gold
+@ bg=s_a_recover time=三週後 bgm=calm tint=gold
 > 三週後，它回來了。比原來更高。
 > 我把那天的感覺寫在筆記本上：手，不能比腦袋快。
 ! go a2_note
 == a2_crash_all
 ! fx none
 > 我全部賣了。九成，換回了一點點錢。
-@ time=三週後 bgm=calm tint=gold
+@ bg=s_a_recover time=三週後 bgm=calm tint=gold
 > 三週後，它回來了。比原來更高。
 > 我用剩下的錢，再買回了一點點。很少，很少。
 > 那天晚上，我把枕頭咬住，沒有哭出聲音。
@@ -605,7 +678,7 @@ qing14.s: 那你的實驗成功的話，要第一個跟我說喔。
 ! go a2_mom
 
 == a2_mom
-@ bg=s_dinner time=週日_晚上 bgm=emo amb=room tint=warm fade=blink
+@ bg=s_a_mom14 time=週日_晚上 bgm=emo amb=room tint=warm fade=blink
 mom.x: 阿葛，你的零用錢呢？存錢筒怎麼是空的？
 mom: 你是不是被人騙了？還是在網路上買了什麼奇怪的東西？
 > 媽媽的筷子又停在半空中了。
@@ -614,6 +687,7 @@ mom: 你是不是被人騙了？還是在網路上買了什麼奇怪的東西？
 - 「我拿去買書了。」 -> a2_mom_lie
 
 == a2_mom_true
+@ bg=s_a_mom_true
 > 我解釋了二十分鐘。從糖果講到地板，從地板講到天花板。
 mom.u: ……我聽不懂。
 mom.s: 但你講得很像你爸以前講他的夢想。
@@ -628,7 +702,7 @@ mom: 書喔……那就好。
 
 == a2_future
 ! title 國中篇．第四章|一場長達十年的實驗
-@ bg=s_a_tablet time=週三_放學 bgm=emo amb=class tint=gold fade=blink
+@ bg=s_a_future time=週三_放學 bgm=emo amb=class tint=gold fade=blink
 me12: 阿葛，你到底在想什麼？
 > 阿哲今天沒有假裝路過。他直接坐在我對面。
 ag14.s: 我在看未來啊，你看不到的那一部分。
@@ -654,7 +728,7 @@ ag14: 你的規律。每個人都有。
 // ---------- 高職 ----------
 == a3_start
 ! pov ag17
-! title 第三篇|高職　瘋狂的投資者
+! title 高職篇．第一章|瘋狂的投資者
 @ bg=s_kclass time=2017．九月 bgm=warm amb=kitchen tint=warm
 ! hud btc
 > 台南高商，餐飲科。媽媽問我為什麼。我說，因為廚房跟市場很像。
@@ -686,12 +760,12 @@ chef.s: 嗯。手還行。
 chef.u: 蛤？
 ag17: 颱風要來了。產地會淹水。
 chef.x: ……你給我先把蔥切好。
-@ time=十月 
+@ bg=s_a_hall time=十月
 > 一個月後，蔥漲了三成。師傅在走廊上看到我，沉默地點了點頭。
 ! go a3_kai
 
 == a3_kai
-@ bg=s_kclass time=實習課 bgm=warm amb=kitchen
+@ bg=s_a_kai time=實習課 bgm=warm amb=kitchen
 kai.u: 欸欸欸，救命，我的醬汁要燒焦了！
 > 隔壁的阿凱。綁著頭巾，手忙腳亂。他做菜很有熱情，但很怕火。
 ? t=6 def=3 | 阿凱的鍋子開始冒黑煙。
@@ -700,6 +774,7 @@ kai.u: 欸欸欸，救命，我的醬汁要燒焦了！
 - 專心顧自己的鍋 -> a3_kai_no
 
 == a3_kai_help
+@ bg=s_a_kai_help
 > 我關小火，加了一匙水。醬汁冒出一聲嘆氣，活過來了。
 kai.s: 哇靠，你神人喔！以後你開店，我一定去幫你！
 ag17: 我沒有要開店。
@@ -715,7 +790,7 @@ kai.s: 欸，真的救回來了！你很會指揮耶。
 ! go a3_scholar
 
 == a3_scholar
-@ bg=s_a_tablet time=週五_放學 bgm=calm amb=room tint=cold fade=blink
+@ bg=s_a_scholar time=週五_放學 bgm=calm amb=room tint=cold fade=blink
 ! phone 學校公告|恭喜 餐飲科一年級 阿葛 同學|獲得本學期卓越獎學金|新台幣  300,000 元|媽：兒子你太厲害了！！！要不要買新衣服？|>不用，媽。我有規劃。
 > 三十萬。我看著這個數字，想了很久。
 > 可以買很多衣服，很多零食。可是衣服會舊，零食會吃完。
@@ -777,7 +852,7 @@ mra.s: ……有意思。好，成交。
 ! go a3_fear
 
 == a3_fear
-@ bg=s_a_tablet time=週一_午休 bgm=calm amb=class tint=gold
+@ bg=s_a_zhe15 time=週一_午休 bgm=calm amb=class tint=gold
 me15: 你不怕跌嗎？
 > 阿哲。他跳級又跳級，現在也念餐飲科。他說，他想看我到底在搞什麼。
 ag17.s: 跌了沒關係，長期看就好。
@@ -828,10 +903,11 @@ mra: 小鬼，你說話算話。我記住了。
 == a3_soup_hold
 mra.u: 你要拿其他部位補？你確定？
 ag17: 確定。地板在115萬。
-@ time=兩天後
+@ bg=s_a_rebound time=兩天後
 mra.s: ……反彈了。你這小鬼，真的看得到地板？
 ! go a3_library
 == a3_soup_drop
+@ bg=s_a_soup_drop
 ! fx none
 > 手機滑進水槽。等我撈出來、擦乾、開機，已經是十分鐘後。
 > A先生依約賣掉了那一份。十分鐘，市場已經走了好遠。
@@ -874,7 +950,8 @@ qing14.s: 這一頁的線，好像國中你傳給我的那一條。
 ! go a3_years
 
 == a3_years
-@ bg=s_a_tablet time=三年 bgm=emo amb=room tint=gold fade=blink
+! title 高職篇．第二章|定投結束
+@ bg=s_a_years time=三年 bgm=emo amb=room tint=gold fade=blink
 > 三年，一下子就過了。每學期三十萬，一半交給A先生，一半留著生活和定投。
 > 我依然是第一。阿哲，依然是第二。
 ! phone 筆記本．定投紀錄|一上  ▲  25 顆|一下  ▲  23 顆|二上  ▲  24 顆|二下  ▲  22 顆|三上  ▲  24 顆|三下  ▲  24 顆|合計  ▲  142 顆
@@ -884,7 +961,7 @@ qing14.s: 這一頁的線，好像國中你傳給我的那一條。
 ! go a3_qing_bye
 
 == a3_qing_bye
-@ bg=s_rain time=畢業前一週 bgm=emo amb=rain tint=cold
+@ bg=s_a_qingmsg time=畢業前一週 bgm=emo amb=rain tint=cold
 > 畢業前，小晴傳訊息給我。她要搬去台北念大學了。
 ! phone 訊息|小晴：阿葛，我下禮拜要搬去台北了|小晴：那把透明傘，你還留著嗎？|小晴：留著的話，就當紀念吧|小晴：你的實驗，成功的話記得告訴我
 ? t=14 def=3 | 你要回什麼？
@@ -942,7 +1019,7 @@ ag17.s: 存著就好，長期看漲。
 // ---------- 初入社會 ----------
 == a4_start
 ! pov ag22
-! title 最終篇|初入社會　冷靜操盤手
+! title 初入社會篇|冷靜操盤手
 @ bg=s_a_bento time=週二_中午 bgm=calm amb=street tint=warm
 ! hud both
 > 高職畢業以後，我走進了社會。社會比教室吵很多。
@@ -959,6 +1036,7 @@ ag22.s: 市場不會等我，規律會過期。
 me20.s: ……你這句話，聽起來好像很帥，但你嘴邊有飯粒。
 ! go a4_meetup
 == a4_bento_eat
+@ bg=s_a_bento_eat
 > 我把手機蓋起來。排骨，好吃。原來我很久沒有好好吃一頓飯了。
 me20.s: 你看，世界沒有毀滅。
 ag22: 嗯。剛剛漲了兩趴。
@@ -1011,7 +1089,7 @@ viv: 算了，有緣再見，角落先生。
 ! go a4_dinner
 
 == a4_eth2
-@ time=三個月後 tint=cold
+@ time=三個月後 tint=cold keep=1
 ! phone 合約帳戶|#Ξ 10.2  ▲|ETH 本位．多單|保證金率  安全|浮動盈虧  ▲ 920%
 ! set eth=10
 > 1顆，變成10顆。我沒有開香檳。我只是在筆記本上，畫了一條新的線。
@@ -1040,7 +1118,7 @@ me20: 你知道嗎，你這樣很難交朋友。
 ! go a4_advice
 
 == a4_advice
-@ bg=s_meetup time=週末_講座後 bgm=warm amb=rest tint=warm
+@ bg=s_a_advice time=週末_講座後 bgm=warm amb=rest tint=warm
 > 有人知道我在做什麼了。陌生人來問我投資心得。
 ? t=calm | 一個大學生紅著眼問你：我已經虧了一半，怎麼辦？
 - 「只要理解規律，就不用怕。」 {calm+=1} -> a4_advice_line
@@ -1055,7 +1133,7 @@ ag22: 先關掉螢幕，去睡一覺。害怕的時候，看到的都不是規�
 ! go a4_kitchen
 
 == a4_kitchen
-@ bg=s_a_trade time=週六_傍晚 bgm=warm amb=kitchen tint=warm fade=blink
+@ bg=s_a_kitchen time=週六_傍晚 bgm=warm amb=kitchen tint=warm fade=blink
 > 我在家裡的廚房煮菜。鍋子在火上，螢幕在桌上。
 > 一邊翻炒，一邊看幣價。蒜要在金黃的前一秒起鍋。單也是。
 me20.u: ……你在幹嘛？
@@ -1070,6 +1148,7 @@ me20.u: ……你在幹嘛？
 - 兩邊都想顧，手忙腳亂 {eth=30; greed+=1} -> a4_k_mess
 
 == a4_k_hold
+@ bg=s_a_k_hold
 ! fx none
 > 我關火。追加保證金。然後，等。
 > 那根針收回去了。像被大叔塞回罐子裡的糖果。
@@ -1139,6 +1218,7 @@ qing22.s: 你的實驗，成功了嗎？
 > 十年了。她還記得。
 ! go a4_re_after
 == a4_re_umb
+@ bg=s_a_re_umb
 qing22.u: 這是……國中那把？你還留著？
 ag22: 我說過，等妳回台南，我撐給妳。
 > 她看著那把傘，眼睛紅了一下，然後笑了。
@@ -1155,7 +1235,7 @@ qing22.s: 你還是一樣，話很少。
 ! go a4_viv
 
 == a4_viv
-@ bg=s_meetup time=週三_晚上 bgm=warm amb=rest tint=warm
+@ bg=s_a_vivmsg time=週三_晚上 bgm=warm amb=rest tint=warm
 ! if viv<1 -> a4_yu2
 ! phone 訊息|Vivian：角落先生，你上次說的那件事，我驗證了|Vivian：你是對的|Vivian：週五有空嗎？我請你吃飯。不聊幣，或者，只聊一點點
 ? t=14 def=3 | 你看著 Vivian 的訊息。
@@ -1164,6 +1244,7 @@ qing22.s: 你還是一樣，話很少。
 - 已讀，不回 -> a4_viv_no
 
 == a4_viv_yes
+@ bg=s_a_vivbar
 > 週五，她坐在吧台。我做了一桌菜。她第一次笑得不像在談判。
 viv.s: 你做菜的時候，眼神跟看盤一模一樣。
 viv: 我很好奇，你這種人，會為了什麼停下來。
@@ -1177,7 +1258,7 @@ viv.s: 好，那就只聊幣。……一點點就好。
 ! go a4_yu2
 
 == a4_yu2
-@ bg=s_rest_yu time=週四_打烊前 bgm=warm amb=rest tint=warm fade=blink
+@ bg=s_a_yu2 time=週四_打烊前 bgm=warm amb=rest tint=warm fade=blink
 ! if yu<1 -> a4_climb
 yu.s: 老闆，我下個月在運河邊有個小畫展。
 yu: 你……要不要來看？就當作，我請你吃麵的回禮。
@@ -1200,7 +1281,7 @@ yu.s: 沒關係。我知道，你的世界很忙。
 ! go a4_climb
 
 == a4_climb
-@ bg=s_a_trade time=那一年的牛市 bgm=tense amb=room tint=cold fade=blink
+@ bg=s_a_climb time=那一年的牛市 bgm=tense amb=room tint=cold fade=blink
 ! if eth<1 -> a4_noeth
 ! phone 合約帳戶|#Ξ 812.0  ▲|ETH 本位．多單|從 0.4 → 1 → 10 → 100 → 800|浮動盈虧  ▲ 驚人|Vivian：你還不平倉？|阿哲：你還活著嗎？三天沒回訊息了
 ! set eth=800
@@ -1232,6 +1313,7 @@ yu.s: 沒關係。我知道，你的世界很忙。
 ! go a5_start
 
 == a4_greed
+@ bg=s_a_greed
 > 八千。八千顆。我腦袋裡第一次出現一個不是規律的聲音。
 > 那個聲音說：你是多啦A夢，你不會錯。
 ! sfx crash
@@ -1289,7 +1371,7 @@ ag22.s: 照規律走。
 ! end ordinary
 
 == a5_bond
-@ bg=s_friend time=2025．跨年夜 bgm=warm amb=night tint=night fade=blink
+@ bg=s_a_friend time=2025．跨年夜 bgm=warm amb=night tint=night fade=blink
 me20.s: 你真的來了？我以為你會在看盤。
 ag22.s: 今晚市場休息。
 > 我們坐在他店的頂樓。啤酒，還有一包從柑仔店買來的糖果。
@@ -1312,7 +1394,7 @@ ag22.s: 成功了。妳是第一個知道的。
 ! end love_qing
 
 == a5_love_yu
-@ bg=s_rest_yu time=2025．跨年夜 bgm=emo amb=rest tint=night fade=blink
+@ bg=s_a_yu_end time=2025．跨年夜 bgm=emo amb=rest tint=night fade=blink
 yu.s: 老闆，你真的回來了。
 > 她把畫遞給我。畫裡是一個站在鍋子前面的人，旁邊是一個坐在三號桌的人。
 yu: 我想說……我不只是喜歡你的麵。
@@ -1370,7 +1452,7 @@ ag9: 影子明天會碰到第三根欄杆。
 ! go b1_teacher
 
 == b1_teacher
-@ bg=s_math time=國小．數學課 bgm=school amb=class tint=none fade=blink
+@ bg=s_b_teacher time=國小．數學課 bgm=school amb=class tint=none fade=blink
 > 老師常常氣得半死，因為他幾乎不寫作業，考卷上只寫幾行，卻總能答對最難的題目。
 tch.x: 阿葛，作業呢？
 ag9: 寫在腦袋裡了。
@@ -1392,7 +1474,7 @@ tch: 這孩子腦袋不知道裝了什麼。
 ! go b1_dodge
 
 == b1_dodge
-@ bg=s_dodge time=國小．下課 bgm=school amb=street tint=warm fade=blink
+@ bg=s_b_dodge time=國小．下課 bgm=school amb=street tint=warm fade=blink
 mate.s: 阿葛！缺一個人啦！來打躲避球！
 > 這是阿肥。阿葛國小的同學，後來也跟我們念同一所國中。他跟我講過很多阿葛的事。
 mate: 他第一次來打躲避球，被打中四次。第五次，他先躲了。
@@ -1403,7 +1485,7 @@ mate.u: 他說，丟球的人每次丟之前，左腳都會往後退。那時候
 
 == b1_pc
 ! title 國小篇．第二章|Money game
-@ bg=s_pc time=國小三年級．週六 bgm=calm amb=room tint=none fade=blink
+@ bg=s_b_pc time=國小三年級．週六 bgm=calm amb=room tint=none fade=blink
 > 阿葛在國小三年級時，人生第一次碰到「錢的遊戲」。
 > 那天他去同學家玩電腦，電腦螢幕上正好卡著一個數字跑來跑去的頁面。
 > 上面紅紅綠綠的字，他盯了很久才問：
@@ -1418,7 +1500,7 @@ mate.s: 我也不知道耶，反正我爸每天都盯著看。
 
 == b1_rule
 ! title 國小篇．第三章|找到你了　名叫「規律」的東西
-@ bg=s_news time=國小．夜晚 bgm=night amb=room tint=warm fade=blink
+@ bg=s_b_news time=國小．夜晚 bgm=night amb=room tint=warm fade=blink
 > 阿葛沒再多話，可是眼睛卻盯得死死的。
 > 他發現那些數字不像亂跳，而是有規律，好像在呼吸。
 > 有些數字碰到一個地方就會往下掉，碰到另一個地方就會往上衝。
@@ -1431,7 +1513,7 @@ mate.s: 我也不知道耶，反正我爸每天都盯著看。
 ! go b1_mom
 
 == b1_mom
-@ bg=s_dinner time=國小．晚餐 bgm=emo amb=room tint=warm fade=blink
+@ bg=s_b_mom time=國小．晚餐 bgm=emo amb=room tint=warm fade=blink
 > 很多年後，阿葛的媽媽請我吃飯。她跟我說了一件事。
 mom.x: 那時候老師打電話來，說他都不寫作業。我好擔心。
 mom: 我問他在報紙上畫什麼，他說，他在找規律。
@@ -1450,7 +1532,7 @@ mom: 厲害的孩子，也是會讓媽媽擔心的。
 ! go b1_six
 
 == b1_six
-@ bg=s_math time=國小．數學課 bgm=school amb=class tint=none fade=blink
+@ bg=s_b_six time=國小．數學課 bgm=school amb=class tint=none fade=blink
 > 有一次數學課，老師叫他解題。他愣了一下，突然冒出一句：
 ag9: 答案是六，因為它會反彈。
 mate.s: 哈哈哈哈哈！反彈！又不是籃球！
@@ -1473,11 +1555,12 @@ uncle.s: 小鬼頭，你在幹嘛？
 ag9: 我覺得這些數字有規律，碰到某些價位會漲，碰到某些價位會跌。
 > 大叔愣了一下，沒想到一個小學生會講這種話。他心血來潮說：
 uncle.s: 好啊，那你猜，明天這檔會漲還是跌？
-> 那檔股票，已經跌了三天，停在上次轉彎的地方。
-? t=mid def=3 | 如果是我站在那個柑仔店門口，我會猜……
-- 跟阿葛一樣：會漲 {look+=1; candy+=0} -> b1_shop_same
-- 會跌。跌了三天，當然繼續跌 -> b1_shop_diff
-- 不敢猜 -> b1_shop_diff
+! chart 1 up
+> 那檔股票，已經跌了三天，停在上次轉彎的地方。最後一根，下面拖著一條長長的影子。
+? t=chart def=3 | 如果是我站在那個柑仔店門口，我會猜……
+- 跟阿葛一樣：會漲 {look+=1; guess=1} -> b1_shop_same
+- 會跌。跌了三天，當然繼續跌 {guess=-1} -> b1_shop_diff
+- 不敢猜 {guess=0} -> b1_shop_diff
 
 == b1_shop_same
 > 我猜，我會跟他一樣。……不，說實話，我不確定。
@@ -1489,7 +1572,12 @@ uncle.s: 好啊，那你猜，明天這檔會漲還是跌？
 == b1_shop_ans
 > 阿葛低頭盯了幾秒，隨手在報紙上畫了個箭頭：
 ag9: 會漲。
-@ time=第二天．傍晚
+! reveal
+! when cok>0
+> 報紙翻到下一天：紅的。我也猜對了——可是我心裡知道，我只是看著他猜。
+! when cok<1
+> 報紙翻到下一天：紅的。他對了，我沒有。
+@ bg=s_b_candy time=第二天．傍晚
 > 第二天，大叔拿著一包糖果塞到他手裡：
 uncle.s: 小鬼，你猜對了。規律不只可以看，還可以換糖果吃。
 ! set candy+=3
@@ -1500,7 +1588,7 @@ uncle.s: 小鬼，你猜對了。規律不只可以看，還可以換糖果吃�
 ! go b1_uncle
 
 == b1_uncle
-@ bg=s_a_shop time=很多年後 bgm=warm amb=street tint=warm
+@ bg=s_b_uncle_old time=很多年後 bgm=warm amb=street tint=warm
 > 很多年後，我自己去了一趟那間柑仔店。大叔老了，毛巾還掛在脖子上。
 uncle.s: 你說那個小鬼頭喔？記得記得！後來他每次都猜對，我整罐糖果都輸給他了。
 uncle: 他還說，長大發財了要回來請我喝飲料。
@@ -1519,7 +1607,7 @@ uncle.s: 規律喔……那個小鬼，到現在還在講這個。好，我等�
 ! go b1_end
 
 == b1_end
-@ bg=s_b_shop time=國小．黃昏 bgm=emo amb=street tint=dusk
+@ bg=s_b_dusk time=國小．黃昏 bgm=emo amb=street tint=dusk
 > 從那天開始，他看報紙更認真了。
 > 糖果只是開端，他心裡知道，這條路能換到的，遠遠不止糖果。
 ! go b2_start
@@ -1550,7 +1638,7 @@ ag14: ……嗯。
 ! go b2_iq
 
 == b2_iq
-@ bg=s_b_exam time=智力測驗發還 bgm=school amb=class tint=none
+@ bg=s_b_iq time=智力測驗發還 bgm=school amb=class tint=none
 > 有一次智力測驗，我拿了138分，自以為超厲害。
 > 結果他坐在角落，手裡拿著測驗單，眉頭緊鎖。
 ? t=mid def=1 | 他眉頭皺成那樣……
@@ -1565,6 +1653,7 @@ ag14: 208。
 > 那一週我整個人啞口無言。
 ! go b2_coin
 == b2_iq_ask
+@ bg=s_b_iq_ask
 me12: 你……幾分？
 > 他沒說話，只是把試卷翻過來。
 > 208分。
@@ -1617,7 +1706,7 @@ ag14: 老師也聽不懂。沒關係。
 
 == b2_mock
 ! title 國中篇．第三章|為規律付出時間
-@ bg=s_b_exam time=國中．放學後 bgm=school amb=class tint=warm fade=blink
+@ bg=s_b_mock time=國中．放學後 bgm=school amb=class tint=warm fade=blink
 > 我看著他偷偷建立自己的小小帝國。
 > 每次放學，他都趴在桌上看行情，手指輕輕滑動計算機，像是在和未來談條件。
 > 班上同學根本不懂他在幹嘛，有時會圍過來說：
@@ -1662,6 +1751,7 @@ qing14.s: 阿葛……我們順路。要不要一起撐？
 > 那是我唯一一次，看到他在計算以外的地方，那麼認真。
 ! go b2_crash
 == b2_rain_block
+@ bg=s_b_rain_block
 me12: 阿葛！老師找你！
 > 他回頭，小晴愣住了。老師根本沒找他。
 > 他看了我一眼，好像什麼都知道。然後還是跟小晴走了。
@@ -1669,7 +1759,7 @@ me12: 阿葛！老師找你！
 ! go b2_crash
 
 == b2_crash
-@ bg=s_b_tablet time=國中．某個週一 bgm=tense amb=class tint=cold fade=blink
+@ bg=s_b_crash time=國中．某個週一 bgm=tense amb=class tint=cold fade=blink
 > 有一陣子，比特幣大跌。新聞說，交易所倒了，全部歸零。
 ! phone 新聞|#BTC  ▼ 61%|交易所 Mt.G 暫停提領|專家：比特幣是史上最大泡沫|論壇：快逃啊啊啊
 ! fx pulse
@@ -1681,6 +1771,7 @@ me12.u: 跌了六成！你不賣嗎？！
 - [if mine>0] 偷偷打開自己的帳戶，把十顆賣掉 {mine=0} -> b2_crash_mine
 
 == b2_crash_sell
+@ bg=s_b_crash_sell
 me12.u: 快賣啊！再不賣就歸零了！
 ag14: ……
 > 他看了我一眼。那一眼，比208分還讓我難忘。
@@ -1712,7 +1803,7 @@ ag14.s: 你終於問對問題了。
 
 == b2_future
 ! title 國中篇．第四章|一場長達十年的實驗
-@ bg=s_b_tablet time=國中．黃昏 bgm=emo amb=class tint=gold fade=blink
+@ bg=s_b_future time=國中．黃昏 bgm=emo amb=class tint=gold fade=blink
 > 老師也不明白他怎麼總是考試第一，作業交白卷卻答對所有難題。
 > 智力測驗208分，他的思維像一條線，從課堂延伸到市場，延伸到未來。
 > 那次測驗我得138分，是全班第二高。
@@ -1747,7 +1838,7 @@ ag14.s: 我在看未來啊，你看不到的那一部分。我只是先看，然
 // ---------- 高職 ----------
 == b3_start
 ! title 高職篇．第一章|瘋狂的投資者
-@ bg=s_kclass time=2017．九月 bgm=warm amb=kitchen tint=warm fade=blink
+@ bg=s_b_kclass time=2017．九月 bgm=warm amb=kitchen tint=warm fade=blink
 ! hud btc
 > 2017年，他升高一，選擇台南高商餐飲科。
 > 我又跳了級。我跟著他，也念了餐飲科。我跟自己說，是因為我想當廚師。一半是真的。
@@ -1778,7 +1869,7 @@ chef.s: 嗯，阿葛手很穩。你呢？你在發什麼呆？
 ! go b3_kai
 
 == b3_kai
-@ bg=s_kclass time=實習課 bgm=warm amb=kitchen
+@ bg=s_b_kai time=實習課 bgm=warm amb=kitchen
 kai.u: 欸欸欸，救命，我的醬汁要燒焦了！
 > 阿凱。同班，綁著頭巾。做菜很有熱情，但很怕火。後來他成了阿葛餐廳的二廚。
 > 那天阿葛衝過去把火關小，加了一匙水。醬汁活過來了。
@@ -1872,7 +1963,7 @@ ag17.s: 湯會翻滾，價格也會翻滾，但只要掌握規律，總能控制
 ! go b3_lib
 
 == b3_lib
-@ bg=s_library time=放學後 bgm=calm amb=room tint=cold fade=blink
+@ bg=s_b_lib time=放學後 bgm=calm amb=room tint=cold fade=blink
 > 放學後，我看到他在圖書館翻著財經新聞。
 > 手邊的筆記本密密麻麻寫著各種數字。他的世界似乎比我們更大、更快。
 > 那天，小晴也來了。她念隔壁的高中。她站在書架旁邊，看著阿葛，很久。
@@ -1933,7 +2024,7 @@ ag17.s: 存著就好，長期看漲。
 
 // ---------- 初入社會 ----------
 == b4_start
-! title 初入社會最終篇|冷靜操盤手
+! title 初入社會篇|冷靜操盤手
 @ bg=s_b_bento time=某個平日．中午 bgm=calm amb=street tint=warm fade=blink
 ! hud both
 > 高職畢業後，阿葛走出校園，踏入社會。
@@ -1961,7 +2052,7 @@ me20.s: 吃飯。世界不會毀滅。
 ! go b4_meet
 
 == b4_meet
-@ bg=s_meetup time=週五晚上．幣圈聚會 bgm=warm amb=rest tint=warm fade=blink
+@ bg=s_b_meet time=週五晚上．幣圈聚會 bgm=warm amb=rest tint=warm fade=blink
 > 有一次我陪他去幣圈聚會。他一直站在角落。
 > 一個綁著低馬尾、穿黑色西裝外套的女生走過去。她叫Vivian，做量化交易的。
 viv.s: 你是那個一直在角落不說話的人。所以，你覺得以太坊合約怎麼樣？
@@ -2014,7 +2105,7 @@ ag22.s: 一點點就好。先學會害怕，再學會不怕。
 ! go b4_friends
 
 == b4_friends
-@ bg=s_b_bento time=朋友聚餐 bgm=warm amb=street tint=warm fade=blink
+@ bg=s_b_friends time=朋友聚餐 bgm=warm amb=street tint=warm fade=blink
 > 社會生活並不簡單，但阿葛依然保持著奇怪的規律感。
 > 朋友請他吃飯，他總是先算一下帳本。
 > 有人問他投資心得，他總是淡淡一笑：
@@ -2064,7 +2155,7 @@ ag22: 現在你知道害怕了。這是好事。
 ! go b4_rest
 
 == b4_rest
-@ bg=s_rest_yu time=一年後．他的餐廳 bgm=warm amb=rest tint=warm fade=blink
+@ bg=s_b_rest time=一年後．他的餐廳 bgm=warm amb=rest tint=warm fade=blink
 > 初入社會的阿葛，並不急於顯擺。
 > 他依舊喜歡做菜，把它當愛好。開的餐廳，流水可能比不上他一單合約的收益。
 > 但他用心經營，只為生活中保留一點自己的熱愛。他的日常，簡單卻不凡。
@@ -2117,7 +2208,7 @@ ag22.s: ……謝了。
 ! go b4_viv
 
 == b4_viv
-@ bg=s_meetup time=某個週三 bgm=warm amb=rest tint=warm
+@ bg=s_b_vivbar time=某個週三 bgm=warm amb=rest tint=warm
 ! if viv<2 -> b4_climb
 > 後來，Vivian 也常常來店裡。她坐吧台，跟阿葛聊幣，偶爾不聊幣。
 viv.s: 欸，他朋友。我問你，你朋友這種人，會為了什麼停下來？
@@ -2138,7 +2229,7 @@ viv: 嗯。我也覺得。
 ! go b4_climb
 
 == b4_climb
-@ bg=s_b_trade time=那一年的牛市 bgm=tense amb=room tint=cold fade=blink
+@ bg=s_b_climb time=那一年的牛市 bgm=tense amb=room tint=cold fade=blink
 ! if eth<60 -> b4_climb_half
 > 從100，滾到800。
 ! set eth=800
@@ -2177,7 +2268,7 @@ viv: 嗯。我也覺得。
 
 // ---------- 2025 ----------
 == b5_start
-! title 第四章|2025　回顧
+! title 終章|2025　回顧
 @ bg=s_b_door time=2025．秋天的傍晚 bgm=emo amb=rest tint=dusk fade=blink
 > 2025年，我再回頭看他。
 > 真的很扯。一開始我把他當笑話，十年後才發現，自己才是笑話。
@@ -2208,7 +2299,7 @@ ag22.s: 照規律走。
 ! end ordinary
 
 == b5_last
-@ bg=s_harbor time=2025．跨年夜 bgm=night amb=harbor tint=dusk fade=blink
+@ bg=s_b_harbor time=2025．跨年夜 bgm=night amb=harbor tint=dusk fade=blink
 > 2025年的跨年夜。我站在安平碼頭，傳訊息給阿葛。
 ! phone 訊息|>今晚要幹嘛？|阿葛：還沒決定。|阿葛：你覺得呢？
 > 他居然問我。十多年來，第一次。
@@ -2269,7 +2360,7 @@ viv.s: 現在我知道答案了。謝啦，他朋友。
 ! end love_viv
 
 == b5_hidden
-@ bg=s_hidden time=2025．跨年夜 bgm=night amb=room tint=warm fade=blink
+@ bg=s_b_hidden time=2025．跨年夜 bgm=night amb=room tint=warm fade=blink
 > 他真的回去了。後來，他把那個鐵盒拿給我看。
 > 裡面是國小那罐糖果，一顆都沒有吃。還有一本畫滿影子的筆記本。
 > 我翻到中間。那裡有一行歪歪的字。

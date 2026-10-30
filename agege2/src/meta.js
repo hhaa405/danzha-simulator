@@ -45,4 +45,4 @@ window.ENDINGS=[
   dA:'九歲的我，留了一張紙條給長大的我。\n原來時光機，一直在床底下。',
   dB:'他沒有時光機。\n他只是比所有人，早一點點看見。而我，看了他十多年。'}
 ];
-window.FOCUS={s_a_viv:.05,s_b_yu:0,s_b_viv:-.3,s_b_rain:0,s_b_reunion:0,s_river:-.25,s_a_exam:.1,s_a_library:.45,s_a_rechao:-.1,s_a_door:.7,s_a_note:.1,s_a_bento:-0.4,s_a_grad:-0.13,s_a_office:0.26,s_a_shop:-0.13,s_b_bento:-0.13,s_b_door:0.4,s_b_exam:0.32,s_b_soup:-0.13,s_b_tablet:0.13,s_b_window:0.13,s_dodge:-0.26,s_library:0.26,s_math:-0.13,s_meetup:-0.65,s_pc:-0.26,s_rest_yu:-0.4,s_reunion:-0.65,s_harbor:0.13,s_hidden:-0.2};
+window.FOCUS={s_a_viv:.05,s_b_yu:0,s_b_viv:-.3,s_b_rain:0,s_b_reunion:0,s_river:-.25,s_a_exam:.1,s_a_library:.45,s_a_rechao:-.1,s_a_door:.7,s_a_note:.1,s_a_bento:-0.4,s_a_grad:-0.13,s_a_office:0.26,s_a_shop:-0.13,s_b_bento:-0.13,s_b_door:0.4,s_b_exam:0.32,s_b_soup:-0.13,s_b_tablet:0.13,s_b_window:0.13,s_dodge:-0.26,s_library:0.26,s_math:-0.13,s_meetup:-0.65,s_pc:-0.26,s_rest_yu:-0.4,s_reunion:-0.65,s_harbor:0.13,s_hidden:-0.2,s_a_hw_brain:0.42,s_a_soup_drop:-0.23,s_a_greed:-0.39,s_b_rain_block:0.47,s_b_iq_ask:0.05,s_a_kai_help:0.15};

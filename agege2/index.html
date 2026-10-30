@@ -23,8 +23,9 @@
   <div id="sub" class="hide"><div id="who"><span class="chip" id="chip"></span><span id="whoName"></span></div><div id="txt"></div></div>
   <div id="tapHint" class="hide">點擊繼續 ▸</div>
 
-  <div id="choice" class="hide"><div id="cprompt"></div><div id="timer"><i></i></div><div id="opts"></div></div>
-  <div id="rhythm" class="hide"><div id="rlabel"></div><div id="ring"><div id="rcore"></div><div id="rshrink"></div></div><div id="rscore"></div></div>
+  <div id="chart" class="hide"><div class="cHd"><span>台南日報．股市版</span><span id="chartName"></span><span class="cLeg"><b class="u">■</b>紅漲 <b class="d">■</b>綠跌</span></div><canvas id="chartCv"></canvas><div id="chartCap"></div></div>
+  <div id="choice" class="hide"><div id="cprompt"></div><div id="timer"><span class="tr"><i></i></span><b></b></div><div id="opts"></div></div>
+  <div id="rhythm" class="hide"><div id="rlabel"></div><div id="rhelp"></div><div id="ring"><div id="rcore"></div><div id="rshrink"></div><div id="rcount"></div></div><div id="rfb"></div><div id="rdots"></div><div id="rscore"></div></div>
 
   <div id="phone" class="hide"><div class="ph"><div class="phTop"><span id="phTitle"></span><span class="phBat">▮▮▮ 5G</span></div><div id="phBody"></div><button id="phDown">▾ 放下手機</button></div></div>
   <div id="note" class="hide"><div class="paper"><div id="noteTxt"></div><small>（點擊收起）</small></div></div>
@@ -35,11 +36,12 @@
   <div id="title" class="screen hide">
     <div class="tWrap"><h1>阿葛人生模擬器</h1><p class="tSub">一個看得見「規律」的人，和一個永遠第二名的我</p>
       <div id="tMain" class="tBtns"><button data-a="start">開始</button><button data-a="cont" id="bCont">繼續</button><button data-a="replay" id="bReplay">重來一次</button><button data-a="gallery">結局</button><button data-a="menu">設定</button></div>
-      <div id="tCamp" class="tBtns hide"><p class="tSub" id="campHead">選擇視角</p><button data-a="A">第一視角<small>阿葛的眼睛．他心裡的聲音</small></button><button data-a="B">第三視角<small>我的眼睛．看著阿葛十多年</small></button><button data-a="back">返回</button></div>
+      <div id="tCamp" class="tBtns hide"><p class="tSub" id="campHead">選擇視角</p><button data-a="A">第一視角<small>阿葛的眼睛．他心裡的聲音</small><em></em></button><button data-a="B">第三視角<small>我的眼睛．看著阿葛十多年</small><em></em></button><button data-a="back">返回</button></div>
+      <div id="tCont" class="tBtns hide"><p class="tSub">要繼續哪一個存檔？</p><div id="tContList" class="tBtns"></div><button data-a="back">返回</button></div>
     </div><div class="ver">v2 · 純屬虛構</div>
   </div>
 
-  <div id="gallery" class="screen hide"><div class="gWrap"><h2>結局</h2><div id="gList"></div><button id="gBack">返回</button></div></div>
+  <div id="gallery" class="screen hide"><div class="gWrap"><h2>結局</h2><p class="tSub" id="gCount"></p><div id="gList"></div><button id="gBack">返回</button></div></div>
 
   <div id="menu" class="screen hide"><div class="mWrap"><h2>暫停</h2>
     <label>人聲<input type="range" id="vVoice" min="0" max="1" step="0.05"></label>
@@ -48,6 +50,8 @@
     <label class="tg">字幕<input type="checkbox" id="vSub"></label>
     <label class="tg">自動前進<input type="checkbox" id="vAuto"></label>
     <div class="tBtns"><button id="mResume">繼續</button><button id="mTitle">回到標題</button></div></div></div>
+
+  <div id="confirm" class="screen hide"><div class="cfWrap"><p id="cfMsg"></p><div class="tBtns" id="cfBtns"></div></div></div>
 
   <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div class="tBtns"><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
 </div>
