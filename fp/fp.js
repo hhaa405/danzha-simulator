@@ -82,7 +82,7 @@ async function setBg(k,how){if(k===curBg)return;curBg=k;const swap=()=>{curLayer
 let look=0;
 function applyLook(){const L=$('#L'+curLayer);if(L)L.style.backgroundPosition=`${50+look*35}% 50%`}
 function camFx(f){const c=$('#cam');c.style.filter=f||''}
-function shake(){const c=$('#cam');c.classList.remove('sway');c.classList.add('shake');setTimeout(()=>{c.classList.remove('shake');c.classList.add('sway')},520)}
+function shake(){const c=$('#cam');c.classList.remove('sway');c.classList.add('shake');setTimeout(()=>{c.classList.remove('shake');if(!c.classList.contains('run'))c.classList.add('sway')},520)}
 function toast(t){const d=document.createElement('div');d.className='tst';d.textContent=t;$('#toastL').appendChild(d);setTimeout(()=>d.remove(),3600)}
 /* ---------------- subtitles ---------------- */
 function showSub(who,text){const s=$('#sub');s.className='on '+(who==='nar'?'nar':who==='i'?'inner':who==='me'?'me':'');
@@ -169,7 +169,7 @@ async function run(){const my=++RUN;
   if(r&&r.end)return;
   if(r&&r.go){G.node=r.go;G.i=0;saveG()}}}
 async function step(s){
- if(s.k==='scene'){Object.assign(G.scene,Object.fromEntries(Object.entries(s).filter(([k])=>k!=='k')));if(phoneMode||phoneVisible()||phoneMin)closePhone();
+ if(s.k==='scene'){if(!$('#act').classList.contains('on'))camReset();Object.assign(G.scene,Object.fromEntries(Object.entries(s).filter(([k])=>k!=='k')));if(phoneMode||phoneVisible()||phoneMin)closePhone();
   if(s.time!=null)$('#clock').textContent=s.time;
   const ps=[];if(s.amb)AU.loop('amb',s.amb,AMBG[s.amb]||0);if(s.bgm)AU.loop('bgm',s.bgm,0,2.5);if(s.bg){preImg(s.bg);ps.push(setBg(s.bg))}
   await Promise.all(ps);saveG();return}
@@ -307,7 +307,7 @@ async function ending(id){let E=ENDS.find(e=>e.id===id)||ENDS[0];if(id==='E6'&&G
  const done=new Promise(r=>{$('#eT').onclick=e=>{e.stopPropagation();c.classList.remove('on');toTitle();r()};$('#eA').onclick=e=>{e.stopPropagation();c.classList.remove('on');newGame();r()}});
  AU.voice(key);await done}
 /* ---------------- title / menu ---------------- */
-function resetUI(){AU.stopVoice();tapWaiter=null;closePhone();cancelChoice();hideSub();$('#act').className='';$('#act').innerHTML='';$('#shop').classList.remove('on');$('#shop').innerHTML='';$('#note').classList.remove('on');$('#card').classList.remove('on')}
+function resetUI(){runClean();camReset();AU.stopVoice();tapWaiter=null;closePhone();cancelChoice();hideSub();$('#act').className='';$('#act').innerHTML='';$('#shop').classList.remove('on');$('#shop').innerHTML='';$('#note').classList.remove('on');$('#card').classList.remove('on')}
 function toTitle(){RUN++;resetUI();
  $('#title').classList.add('show');pushBack();$('#bCont').disabled=!LS.get('fp_save',null);AU.loop('amb','night',-4);AU.loop('bgm','title',0,2)}
 function newGame(){RUN++;resetUI();G=freshG();applyPending();closeTitle();curBg='';$('#clock').textContent='';run()}
@@ -327,86 +327,91 @@ function modal(html){$('#modalBox').innerHTML=html+'<button id="mX">關閉</butt
 $('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('on')};
 function endsModal(){const got=new Set(LS.get('fp_ends',[]));modal(`<h3>結局</h3><div class="endl">${ENDS.map(e=>got.has(e.id)?`<div><b>${e.t}</b><br>${e.q}</div>`:`<div class="lock"><b>？？？</b><br>${e.h}</div>`).join('')}</div>`)}
 /* ---------------- interactions (in-world, minimal UI) ---------------- */
+/* every mini-game registers its timers/loops/listeners here; they are torn down when the act closes or the run is aborted */
+let CLEAN=[];const onEnd=f=>{CLEAN.push(f);return f};
+function runClean(){const l=CLEAN;CLEAN=[];l.forEach(f=>{try{f()}catch(e){}})}
+function camReset(){const c=$('#cam');if(!c)return;c.classList.remove('run','shake');c.classList.add('sway');c.style.animationDuration='';c.style.transform='';camFx('')}
 function actOpen(html){const A=$('#act');A.innerHTML=html;A.className='on';return A}
-function actClose(){const A=$('#act');A.className='';A.innerHTML='';A.onpointerdown=A.onpointerup=A.onpointerleave=null;$('#cam').classList.remove('run');$('#cam').classList.add('sway');camFx('')}
+function actClose(my){if(my!==undefined&&my!==RUN)return;/* a stale act from an aborted run must not close the new one */
+ const A=$('#act');A.className='';A.innerHTML='';A.onpointerdown=A.onpointerup=A.onpointerleave=null;runClean();camReset()}
 function hint(t){return `<div class="hint">${t}</div>`}
 const AUTO=()=>TEST&&!!window.__autoPick;
 const tst=(v,ms=60,lv=v)=>AUTO()?sleep(ms).then(()=>window.__lose?lv:v):null;
 const ACTS={
- async pat(){const A=actOpen(hint('跟著她的呼吸——在她吐氣的時候，輕輕拍')+'<div class="ring" id="r"></div>');const r=$('#r');
+ async pat(){const my=RUN;const A=actOpen(hint('跟著她的呼吸——在她吐氣的時候，輕輕拍')+'<div class="ring" id="r"></div>');const r=$('#r');
   const cx=innerWidth*.6,cy=innerHeight*.58;let good=0,n=0;const t0=performance.now();let raf;AU.sfx('sob',.7);
   const loop=()=>{const ph=((performance.now()-t0)/2600)%1;const s=60+40*Math.cos(ph*2*Math.PI);r.style.cssText=`left:${cx-s}px;top:${cy-s}px;width:${2*s}px;height:${2*s}px;opacity:${.35+.4*(1-(s-20)/80)}`;r.dataset.s=s;raf=requestAnimationFrame(loop)};loop();
-  const bi=setInterval(()=>AU.sfx('breath',.5),2600);AU.sfx('breath',.5);
+  const bi=setInterval(()=>AU.sfx('breath',.5),2600);onEnd(()=>{cancelAnimationFrame(raf);clearInterval(bi)});AU.sfx('breath',.5);
   await (tst(0,200)||new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();n++;const s=+r.dataset.s;if(s<45){good++;AU.sfx('thud',.15)}else AU.sfx('thud',.25);navigator.vibrate&&navigator.vibrate(20);if(n>=6)res()};setTimeout(res,30000)}));
   if(AUTO())good=window.__lose?0:4;G.V.pat_ok=good>=3?1:0;
-  cancelAnimationFrame(raf);clearInterval(bi);actClose();applyFx([['sis','+',good],['con','+',good>3?2:0]])},
- async catch(){camFx('blur(.6px) saturate(.9)');AU.sfx('heart',.9);AU.loop('bgm','none');
+  clearInterval(bi);actClose(my);applyFx([['sis','+',good],['con','+',good>3?2:0]])},
+ async catch(){const my=RUN;camFx('blur(.6px) saturate(.9)');AU.sfx('heart',.9);AU.loop('bgm','none');
   const A=actOpen(hint('她要摔倒了——')+'<div class="ring" id="r"></div>');const r=$('#r');const cx=innerWidth*(.4+Math.random()*.2),cy=innerHeight*(.5+Math.random()*.15);
   await sleep(TEST?10:700+Math.random()*900);const t0=performance.now();AU.sfx('whoosh',.6);let ok=0;
-  const loop=()=>{const f=(performance.now()-t0)/1100;const s=Math.max(28,160*(1-f)+28);r.style.cssText=`left:${cx-s}px;top:${cy-s}px;width:${2*s}px;height:${2*s}px`;if(f<1.4)raf=requestAnimationFrame(loop)};let raf;loop();
+  const loop=()=>{const f=(performance.now()-t0)/1100;const s=Math.max(28,160*(1-f)+28);r.style.cssText=`left:${cx-s}px;top:${cy-s}px;width:${2*s}px;height:${2*s}px`;if(f<1.4)raf=requestAnimationFrame(loop)};let raf;loop();onEnd(()=>cancelAnimationFrame(raf));
   ok=await (tst(1,60,0)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();const t=performance.now()-t0;res(t>450&&t<1350?1:0)};setTimeout(()=>res(0),1500)}));
-  cancelAnimationFrame(raf);G.V.caught=ok;if(ok){AU.sfx('thud',.5);shake()}else{AU.sfx('crash',.5)}actClose()},
- async hide(){AU.sfx('buzz',.9);navigator.vibrate&&navigator.vibrate([200,100,200,100,200]);
+  cancelAnimationFrame(raf);G.V.caught=ok;if(ok){AU.sfx('thud',.5);shake()}else{AU.sfx('crash',.5)}actClose(my)},
+ async hide(){const my=RUN;AU.sfx('buzz',.9);navigator.vibrate&&navigator.vibrate([200,100,200,100,200]);
   const A=actOpen(hint('快——把手機翻過來')+`<div style="position:absolute;left:50%;bottom:6vh;transform:translateX(-50%) rotate(-4deg);width:min(48vw,190px);height:min(30vh,170px);background:#111;border-radius:18px;border:2px solid #333;padding:14px 10px;display:flex;flex-direction:column;gap:6px;box-shadow:0 0 40px rgba(255,255,255,.15)" id="pp">${['小晴 ☀：♡♡♡','小愛：晚安♡','林小美：♡'].map(t=>`<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:5px 8px;font-size:12px">${t}</div>`).join('')}</div>`);
   const ok=await (tst(1,60,0)??new Promise(res=>{$('#pp').onpointerdown=e=>{e.preventDefault();e.stopPropagation();res(1)};A.onpointerdown=()=>{};setTimeout(()=>res(0),1700)}));
-  G.V.hid=ok;if(ok){$('#pp').style.transition='transform .25s';$('#pp').style.transform='translateX(-50%) rotateY(180deg) scale(.9)';AU.sfx('thud',.3);await sleep(300)}actClose()},
- async grab(){const A=actOpen(hint('擠進去——連續點，伸手搶！')+'<div class="pbar"><i id="pb"></i></div>');let n=0;const need=12;
+  G.V.hid=ok;if(ok){$('#pp').style.transition='transform .25s';$('#pp').style.transform='translateX(-50%) rotateY(180deg) scale(.9)';AU.sfx('thud',.3);await sleep(300)}actClose(my)},
+ async grab(){const my=RUN;const A=actOpen(hint('擠進去——連續點，伸手搶！')+'<div class="pbar"><i id="pb"></i></div>');let n=0;const need=12;
   const ok=await (tst(1,60,0)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();n++;$('#pb').style.width=(n/need*100)+'%';AU.sfx('step',.4);$('#cam').style.transform=`translate(${(Math.random()-.5)*14}px,${(Math.random()-.5)*10}px)`;if(n>=need)res(1)};setTimeout(()=>res(0),3600)}));
-  $('#cam').style.transform='';G.V.grabbed=ok;actClose()},
- async sprint(){return runAct({label:'左右交替點擊（或鍵盤 F / J）——跑！',taps:36})},
- async race(){AU.loop('bgm','race',0,.5);return runAct({label:'左右交替——衝！',taps:40,race:1})},
- async chase(){return runAct({label:'追上她——',taps:28,chase:1})},
- async start(){const A=actOpen(hint('預備……槍響的瞬間點擊螢幕')+'<div class="bigt" id="bt"></div>');AU.sfx('heart',.8);
+  $('#cam').style.transform='';G.V.grabbed=ok;actClose(my)},
+ async sprint(){const my=RUN;return runAct({label:'左右交替點擊（或鍵盤 F / J）——跑！',taps:36})},
+ async race(){const my=RUN;AU.loop('bgm','race',0,.5);return runAct({label:'左右交替——衝！',taps:40,race:1})},
+ async chase(){const my=RUN;return runAct({label:'追上她——',taps:28,chase:1})},
+ async start(){const my=RUN;const A=actOpen(hint('預備……槍響的瞬間點擊螢幕')+'<div class="bigt" id="bt"></div>');AU.sfx('heart',.8);
   for(let k=0;k<2;k++){let fired=false,t0=0;const wait=1500+Math.random()*1800;
-   const r=await (tst('ok')||new Promise(res=>{const tm=setTimeout(()=>{fired=true;t0=performance.now();AU.sfx('pistol',1);shake()},wait);A.onpointerdown=e=>{e.preventDefault();if(!fired){clearTimeout(tm);res('false')}else res(performance.now()-t0)};setTimeout(()=>{if(fired)res(900)},wait+1500)}));
+   const r=await (tst('ok')||new Promise(res=>{const tm=setTimeout(()=>{fired=true;t0=performance.now();AU.sfx('pistol',1);shake()},wait);onEnd(()=>clearTimeout(tm));A.onpointerdown=e=>{e.preventDefault();if(!fired){clearTimeout(tm);res('false')}else res(performance.now()-t0)};setTimeout(()=>{if(fired)res(900)},wait+1500)}));
    if(r==='false'){$('#bt').textContent='搶跑';AU.sfx('pistol',.6);await sleep(1200);$('#bt').textContent='';continue}
    G.V.react=typeof r==='number'?Math.round(r):200;$('#bt').textContent=typeof r==='number'?(r/1000).toFixed(3)+'s':'';await sleep(700);break}
-  actClose()},
- async sneak(){const A=actOpen(hint('按住前進——她們回頭時，放開')+'<div class="eye" id="eye">她們回頭了</div><div class="pbar"><i id="pb"></i></div>');
+  actClose(my)},
+ async sneak(){const my=RUN;const A=actOpen(hint('按住前進——她們回頭時，放開')+'<div class="eye" id="eye">她們回頭了</div><div class="pbar"><i id="pb"></i></div>');
   let prog=0,hold=false,looking=false,caught=false,t=performance.now(),nextLook=1600+Math.random()*1200,lookEnd=0,warn=0;
   const dn=e=>{e.preventDefault&&e.preventDefault();hold=true},up=()=>{hold=false};A.onpointerdown=dn;A.onpointerup=up;A.onpointerleave=up;
-  const kd=e=>{if(e.code==='Space'){e.preventDefault();hold=true}},ku=e=>{if(e.code==='Space')hold=false};addEventListener('keydown',kd);addEventListener('keyup',ku);
+  const kd=e=>{if(e.code==='Space'){e.preventDefault();hold=true}},ku=e=>{if(e.code==='Space')hold=false};addEventListener('keydown',kd);addEventListener('keyup',ku);let dead=0;onEnd(()=>{dead=1;removeEventListener('keydown',kd);removeEventListener('keyup',ku)});
   let stepT=0;
-  const ok=await (tst(1,60,0)??new Promise(res=>{let last=performance.now();const loop=now=>{const dt=now-last;last=now;const el=now-t;
+  const ok=await (tst(1,60,0)??new Promise(res=>{let last=performance.now();const loop=now=>{if(dead)return;const dt=now-last;last=now;const el=now-t;
     if(!looking&&el>nextLook-650&&!warn){warn=1;$('#eye').style.opacity=.5}
     if(!looking&&el>nextLook){looking=true;lookEnd=el+1300;$('#eye').style.opacity=1;AU.sfx('heart',.8)}
     if(looking&&el>lookEnd){looking=false;warn=0;$('#eye').style.opacity=0;nextLook=el+1500+Math.random()*1600}
     if(hold){prog+=dt/70;$('#cam').classList.add('run');if(now-stepT>380){stepT=now;AU.sfx('step',.35)}if(looking){caught=true}}else $('#cam').classList.remove('run');
     $('#pb').style.width=Math.min(100,prog)+'%';
     if(caught){res(0);return}if(prog>=100){res(1);return}requestAnimationFrame(loop)};requestAnimationFrame(loop)}));
-  removeEventListener('keydown',kd);removeEventListener('keyup',ku);G.V.sneak_ok=ok;actClose()},
- async dishes(){const A=actOpen(hint('拿著菜瓜布來回刷——')+'<canvas class="scrub" id="cv"></canvas>');const cv=$('#cv'),W=cv.width=innerWidth,H=cv.height=innerHeight,c=cv.getContext('2d');
+  removeEventListener('keydown',kd);removeEventListener('keyup',ku);G.V.sneak_ok=ok;actClose(my)},
+ async dishes(){const my=RUN;const A=actOpen(hint('拿著菜瓜布來回刷——')+'<canvas class="scrub" id="cv"></canvas>');const cv=$('#cv'),W=cv.width=innerWidth,H=cv.height=innerHeight,c=cv.getContext('2d');
   const blobs=[];for(let k=0;k<26;k++)blobs.push([W*(.36+Math.random()*.26),H*(.52+Math.random()*.26),18+Math.random()*30]);
   c.fillStyle='rgba(120,80,30,.55)';blobs.forEach(([x,y,r])=>{c.beginPath();c.ellipse(x,y,r,r*.7,Math.random()*3,0,7);c.fill()});
   const total=()=>{const d=c.getImageData(W*.3,H*.45,W*.4,H*.4).data;let n=0;for(let k=3;k<d.length;k+=64)if(d[k]>20)n++;return n};const t0=total()||1;let lastS=0;
   const clean=await (tst(1,60,0)??new Promise(res=>{let down=false;cv.onpointerdown=e=>{down=true};cv.onpointerup=()=>down=false;cv.onpointerleave=()=>down=false;
    cv.onpointermove=e=>{if(!down&&e.pointerType==='mouse'&&e.buttons===0)return;c.globalCompositeOperation='destination-out';c.beginPath();c.arc(e.clientX,e.clientY,34,0,7);c.fill();c.globalCompositeOperation='source-over';const now=performance.now();if(now-lastS>300){lastS=now;AU.sfx('scrub',.5)}if(total()/t0<.12)res(1)};setTimeout(()=>res(0),20000)}));
-  G.V.dish_ok=clean?1:0;AU.sfx('step',.3);actClose()},
- async flip(){let good=0;for(let k=0;k<3;k++){const A=actOpen(hint(`第 ${k+1} 份——看顏色，金黃的時候翻面`)+`<div style="position:absolute;left:34%;top:56%;width:26%;height:18%;border-radius:50%;background:radial-gradient(rgba(150,80,10,0),rgba(0,0,0,0));mix-blend-mode:multiply" id="cr"></div><div class="pbar"><i id="pb" style="background:linear-gradient(90deg,#f3e3a0,#e0a030 62%,#7a3a00)"></i></div>`);
+  G.V.dish_ok=clean?1:0;AU.sfx('step',.3);actClose(my)},
+ async flip(){const my=RUN;let good=0;for(let k=0;k<3;k++){const A=actOpen(hint(`第 ${k+1} 份——看顏色，金黃的時候翻面`)+`<div style="position:absolute;left:34%;top:56%;width:26%;height:18%;border-radius:50%;background:radial-gradient(rgba(150,80,10,0),rgba(0,0,0,0));mix-blend-mode:multiply" id="cr"></div><div class="pbar"><i id="pb" style="background:linear-gradient(90deg,#f3e3a0,#e0a030 62%,#7a3a00)"></i></div>`);
   const t0=performance.now(),D=3600+Math.random()*900;let raf;const cr=$('#cr');
-  const loop=()=>{const f=(performance.now()-t0)/D;$('#pb').style.width=Math.min(100,f*100)+'%';cr.style.background=`radial-gradient(rgba(${200-f*120},${120-f*90},0,${Math.min(.75,f*.6)}),rgba(0,0,0,0) 70%)`;if(f<1.25)raf=requestAnimationFrame(loop)};loop();
+  const loop=()=>{const f=(performance.now()-t0)/D;$('#pb').style.width=Math.min(100,f*100)+'%';cr.style.background=`radial-gradient(rgba(${200-f*120},${120-f*90},0,${Math.min(.75,f*.6)}),rgba(0,0,0,0) 70%)`;if(f<1.25)raf=requestAnimationFrame(loop)};loop();onEnd(()=>cancelAnimationFrame(raf));
   const f=await (tst(.7,60,1.3)??new Promise(res=>{A.onpointerdown=e=>{e.preventDefault();res((performance.now()-t0)/D)};setTimeout(()=>res(1.3),D*1.3)}));
   cancelAnimationFrame(raf);AU.sfx('flip',.8);const ok=f>.55&&f<.85;if(ok)good++;$('.hint').textContent=ok?'漂亮。':(f>=.85?'有點焦了……':'還沒熟……');await sleep(TEST?10:900)}
-  actClose();G.V.flips=good},
- async juggle(){const spots=[['qing','園遊會攤位','s_coop',7],['ai','班際比賽看台','s_track',9],['mei','樓梯間','s_stairs',11]];const pat=[100,100,100];let here=0,moving=false;
+  actClose(my);G.V.flips=good},
+ async juggle(){const my=RUN;const spots=[['qing','園遊會攤位','s_coop',7],['ai','班際比賽看台','s_track',9],['mei','樓梯間','s_stairs',11]];const pat=[100,100,100];let here=0,moving=false;
   const A=actOpen(hint('三個地方、三個人——不要讓任何一個人等太久')+`<div class="bigt" id="bt" style="font-size:42px">20</div><div class="jug">${spots.map((s,i)=>`<button data-i="${i}" style="background-image:url(img/${s[2]}.webp)"><b style="width:100%"></b><span>${s[1]}</span></button>`).join('')}</div>`);
-  const bs=A.querySelectorAll('.jug button');const t0=performance.now();let last=t0;
-  bs.forEach(b=>b.onclick=async e=>{e.stopPropagation();const i=+b.dataset.i;if(moving||i===here)return;moving=true;$('#cam').classList.add('run');AU.sfx('step',.5);setTimeout(()=>AU.sfx('step',.5),300);await sleep(800);$('#cam').classList.remove('run');here=i;moving=false;pat[i]=100;AU.sfx('whoosh',.4)});
-  const ok=await (tst(1,60,0)??new Promise(res=>{const loop=now=>{const dt=(now-last)/1000;last=now;for(let i=0;i<3;i++){if(i===here&&!moving)pat[i]=Math.min(100,pat[i]+dt*30);else pat[i]-=dt*100/spots[i][3]}
+  const bs=A.querySelectorAll('.jug button');const t0=performance.now();let last=t0,dead=0;onEnd(()=>dead=1);
+  bs.forEach(b=>b.onclick=async e=>{e.stopPropagation();const i=+b.dataset.i;if(moving||i===here)return;moving=true;$('#cam').classList.add('run');AU.sfx('step',.5);setTimeout(()=>AU.sfx('step',.5),300);await sleep(800);if(dead)return;$('#cam').classList.remove('run');here=i;moving=false;pat[i]=100;AU.sfx('whoosh',.4)});
+  const ok=await (tst(1,60,0)??new Promise(res=>{const loop=now=>{if(dead)return;const dt=(now-last)/1000;last=now;for(let i=0;i<3;i++){if(i===here&&!moving)pat[i]=Math.min(100,pat[i]+dt*30);else pat[i]-=dt*100/spots[i][3]}
     bs.forEach((b,i)=>{b.querySelector('b').style.width=Math.max(0,pat[i])+'%';b.classList.toggle('here',i===here);b.classList.toggle('low',pat[i]<30)});
     const left=20-(now-t0)/1000;$('#bt').textContent=Math.max(0,Math.ceil(left));
     if(pat.some(p=>p<=0)){res(0);return}if(left<=0){res(1);return}requestAnimationFrame(loop)};requestAnimationFrame(loop)}));
-  G.V.juggle_ok=ok;actClose()}};
-async function runAct(o){const A=actOpen(hint(o.label)+'<div class="zones"><div id="zL">左</div><div id="zR">右</div></div><div class="bigt" id="bt"></div><div class="pbar"><i id="pb"></i></div>');
+  G.V.juggle_ok=ok;actClose(my)}};
+async function runAct(o){const my=RUN;const A=actOpen(hint(o.label)+'<div class="zones"><div id="zL">左</div><div id="zR">右</div></div><div class="bigt" id="bt"></div><div class="pbar"><i id="pb"></i></div>');
  let n=0,side=null;const t0=performance.now();const c=$('#cam');c.classList.remove('sway');c.classList.add('run');let hb=setInterval(()=>AU.sfx('heart',.5),700);
  if(o.chase)camFx('blur(1px) saturate(.8)');
- const tap=s=>{if(s===side)return;side=s;n++;$('#pb').style.width=Math.min(100,n/o.taps*100)+'%';const z=$('#z'+s);z.classList.add('hit');setTimeout(()=>z.classList.remove('hit'),90);if(n%2)AU.sfx('step',.45);
+ let fin=0;const tap=s=>{if(fin||s===side)return;side=s;n++;$('#pb').style.width=Math.min(100,n/o.taps*100)+'%';const z=$('#z'+s);z.classList.add('hit');setTimeout(()=>z.classList.remove('hit'),90);if(n%2)AU.sfx('step',.45);
   c.style.animationDuration=Math.max(.18,.5-n/o.taps*.3)+'s'};
  const kd=e=>{if(e.code==='KeyF'||e.code==='ArrowLeft')tap('L');if(e.code==='KeyJ'||e.code==='ArrowRight')tap('R')};addEventListener('keydown',kd);
  $('#zL').onpointerdown=e=>{e.preventDefault();tap('L')};$('#zR').onpointerdown=e=>{e.preventDefault();tap('R')};
- let raf;const tick=()=>{const t=(performance.now()-t0)/1000;if(!o.chase)$('#bt').textContent=(Math.min(t*11.2/Math.max(4,o.taps/5.2),99)).toFixed(2);raf=requestAnimationFrame(tick)};tick();
- const auto=await (tst(1,80,0)??new Promise(res=>{const chk=setInterval(()=>{if(n>=o.taps||performance.now()-t0>(o.chase?6000:20000)){clearInterval(chk);res(null)}},50)}));
- cancelAnimationFrame(raf);clearInterval(hb);removeEventListener('keydown',kd);c.style.animationDuration='';
+ let raf,chk;onEnd(()=>{fin=1;cancelAnimationFrame(raf);clearInterval(hb);clearInterval(chk);removeEventListener('keydown',kd)});const tick=()=>{if(fin)return;const t=(performance.now()-t0)/1000;if(!o.chase)$('#bt').textContent=(Math.min(t*11.2/Math.max(4,o.taps/5.2),99)).toFixed(2);raf=requestAnimationFrame(tick)};tick();
+ const auto=await (tst(1,80,0)??new Promise(res=>{chk=setInterval(()=>{if(n>=o.taps||performance.now()-t0>(o.chase?6000:20000)){clearInterval(chk);res(null)}},50)}));
+ fin=1;cancelAnimationFrame(raf);clearInterval(hb);removeEventListener('keydown',kd);c.style.animationDuration='';c.classList.remove('run');
  const el=(performance.now()-t0)/1000;let ok,eff=el;
  if(auto!==null)ok=auto;
  else if(o.chase)ok=n>=o.taps?1:0;
@@ -414,7 +419,7 @@ async function runAct(o){const A=actOpen(hint(o.label)+'<div class="zones"><div 
  if(o.chase)G.V.chase_ok=ok;else G.V.run_ok=ok;
  if(!o.chase){const t=ok?(o.race?Math.min(11.4,10.9+Math.max(0,eff-o.taps/7)*.15):11.2):(o.race?Math.min(12.4,11.6+Math.max(0,eff-o.taps/4)*.1):13.4);
   $('#bt').textContent=t.toFixed(2).replace(/0$/,'');if(ok)AU.sfx('applause',.6);else AU.sfx('thud',.3)}
- G.V.race_t=el;await sleep(TEST?10:1300);actClose()}
+ G.V.race_t=el;await sleep(TEST?10:1300);actClose(my)}
 /* ---------------- redeem codes (same codes as the original; separate one-use record for this version) ---------------- */
 const STATK={sis:'姐姐',zha:'渣度',con:'良心',exp:'流言',spd:'速度',desk:'同桌',ai:'小愛',mei:'小美',qing:'小晴'};
 function inGame(){return !!G&&!$('#title').classList.contains('show')}
