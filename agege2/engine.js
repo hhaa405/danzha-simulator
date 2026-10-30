@@ -53,7 +53,7 @@ var P=parse(window.STORY_SRC), N=P.N, ORDER=P.order;
 /* ---------- 狀態 ---------- */
 var S=null;
 function fresh(camp,replay){ return {camp:camp,replay:!!replay,node:camp==='A'?'a1_start':'b1_start',idx:0,cur:0,chap:'',chart:null,
-  vars:{btc:0,eth:0,candy:0,bond:0,look:0,rival:0,doubt:0,mine:0,match:0,copy:0,copyliq:0,agpanic:0,cash:0,qing:0,yu:0,viv:0,trustA:0,mom:0,mate:0,kai:0,teach:0,panic:0,calm:0,greed:0,hidden:0,rh:0,partner:'',guess:0,cdir:0,cok:0,cadapt:1},
+  vars:{btc:0,eth:0,candy:0,bond:0,look:0,rival:0,doubt:0,mine:0,match:0,copy:0,copyliq:0,agpanic:0,cash:0,qing:0,yu:0,viv:0,trustA:0,mom:0,mate:0,kai:0,teach:0,panic:0,calm:0,greed:0,hidden:0,rh:0,partner:'',guess:0,cdir:0,cok:0,cadapt:1,uncle:0,chef:0,teach7:0,wallet:0,knife:0,shop:0,dip:0,bot:0,lost:0},
   stats:{timed:0,timeouts:0,fast:0,rtSum:0,choices:0,rhythm:0,rhyHit:0},seen:{},scene:{},hud:'none',hist:[]}; }
 function evalx(e){ try{ var v=S.vars; return Function('v','with(v){return ('+e+')}')(v);}catch(err){console.warn('expr',e,err);return false} }
 function applyFx(list){ (list||[]).forEach(function(f){ var v=S.vars, x=isNaN(+f.x)?(f.x.charAt(0)==="'"?f.x.slice(1,-1):evalx(f.x)):+f.x;
@@ -328,6 +328,7 @@ async function reveal(){ var c=S.chart; if(!c){ return; } var ok=(+S.vars.guess=
 
 /* ---------- 選擇（JS 計時、可暫停、0.35 秒內不收點擊、限時有數字） ---------- */
 var CHART_T={1:12,2:9,3:7};
+var GOAL=Q.get('goal')||''; function goalPick(opts){ var best=-1e9,bi=[]; opts.forEach(function(o,i){ var sc=0; if(o.go&&new RegExp('_'+GOAL+'$').test(o.go)) sc+=100; (o.fx||[]).forEach(function(f){ if(f.v===GOAL&&f.op==='+=') sc+=+f.x||1; if(f.v===GOAL&&f.op==='-=') sc-=+f.x||1; if(f.v==='greed') sc-=50; }); if(sc>best){best=sc;bi=[i]} else if(sc===best) bi.push(i); }); return bi[Math.floor(rnd()*bi.length)]; }
 async function choose(op){
   var opts=op.opts.filter(function(o){return !o.cond||evalx(o.cond)}); if(!opts.length) return null;
   var a=op.a, st=a.t||'calm', T=0, my=running;
@@ -354,7 +355,7 @@ async function choose(op){
         if(used>=nextBeat){ nextBeat+=hot?.8:1; if(hot) AU.sfx('heart'); else if(left<=4) AU.sfx('tick'); }
         if(left<=0){ fin(def,true); return; } }
       requestAnimationFrame(tick); })();
-    if(AUTO&&!(LETTIME&&T)){ var ix=PICK.length?PICK.shift():Math.floor(rnd()*opts.length); setTimeout(function(){ armed=true; var b=box.children[Math.min(ix,opts.length-1)]; b&&b.click(); },600/FAST); }
+    if(AUTO&&!(LETTIME&&T)){ var ix=PICK.length?PICK.shift():(GOAL?goalPick(opts):Math.floor(rnd()*opts.length)); setTimeout(function(){ armed=true; var b=box.children[Math.min(ix,opts.length-1)]; b&&b.click(); },600/FAST); }
   });
   $('#pulse').classList.remove('on'); stageEl.classList.remove('shake'); if(hot) AU.tense(false);
   if(picked.cancel||my!==running) return null;

@@ -188,3 +188,6 @@ h2{font-size:22px;letter-spacing:6px;margin-bottom:18px;font-family:"Noto Serif 
 #rlabel{background:rgba(0,0,0,.7);padding:6px 14px;border-radius:999px}
 #rscore{text-shadow:0 1px 3px #000}
 @keyframes rIn{from{opacity:0}to{opacity:1}}
+/* v21 opts scroll */
+#opts{max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:2px}
+@media (max-height:430px){#opts{max-height:58vh}}
