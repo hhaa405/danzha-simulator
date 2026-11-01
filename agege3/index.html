@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000">
+<title>阿葛傳奇 第二部．成名之後</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css?v=304">
+</head>
+<body>
+<div id="stage">
+  <div id="cam"><div class="bg" id="bg0"></div><div class="bg" id="bg1"></div></div>
+  <div id="tint"></div><div id="vig"></div><canvas id="grain"></canvas><div id="pulse"></div>
+  <div id="lidT" class="lid"></div><div id="lidB" class="lid"></div>
+
+  <div id="hud" class="hide">
+    <div id="clock"></div>
+    <div id="hudR"><div id="money"></div><button id="menuBtn" aria-label="選單">≡</button></div>
+  </div>
+
+  <div id="intro" class="hide"><div class="face" id="introFace"></div><div><b id="introName"></b><span id="introDesc"></span></div></div>
+
+  <div id="sub" class="hide"><div id="who"><span class="chip" id="chip"></span><span id="whoName"></span></div><div id="txt"></div></div>
+  <div id="tapHint" class="hide">點擊繼續 ▸</div>
+
+  <div id="chart" class="hide"><div class="cHd"><span>台南日報．股市版</span><span id="chartName"></span><span class="cLeg"><b class="u">■</b>紅漲 <b class="d">■</b>綠跌</span></div><canvas id="chartCv"></canvas><div id="chartCap"></div></div>
+  <div id="choice" class="hide"><div id="cprompt"></div><div id="timer"><span class="tr"><i></i></span><b></b></div><div id="opts"></div></div>
+  <div id="queue" class="hide"><div id="qlabel"></div><div id="qhelp"></div><div id="qtop"><span id="qtime"></span><span id="qscore"></span></div><div id="qseats"></div><div id="qbar"><div id="qline"></div><button id="qseat">帶位 ▸</button></div><div id="qfb"></div></div>
+  <div id="mg" class="hide"><div id="mgLabel"></div><div id="mgHelp"></div><div id="mgBody"></div><div id="mgFb"></div></div>
+  <div id="rhythm" class="hide"><div id="rlabel"></div><div id="rhelp"></div><div id="ring"><div id="rcore"></div><div id="rshrink"></div><div id="rcount"></div></div><div id="rfb"></div><div id="rdots"></div><div id="rscore"></div></div>
+
+  <div id="phone" class="hide"><div class="ph"><div class="phTop"><span id="phTitle"></span><span class="phBat">▮▮▮ 5G</span></div><div id="phBody"></div><button id="phDown">▾ 放下手機</button></div></div>
+  <div id="note" class="hide"><div class="paper"><div id="noteTxt"></div><small>（點擊收起）</small></div></div>
+  <div id="card" class="hide"><div id="cardA"></div><div id="cardB"></div></div>
+
+  <div id="gate" class="screen"><div class="gateIn"><div class="hp"><svg viewBox="0 0 24 24" fill="none" stroke="#f3d9a4" stroke-width="1.3" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></div><p>建議戴上耳機</p><p class="sm">本作含全語音、配樂與環境音</p><button id="gateBtn">戴上耳機了，開始</button></div></div>
+
+  <div id="title" class="screen hide">
+    <div class="tWrap"><h1>阿葛傳奇<small class="tPart">第二部．成名之後</small></h1><p class="tSub">全台灣都看見他了。他還看得見湯嗎？</p>
+      <div id="tMain" class="tBtns"><button data-a="start">開始</button><button data-a="cont" id="bCont">繼續</button><button data-a="replay" id="bReplay">重來一次</button><button data-a="gallery">結局</button><button data-a="menu">設定</button></div>
+      <div id="tCamp" class="tBtns hide"><p class="tSub" id="campHead">選擇視角</p><button data-a="A">阿葛的視角<small>成名之後，他心裡的聲音</small><em></em></button><button data-a="B">我的視角<small>第二名，看著好友被全世界看見</small><em></em></button><button data-a="back">返回</button></div>
+      <div id="tP1" class="tBtns hide"><p class="tSub" id="p1Head"></p><div id="p1List" class="tBtns"></div></div>
+      <div id="tCont" class="tBtns hide"><p class="tSub">要繼續哪一個存檔？</p><div id="tContList" class="tBtns"></div><button data-a="back">返回</button></div>
+    </div><div class="ver"><a href="../agege2/" id="p1Link">◂ 第一部「阿葛人生模擬器」</a>　v3 · 純屬虛構</div>
+  </div>
+
+  <div id="gallery" class="screen hide"><div class="gWrap"><h2>結局</h2><p class="tSub" id="gCount"></p><div id="gList"></div><button id="gBack">返回</button></div></div>
+
+  <div id="menu" class="screen hide"><div class="mWrap"><h2>暫停</h2>
+    <label>人聲<input type="range" id="vVoice" min="0" max="1" step="0.05"></label>
+    <label>音樂<input type="range" id="vMusic" min="0" max="1" step="0.05"></label>
+    <label>環境音<input type="range" id="vAmb" min="0" max="1" step="0.05"></label>
+    <label class="tg">字幕<input type="checkbox" id="vSub"></label>
+    <label class="tg">自動前進<input type="checkbox" id="vAuto"></label>
+    <div class="tBtns"><button id="mResume">繼續</button><button id="mTitle">回到標題</button></div></div></div>
+
+  <div id="confirm" class="screen hide"><div class="cfWrap"><p id="cfMsg"></p><div class="tBtns" id="cfBtns"></div></div></div>
+
+  <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div class="tBtns"><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
+</div>
+<script src="voicemap.js?v=304"></script>
+<script src="story.js?v=304"></script>
+<script src="engine.js?v=304"></script>
+</body>
+</html>
