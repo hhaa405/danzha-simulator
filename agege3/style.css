@@ -234,3 +234,11 @@ h2{font-size:22px;letter-spacing:6px;margin-bottom:18px;font-family:"Noto Serif 
 #lvMsg{font-size:20px;padding:12px;border-radius:12px;background:rgba(255,255,255,.1);min-height:28px}
 #lvOpts{display:flex;flex-direction:column;gap:8px}
 @media (max-height:430px){#mg{gap:4px;padding:4px}#mgHelp{display:none}.mgBtn{padding:7px 12px;font-size:15px}#lvMsg{padding:6px 10px;font-size:17px}#bidVal{font-size:26px}#mgLabel{font-size:18px}}
+
+/* 整合（助理 11/01）快轉已讀＋選過的選項 */
+#skipBtn{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:15px;width:36px;height:36px;border-radius:50%;line-height:1;opacity:.75}
+#skipBtn.on{background:#f3d9a4;color:#111;border-color:#f3d9a4;opacity:1;animation:skipP 1s ease-in-out infinite}
+@keyframes skipP{50%{opacity:.6}}
+#opts button span.was{flex:none;font-size:11px;letter-spacing:0;color:#f3d9a4;opacity:.8;border:1px solid rgba(243,217,164,.5);border-radius:10px;padding:1px 6px}
+#opts button.was{border-color:rgba(243,217,164,.45)}
+#opts button.pick span.was{color:#111;border-color:#111}
