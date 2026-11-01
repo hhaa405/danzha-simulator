@@ -192,25 +192,25 @@ async function say(op){
   void txt.offsetWidth; txt.classList.add('on'); lineShown=performance.now();
   if(spk&&!op.think&&!isSelf&&CAST[spk]&&!S.seen[spk]){ S.seen[spk]=1; showIntro(spk); }
   var key=op.vp+'|'+op.emo+'|'+op.text, vd=VOICE[key], len=op.text.length;
-  var base=900+len*150;
+  var base=600+len*110;   // 節奏加快（老闆反映太慢）：原 900+len*150
   window.__game.lines.push({key:key,t:performance.now(),has:!!vd});
   if((!AUTO||AUTOVOICE)&&vd&&SET.voice>0){
     var r=await Promise.race([AU.voice(vd), waitTapOr(null).then(function(){return 'tap'})]);
     if(my!==running) return;
     window.__game.lines[window.__game.lines.length-1].r=r;
     if(r==='tap') AU.stopVoice();
-    else if(r==='fail'){ await waitTapOr(SET.auto||AUTO?Math.max(1500,base,vd[1]*1000+700):null); }
-    else { await waitTapOr(SET.auto||AUTO?700:null); }   // 語音真的播完（ended）之後再停 0.7 秒
-  } else { await waitTapOr(SET.auto||AUTO?Math.max(1500,base):null); }
+    else if(r==='fail'){ await waitTapOr(SET.auto||AUTO?Math.max(1000,base,vd[1]*1000+300):null); }
+    else { await waitTapOr(SET.auto||AUTO?300:null); }   // 語音真的播完（ended）之後再停 0.3 秒
+  } else { await waitTapOr(SET.auto||AUTO?Math.max(1000,base):null); }
   if(my!==running) return;
   tapWait=null; txt.classList.remove('on'); await sleep(140);
 }
 function showIntro(spk){ var c=CAST[spk], el=$('#intro'); clearTimeout(introTimer); el.classList.remove('hide','out');
   chipStyle($('#introFace'),spk,'n',Math.min(innerHeight*.22,120)); $('#introName').textContent=nameOf(spk); $('#introDesc').textContent=c.d||'';
-  introTimer=setTimeout(function(){ el.classList.add('out'); introTimer=setTimeout(function(){el.classList.add('hide')},800); },3200/FAST); }
+  introTimer=setTimeout(function(){ el.classList.add('out'); introTimer=setTimeout(function(){el.classList.add('hide')},800); },2400/FAST); }
 
 /* ---------- 演出指令 ---------- */
-async function blink(swap){ var st=stageEl; AU.sfx('blink'); st.classList.add('closed'); await sleep(650); if(swap) swap(); await sleep(swap?900:250); st.classList.remove('closed'); await sleep(500); }
+async function blink(swap){ var st=stageEl; AU.sfx('blink'); st.classList.add('closed'); await sleep(450); if(swap) swap(); await sleep(swap?600:200); st.classList.remove('closed'); await sleep(350); }
 async function card(s){ var p=s.split('|'); S.chap=(p[0]||'')+(p[1]?'　'+p[1]:''); $('#cardA').textContent=p[0]||''; $('#cardB').textContent=p[1]||''; var c=$('#card'); c.classList.remove('hide'); AU.sfx('page');
   $('#sub').classList.add('hide'); lineShown=performance.now(); await waitTapOr(3600); c.classList.add('hide'); }
 async function phone(s){ var p=s.split('|').map(function(x){return x.trim()}); $('#phTitle').textContent=p.shift(); var b=$('#phBody'); b.innerHTML='';
