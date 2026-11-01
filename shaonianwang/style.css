@@ -241,3 +241,43 @@ h2{font-size:22px;letter-spacing:6px;margin-bottom:18px;font-family:"Noto Serif 
 .cMe{top:86%;filter:drop-shadow(0 0 6px #fc6)}
 .cOb{top:0}
 @media (max-height:430px){.fRing{transform:scale(.75)}#game .gPad button{width:52px;height:52px}.cRoad{height:46vh}#game .gHelp{margin-bottom:4px}}
+
+/* 雲公子：快轉已讀、選過、路線卡、最接近結局 */
+#skipBtn{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:13px;height:36px;padding:0 10px;border-radius:18px;line-height:1;display:flex;align-items:center;gap:3px}
+#skipBtn small{font-size:11px;letter-spacing:1px}
+#skipBtn.on{background:#f3d9a4;color:#222;border-color:#f3d9a4}
+#opts button.was{opacity:.82}
+#opts button em.was{font-style:normal;font-size:11px;color:#f3d9a4;border:1px solid rgba(243,217,164,.5);border-radius:3px;padding:0 4px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+#route{position:absolute;inset:0;z-index:28;background:rgba(0,0,0,.86);display:flex;align-items:center;justify-content:center;animation:cardIn .6s ease}
+#route .rWrap{width:min(86vw,460px);text-align:center;color:#eee;padding:18px}
+#rChap{font-size:clamp(16px,4vw,22px);letter-spacing:4px;color:#f3d9a4;margin-bottom:14px;font-family:"Noto Serif TC","Songti TC",serif}
+#rStats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:12px}
+#rStats span{font-size:14px;padding:3px 10px;border-radius:12px;background:rgba(255,255,255,.08)}
+#rStats .up{color:#9fe0a8}#rStats .dn{color:#f0a0a0}
+#rPicks{list-style:none;padding:0;margin:0 0 12px;font-size:13px;color:#bbb;line-height:1.8}
+#rPicks li:before{content:'▸ ';color:#f3d9a4}
+#rEnd{font-size:12px;color:#aaa;letter-spacing:2px}
+.rTap{font-size:11px;color:#777;margin-top:16px}
+#eNear{background:rgba(10,8,6,.7);border:1px dashed rgba(243,217,164,.35);border-radius:4px;padding:10px 14px;font-size:13px;line-height:1.8;margin:-6px 0 14px;color:#ddd}
+#eNear b{display:block;color:#f3d9a4;font-weight:normal;letter-spacing:2px;font-size:12px}
+
+/* 博哥：章節選擇、對話回顧、介紹卡可點掉 */
+#intro{pointer-events:auto}
+#logBtn{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:11px;letter-spacing:1px;width:36px;height:36px;border-radius:50%;line-height:1;padding:0}
+#chap,#log{background:rgba(0,0,0,.96)}
+#chList{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:8px;max-height:66vh;overflow-y:auto;padding:4px;margin-bottom:10px;touch-action:pan-y}
+#chList .chI{display:block;width:100%;margin:0;padding:10px 14px;text-align:left;letter-spacing:2px;border-radius:6px;border:1px solid rgba(243,217,164,.45);background:rgba(255,255,255,.05)}
+#chList .chI b{display:block;font-size:12px;color:#b9a77f;font-weight:normal;letter-spacing:4px}
+#chList .chI span{display:block;font-size:16px;color:#fff;margin-top:2px;font-family:"Noto Serif TC","Songti TC",serif}
+#chList .chI small{display:block;font-size:11px;color:#999;letter-spacing:1px;margin-top:3px}
+#chList .chI.lock{opacity:.4;border-color:rgba(255,255,255,.15);cursor:default}
+.gWrap.lWrap{width:min(94vw,640px)}
+#logList{max-height:70vh;overflow-y:auto;text-align:left;padding:4px 6px;margin-bottom:10px;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+#logList .lg{padding:7px 4px;border-bottom:1px solid #222;font-size:15px;line-height:1.6;color:#ddd;user-select:text;-webkit-user-select:text}
+#logList .lg.line b{display:block;font-size:12px;color:#f3d9a4;letter-spacing:2px;font-weight:normal}
+#logList .lg.nar{color:#bbb}
+#logList .lg.think{color:#9fb4c9;font-style:italic}
+#logList .lg.pick{color:#f3d9a4}
+#logList .lg.pick .lq{display:block;font-size:12px;color:#888;letter-spacing:1px}
+#logList .lg.sep{text-align:center;color:#b9a77f;font-size:13px;letter-spacing:3px;border-bottom:0;padding-top:14px}
+@media (max-height:430px){#chList,#logList{max-height:62vh}}

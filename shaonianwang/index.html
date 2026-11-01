@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#000">
 <title>少年王</title>
-<link rel="stylesheet" href="style.css?v=11010243">
+<link rel="stylesheet" href="style.css?v=11010400">
 </head>
 <body>
 <div id="stage">
@@ -16,7 +16,7 @@
 
   <div id="hud" class="hide">
     <div id="clock"></div>
-    <div id="hudR"><div id="money"></div><button id="menuBtn" aria-label="選單">≡</button></div>
+    <div id="hudR"><div id="money"></div><button id="skipBtn" aria-label="快轉已讀" title="快轉已讀（按住 Ctrl 也可以）">⏩<small>已讀</small></button><button id="logBtn" aria-label="對話回顧">回顧</button><button id="menuBtn" aria-label="選單">≡</button></div>
   </div>
 
   <div id="intro" class="hide"><div class="face" id="introFace"></div><div><b id="introName"></b><span id="introDesc"></span></div></div>
@@ -30,13 +30,14 @@
 
   <div id="phone" class="hide"><div class="ph"><div class="phTop"><span id="phTitle"></span><span class="phBat">▮▮▮ 5G</span></div><div id="phBody"></div><button id="phDown">▾ 放下手機</button></div></div>
   <div id="note" class="hide"><div class="paper"><div id="noteTxt"></div><small>（點擊收起）</small></div></div>
+  <div id="route" class="hide"><div class="rWrap"><div id="rChap"></div><div id="rStats"></div><ul id="rPicks"></ul><div id="rEnd"></div><div class="rTap">點一下繼續</div></div></div>
   <div id="card" class="hide"><div id="cardA"></div><div id="cardB"></div></div>
 
   <div id="gate" class="screen"><div class="gateIn"><div class="hp"><svg viewBox="0 0 24 24" fill="none" stroke="#f3d9a4" stroke-width="1.3" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></div><p>建議戴上耳機</p><p class="sm">本作含全語音、配樂與環境音</p><button id="gateBtn">戴上耳機了，開始</button></div></div>
 
   <div id="title" class="screen hide">
     <div class="tWrap"><h1>少年王</h1><p class="tSub">木料廠門衛的兒子，從小鎮一路走到南海</p>
-      <div id="tMain" class="tBtns"><button data-a="start">開始</button><button data-a="cont" id="bCont">繼續</button><button data-a="replay" id="bReplay">重來一次</button><button data-a="gallery">結局</button><button data-a="menu">設定</button></div>
+      <div id="tMain" class="tBtns"><button data-a="start">開始</button><button data-a="cont" id="bCont">繼續</button><button data-a="chapters" id="bChap" class="hide">章節選擇</button><button data-a="replay" id="bReplay">重來一次</button><button data-a="gallery">結局</button><button data-a="menu">設定</button></div>
       <div id="tCont" class="tBtns hide"><p class="tSub">要繼續哪一個存檔？</p><div id="tContList" class="tBtns"></div><button data-a="back">返回</button></div>
     </div><div class="ver">改編自撫琴的人《少年王》· 同人互動劇 · 本機測試版</div>
   </div>
@@ -49,14 +50,18 @@
     <label>環境音<input type="range" id="vAmb" min="0" max="1" step="0.05"></label>
     <label class="tg">字幕<input type="checkbox" id="vSub"></label>
     <label class="tg">自動前進<input type="checkbox" id="vAuto"></label>
-    <div class="tBtns"><button id="mResume">繼續</button><button id="mTitle">回到標題</button></div></div></div>
+    <div class="tBtns"><button id="mResume">繼續</button><button id="mLog">對話回顧</button><button id="mTitle">回到標題</button></div></div></div>
+
+  <!-- 博哥：章節選擇、對話回顧 -->
+  <div id="chap" class="screen hide"><div class="gWrap"><h2>章節選擇</h2><p class="tSub" id="chCount"></p><div id="chList"></div><button id="chBack">返回</button></div></div>
+  <div id="log" class="screen hide"><div class="gWrap lWrap"><h2>對話回顧</h2><div id="logList"></div><button id="logBack">返回</button></div></div>
 
   <div id="confirm" class="screen hide"><div class="cfWrap"><p id="cfMsg"></p><div class="tBtns" id="cfBtns"></div></div></div>
 
-  <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div class="tBtns"><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
+  <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div id="eNear"></div><div class="tBtns"><button id="eBack">回到上一個選擇</button><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
 </div>
-<script src="voicemap.js?v=11010243"></script>
-<script src="story.js?v=11010243"></script>
-<script src="engine.js?v=11010243"></script>
+<script src="voicemap.js?v=11010400"></script>
+<script src="story.js?v=11010400"></script>
+<script src="engine.js?v=11010400"></script>
 </body>
 </html>

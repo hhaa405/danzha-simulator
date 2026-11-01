@@ -180,6 +180,46 @@ function waitTapOr(ms){ return new Promise(function(res){ var done=false; functi
 var CANCEL=[]; function onCancel(f){ CANCEL.push(f); return function(){ var i=CANCEL.indexOf(f); if(i>=0) CANCEL.splice(i,1); }; }
 function cancelAll(){ var l=CANCEL.splice(0); l.forEach(function(f){ try{f()}catch(e){} }); }
 
+/* ==== 雲公子：已讀快轉／選過記號（只用 snw1_readlines、snw1_picked 兩個新 key） ==== */
+function hkey(s){ var h=5381; for(var i=0;i<s.length;i++) h=((h*33)^s.charCodeAt(i))>>>0; return h.toString(36); }
+var READ=LS.get('readlines',{}), READN=0, PICKED=LS.get('picked',{}), SKIP=false, CTRL=false;
+function flushRead(){ LS.set('readlines',READ); }
+function markRead(k){ if(!READ[k]){ READ[k]=1; if(++READN%15===0) flushRead(); } }
+function setSkip(on){ SKIP=!!on; var b=document.getElementById('skipBtn'); if(b) b.classList.toggle('on',SKIP); }
+function skipping(){ return SKIP||CTRL; }
+addEventListener('keydown',function(e){ if(e.key==='Control') CTRL=true; });
+addEventListener('keyup',function(e){ if(e.key==='Control') CTRL=false; });
+addEventListener('blur',function(){ CTRL=false; });
+addEventListener('pagehide',flushRead);
+/* ==== 雲公子：限時規則——只有打鬥／危急題計時，情感／關係題一律不計時（作者可寫 keep=1 強制保留） ==== */
+var T_ACT=/[打拳刀槍棍衝撲躲閃踢砸逃追擋撞砍扣扭摔跳翻抓攻殺掌踹揮推拔奪劈射]|開槍|子彈|著火|火場|救人|快跑|爆炸|車子|煞車|欄杆|倒下|來不及|危險|動手/;
+var T_EMO=/[爸媽哭抱愛謝吻淚]|喜歡|對不起|道歉|原諒|電話|召令|告白|心裡|回答|告訴|說出|承認|答應|留下|離開|結婚|婚|家|兄弟|朋友|師父|名字|跪|墓|信|想起|無辜/;
+function timedOK(op){ var st=(op.a&&op.a.t)||'calm'; if(st==='calm'||st==='0') return false; if(op.game||op.a.keep) return true;
+  var p=op.prompt||'', ot=op.opts.map(function(o){return o.text}).join(' ');
+  if(T_EMO.test(p)) return false; if(T_ACT.test(p)) return true;
+  return st==='high'&&!T_EMO.test(ot)&&op.opts.filter(function(o){return T_ACT.test(o.text)}).length>=Math.max(2,op.opts.length-1); }
+/* ==== 雲公子：章節路線卡 ==== */
+var RLAB={bro:'兄弟情',dad:'爸爸線',mom:'媽媽',uncle:'舅舅',heart:'仁心',rage:'怒氣',yama:'殺氣',wu:'武力',fame:'名聲',power:'勢力',revenge:'仇恨',coward:'退縮',jing:'靜怡',jiao:'嬌嬌',qian:'千月',ryq:'雨晴',miao:'雪雁',hx:'懷香',yq:'師父',lang:'豺狼',xiong:'熊子',lele:'樂樂',liu:'劉鑫',lian:'陳小練',recog:'認出爸爸'};
+function endCount(){ var got=LS.get('end',{}); return ENDINGS.filter(function(e){return got[e.id]}).length; }
+async function routeCard(){ var cs=S.chapStart; if(!cs||!S.chap) return; var v=S.vars, d=[];
+  Object.keys(RLAB).forEach(function(k){ var x=(+v[k]||0)-(+cs.vars[k]||0); if(x) d.push([k,x]); });
+  d.sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1])}); d=d.slice(0,4);
+  var picks=S.hist.slice(cs.h).map(function(h){ return h.split('→').slice(1).join('→'); }).filter(Boolean).slice(-3);
+  var el=$('#route'); $('#rChap').textContent=S.chap+'　完';
+  $('#rStats').innerHTML=d.map(function(x){ return '<span class="'+(x[1]>0?'up':'dn')+'">'+RLAB[x[0]]+(x[1]>0?' ↑':' ↓')+'</span>'; }).join('')||'<span>沒有明顯的變化</span>';
+  var ul=$('#rPicks'); ul.innerHTML=''; picks.forEach(function(t){ var li=document.createElement('li'); li.textContent=t; ul.appendChild(li); });
+  $('#rEnd').textContent='結局 '+endCount()+' / '+ENDINGS.length+' 已解鎖';
+  $('#sub').classList.add('hide'); el.classList.remove('hide'); lineShown=performance.now(); flushRead();
+  var un=onCancel(function(){ el.classList.add('hide'); });
+  await waitTapOr(AUTO?1200:6000); un(); el.classList.add('hide'); }
+/* ==== 雲公子：最接近的未解鎖結局 ==== */
+var EKEY={canon:['dad',75],dadwake:['dad',75],halfwake:['dad',60],meng:['power',15],bro:['bro',20],jiao:['jiao',12],jing:['jing',12],qian:['qian',20],jail:['yama',6],lone:['rage',15],small:['mom',6],drift:['qian',6],yama2:['yama',12],revenge:['revenge',5],coward:['coward',3],knife:['knife',1],lesson:['yq',8],ruin:['kill_dad',1]};
+function nearestHint(cur){ var got=LS.get('end',{}), v=S.vars, best=null;
+  ENDINGS.forEach(function(e,i){ if(got[e.id]||e.id===cur) return; var k=EKEY[e.id], sc=k?Math.min(1,Math.max(0,(+v[k[0]]||0)/k[1])):0; sc+=(e.good?.05:0)-i*.001; if(!best||sc>best.sc) best={e:e,sc:sc}; });
+  if(!best) return '全部 '+ENDINGS.length+' 個結局都解鎖了。';
+  var e=best.e; if(e.hidden) return '<b>離你最近的未解鎖結局</b>？？？　（隱藏）';
+  var d=document.createElement('div'); d.textContent=e.hint||''; return '<b>離你最近的未解鎖結局</b>「'+e.name.replace(/[<>&]/g,'')+'」<br>'+d.innerHTML; }
+
 /* ---------- 台詞 ---------- */
 var introTimer=null;
 async function say(op){
@@ -192,16 +232,18 @@ async function say(op){
   void txt.offsetWidth; txt.classList.add('on'); lineShown=performance.now();
   if(spk&&!op.think&&!isSelf&&CAST[spk]&&!S.seen[spk]){ S.seen[spk]=1; showIntro(spk); }
   var key=op.vp+'|'+op.emo+'|'+op.text, vd=VOICE[key], len=op.text.length;
-  var base=600+len*110;   // 節奏加快（老闆反映太慢）：原 900+len*150
+  var base=Math.max(1200,400+len*160);   // 無語音／關語音／語音失敗：約每秒 6 字（💛 11:0x），語音播完後仍只等 0.3 秒
+  var rk=hkey(key), wasRead=!!READ[rk]; markRead(rk);
+  if(skipping()){ if(wasRead){ window.__game.lines.push({key:key,t:performance.now(),has:!!vd,skip:1}); await sleep(60); if(my!==running) return; tapWait=null; txt.classList.remove('on'); return; } setSkip(false); CTRL=false; }   // 快轉遇到沒讀過的句子就停
   window.__game.lines.push({key:key,t:performance.now(),has:!!vd});
   if((!AUTO||AUTOVOICE)&&vd&&SET.voice>0){
     var r=await Promise.race([AU.voice(vd), waitTapOr(null).then(function(){return 'tap'})]);
     if(my!==running) return;
     window.__game.lines[window.__game.lines.length-1].r=r;
     if(r==='tap') AU.stopVoice();
-    else if(r==='fail'){ await waitTapOr(SET.auto||AUTO?Math.max(1000,base,vd[1]*1000+300):null); }
+    else if(r==='fail'){ await waitTapOr(SET.auto||AUTO?Math.max(base,vd[1]*1000+300):null); }
     else { await waitTapOr(SET.auto||AUTO?300:null); }   // 語音真的播完（ended）之後再停 0.3 秒
-  } else { await waitTapOr(SET.auto||AUTO?Math.max(1000,base):null); }
+  } else { await waitTapOr(SET.auto||AUTO?base:null); }
   if(my!==running) return;
   tapWait=null; txt.classList.remove('on'); await sleep(140);
 }
@@ -233,7 +275,7 @@ var RH={key:null,restart:false};
 function needOf(){ var nx=N[S.node][S.idx]; if(nx&&nx.k==='if'){ var mm=nx.s.match(/rh\s*>=\s*(\d+)/); if(mm) return +mm[1]; } return 0; }
 function adaptK(){ return Math.max(.7,Math.min(1.45,+S.vars.adapt||1)); }
 async function rhythm(s,drum){ var m=s.match(/^(\d+)\s*(.*)$/), n=+(m?m[1]:6), label=m?m[2]:s;
-  var iv=Math.round((S.replay?650:800)*(drum?.85:1)), W=Math.round((S.replay?110:150)*adaptK());
+  var iv=Math.round(800*(drum?.85:1)), W=Math.round(150*adaptK()); /* 博哥：第二輪不再收緊（原 replay 650/110） */
   var need=needOf();
   var el=$('#rhythm'), core=$('#rcore'), sh=$('#rshrink'), fb=$('#rfb'), sc=$('#rscore'), dots=$('#rdots');
   $('#rlabel').textContent=label; $('#rhelp').textContent='外圈縮到和內圈重疊的瞬間點一下（或按空白鍵）'+(need?'　目標 ≥ '+need+' 拍':'');
@@ -270,7 +312,7 @@ async function rhythm(s,drum){ var m=s.match(/^(\d+)\s*(.*)$/), n=+(m?m[1]:6), l
   if($('#title').classList.contains('hide')){
     sc.textContent='命中 '+hits+' / '+n+(extra?'　多按 '+extra:'')+'　→ '+rh+' 拍';
     flash(need?(rh>=need?'成功！':'失敗……'):(rh>=n-1?'漂亮！':'好'),need&&rh<need?'bad big':'ok big');
-    await psleep(1400); }
+    await bogeTrans(function(){ return psleep(1400); }); } /* 博哥：結算可點掉 */
   el.onpointerdown=null; RH.key=null; el.classList.add('hide'); $('#menuBtn').classList.remove('hide');
   S.vars.rh=rh; S.stats.rhythm+=n; S.stats.rhyHit+=rh; S.stats.games++; if(!need||rh>=need) S.stats.gameWin++; }
 
@@ -285,7 +327,7 @@ async function gameEnd(G,score,n,need){ if($('#title').classList.contains('hide'
 function autoScore(n){ return Math.min(n,+(Q.get('rh')||n-1)); }
 // 打架：畫面中央出現方向，縮圈到位時按對應方向（方向鍵／WASD／按鈕／滑動）
 async function gFight(n,label){ var need=needOf(), G=gameShell(label||'打','看箭頭！外圈縮到位時按同一個方向（方向鍵、滑動或按下面的鈕）'+(need?'　目標 ≥ '+need:''));
-  var DIR=['←','↑','→','↓'], win=Math.round((S.replay?520:650)*adaptK()), gap=S.replay?900:1100;
+  var DIR=['←','↑','→','↓'], win=Math.round(650*adaptK()), gap=1100; /* 博哥：第二輪不再收緊（原 replay 520/900） */
   G.arena.innerHTML='<div class="fRing"><b></b><i></i></div>'; var ring=G.arena.firstChild, arr=ring.firstChild, sh=ring.lastChild;
   DIR.forEach(function(d,i){ var b=document.createElement('button'); b.textContent=d; b.onpointerdown=function(e){ e.preventDefault(); e.stopPropagation(); press(i); }; G.pad.appendChild(b); });
   var score=0, k=-1, cur=-1, tHit=0, judged=true, done=false, sx=0, sy=0, un;
@@ -308,7 +350,7 @@ async function gFight(n,label){ var need=needOf(), G=gameShell(label||'打','看
 // 樁步：重心會亂飄，按住左右把它拉回中間的綠區；成績＝站穩的秒數
 async function gStance(n,label){ var need=needOf(), G=gameShell(label||'站樁','重心會亂飄。按住 ◀ ▶（或方向鍵）把白點拉回綠區，撐住 '+n+' 秒'+(need?'　目標 ≥ '+need+' 秒':''));
   G.arena.innerHTML='<div class="sBar"><div class="sZone"></div><div class="sDot"></div></div><div class="sTime"></div>'; var dot=G.arena.querySelector('.sDot'), zone=G.arena.querySelector('.sZone'), tm=G.arena.querySelector('.sTime');
-  var zw=Math.max(.16,Math.min(.34,.24/adaptK()*(S.replay?.85:1))); zone.style.left=(50-zw*50)+'%'; zone.style.width=(zw*100)+'%';
+  var zw=Math.max(.16,Math.min(.34,.24/adaptK())); /* 博哥：第二輪不再收緊（原 replay ×.85） */ zone.style.left=(50-zw*50)+'%'; zone.style.width=(zw*100)+'%';
   var hold=0, x=0, v=0, inT=0, el=0, done=false;
   ['◀','▶'].forEach(function(d,i){ var b=document.createElement('button'); b.textContent=d; b.onpointerdown=function(e){ e.preventDefault(); e.stopPropagation(); hold=i?1:-1; }; b.onpointerup=b.onpointerleave=function(){ hold=0; }; G.pad.appendChild(b); });
   function kd(e){ if(e.key==='ArrowLeft'||e.key==='a'){hold=-1;e.preventDefault();} if(e.key==='ArrowRight'||e.key==='d'){hold=1;e.preventDefault();} } function ku(e){ if(/Arrow(Left|Right)|^[ad]$/.test(e.key)) hold=0; }
@@ -327,7 +369,7 @@ async function gStance(n,label){ var need=needOf(), G=gameShell(label||'站樁',
 // 機車追逐：三線道，障礙物衝過來，左右換線閃開
 async function gChase(n,label){ var need=needOf(), G=gameShell(label||'追','左右換車道閃開（◀ ▶、方向鍵或點畫面左右半邊）'+(need?'　目標 ≥ '+need:''));
   G.arena.innerHTML='<div class="cRoad"><i></i><i></i><i></i><div class="cMe">🛵</div></div>'; var road=G.arena.firstChild, me=road.querySelector('.cMe');
-  var lane=1, score=0, done=false, obs=[], spawned=0, nextT=0, el=0, spd=(S.replay?1.25:1)/adaptK()*.55;
+  var lane=1, score=0, done=false, obs=[], spawned=0, nextT=0, el=0, spd=1/adaptK()*.55; /* 博哥：第二輪不再收緊（原 replay ×1.25） */
   function mv(d){ lane=Math.max(0,Math.min(2,lane+d)); me.style.left=(lane*33.3+16.65)+'%'; AU.sfx('whoosh'); }
   ['◀','▶'].forEach(function(d,i){ var b=document.createElement('button'); b.textContent=d; b.onpointerdown=function(e){ e.preventDefault(); e.stopPropagation(); mv(i?1:-1); }; G.pad.appendChild(b); });
   road.onpointerdown=function(e){ e.stopPropagation(); var r=road.getBoundingClientRect(); mv(e.clientX<r.left+r.width/2?-1:1); };
@@ -336,7 +378,7 @@ async function gChase(n,label){ var need=needOf(), G=gameShell(label||'追','左
   await new Promise(function(res){ var last=performance.now(), un=onCancel(function(){ done=true; res(); });
     (function loop(){ if(done) return; var now=performance.now(), dt=Math.min(.05,(now-last)/1000)*FAST; last=now;
       if(!PAUSED){ el+=dt;
-        if(spawned<n&&el>=nextT){ var L=Math.floor(rnd()*3), d=document.createElement('div'); d.className='cOb'; d.textContent=['🚗','🚧','🛻','🚚'][spawned%4]; d.style.left=(L*33.3+16.65)+'%'; road.appendChild(d); obs.push({L:L,y:-.1,el:d,ok:rnd()<(autoScore(n)/n)}); spawned++; nextT=el+(S.replay?.85:1.05)*adaptK(); }
+        if(spawned<n&&el>=nextT){ var L=Math.floor(rnd()*3), d=document.createElement('div'); d.className='cOb'; d.textContent=['🚗','🚧','🛻','🚚'][spawned%4]; d.style.left=(L*33.3+16.65)+'%'; road.appendChild(d); obs.push({L:L,y:-.1,el:d,ok:rnd()<(autoScore(n)/n)}); spawned++; nextT=el+1.05*adaptK(); } /* 博哥：原 replay .85 */
         obs.forEach(function(o){ o.y+=dt*spd; o.el.style.top=(o.y*100)+'%';
           if(AUTO&&!o.ai&&o.y>.55){ o.ai=1; if(o.ok&&o.L===lane) mv(lane===0?1:-1); else if(!o.ok&&o.L!==lane) mv(o.L>lane?1:-1); }
           if(!o.hit&&o.y>=.82){ o.hit=1; if(o.L===lane){ G.flash('撞上了！','bad'); hitFx(true); } else { score++; G.flash('閃過！','ok'); } G.sc.textContent='閃過 '+score+' / '+n; } });
@@ -350,7 +392,7 @@ async function gWords(kind,s){ var parts=s.split('||').map(function(x){return x.
   for(var i=0;i<n;i++){ var r=rounds[i], opts=r.opts.map(function(t){ var good=t.charAt(0)==='+'; return {text:t.slice(1).trim(),good:good}; });
     for(var j=opts.length-1;j>0;j--){ var x=Math.floor(rnd()*(j+1)), t=opts[j]; opts[j]=opts[x]; opts[x]=t; }
     var gi=opts.findIndex(function(o){return o.good}); if(AUTO){ PICK.unshift(rnd()<autoScore(n)/n?gi:(gi+1)%opts.length); }
-    var o=await choose({a:{t:String(kind==='quiz'?12:8)},prompt:(label?'【'+label+'】':'')+(kind==='quiz'?'第 '+(i+1)+' 題　':'第 '+(i+1)+' 回合　')+r.q,opts:opts.map(function(o){ return {text:o.text,fx:o.good?[{v:'rh',op:'+=',x:'1'}]:[]}; })});
+    var o=await choose({game:1,a:{t:String(kind==='quiz'?12:8)},prompt:(label?'【'+label+'】':'')+(kind==='quiz'?'第 '+(i+1)+' 題　':'第 '+(i+1)+' 回合　')+r.q,opts:opts.map(function(o){ return {text:o.text,fx:o.good?[{v:'rh',op:'+=',x:'1'}]:[]}; })});
     if(!o) return; var good=o.fx.length>0; if(good) score++; AU.sfx(good?'coin':'buzz'); hud(); }
   S.hud=oldHud; hud(); S.vars.rh=score; S.stats.games++; if(!need||score>=need) S.stats.gameWin++; window.__game.games.push({node:S.node,score:score,n:n,need:need,kind:kind}); }
 
@@ -358,9 +400,9 @@ async function gWords(kind,s){ var parts=s.split('||').map(function(x){return x.
 var GOAL=Q.get('goal')||''; function goalPick(opts){ var best=-1e9,bi=[]; opts.forEach(function(o,i){ var sc=0; if(o.go&&new RegExp('_'+GOAL+'$').test(o.go)) sc+=100; (o.fx||[]).forEach(function(f){ if(f.v===GOAL&&f.op==='+=') sc+=+f.x||1; if(f.v===GOAL&&f.op==='-=') sc-=+f.x||1; if(f.v==='greed') sc-=50; }); if(sc>best){best=sc;bi=[i]} else if(sc===best) bi.push(i); }); return bi[Math.floor(rnd()*bi.length)]; }
 async function choose(op){
   var opts=op.opts.filter(function(o){return !o.cond||evalx(o.cond)}); if(!opts.length) return null;
-  var a=op.a, st=a.t||'calm', T=0, my=running;
-  if(/^\d/.test(st)) T=+st; else if(st==='high') T=5; else if(st==='mid') T=10; else if(st==='calm') T=S.replay?16:0;
-  if(S.replay&&T) T=T*0.72;
+  var a=op.a, st=a.t||'calm', T=0, my=running; setSkip(false);
+  if(!timedOK(op)) st='calm';
+  if(/^\d/.test(st)) T=+st; else if(st==='high') T=5; else if(st==='mid') T=10; else if(st==='calm') T=0; /* 博哥：第二輪不再收緊（原 calm 在 replay 變 16 秒、所有限時 ×0.72） */
   if(T) T=Math.max(3,Math.round(T*adaptK()*2)/2);
   var hot=(st==='high'||(T&&T<=6));
   var def=Math.min(opts.length-1,Math.max(0,(+a.def||opts.length)-1));
@@ -373,7 +415,7 @@ async function choose(op){
   var picked=await new Promise(function(res){ var done=false, armed=false, last=performance.now(), nextBeat=0, un;
     function fin(i,timeout,cancel){ if(done)return; done=true; un(); res({i:i,timeout:timeout,cancel:cancel}); }
     un=onCancel(function(){ fin(def,false,true); });
-    opts.forEach(function(o,i){ var b=document.createElement('button'); b.innerHTML='<span class="k">'+(i+1)+'</span><span class="t"></span>'; b.lastChild.textContent=o.text;
+    opts.forEach(function(o,i){ var b=document.createElement('button'); b.innerHTML='<span class="k">'+(i+1)+'</span><span class="t"></span>'; b.lastChild.textContent=o.text; o._pk=op.game?null:hkey(S.node+'|'+o.text); if(o._pk&&PICKED[o._pk]){ b.classList.add('was'); var w=document.createElement('em'); w.className='was'; w.textContent='選過'; b.appendChild(w); }
       b.onclick=function(e){ e.stopPropagation(); if(!armed||done) return; b.classList.add('pick'); fin(i,false); }; box.appendChild(b); });
     setTimeout(function(){ armed=true; box.className=''; },350);
     (function tick(){ if(done) return; var now=performance.now(), dt=now-last; last=now;
@@ -389,7 +431,7 @@ async function choose(op){
   var rt=T?used:(performance.now()-t0)/1000;
   if(picked.timeout){ AU.sfx('buzz'); box.children[picked.i]&&box.children[picked.i].classList.add('pick'); tm.classList.add('out'); num.textContent='時間到'; }
   await psleep(picked.timeout?700:380); if(my!==running) return null; $('#choice').classList.add('hide');
-  var o=opts[picked.i]; S.stats.choices++;
+  var o=opts[picked.i]; S.stats.choices++; if(o._pk&&!picked.timeout){ PICKED[o._pk]=1; LS.set('picked',PICKED); }
   if(T){ S.stats.timed++; S.stats.rtSum+=rt; if(picked.timeout){ S.stats.timeouts++; S.vars.panic++; S.vars.adapt=Math.min(1.45,adaptK()*1.15); } else if(rt<T*.4){ S.stats.fast++; S.vars.adapt=Math.max(.7,adaptK()*.94); } }
   S.hist.push((op.prompt||'')+'→'+o.text+(picked.timeout?'（逾時）':''));
   window.__game.choices[window.__game.choices.length-1].pick={i:picked.i,timeout:picked.timeout,rt:Math.round(rt*10)/10};
@@ -417,7 +459,7 @@ async function run(node,idx){
 function skey(c){ return 'save_'+c; }
 function save(){ if(!S||S.ended||S.nosave) return;
   LS.set(skey(S.camp),{v:3,camp:S.camp,replay:S.replay,node:S.node,idx:S.cur,vars:S.vars,stats:S.stats,seen:S.seen,scene:S.scene,hud:S.hud,hist:S.hist,chap:S.chap,ts:Date.now()}); }
-async function exec(op){
+async function exec(op){ var my0=running;
   switch(op.k){
     case 'scene': var a=op.a;
       if(a.bg&&a.bg!==S.scene.bg) await ready(a.bg);
@@ -426,7 +468,7 @@ async function exec(op){
       else if(a.fade==='cut'){ $('#cam').classList.add('cut'); setScene(a); await psleep(120); $('#cam').classList.remove('cut'); }
       else if(setScene(a)) await psleep(900); return;
     case 'line': await say(op); return;
-    case 'title': await card(op.s); return;
+    case 'title': await routeCard(); if(my0!==running) return; await card(op.s); S.chapStart={vars:clone(S.vars),h:S.hist.length}; return;
     case 'blink': await blink(); return;
     case 'phone': await phone(op.s); return;
     case 'note': await note(op.s); return;
@@ -439,8 +481,8 @@ async function exec(op){
     case 'fx': if(op.s==='hit'||op.s==='bighit'){ hitFx(op.s==='bighit'); await psleep(380); return; } if(op.s==='slow'){ await slowmo(); return; }
       if(op.s==='flash'){ var fh=$('#hitf'); fh.className=''; void fh.offsetWidth; fh.className='big'; AU.sfx('crash'); return; }
       $('#pulse').classList.toggle('on',op.s==='pulse'); stageEl.classList.toggle('shake',op.s==='pulse'||op.s==='shake'); return;
-    case 'rhythm': await rhythm(op.s); return;
-    case 'game': var gw=op.s.match(/^(\w+)\s+(\d+)\s*(.*)$/); if(!gw){ console.warn('bad game',op.s); return; }
+    case 'rhythm': setSkip(false); await rhythm(op.s); return;
+    case 'game': setSkip(false); var gw=op.s.match(/^(\w+)\s+(\d+)\s*(.*)$/); if(!gw){ console.warn('bad game',op.s); return; }
       if(gw[1]==='fight') await gFight(+gw[2],gw[3]); else if(gw[1]==='stance') await gStance(+gw[2],gw[3]); else if(gw[1]==='chase') await gChase(+gw[2],gw[3]); else if(gw[1]==='drum') await rhythm(gw[2]+' '+gw[3],true); return;
     case 'nego': await gWords('nego',op.s); return;
     case 'quiz': await gWords('quiz',op.s); return;
@@ -448,9 +490,20 @@ async function exec(op){
     case 'if': var m=op.s.match(/^(.*?)\s*->\s*(\S+)$/); if(m&&evalx(m[1])) return {go:m[2]}; return;
     case 'when': return evalx(op.s)?undefined:'skip';
     case 'end': await ending(op.s); return 'end';
-    case 'choice': var o=await choose(op); if(o&&o.go) return {go:o.go}; return;
+    case 'choice': snapChoice(); var o=await choose(op); if(o&&o.go) return {go:o.go}; return;
     default: console.warn('unknown op',op.k,op.ln); return;
   } }
+
+/* ---------- 回到上一個選擇：每次出選項前存一份快照 ---------- */
+function clone(x){ return JSON.parse(JSON.stringify(x==null?null:x)); }
+function snapChoice(){ if(!S) return; S.back={node:S.node,idx:S.cur,vars:clone(S.vars),stats:clone(S.stats),seen:clone(S.seen),scene:clone(S.scene),hud:S.hud,hist:clone(S.hist),chap:S.chap,chapStart:clone(S.chapStart)}; }
+function backToChoice(){ var b=S&&S.back; if(!b) return false; var camp=S.camp, rp=S.replay;
+  running++; resetStage(); S=fresh(camp,rp);
+  Object.assign(S,{vars:Object.assign(S.vars,clone(b.vars)),stats:Object.assign(S.stats,clone(b.stats)),seen:clone(b.seen)||{},hud:b.hud||'none',hist:clone(b.hist)||[],chap:b.chap||'',chapStart:clone(b.chapStart)||undefined});
+  window.__game.ending=null; window.__game.backs=(window.__game.backs||0)+1;
+  show(null); $('#hud').classList.remove('hide'); AU.unlock();
+  var sc=clone(b.scene)||{}; S.scene={}; preload(sc.bg); delete sc.vid; setScene(sc); hud();
+  run(b.node,b.idx||0); return true; }
 
 /* ---------- 結局與評語 ---------- */
 function bar5(n){ n=Math.max(0,Math.min(5,Math.round(n))); return '★'.repeat(n)+'☆'.repeat(5-n); }
@@ -480,13 +533,13 @@ async function ending(id){
   for(var gi=0; gi<4 && e.req && e.fall && !evalx(e.req); gi++){ id=e.fall; e=ENDINGS.filter(function(x){return x.id===id})[0]; }  // 結局條件（meta.js req/fall）
   var my=running; S.ended=true; window.__game.ending=id;
   var got=LS.get('end',{}); got[id]=got[id]||{}; got[id].A=1; LS.set('end',got); var dn=LS.get('done',{}); dn.A=1; LS.set('done',dn);
-  LS.del(skey(S.camp)); AU.music(e.bgm||'emo'); stopVid(); setWx('none');
+  bogeKeepSave(id); /* 博哥：結局後不刪存檔（原 LS.del），改存成「結局前最後一個選擇」 */ AU.music(e.bgm||'emo'); stopVid(); setWx('none');
   await ready(e.img); await blink(function(){ setScene({bg:e.img}); });
   await psleep(1500); if(my!==running) return;
   $('#sub').classList.add('hide'); var el=$('#ending'); el.style.backgroundImage='linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.92)),url(img/'+e.img+'.webp)';
   $('#eTag').textContent=(e.hidden?'隱藏結局':'結局')+'　'+(ENDINGS.indexOf(e)+1)+' / '+ENDINGS.length;
   $('#eName').textContent='「'+e.name+'」'; $('#eDesc').textContent=e.d||'';
-  $('#eVerdict').innerHTML=verdict(e); el.classList.remove('hide'); $('#hud').classList.add('hide'); AU.sfx('coin');
+  $('#eVerdict').innerHTML=verdict(e); $('#eBack').classList.toggle('hide',!S.back); $('#eNear').innerHTML=nearestHint(id); flushRead(); setSkip(false); el.classList.remove('hide'); $('#hud').classList.add('hide'); AU.sfx('coin');
   if(window.__game) window.__game.onEnd&&window.__game.onEnd(id);
 }
 
@@ -548,6 +601,8 @@ $('#vAuto').onchange=function(){SET.auto=this.checked;LS.set('set',SET)};
 $('#mResume').onclick=function(e){ e.stopPropagation(); AU.sfx('select'); closeMenu(); };
 $('#mTitle').onclick=function(e){ e.stopPropagation(); save(); toTitle(); };
 $('#eTitle').onclick=function(){ toTitle(); };
+$('#skipBtn').onclick=function(e){ e.stopPropagation(); setSkip(!SKIP); if(SKIP) onTap(); };
+$('#eBack').onclick=function(){ backToChoice(); };
 $('#eReplay').onclick=function(){ var c=S.camp; LS.del(skey(c)); startGame(c,true); };
 // 切到背景時自動暫停
 document.addEventListener('visibilitychange',function(){
@@ -666,6 +721,93 @@ var AU=(function(){
   return {init:init,unlock:unlock,wake:wake,vol:vol,music:music,tense:tense,amb:amb,sfx:sfx,voice:voice,stopVoice:stopVoice,pause:pause,
     get ctx(){return ac}, get el(){return vEl}};
 })();
+
+/* ==================== 博哥：引擎 4 項（章節選擇／轉場可點掉／對話回顧／第二輪不收緊）====================
+   全部寫成包裝（重新指定既有函式名稱），不改既有函式內部；新增的 localStorage key：snw1_chaps、snw1_backlog。
+   舊存檔（v:3）格式完全不變。 */
+
+/* ---- 博哥：轉場可點掉 ----
+   轉場期間（場景換圖／fade／blink／! wait／fx hit・slow／結局前停頓／小遊戲結算）點一下或按空白鍵，剩下的等待立刻結束。 */
+var TR={depth:0,skip:false,wait:[],gen:0};
+function bogeTransSkip(){ if(!TR.depth||TR.skip) return false; TR.skip=true; var w=TR.wait.splice(0); w.forEach(function(r){ r(); }); window.__game.skips=(window.__game.skips||0)+1; return true; }
+function bogeTransReset(){ TR.gen++; TR.depth=0; TR.skip=false; var w=TR.wait.splice(0); w.forEach(function(r){ r(); }); }
+async function bogeTrans(fn){ var g=TR.gen; TR.depth++; try{ return await fn(); } finally { if(g===TR.gen){ TR.depth--; if(!TR.depth){ TR.skip=false; TR.wait=[]; } } } }
+function bogeSkippable(orig){ return function(ms){ if(!TR.depth) return orig(ms); if(TR.skip) return Promise.resolve();
+  return new Promise(function(r){ TR.wait.push(r); orig(ms).then(r); }); }; }
+psleep=bogeSkippable(psleep); sleep=bogeSkippable(sleep);
+var BOGE_TRANS_OP={scene:1,blink:1,wait:1};
+var bogeExec0=exec; exec=function(op){
+  if(op.k==='title') bogeChapSnap(op);   // 博哥：到章首就存章節快照
+  if(BOGE_TRANS_OP[op.k]||(op.k==='fx'&&/^(hit|bighit|slow)$/.test(op.s))) return bogeTrans(function(){ return bogeExec0(op); });
+  return bogeExec0(op); };
+var bogeGameEnd0=gameEnd; gameEnd=function(G,score,n,need){ return bogeTrans(function(){ return bogeGameEnd0(G,score,n,need); }); };
+var bogeEnding0=ending; ending=function(id){ return bogeTrans(function(){ return bogeEnding0(id); }); };
+var bogeOnTap0=onTap; onTap=function(){ if(!PAUSED&&TR.depth&&!tapWait){ if(bogeTransSkip()) lastTap=performance.now(); return; } return bogeOnTap0(); };
+$('#rhythm').addEventListener('pointerdown',function(){ bogeTransSkip(); },true);
+addEventListener('keydown',function(e){ if(TR.depth&&(e.key===' '||e.key==='Enter')&&!$('#rhythm').classList.contains('hide')) bogeTransSkip(); },true);
+// 角色介紹卡：點一下就收起（不會順便跳下一句）
+$('#intro').addEventListener('pointerup',function(e){ e.stopPropagation(); down=null; look.drag=null; clearTimeout(introTimer); $('#intro').classList.add('hide'); });
+
+/* ---- 博哥：結局後不刪存檔 ----
+   結局時把存檔改成「結局前最後一個選擇」（S.back），標題的「繼續」就從那裡接著玩；沒有選擇快照就保留原存檔。 */
+function bogeKeepSave(endId){ var b=S&&S.back; if(!b||!b.node) return;
+  LS.set(skey(S.camp),{v:3,camp:S.camp,replay:S.replay,node:b.node,idx:b.idx||0,vars:b.vars,stats:b.stats,seen:b.seen,scene:b.scene,hud:b.hud,hist:b.hist,chap:b.chap,ts:Date.now(),afterEnd:endId}); }
+
+/* ---- 博哥：章節選擇 ----
+   每章 `! title` 執行前存一份快照（存檔同格式），key＝該章第一個節點；章節選單只開放到過的章節。 */
+var CHAPS=(function(){ var out=[]; ORDER.forEach(function(n){ N[n].forEach(function(op,i){ if(op.k==='title'){ var p=op.s.split('|'); out.push({node:n,idx:i,a:(p[0]||'').trim(),b:(p[1]||'').trim()}); } }); }); return out; })();
+function bogeChapSnap(op){ if(!S||S.nosave||S.ended) return; var all=LS.get('chaps',{}), p=op.s.split('|');
+  all[S.node]={v:3,camp:S.camp,replay:S.replay,node:S.node,idx:S.cur,vars:clone(S.vars),stats:clone(S.stats),seen:clone(S.seen),scene:clone(S.scene),hud:S.hud,hist:clone(S.hist),chap:(p[0]||'')+(p[1]?'　'+p[1]:''),ts:Date.now()};
+  LS.set('chaps',all); }
+function bogeChapLabel(s){ var d=new Date(s.ts||0), two=function(n){return (n<10?'0':'')+n}; return s.ts?(d.getMonth()+1)+'/'+d.getDate()+' '+two(d.getHours())+':'+two(d.getMinutes())+' 到達':''; }
+function openChapters(){ var all=LS.get('chaps',{}), L=$('#chList'); L.innerHTML='';
+  CHAPS.forEach(function(c){ var s=all[c.node], b=document.createElement('button'); b.className='chI'+(s?'':' lock');
+    b.innerHTML='<b></b><span></span><small></small>'; b.children[0].textContent=c.a; b.children[1].textContent=s?c.b:'？？？'; b.children[2].textContent=s?bogeChapLabel(s):'還沒到過';
+    if(s) b.onclick=function(e){ e.stopPropagation(); AU.sfx('select'); bogeChapGo(c); }; else b.disabled=true;
+    L.appendChild(b); });
+  $('#chCount').textContent='到過 '+CHAPS.filter(function(c){return all[c.node]}).length+' / '+CHAPS.length+' 章　·　從章首開始，帶入當時的狀態';
+  show(null); $('#chap').classList.remove('hide'); }
+function closeChapters(){ $('#chap').classList.add('hide'); show('#title'); }
+async function bogeChapGo(c){ var snap=LS.get('chaps',{})[c.node]; if(!snap) return; var sv=LS.get(skey('A'),null);
+  if(sv&&!sv.afterEnd){ var r=await ask('從「'+c.a+'　'+c.b+'」開頭開始。\n\n目前的存檔：\n'+saveLabel(sv)+'\n會被覆蓋。',[['go','從這一章開始','warn'],['cancel','取消']]); if(r!=='go') return; }
+  $('#chap').classList.add('hide'); bogeLogPush('sep','','—— 章節選擇：'+c.a+'　'+c.b+' ——');
+  var s=clone(snap); s.ts=Date.now(); LS.set(skey('A'),s); window.__game.chapJump=c.node; cont('A'); }
+$('#bChap').addEventListener('click',function(e){ e.stopPropagation(); AU.sfx('select'); openChapters(); });
+$('#chBack').onclick=function(e){ e.stopPropagation(); AU.sfx('select'); closeChapters(); };
+var bogeRefreshTitle0=refreshTitle; refreshTitle=function(){ bogeRefreshTitle0(); var all=LS.get('chaps',{}); $('#bChap').classList.toggle('hide',!CHAPS.some(function(c){return all[c.node]})); };
+var bogeShow0=show; show=function(id){ bogeShow0(id); ['#chap','#log'].forEach(function(s){ if(s!==id) $(s).classList.add('hide'); }); };
+
+/* ---- 博哥：對話回顧 ----
+   記錄台詞／旁白／內心話／已選選項／章名，最多 200 筆（snw1_backlog），HUD「回顧」鈕或暫停選單打開；打開時遊戲暫停。 */
+var BL=LS.get('backlog',[]); if(!Array.isArray(BL)) BL=[];
+function bogeLogPush(kind,who,text){ BL.push([kind,who,text]); if(BL.length>200) BL.splice(0,BL.length-200); LS.set('backlog',BL); }
+var bogeSay0=say; say=function(op){ var who=op.think?'':(op.spk?nameOf(op.spk):''); bogeLogPush(op.think?'think':(op.spk?'line':'nar'),who,op.text); return bogeSay0(op); };
+var bogeChoose0=choose; choose=async function(op){ var o=await bogeChoose0(op); if(o) bogeLogPush('pick',op.prompt||'',o.text); return o; };
+var bogeCard0=card; card=function(s){ var p=s.split('|'); bogeLogPush('sep','','—— '+(p[0]||'')+(p[1]?'　'+p[1]:'')+' ——'); return bogeCard0(s); };
+var bogeStart0=startGame; startGame=function(camp,replay){ bogeTransReset(); BL=[]; LS.set('backlog',BL); return bogeStart0(camp,replay); };
+var bogeCont0=cont; cont=function(camp){ bogeTransReset(); return bogeCont0(camp); };
+var bogeToTitle0=toTitle; toTitle=function(){ bogeTransReset(); $('#log').classList.add('hide'); return bogeToTitle0(); };
+var logFrom=null;
+function openLog(){ var L=$('#logList'); L.innerHTML='';
+  if(!BL.length){ var em=document.createElement('p'); em.className='tSub'; em.textContent='還沒有對話。'; L.appendChild(em); }
+  BL.forEach(function(x){ var d=document.createElement('div'); d.className='lg '+x[0];
+    if(x[0]==='pick'){ d.innerHTML='<span class="lq"></span><b></b>'; d.firstChild.textContent=x[1]||'選擇'; d.lastChild.textContent='▸ '+x[2]; }
+    else if(x[0]==='line'){ d.innerHTML='<b></b><span></span>'; d.firstChild.textContent=x[1]; d.lastChild.textContent=x[2]; }
+    else d.textContent=x[0]==='think'?'（'+x[2]+'）':x[2];
+    L.appendChild(d); });
+  logFrom=!$('#menu').classList.contains('hide')?'menu':(inGame()?'game':'title');
+  if(logFrom==='game'&&!PAUSED){ PAUSED=true; AU.pause(true); try{VID.pause()}catch(e){} logFrom='gamePaused'; }
+  $('#log').classList.remove('hide'); L.scrollTop=L.scrollHeight; window.__game.logOpen=(window.__game.logOpen||0)+1; }
+function closeLog(){ $('#log').classList.add('hide');
+  if(logFrom==='gamePaused'){ PAUSED=false; AU.pause(false); lineShown=performance.now(); if(VID.classList.contains('on')&&!VID.ended) VID.play().catch(function(){}); }
+  logFrom=null; }
+$('#logBtn').addEventListener('click',function(e){ e.stopPropagation(); if(!$('#rhythm').classList.contains('hide')||!$('#game').classList.contains('hide')) return; AU.sfx('select'); openLog(); });
+$('#mLog').addEventListener('click',function(e){ e.stopPropagation(); AU.sfx('select'); openLog(); });
+$('#logBack').onclick=function(e){ e.stopPropagation(); AU.sfx('select'); closeLog(); };
+// 回顧開著時：Esc 關閉，其他按鍵（1–4 選項、空白鍵）不要穿透到遊戲
+addEventListener('keydown',function(e){ if($('#log').classList.contains('hide')||e.key==='Control') return; e.stopImmediatePropagation(); if(e.key==='Escape'||e.key==='l'||e.key==='L') closeLog(); },true);
+addEventListener('keydown',function(e){ if((e.key==='l'||e.key==='L')&&inGame()&&!S.ended&&$('#menu').classList.contains('hide')&&$('#rhythm').classList.contains('hide')&&$('#game').classList.contains('hide')) openLog(); });
+/* ==================== 博哥：區塊結束 ==================== */
 
 window.__game={get S(){return S},N:N,ORDER:ORDER,trace:[],nodes:[],lines:[],vlog:[],choices:[],rh:[],games:[],vids:[],vidEnded:[],ending:null,get fps(){return fps},get paused(){return PAUSED},start:startGame,cont:cont,toTitle:toTitle,tap:onTap,
   choose:function(i){ var b=document.querySelectorAll('#opts button')[i]; if(b) b.click(); }, AU:AU};
