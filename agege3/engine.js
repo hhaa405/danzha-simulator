@@ -671,7 +671,7 @@ var CAMPN={A:'阿葛的視角',B:'我的視角'};
 function saveLabel(s){ var d=new Date(s.ts||0), two=function(n){return (n<10?'0':'')+n};
   return (s.chap||'')+(s.scene&&s.scene.time?'．'+s.scene.time:'')+(s.ts?'　（'+(d.getMonth()+1)+'/'+d.getDate()+' '+two(d.getHours())+':'+two(d.getMinutes())+' 存）':''); }
 function refreshTitle(){ var a=LS.get('save_A',null), b=LS.get('save_B',null); $('#bCont').classList.toggle('hide',!(a||b));
-  var tn=$('#tNote'); if(tn){ var rn=LS.get('rdreset',null)&&!LS.get('rdnote',null); tn.classList.toggle('hide',!rn); if(rn){ tn.textContent='這次更新後，「已讀」和「✓ 選過」的標記會重新記一次。存檔和收集到的結局都還在。'; LS.set('rdnote',1); } } // v=311（助理 11/03）已讀重置只提示一次
+  var tn=$('#tNote'); if(tn){ var rn=LS.get('rdreset',null)&&!LS.get('rdnote',null); tn.classList.toggle('hide',!rn); if(rn){ tn.textContent='這次更新後，「已讀」和「✓ 選過」的標記會重新記一次。存檔和收集到的結局都還在。（點一下關閉）'; if(!tn.dataset.on){ tn.dataset.on=1; tn.addEventListener('click',function(){ LS.set('rdnote',1); tn.classList.add('hide'); }); } } } // v=312（助理 11/03）已讀重置提示：一直顯示到玩家點掉為止（v=311 是顯示一次就記住）
   var d=LS.get('done',{}); $('#bReplay').classList.toggle('hide',!(d.A||d.B));
   $('#tMain').classList.remove('hide'); $('#tCamp').classList.add('hide'); $('#tCont').classList.add('hide'); $('#tP1').classList.add('hide'); }
 function resetStage(){ setSkip(false); cancelAll(); AU.stopVoice(); tapWait=null; PAUSED=false; AU.pause(false); clearTimeout(introTimer);

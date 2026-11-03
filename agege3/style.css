@@ -260,4 +260,4 @@ h2{font-size:22px;letter-spacing:6px;margin-bottom:18px;font-family:"Noto Serif 
 #gList .near{border-color:rgba(243,217,164,.45)}
 
 /* v=311（助理 11/03）已讀重置提示 */
-#tNote{margin:10px auto 0;max-width:min(86vw,420px);font-size:12px;line-height:1.6;color:#b9b09c;text-align:center;opacity:.85}
+#tNote{margin:10px auto 0;max-width:min(86vw,420px);font-size:12px;line-height:1.6;color:#b9b09c;text-align:center;opacity:.85;cursor:pointer;-webkit-tap-highlight-color:transparent}
