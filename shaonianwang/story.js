@@ -10691,10 +10691,10 @@ yq: 既然這樣，你們一起去死！
 ! go c20_monkey
 
 == c20_monkey
-@ bg=s20_dragon_team_arrives time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
-> 一個瘦得像竹竿的人，打著呵欠，從路邊一間網咖裡走出來。
+@ bg=s20_dragon_team_arrives time=凌晨．網吧門口 tint=cold bgm=battle amb=street wx=lights
+> 一個瘦得像竹竿的人，打著呵欠，從路邊一間網吧裡走出來。
 hou: 吵什麼吵，我這局還沒打完。
-@ bg=s20_monkey_lowers_blade time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
+@ bg=s20_monkey_lowers_blade time=凌晨．網吧門口 tint=cold bgm=battle amb=street wx=lights
 > 猴子。他早就到了這座小城，看時間還早，先去打了幾局遊戲。
 yq: 你一個人來的？
 hou: 你不是叫我一個人來嗎？
@@ -10704,7 +10704,7 @@ hou: 老道，跟你說個消息。陳老，完了。
 yq: ……什麼？
 > 這兩個字，在一清耳朵裡炸開。陳老完了，是倒了，還是死了？猴子沒說。
 > 一清紅著眼睛撲上去。這一次，他是真的不要命了。
-@ bg=s20_dragon_team_arrives_b time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
+@ bg=s20_dragon_team_arrives_b time=凌晨．網吧門口 tint=cold bgm=battle amb=street wx=lights
 > 黃杰和我舅舅也趕到了。幾個龍組隊長一起上，一清的劍斷了，人重重摔在地上，再也站不起來。
 > 猴子的金刀舉了起來。
 liu: 不要！
@@ -10712,7 +10712,7 @@ liu: 不要！
 liu: 孫隊長，放我師父一條生路！
 uncleb: 你知道你在替誰求情嗎？
 > 劉鑫抬起頭，喊了一句：我師父二十年前輸給大閻王，欠他一條命，這些年一直記著！
-@ bg=s20_uncle_chain_raised time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
+@ bg=s20_uncle_chain_raised time=凌晨．網吧門口 tint=cold bgm=battle amb=street wx=lights
 > 舅舅的鐵鏈停了一下。他看了一清很久，眼神變了，可是嘴上沒鬆。
 uncleb: 欠他的，就該還他。不是還給陳老。
 // 原創：舅舅在此得知一清欠大閻王一條命（給 c24「一清前輩」的轉折，博哥建議）
@@ -11711,7 +11711,7 @@ yzx: 你這個蠢貨。一切都是我安排的。讓她去找王巍，讓你們
 hou: 楊隊長，在我的地盤殺人，殺的還是我兄弟，不太好吧？
 @ bg=s22_alley_moon_fight_b time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 > 猴子蹲在牆頭，背後一輪大月亮。
-> 他肩膀上扛著一台電腦主機，腋下還夾著一塊螢幕。剛從網咖出來。
+> 他肩膀上扛著一台電腦主機，腋下還夾著一塊螢幕。剛從網吧出來。
 hou: 這一片的流浪漢、酒鬼、小混混，都是我朋友。你在這裡打架，我第一個知道。
 > 楊再興罵了一句，翻牆跑了。
 ! go c22_huangjie
@@ -11742,8 +11742,8 @@ hj: 我逼他？我是在救他。……你們兩個，都給我回去睡覺。
 == c22_bell
 // 原創：苗雪雁的銀鈴（c21 杜城帶來）
 @ bg=s22_alley_moon_fight_c time=凌晨．城中村小巷 tint=night bgm=boss amb=street
-> 猴子讓我扛著他的主機和螢幕，一路送他回網咖，說這是試煉。
-> 走到網咖門口，我胸口的傷又裂開了，流出的血黑得像墨。
+> 猴子讓我扛著他的主機和螢幕，一路送他回網吧，說這是試煉。
+> 走到網吧門口，我胸口的傷又裂開了，流出的血黑得像墨。
 hou: 阿古最後那一刀，快到傷口自己合上。扛一扛東西，把淤血排出來，對你好。
 > 回到精武門，已經凌晨三點了。我躺在床上睡不著，口袋裡有東西叮了一聲。
 > 是那串小銀鈴。
