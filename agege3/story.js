@@ -6166,6 +6166,7 @@ chen.s: 「哲小館．對面店」。媒體會很喜歡。第二名，終於站
 > 晚上，我收到一則訊息。
 ! phone 訊息|阿葛：恭喜|阿葛：招牌很大|阿葛：我從窗戶看得到|阿葛：你的燉肉，還是我吃過最好的
 > 他沒有生氣。他從來不生我的氣。這比生氣，難受一百倍。
+! set newshop=1
 ! go b4_yu
 == b4_envy_night
 > 我想了一個晚上。半夜三點，我走到那間店面門口，從玻璃往對面看。
@@ -6180,32 +6181,33 @@ chen.s: 「哲小館．對面店」。媒體會很喜歡。第二名，終於站
 == b4_envy_mid
 > 我在那裡開了一間小小的外帶店。招牌只寫：燉肉。
 > 他每天收店以後，會走過來，買一份。付錢。從來不讓我請。
+! set newshop=1
 ! go b4_yu
 
 // ---------- 小雨 ----------
 == b4_yu
-! when fell>=1
+! when fell>=1 && newshop<1
 @ bg=s_b4_yu_rain time=2034．十一月．下午 bgm=calm amb=rain tint=grey fade=blink
-! when fell<1
+! when fell<1 || newshop>=1
 @ bg=s_b4_xiaoyu_window time=2034．十一月．下午 bgm=calm amb=rain tint=grey fade=blink
 ! if yu<1 -> b4_truth
-! when fell<1
+! when fell<1 || newshop>=1
 > 十一月。下雨的週四。小雨推門進來，抖了抖傘，坐到窗邊。
-! when fell>=1
+! when fell>=1 && newshop<1
 > 十一月。下雨的週四。飯店後門的雨棚下，有人收起傘，站在員工出入口外面等。
-! when fell>=1
+! when fell>=1 && newshop<1
 > 我的店已經收了。我在飯店上班。她不知道從哪裡問到，找來員工出入口。
 yu: 老闆。我還沒畫完。
-! when fell>=1
+! when fell>=1 && newshop<1
 yu.s: 你的店沒了，可是你擦桌子的樣子還在。我想畫那個。
-! when fell>=1
+! when fell>=1 && newshop<1
 @ bg=s_b4_yu_pose time=2034．十一月．下午 bgm=calm amb=rain tint=grey
-! when fell>=1
+! when fell>=1 && newshop<1
 > 她拿出速寫本。我站在那裡，手上沒有抹布，不知道該擺什麼姿勢。
-! when fell<1
+! when fell<1 || newshop>=1
 > 她拿出速寫本。我站在吧台後面，手上的抹布停住了，不知道該擺什麼姿勢。
 // 原創：維維 check5（計時預設改無害）
-! if fell>=1 -> b4_yu_ask_f
+! if fell>=1 && newshop<1 -> b4_yu_ask_f
 ? t=calm def=1 | 她的筆停在紙上。
 - 拿起抹布，照平常那樣擦桌子 {yu+=2; heart+=1} -> b4_yu_draw
 - 「畫他吧。他比較好看。」 {yu+=1; envy+=1} -> b4_yu_him
