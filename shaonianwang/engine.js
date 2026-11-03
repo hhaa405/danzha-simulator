@@ -3,6 +3,8 @@
 'use strict';
 var $=function(s){return document.querySelector(s)};
 var Q=new URLSearchParams(location.search);
+// 雲公子：圖／語音帶同一個版本參數（index.html 設 window.SNW_V），避免同名重畫被快取
+var AV=window.SNW_V?('?v='+encodeURIComponent(window.SNW_V)):'';
 var AUTO=Q.has('auto'), FAST=Math.max(1,+(Q.get('fast')||1)), PICK=(Q.get('pick')||'').split(',').filter(Boolean).map(Number);
 var SEED=+(Q.get('seed')||0), LETTIME=Q.has('timeout'), AUTOVOICE=Q.has('voice');
 var CDIRQ=(Q.get('cdir')||'').split(',').filter(Boolean).map(Number);
@@ -66,7 +68,7 @@ function bgSize(){ var b=bgs[0]; return [b.offsetWidth||innerWidth*1.12, b.offse
 // 預載＋解碼完成才換圖，避免半張圖
 var IMGC={}; function preload(n){ if(!n) return Promise.resolve(); if(IMGC[n]) return IMGC[n]; var im=new Image();
   IMGC[n]=new Promise(function(r){ im.onload=function(){ (im.decode?im.decode().catch(function(){}):Promise.resolve()).then(function(){r(true)}); }; im.onerror=function(){ console.error('img missing',n); r(false); }; });
-  im.src='img/'+n+'.webp'; IMGC[n].img=im; return IMGC[n]; }
+  im.src='img/'+n+'.webp'+AV; IMGC[n].img=im; return IMGC[n]; }
 function ready(n,ms){ return Promise.race([preload(n), new Promise(function(r){setTimeout(r,ms||4000)})]); }
 // 進入節點時，先預載這個節點和它可能跳去的節點裡的所有背景
 var NBG={}; function nodeBgs(n){ if(NBG[n]) return NBG[n]; var out=[]; (N[n]||[]).forEach(function(op){ if(op.k==='scene'&&op.a.bg) out.push(op.a.bg); }); return NBG[n]=out; }
@@ -108,7 +110,7 @@ addEventListener('keydown',function(e){
   setInterval(function(){ if(document.hidden) return; for(var i=0;i<img.data.length;i+=4){var g=Math.random()*255|0; img.data[i]=img.data[i+1]=img.data[i+2]=g; img.data[i+3]=255;} x.putImageData(img,0,0); },90); })();
 var TINT={warm:'rgba(255,170,90,.35)',dusk:'rgba(255,120,60,.4)',cold:'rgba(70,120,200,.4)',night:'rgba(30,50,120,.55)',red:'rgba(220,40,30,.45)',gold:'rgba(255,200,90,.35)',grey:'rgba(120,120,120,.45)',none:'rgba(0,0,0,0)'};
 var KBN=0;
-function showBg(name,fx){ var nb=bgs[1-bgi], ob=bgs[bgi]; nb.style.backgroundImage='url(img/'+name+'.webp)'; nb.classList.add('on'); ob.classList.remove('on'); bgi=1-bgi;
+function showBg(name,fx){ var nb=bgs[1-bgi], ob=bgs[bgi]; nb.style.backgroundImage='url(img/'+name+'.webp'+AV+')'; nb.classList.add('on'); ob.classList.remove('on'); bgi=1-bgi;
   look.fx=(fx!=null?+fx:(FOCUS[name]||0)); look.tx=look.fx;
   var kb=$('#kb'); kb.className=''; void kb.offsetWidth; kb.className='kb'+(KBN++%4); }
 /* ---------- 影片背景：靜音、inline 播一次、停在最後一格；海報＝同場景靜態圖 ---------- */
@@ -116,7 +118,7 @@ var VID=$('#vid'), VQ=(function(){ var w=Math.min(screen.width,screen.height)*(w
 function vidSrc(n){ return 'vid/'+n+(VQ==='720'?'_720':'')+'.mp4'; }
 var VPRE={}, VPREQ=[];
 function vidPreload(n){ if(!n||VPRE[n]||Q.has('novid')) return; var v=document.createElement('video'); v.muted=true; v.preload='auto'; v.setAttribute('playsinline',''); v.src=vidSrc(n); VPRE[n]=v; VPREQ.push(n); if(VPREQ.length>3){ var o=VPREQ.shift(); try{VPRE[o].removeAttribute('src'); VPRE[o].load();}catch(e){} delete VPRE[o]; } }
-function playVid(n,poster){ if(Q.has('novid')) return; window.__game.vids.push(n); VID.classList.remove('on'); VID.poster='img/'+poster+'.webp'; VID.src=vidSrc(n); VID.currentTime=0;
+function playVid(n,poster){ if(Q.has('novid')) return; window.__game.vids.push(n); VID.classList.remove('on'); VID.poster='img/'+poster+'.webp'+AV; VID.src=vidSrc(n); VID.currentTime=0;
   VID.onplaying=function(){ VID.classList.add('on'); }; VID.onerror=function(){ console.warn('video missing',n); VID.classList.remove('on'); };
   VID.onended=function(){ window.__game.vidEnded.push(n); };   // 停在最後一格（不 loop、不清掉）
   var p=VID.play(); if(p&&p.catch) p.catch(function(){ VID.classList.remove('on'); }); }
@@ -166,7 +168,7 @@ function hud(){ if(!S) return; var v=S.vars, m=S.hud, t='';
   var el=$('#money'); if(el.textContent!==t){ el.textContent=t; el.classList.add('flash'); setTimeout(function(){el.classList.remove('flash')},350);} }
 function fmt(n){ n=+n||0; return n>=100?Math.round(n).toLocaleString():(Math.round(n*100)/100).toString(); }
 function chipStyle(el,spk,emo,size){ var c=CAST[spk]; if(!c||!c.img){ el.style.backgroundImage='none'; el.style.display='none'; return; }
-  el.style.display='inline-block'; el.style.backgroundImage='url(img/'+c.img+'.webp)'; el.style.backgroundSize='cover'; el.style.backgroundPosition='50% '+(c.fy||'28%'); }
+  el.style.display='inline-block'; el.style.backgroundImage='url(img/'+c.img+'.webp'+AV+')'; el.style.backgroundSize='cover'; el.style.backgroundPosition='50% '+(c.fy||'28%'); }
 function nameOf(spk){ var c=CAST[spk]; if(!c) return ''; return c.n; }
 
 /* ---------- 暫停／等待點擊 ---------- */
@@ -213,7 +215,7 @@ async function routeCard(){ var cs=S.chapStart; if(!cs||!S.chap) return; var v=S
   var un=onCancel(function(){ el.classList.add('hide'); });
   await waitTapOr(AUTO?1200:6000); un(); el.classList.add('hide'); }
 /* ==== 雲公子：最接近的未解鎖結局 ==== */
-var EKEY={canon:['dad',75],dadwake:['dad',75],halfwake:['dad',60],meng:['power',15],bro:['bro',20],jiao:['jiao',12],jing:['jing',12],qian:['qian',20],jail:['yama',6],lone:['rage',15],small:['mom',6],drift:['qian',6],yama2:['yama',12],revenge:['revenge',5],coward:['coward',3],knife:['knife',1],lesson:['yq',8],ruin:['kill_dad',1]};
+var EKEY={canon:['dad',75],dadwake:['dad',75],halfwake:['dad',50],meng:['power',15],bro:['bro',20],jiao:['jiao',12],jing:['jing',12],qian:['qian',22],jail:['yama',6],lone:['rage',15],small:['mom',6],drift:['qian',6],yama2:['yama',12],revenge:['revenge',5],coward:['coward',3],knife:['knife',1],lesson:['yq',8],ruin:['kill_dad',1]};
 function nearestHint(cur){ var got=LS.get('end',{}), v=S.vars, best=null;
   ENDINGS.forEach(function(e,i){ if(got[e.id]||e.id===cur) return; var k=EKEY[e.id], sc=k?Math.min(1,Math.max(0,(+v[k[0]]||0)/k[1])):0; sc+=(e.good?.05:0)-i*.001; if(!best||sc>best.sc) best={e:e,sc:sc}; });
   if(!best) return '全部 '+ENDINGS.length+' 個結局都解鎖了。';
@@ -538,7 +540,7 @@ async function ending(id){
   bogeKeepSave(id); /* 博哥：結局後不刪存檔（原 LS.del），改存成「結局前最後一個選擇」 */ AU.music(e.bgm||'emo'); stopVid(); setWx('none');
   await ready(e.img); await blink(function(){ setScene({bg:e.img}); });
   await psleep(1500); if(my!==running) return;
-  $('#sub').classList.add('hide'); var el=$('#ending'); el.style.backgroundImage='linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.92)),url(img/'+e.img+'.webp)';
+  $('#sub').classList.add('hide'); var el=$('#ending'); el.style.backgroundImage='linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.92)),url(img/'+e.img+'.webp'+AV+')';
   $('#eTag').textContent=(e.hidden?'隱藏結局':'結局')+'　'+(ENDINGS.indexOf(e)+1)+' / '+ENDINGS.length;
   $('#eName').textContent='「'+e.name+'」'; $('#eDesc').textContent=e.d||'';
   $('#eVerdict').innerHTML=verdict(e); $('#eBack').classList.toggle('hide',!S.back); $('#eNear').innerHTML=nearestHint(id); flushRead(); setSkip(false); el.classList.remove('hide'); $('#hud').classList.add('hide'); AU.sfx('coin');
@@ -584,7 +586,7 @@ $('#tMain').addEventListener('click',async function(e){ var b=e.target.closest('
   else if(a==='gallery') openGallery(); else if(a==='menu') openMenu(); });
 function openGallery(){ var got=LS.get('end',{}), L=$('#gList'); L.innerHTML='';
   ENDINGS.forEach(function(e,i){ var ok=got[e.id], d=document.createElement('div'); d.className='ge'+(ok?' ok':'');
-    d.innerHTML='<div class="gi"><i>'+(ok?'':'？')+'</i></div><div class="gt"><b></b><span></span></div>'; d.firstChild.style.backgroundImage='url(img/'+e.img+'.webp)';
+    d.innerHTML='<div class="gi"><i>'+(ok?'':'？')+'</i></div><div class="gt"><b></b><span></span></div>'; d.firstChild.style.backgroundImage='url(img/'+e.img+'.webp'+AV+')';
     d.querySelector('b').textContent=(i+1)+'. '+(ok?e.name:'？？？'); if(e.hidden){ var em=document.createElement('em'); em.textContent='隱藏'; d.querySelector('b').appendChild(em);}
     d.querySelector('span').textContent=ok?e.short:e.hint; L.appendChild(d); });
   $('#gCount').textContent='已收集 '+Object.keys(got).filter(function(k){return ENDINGS.some(function(e){return e.id===k})}).length+' / '+ENDINGS.length;
@@ -624,7 +626,7 @@ var AU=(function(){
   // 在使用者手勢內解鎖：resume AudioContext、讓語音元素播一段 0.15 秒的靜音（iOS Safari 需要），不會播出任何台詞
   function unlock(){ init(); if(ac&&ac.state==='suspended') ac.resume().catch(function(){});
     if(!vEl){ vEl=new Audio(); vEl.preload='auto'; vEl.setAttribute('playsinline',''); }
-    if(!unlocked){ unlocked=true; try{ vEl.src='voice/_silence.mp3'; var p=vEl.play(); if(p&&p.catch) p.catch(function(){ unlocked=false; }); }catch(e){ unlocked=false; } } }
+    if(!unlocked){ unlocked=true; try{ vEl.src='voice/_silence.mp3'+AV; var p=vEl.play(); if(p&&p.catch) p.catch(function(){ unlocked=false; }); }catch(e){ unlocked=false; } } }
   function wake(){ if(ac&&ac.state==='suspended') ac.resume().catch(function(){}); }
   function vol(){ if(!ac) return; var t=ac.currentTime; mBus.gain.setTargetAtTime(paused?0:SET.music*duck*.9,t,.25); aBus.gain.setTargetAtTime(paused?0:SET.amb*.8,t,.4); if(vEl) vEl.volume=Math.max(0,Math.min(1,SET.voice)); }
   function pause(p){ paused=p; vol(); if(vCur){ if(p) vCur.pause(); else vCur.play().catch(function(){}); } }
@@ -712,7 +714,7 @@ var AU=(function(){
       function fin(r){ if(done) return; done=true; clearInterval(iv); a.onended=a.onerror=a.onplaying=null; if(vCur===a){ if(r!=='ok') a.pause(); vCur=null; } duck=1; vol(); vRes=null; res(r); }
       vRes=fin; vCur=a;
       a.onended=function(){ fin('ok'); }; a.onerror=function(){ fin('fail'); }; a.onplaying=function(){ started=true; };
-      a.src=vd[0]; a.volume=Math.max(0,Math.min(1,SET.voice)); duck=.45; vol();
+      a.src=vd[0]+AV; a.volume=Math.max(0,Math.min(1,SET.voice)); duck=.45; vol();
       try{ var p=a.play(); if(p&&p.catch) p.catch(function(e){ if(!done&&e&&e.name!=='AbortError') fin('fail'); }); }catch(e){ fin('fail'); }
       iv=setInterval(function(){ var now=performance.now(), dt=now-last; last=now; if(paused) return;
         if(!a.paused&&a.readyState>2&&started) left-=dt; else wait-=dt;

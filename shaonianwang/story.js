@@ -4681,6 +4681,7 @@ weib.x: 等等……你還沒讀秒吧？
 ! fx bighit
 > 拳頭對拳頭。
 > 先叫出聲的是流星。他的拳頭被我燙出一片焦黑。
+@ bg=s09_longwang_feet_up time=決賽之夜 tint=red bgm=boss amb=crowd
 > 台下有人喊妖法。龍王把腿翹在桌上，笑了。
 lw: 這叫內勁，大驚小怪。
 > 流星的硬氣功破了。
