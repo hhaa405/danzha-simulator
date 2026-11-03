@@ -729,8 +729,8 @@ function openGallery(){ var got=LS.get('end',{}), L=$('#gList'); L.innerHTML='';
   $('#gNear').textContent=nr?nearText(nr).replace('離你最近','上一輪離你最近'):''; $('#gNear').classList.toggle('hide',!nr);
   ENDINGS.forEach(function(e,i){ var ok=got[e.id], d=document.createElement('div'); d.className='ge'+(ok?' ok':' lock')+(nr&&nr.id===e.id?' near':'');
     d.innerHTML='<div class="gi"><i>'+(ok?'':'🔒')+'</i></div><div class="gt"><b></b><span></span></div>'; d.firstChild.style.backgroundImage='url(img/'+((ok&&ok.B&&!ok.A)?'s_b5_end_'+e.id:e.img)+'.webp)';
-    d.querySelector('b').textContent=(i+1)+'. '+(ok?(ok.nm?(ok.base?e.name+'／'+ok.nm:ok.nm):e.name):'🔒 ？？？'); if(ok){ var em=document.createElement('em'); em.textContent=(ok.A?'阿葛 ':'')+(ok.B?'我':''); d.querySelector('b').appendChild(em);}
-    d.querySelector('span').textContent=ok?e.short:('提示：'+(e.hint||'？')+(nr&&nr.id===e.id?'　✧ 最接近':'')); L.appendChild(d); });
+    d.querySelector('b').textContent=(i+1)+'. '+(ok?(ok.nm?(ok.base?e.name+'／'+ok.nm:ok.nm):e.name):'？？？'); if(ok){ var em=document.createElement('em'); em.textContent=(ok.A?'阿葛 ':'')+(ok.B?'我':''); d.querySelector('b').appendChild(em);}
+    var av=(ok&&ok.nm)?((e.alt||[]).filter(function(x){return x.name===ok.nm})[0]||{}):{}; d.querySelector('span').textContent=ok?((ok.nm&&!ok.base&&av.short)?av.short:e.short):('提示：'+(e.hint||'？')+(nr&&nr.id===e.id?'　✧ 最接近':'')); L.appendChild(d); });
   $('#gCount').textContent='已收集 '+Object.keys(got).filter(function(k){return ENDINGS.some(function(e){return e.id===k})}).length+' / '+ENDINGS.length;
   show('#gallery'); }
 $('#gBack').onclick=function(){ AU.sfx('select'); show('#title'); };
