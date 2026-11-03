@@ -115,7 +115,7 @@ function showBg(name,fx){ var nb=bgs[1-bgi], ob=bgs[bgi]; nb.style.backgroundIma
   var kb=$('#kb'); kb.className=''; void kb.offsetWidth; kb.className='kb'+(KBN++%4); }
 /* ---------- 影片背景：靜音、inline 播一次、停在最後一格；海報＝同場景靜態圖 ---------- */
 var VID=$('#vid'), VQ=(function(){ var w=Math.min(screen.width,screen.height)*(window.devicePixelRatio||1); return (Q.get('vq')|| (Math.min(innerWidth,innerHeight)<700||w<1000?'720':'1080')); })();
-function vidSrc(n){ return 'vid/'+n+(VQ==='720'?'_720':'')+'.mp4'; }
+function vidSrc(n){ return 'vid/'+n+(VQ==='720'?'_720':'')+'.mp4'+AV; }
 var VPRE={}, VPREQ=[];
 function vidPreload(n){ if(!n||VPRE[n]||Q.has('novid')) return; var v=document.createElement('video'); v.muted=true; v.preload='auto'; v.setAttribute('playsinline',''); v.src=vidSrc(n); VPRE[n]=v; VPREQ.push(n); if(VPREQ.length>3){ var o=VPREQ.shift(); try{VPRE[o].removeAttribute('src'); VPRE[o].load();}catch(e){} delete VPRE[o]; } }
 function playVid(n,poster){ if(Q.has('novid')) return; window.__game.vids.push(n); VID.classList.remove('on'); VID.poster='img/'+poster+'.webp'+AV; VID.src=vidSrc(n); VID.currentTime=0;
