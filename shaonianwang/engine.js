@@ -440,7 +440,9 @@ async function choose(op){
 /* ---------- 主迴圈 ---------- */
 var running=0;
 var SAVE_AT={line:1,choice:1,scene:1,title:1,phone:1,note:1,rhythm:1,game:1,nego:1,quiz:1};
-function tagOK(op){ if(!op.tag) return true; if(op.tag==='A') return true; if(op.tag==='B') return false; if(op.tag==='R') return S.replay; if(op.tag==='N') return !S.replay; return true; }
+/* 雲公子：解鎖過任一結局就算重玩（開始／章節選擇／繼續都適用） */
+function isReplay(){ return !!S.replay||endCount()>0; }
+function tagOK(op){ if(!op.tag) return true; if(op.tag==='A') return true; if(op.tag==='B') return false; if(op.tag==='R') return isReplay(); if(op.tag==='N') return !isReplay(); return true; }
 async function run(node,idx){
   var my=++running; S.node=node; S.idx=idx||0; var skip=false; prefetch(node);
   while(my===running){
