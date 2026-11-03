@@ -176,7 +176,7 @@ async function say(op){
   void txt.offsetWidth; txt.classList.add('on'); lineShown=performance.now();
   if(spk&&!op.think&&!isSelf&&CAST[spk]&&!CAST[spk].ni&&!S.seen[spk]){ S.seen[spk]=1; showIntro(spk); }
   var key=op.vp+'|'+op.emo+'|'+op.text, vd=VOICE[key], len=op.text.length;
-  var base=Math.max(900,400+len*110);   // 整合（助理 11/01）節奏：無語音時依字數停留，下限 0.9 秒（原 900+150/字、下限 1.5 秒）
+  var base=Math.max(1200,400+len*160);   // v=311（助理 11/03，Manson 定案）無語音時依字數停留：max(1.2 秒, 0.4 秒＋每字 0.16 秒)（原 max(900,400+110×字)）
   window.__game.lines.push({key:key,t:performance.now(),has:!!vd});
   if(skipping()){ await psleep(120); }
   else if((!AUTO||AUTOVOICE)&&vd&&SET.voice>0){
@@ -671,6 +671,7 @@ var CAMPN={A:'阿葛的視角',B:'我的視角'};
 function saveLabel(s){ var d=new Date(s.ts||0), two=function(n){return (n<10?'0':'')+n};
   return (s.chap||'')+(s.scene&&s.scene.time?'．'+s.scene.time:'')+(s.ts?'　（'+(d.getMonth()+1)+'/'+d.getDate()+' '+two(d.getHours())+':'+two(d.getMinutes())+' 存）':''); }
 function refreshTitle(){ var a=LS.get('save_A',null), b=LS.get('save_B',null); $('#bCont').classList.toggle('hide',!(a||b));
+  var tn=$('#tNote'); if(tn){ var rn=LS.get('rdreset',null)&&!LS.get('rdnote',null); tn.classList.toggle('hide',!rn); if(rn){ tn.textContent='這次更新後，「已讀」和「✓ 選過」的標記會重新記一次。存檔和收集到的結局都還在。'; LS.set('rdnote',1); } } // v=311（助理 11/03）已讀重置只提示一次
   var d=LS.get('done',{}); $('#bReplay').classList.toggle('hide',!(d.A||d.B));
   $('#tMain').classList.remove('hide'); $('#tCamp').classList.add('hide'); $('#tCont').classList.add('hide'); $('#tP1').classList.add('hide'); }
 function resetStage(){ setSkip(false); cancelAll(); AU.stopVoice(); tapWait=null; PAUSED=false; AU.pause(false); clearTimeout(introTimer);
