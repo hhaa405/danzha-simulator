@@ -136,7 +136,7 @@ button{font-family:inherit;cursor:pointer}
 #cardB{font-size:clamp(24px,4.5vw,40px);letter-spacing:8px;color:#fff;font-family:"Noto Serif TC","Songti TC",serif}
 
 .screen{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center}
-#gate{background:radial-gradient(ellipse at 50% 45%,rgba(20,16,10,.55),rgba(0,0,0,.96) 70%),url(img/s_title.webp?v=11031940) 70% 60%/cover #000}
+#gate{background:radial-gradient(ellipse at 50% 45%,rgba(20,16,10,.55),rgba(0,0,0,.96) 70%),url(img/s_title.webp?v=11032004) 70% 60%/cover #000}
 #gate .hp{width:54px;height:54px;margin:0 auto 14px;opacity:.85}
 #gate .hp svg{width:100%;height:100%}
 .gateIn{text-align:center}
@@ -144,7 +144,7 @@ button{font-family:inherit;cursor:pointer}
 .gateIn p{font-size:18px;letter-spacing:3px;margin-bottom:6px}
 .gateIn .sm{font-size:13px;color:#888;margin-bottom:28px}
 .screen button,#gBack{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.3);color:#fff;padding:12px 30px;font-size:16px;letter-spacing:3px;border-radius:3px;margin:6px}
-#title{background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.75)),url(img/s_title.webp?v=11031940) 70% 60%/cover}
+#title{background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.75)),url(img/s_title.webp?v=11032004) 70% 60%/cover}
 .tWrap{text-align:center;padding:20px}
 .tWrap h1{font-size:clamp(30px,6.5vw,58px);letter-spacing:10px;font-family:"Noto Serif TC","Songti TC",serif;text-shadow:0 2px 20px rgba(0,0,0,.8);margin-bottom:12px}
 .tSub{color:#cbbf9f;font-size:clamp(12px,1.8vw,15px);letter-spacing:2px;margin-bottom:28px}
