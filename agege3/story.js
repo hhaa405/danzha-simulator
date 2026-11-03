@@ -6517,7 +6517,7 @@ ag23: 掛回去吧。這張畫，在你這裡比較像畫。
 == b5_advice
 ! title 第五章．事件三|一百家
 @ bg=s_b5_advice_alley time=2038．六月．深夜 bgm=night amb=city tint=night fade=blink
-> 二〇三八年六月。他的店打烊後的後巷。他給我看一份合約。不是陳總的，是一個更大的集團。
+> 二〇三八年六月。他的店關門後的後巷。他給我看一份合約。不是陳總的，是一個更大的集團。
 ag23: 一百家店。五年。我的名字，我的湯。他們說，用中央廚房，每一碗都會一樣。
 ag23.s: 哲。你覺得呢？
 @ bg=s_b5_contract_hands time=2038．六月．深夜 bgm=night amb=city tint=night
