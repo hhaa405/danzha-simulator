@@ -5397,6 +5397,7 @@ me20: 第二名的全部，也是全部。
 @ bg=s_b3_rent_talk time=2029．二月底．下午三點 bgm=tense amb=rest tint=none fade=blink
 > 二月底，哲小館的租約到期。四年前簽的。那時候我二十二歲，簽名還會抖。
 > 房東阿伯七十歲，每個月來收租，順便吃一份燉肉，從來不付錢。
+@ bg=s_b3_rent_lease time=2029．二月底．下午三點 bgm=tense amb=rest tint=none
 > 他把新的租約放在桌上。數字，比舊的多了一截。
 > 「這條街要變了。」他說。「隔壁那間，有人出到六萬。」
 ! when path==1
@@ -6867,6 +6868,7 @@ ag23: 第一名和第二名，加起來，是滿分。
 == b5_eve
 @ bg=s_b5_eve time=2045．十二月三十一日．晚上十點 bgm=emo amb=rest tint=night fade=blink
 > 二〇四五年的跨年夜。我四十二歲。二十年前的今天，我在自己的店裡，看他頂樓的燈。
+@ bg=s_b5_eve_buzz time=2045．十二月三十一日．晚上十點 bgm=emo amb=rest tint=night
 > 今天，手機也在震。
 ! when mom>=6
 ! phone 訊息|照顧員：阿姨今天說|照顧員：「第二名的那個，今天會來嗎？」
