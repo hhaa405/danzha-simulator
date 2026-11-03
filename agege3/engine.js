@@ -12,12 +12,18 @@ var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms/FAST)})};
 var CAST=window.CAST, ENDINGS=window.ENDINGS, FOCUS=window.FOCUS||{}, VOICE=window.VOICE||{};
 var LS={get:function(k,d){try{var v=localStorage.getItem('agege3_'+k);return v?JSON.parse(v):d}catch(e){return d}},set:function(k,v){try{localStorage.setItem('agege3_'+k,JSON.stringify(v))}catch(e){}},del:function(k){try{localStorage.removeItem('agege3_'+k)}catch(e){}}};
 /* 整合（助理 11/01）🦆 節奏 2：快轉已讀。RD＝讀過的「節點:行號」，PK＝上一輪以前選過的選項；SKIP 開著時，已讀內容快速帶過，遇到沒讀過的句子或選擇就停 */
-var RD=LS.get('read',{}), PK=LS.get('picked',{}), PK0=Object.assign({},PK), SKIP=false, rdDirty=0; // 整合（助理 11/01）PK0＝這一輪開始前的選擇快照，「✓ 選過」只標以前幾輪選的
-function rdKey(op){ return S.node+':'+op.ln; }
-function markRead(op){ var k=rdKey(op); if(!RD[k]){ RD[k]=1; if(!rdDirty){ rdDirty=1; setTimeout(function(){ rdDirty=0; LS.set('read',RD); },1500); } } }
+/* v=306（助理 11/03）已讀和「✓ 選過」改用「節點＋文字雜湊」當鍵（原本是 節點:行號，改稿後行號位移就會標錯）。
+   舊版的 read／picked 不轉換，直接清掉（老玩家的已讀標記會重來一次）；新鍵存在 read2／picked2 */
+function hsh(x){ x=String(x); var h=0x811c9dc5; for(var i=0;i<x.length;i++){ h^=x.charCodeAt(i); h=Math.imul(h,0x01000193); } return (h>>>0).toString(36); }
+function opSig(op){ if(op.k==='line') return (op.spk||'')+'|'+op.text; if(op.k==='choice') return '?'+(op.prompt||'')+'|'+op.opts.map(function(o){return o.text}).join('|'); return op.k+'|'+(op.s||''); }
+(function(){ if(LS.get('read',null)||LS.get('picked',null)){ LS.del('read'); LS.del('picked'); LS.set('rdreset',306); } })();
+var RD=LS.get('read2',{}), PK=LS.get('picked2',{}), PK0=Object.assign({},PK), SKIP=false, rdDirty=0; // 整合（助理 11/01）PK0＝這一輪開始前的選擇快照，「✓ 選過」只標以前幾輪選的
+function rdKey(op){ return S.node+'#'+(op._h||(op._h=hsh(opSig(op)))); }
+function pkKey(op,o){ return S.node+'#'+hsh('?'+(op.prompt||''))+'#'+hsh(o.text); }
+function markRead(op){ var k=rdKey(op); if(!RD[k]){ RD[k]=1; if(!rdDirty){ rdDirty=1; setTimeout(function(){ rdDirty=0; LS.set('read2',RD); },1500); } } }
 function setSkip(on){ SKIP=!!on; var b=document.getElementById('skipBtn'); if(b) b.classList.toggle('on',SKIP); }
 function skipping(){ return SKIP&&S&&S._wasRead; }
-var SET=Object.assign({voice:1,music:.55,amb:.6,sub:true,auto:true},LS.get('set',{}));
+var SET=Object.assign({voice:1,music:.55,amb:.6,sub:true,auto:true,hint:true},LS.get('set',{})); // v=306 hint：💛、章末路線卡、最近結局提示
 // 舊版單一存檔 → 依視角分開的存檔
 (function(){ var o=LS.get('save',null); if(o&&o.camp){ if(!LS.get('save_'+o.camp,null)) LS.set('save_'+o.camp,o); } LS.del('save'); })();
 
@@ -60,13 +66,21 @@ var P=parse(window.STORY_SRC), N=P.N, ORDER=P.order;
 var S=null;
 function fresh(camp,replay){ return {camp:camp,replay:!!replay,node:camp==='A'?'a1_start':'b1_start',idx:0,cur:0,chap:'',chart:null,
   vars:{fame:0,heart:0,cash:0,coin:0,burnout:0,franchise:0,branch:0,live:0,regulars:0,mom:0,uncle:0,chef:0,mate:0,kai:0,teach:0,viv:0,qing:0,yu:0,lin:0,bond:0,trustA:0,kol:0,kid:0,seventh:0,atruth:0,promise:0,leak:0,envy:0,myshop:0,look:0,help:0,tix:0,filmok:0,tv:0,noodle:0,umbrella:0,birthday:0,copy:0,ambition:0,chenlink:0,bplan:0,knife:0,app:0,qs:0,ql:0,rh:0,cok:0,pc:0,bid:0,cm:0,guess:0,cdir:0,cadapt:1,tadapt:1,panic:0,p1:''},
-  stats:{timed:0,timeouts:0,fast:0,rtSum:0,choices:0,rhythm:0,rhyHit:0,qs:0,ql:0},seen:{},scene:{},hud:'none',hist:[]}; }
+  stats:{timed:0,timeouts:0,fast:0,rtSum:0,choices:0,rhythm:0,rhyHit:0,qs:0,ql:0},seen:{},scene:{},hud:'none',hist:[],keys:[],lastChap:''}; }
 // 未設定的變數讀起來是 0（SCRIPT_GUIDE §4）：with 用 Proxy，變數表沒有、全域也沒有的名字一律回 0（原本會 ReferenceError → 整個條件變 false，例如 trace<1）
 var VPX=new WeakMap(); function vproxy(v){ var p=VPX.get(v); if(!p){ p=new Proxy(v,{has:function(t,k){ return typeof k==='string'&&((k in t)||!(k in window)); },get:function(t,k){ if(typeof k!=='string') return t[k]; return (k in t)?t[k]:0; }}); VPX.set(v,p); } return p; }
 function evalx(e){ try{ var v=S.vars; return Function('v','with(v){return ('+e+')}')(vproxy(v));}catch(err){console.warn('expr',e,err);return false} }
-function applyFx(list){ (list||[]).forEach(function(f){ var v=S.vars, x=isNaN(+f.x)?(f.x.charAt(0)==="'"?f.x.slice(1,-1):evalx(f.x)):+f.x;
+/* v=306 好感💛：viv／qing／lin 有變化時，右上角淡淡浮一下（不擋操作，可在設定關掉） */
+var HEARTK={viv:'viv',qing:'qing22',lin:'lin'}, heartT=null;
+function heartFx(k,d){ if(window.__game) window.__game.hearts.push({k:k,d:d,node:S.node}); if(!SET.hint) return;
+  var el=$('#heartFx'); if(!el) return; var nm=S.seen[HEARTK[k]]?nameOf(HEARTK[k]):'';
+  el.textContent=(d>0?'💛':'🤍')+(nm?' '+nm:''); el.className=d>0?'up':'dn'; void el.offsetWidth; el.classList.add('on');
+  clearTimeout(heartT); heartT=setTimeout(function(){ el.classList.remove('on'); },1600/Math.min(FAST,2)); }
+function applyFx(list){ var hb={}; if(S) for(var hk in HEARTK) hb[hk]=+S.vars[hk]||0;
+  (list||[]).forEach(function(f){ var v=S.vars, x=isNaN(+f.x)?(f.x.charAt(0)==="'"?f.x.slice(1,-1):evalx(f.x)):+f.x;
   if(f.op==='=') v[f.v]=x; else if(f.op==='+=') v[f.v]=(+v[f.v]||0)+x; else if(f.op==='-=') v[f.v]=(+v[f.v]||0)-x; else v[f.v]=(+v[f.v]||0)*x;
   if(f.v==='coin'||f.v==='cash') v[f.v]=Math.round(v[f.v]*100)/100; });
+  if(S) for(var hk2 in HEARTK){ var hd=(+S.vars[hk2]||0)-hb[hk2]; if(hd) heartFx(hk2,hd); }
   hud(); }
 
 /* ---------- 畫面層 ---------- */
@@ -475,7 +489,7 @@ async function choose(op){
   var picked=await new Promise(function(res){ var done=false, armed=false, last=performance.now(), nextBeat=0, un;
     function fin(i,timeout,cancel){ if(done)return; done=true; un(); res({i:i,timeout:timeout,cancel:cancel}); }
     un=onCancel(function(){ fin(a.def?def:0,false,true); }); // 整合（助理 11/01）取消／略過且沒寫 def 時選第一個（原本選最後一個）；倒數逾時仍照 def
-    opts.forEach(function(o,i){ var b=document.createElement('button'); b.innerHTML='<span class="k">'+(i+1)+'</span><span class="t"></span>'; b.lastChild.textContent=o.text; var pk=S.node+':'+op.ln+':'+op.opts.indexOf(o); if(PK0[pk]){ b.classList.add('was'); var w=document.createElement('span'); w.className='was'; w.textContent='✓ 選過'; b.appendChild(w); }
+    opts.forEach(function(o,i){ var b=document.createElement('button'); b.innerHTML='<span class="k">'+(i+1)+'</span><span class="t"></span>'; b.lastChild.textContent=o.text; var pk=pkKey(op,o); if(PK0[pk]){ b.classList.add('was'); var w=document.createElement('span'); w.className='was'; w.textContent='✓ 選過'; b.appendChild(w); }
       b.onclick=function(e){ e.stopPropagation(); if(!armed||done) return; b.classList.add('pick'); fin(i,false); }; box.appendChild(b); });
     setTimeout(function(){ armed=true; box.className=''; },350);
     (function tick(){ if(done) return; var now=performance.now(), dt=now-last; last=now;
@@ -491,12 +505,28 @@ async function choose(op){
   var rt=T?used:(performance.now()-t0)/1000;
   if(picked.timeout){ AU.sfx('buzz'); box.children[picked.i]&&box.children[picked.i].classList.add('pick'); tm.classList.add('out'); num.textContent='時間到'; }
   await psleep(picked.timeout?500:250); if(my!==running) return null; $('#choice').classList.add('hide');
-  var o=opts[picked.i]; S.stats.choices++; if(!picked.timeout||true){ PK[S.node+':'+op.ln+':'+op.opts.indexOf(o)]=1; LS.set('picked',PK); }
+  var o=opts[picked.i]; S.stats.choices++; if(!picked.timeout||true){ PK[pkKey(op,o)]=1; LS.set('picked2',PK); }
+  (S.keys=S.keys||[]).push({c:chapOf(S.node),t:o.text,br:!!o.go}); if(S.keys.length>60) S.keys=S.keys.slice(-60); // v=306 章末路線卡用
   if(T){ S.stats.timed++; S.stats.rtSum+=rt; if(picked.timeout){ S.stats.timeouts++; S.vars.panic++; } else if(rt<T*.5) S.stats.fast++;
     if(st!=='chart'){ var ta=+S.vars.tadapt||1; ta=picked.timeout?ta*1.12:(rt<T*.4?ta*.95:ta); S.vars.tadapt=Math.round(Math.max(.8,Math.min(1.35,ta))*1000)/1000; } }
   S.hist.push((op.prompt||'')+'→'+o.text+(picked.timeout?'（逾時）':''));
   window.__game.choices[window.__game.choices.length-1].pick={i:picked.i,timeout:picked.timeout,rt:Math.round(rt*10)/10};
   applyFx(o.fx); return o; }
+
+/* ---------- v=306 章末路線卡：換章時淡淡出現幾秒（點一下就關），只寫目前的路和這一章做過的關鍵選擇，不提結局 ---------- */
+function chapOf(n){ var m=/^([ab]\d)/.exec(n||''); return m?m[1]:''; }
+var CHN=['','一','二','三','四','五','六'];
+function routeName(){ var v=S.vars, A=S.camp==='A', h=+v.heart||0, f=+v.fame||0;
+  var t=h>f*1.3+1?(A?'守著湯':'守著自己的店'):f>h*1.3+1?(A?'走向鏡頭':'跟著光走'):(A?'在湯和鏡頭之間':'站在光的旁邊');
+  var ppl=[['viv','viv'],['qing','qing22'],['lin','lin']].filter(function(x){ return S.seen[x[1]]&&(+v[x[0]]||0)>=3; }).sort(function(a,b){ return (+v[b[0]]||0)-(+v[a[0]]||0); });
+  return t+(ppl.length?'　💛 '+nameOf(ppl[0][1]):''); }
+async function routeCard(c){ if(!SET.hint||!c) return;
+  var ks=(S.keys||[]).filter(function(x){ return x.c===c; }), br=ks.filter(function(x){ return x.br; }), pick=(br.length?br:ks).slice(-3);
+  $('#rtHead').textContent='第'+(CHN[+c.charAt(1)]||c.charAt(1))+'章　結束'; var rn=routeName(); $('#rtRoute').textContent='目前的路：'+rn;
+  var ul=$('#rtKeys'); ul.innerHTML=''; (pick.length?pick:[{t:'（這一章，你沒有做選擇）'}]).forEach(function(x){ var li=document.createElement('li'); li.textContent=x.t.length>26?x.t.slice(0,25)+'…':x.t; ul.appendChild(li); });
+  window.__game.routes.push({c:c,route:rn,keys:pick.map(function(x){return x.t})});
+  var el=$('#route'); $('#sub').classList.add('hide'); el.classList.remove('hide'); AU.sfx('page'); lineShown=performance.now();
+  await waitTapOr(AUTO?1800:(skipping()||SKIP?1200:4500)); el.classList.add('hide'); }
 
 /* ---------- 主迴圈 ---------- */
 var running=0;
@@ -508,6 +538,7 @@ async function run(node,idx){
   while(my===running){
     var ops=N[S.node]; if(!ops){ console.error('no node',S.node); return; }
     if(S.idx>=ops.length){ var k=ORDER.indexOf(S.node); if(k<0||k+1>=ORDER.length) return; S.node=ORDER[k+1]; S.idx=0; prefetch(S.node); continue; }
+    var cc=chapOf(S.node); if(cc&&cc!==S.lastChap){ var pc=S.lastChap; S.lastChap=cc; if(pc&&S.idx===0){ await routeCard(pc); if(my!==running) return; } }
     var op=ops[S.idx]; S.cur=S.idx; S.idx++;
     if(!tagOK(op)) continue; if(skip){ skip=false; continue; }
     window.__game.trace.push(S.node+':'+op.ln);
@@ -523,7 +554,7 @@ async function run(node,idx){
 /* 存檔：每個視角一格，存「正在播的那一句」 */
 function skey(c){ return 'save_'+c; }
 function save(){ if(!S||S.ended||S.nosave) return;
-  LS.set(skey(S.camp),{v:3,camp:S.camp,replay:S.replay,node:S.node,idx:S.cur,vars:S.vars,stats:S.stats,seen:S.seen,scene:S.scene,hud:S.hud,hist:S.hist,chart:S.chart,chap:S.chap,ts:Date.now()}); }
+  LS.set(skey(S.camp),{v:3,camp:S.camp,replay:S.replay,node:S.node,idx:S.cur,vars:S.vars,stats:S.stats,seen:S.seen,scene:S.scene,hud:S.hud,hist:S.hist,chart:S.chart,chap:S.chap,keys:S.keys,lastChap:S.lastChap,ts:Date.now()}); }
 async function exec(op){
   switch(op.k){
     case 'scene': var a=op.a;
@@ -561,6 +592,38 @@ async function exec(op){
     default: console.warn('unknown op',op.k,op.ln); return;
   } }
 
+/* ---------- v=306 最近的未解鎖結局：從第五章通往各結局的選項條件，估「還差多少」，只給模糊的方向 ---------- */
+var ENDC=null;
+function endConds(){ if(ENDC) return ENDC; ENDC={A:{},B:{}}; var ids={}; ENDINGS.forEach(function(e){ ids[e.id]=1; });
+  function add(cp,go,cond){ var m=go&&/^[ab]5_end_(\w+)$/.exec(go); if(!m||!ids[m[1]]) return; (ENDC[cp][m[1]]=ENDC[cp][m[1]]||[]).push(cond||''); }
+  ORDER.forEach(function(n){ var cp=n.charAt(0)==='a'?'A':n.charAt(0)==='b'?'B':''; if(!cp) return;
+    N[n].forEach(function(op){ if(op.k==='choice') op.opts.forEach(function(o){ add(cp,o.go,o.cond); });
+      else if(op.k==='if'){ var m=op.s.match(/^(.*?)\s*->\s*(\S+)$/); if(m) add(cp,m[2],m[1]); } else if(op.k==='go') add(cp,op.s,'?'); }); });
+  return ENDC; }
+var VAGUE={heart:'多留一點時間給湯',fame:'讓更多人看見你',mom:'多回家吃飯',uncle:'多去巷口坐坐',chef:'多去看看師傅',mate:'多陪陪阿肥',kai:'多跟阿凱並肩',teach:'回去找林老師',
+  viv:'多陪 Vivian',qing:'多留意小晴',lin:'多跟林以安聊聊',kid:'多帶帶小柏',trustA:'對A先生說話算話',atruth:'追問那支錶',seventh:'別忘了第七題',bond:'多陪那個老朋友',
+  promise:'記得那個約定',app:'幫阿肥一把',live:'把鏡頭打開',branch:'把店開得更多',franchise:'把店開得更多',love:'心裡先放一個人',birthday:'記得一個生日',envelope:'收好那個信封',cash:'把帳顧好'};
+var VAGUE_LO={fame:'少一點鏡頭',heart:'換一顆比較硬的心',pc:'少看一點手機',live:'把鏡頭關掉',branch:'只守一間店',okn:'',bk:'把帳顧好'};
+function gapOf(cond,v){ if(cond==='?') return {g:.6,k:''}; if(!cond) return {g:.5,k:''};
+  var terms=[], d=0, cur=''; for(var i=0;i<cond.length;i++){ var ch=cond.charAt(i); if(ch==='(') d++; else if(ch===')') d--;
+    if(d===0&&cond.substr(i,2)==='&&'){ terms.push(cur); cur=''; i++; continue; } cur+=ch; } terms.push(cur);
+  var g=0, worst=0, wk='';
+  terms.forEach(function(t){ var m=/^\s*(\w+)\s*(>=|<=|==|!=|>|<)\s*(-?\d+)\s*$/.exec(t), x, n, tg=0, k='';
+    if(m){ x=+v[m[1]]||0; n=+m[3]; k=m[1];
+      if(m[2]==='>=') tg=x>=n?0:(n-x)/Math.max(2,n); else if(m[2]==='>') tg=x>n?0:(n+1-x)/Math.max(2,n+1);
+      else if(m[2]==='<=') { tg=x<=n?0:(x-n)/Math.max(2,n); k='-'+k; } else if(m[2]==='<') { tg=x<n?0:(x-n+1)/Math.max(2,n); k='-'+k; }
+      else if(m[2]==='==') tg=x===n?0:1; else tg=x!==n?0:1; }
+    else { var ok=false; try{ ok=!!Function('v','with(v){return ('+t+')}')(vproxy(v)); }catch(e){} tg=ok?0:1; }
+    tg=Math.min(1.5,tg); g+=tg; if(tg>worst){ worst=tg; wk=k; } });
+  return {g:g,k:wk}; }
+function nearestLocked(camp,vars){ var got=LS.get('end',{}), ec=endConds()[camp]||{}, best=null, anyLocked=false;
+  ENDINGS.forEach(function(e){ if(got[e.id]) return; anyLocked=true; var cs=ec[e.id]; if(!cs) return;
+    cs.forEach(function(c){ var r=gapOf(c,vars||{}); if(!best||r.g<best.g) best={id:e.id,e:e,g:r.g,k:r.k}; }); });
+  if(!best) return anyLocked?{other:1}:null; return best; }
+function nearText(r){ if(!r) return ''; if(r.other) return '🔒 這個視角能看見的結局都打開了。換個視角，還有門沒開。';
+  var k=r.k||'', nudge=k.charAt(0)==='-'?VAGUE_LO[k.slice(1)]:VAGUE[k];
+  return '🔒 離你最近的一扇門：「'+(r.e.hint||'？？？')+'」'+(r.g<=0?'　上一輪，它其實就在選項裡。':nudge?'　也許，'+nudge+'。':'　也許，換一條岔路走走。'); }
+
 /* ---------- 結局與評語 ---------- */
 var P1N={}; (window.P1END||[]).forEach(function(x){ P1N[x[0]]=x[1]; }); P1N.none='沒玩過第一部';
 var VQ={wip:['第二章的湯，還在熬。','名氣這條線，才剛開始轉彎。']};
@@ -585,16 +648,19 @@ function verdict(e){ var v=S.vars, s=S.stats; var cool=s.timed?Math.round(100*(s
 async function ending(id){
   var e=ENDINGS.filter(function(x){return x.id===id})[0]; if(!e){console.error('ending',id);return;}
   var my=running; S.ended=true; window.__game.ending=id;
-  var got=LS.get('end',{}); got[id]=got[id]||{}; got[id][S.camp]=1; LS.set('end',got); var dn=LS.get('done',{}); dn[S.camp]=1; LS.set('done',dn);
+  var ev=(e.alt||[]).filter(function(x){ try{ return evalx(x.when); }catch(_){ return false; } })[0]||{}; // 整合（助理 11/01）結局變體：endings_*.json 的 alt:[{when,dA,dB,img,name}]
+  var got=LS.get('end',{}); got[id]=got[id]||{}; got[id][S.camp]=1; if(ev.name) got[id].nm=ev.name; else got[id].base=1; LS.set('end',got);
+  var lr=LS.get('lastrun',{}); lr[S.camp]={vars:S.vars,ts:Date.now()}; lr.last=S.camp; LS.set('lastrun',lr); // v=306 圖鑑的「最近結局」提示用 var dn=LS.get('done',{}); dn[S.camp]=1; LS.set('done',dn);
   LS.del(skey(S.camp)); AU.music(e.bgm||'emo'); hideChart();
   var ev0=(e.alt||[]).filter(function(x){ try{ return evalx(x.when); }catch(_){ return false; } })[0]||{}; var eimg=(S.scene&&/_end_/.test(S.scene.bg||''))?S.scene.bg:(ev0.img||e.img); // 整合（助理 11/01） // 結局畫面用該視角結局節點的專屬圖
   await ready(eimg); await blink(function(){ setScene({bg:eimg}); });
   await psleep(800); if(my!==running) return;
   $('#sub').classList.add('hide'); var el=$('#ending'); el.style.backgroundImage='linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.92)),url(img/'+eimg+'.webp)';
   $('#eTag').textContent=CAMPN[S.camp]+'　結局 '+(ENDINGS.indexOf(e)+1)+' / '+ENDINGS.length;
-  $('#eName').textContent='「'+e.name+'」'; var ev=(e.alt||[]).filter(function(x){ try{ return evalx(x.when); }catch(_){ return false; } })[0]||{}; // 整合（助理 11/01）結局變體：endings_*.json 的 alt:[{when,dA,dB,img}]
+  $('#eName').textContent='「'+(ev.name||e.name)+'」'; // v=306 shopfate==2 等變體可以換標題（alt.name）
   $('#eDesc').textContent=(S.camp==='A'?(ev.dA||e.dA):(ev.dB||e.dB))||e.d||'';
-  $('#eVerdict').innerHTML=verdict(e); el.classList.remove('hide'); $('#hud').classList.add('hide'); AU.sfx('coin');
+  $('#eVerdict').innerHTML=verdict(e); var nr=SET.hint?nearestLocked(S.camp,S.vars):null, nt=nearText(nr); $('#eNear').textContent=nt; $('#eNear').classList.toggle('hide',!nt);
+  window.__game.near=nr?{id:nr.id||null,g:nr.g,text:nt}:null; el.classList.remove('hide'); $('#hud').classList.add('hide'); AU.sfx('coin');
   if(window.__game) window.__game.onEnd&&window.__game.onEnd(id);
 }
 
@@ -608,7 +674,7 @@ function refreshTitle(){ var a=LS.get('save_A',null), b=LS.get('save_B',null); $
   var d=LS.get('done',{}); $('#bReplay').classList.toggle('hide',!(d.A||d.B));
   $('#tMain').classList.remove('hide'); $('#tCamp').classList.add('hide'); $('#tCont').classList.add('hide'); $('#tP1').classList.add('hide'); }
 function resetStage(){ setSkip(false); cancelAll(); AU.stopVoice(); tapWait=null; PAUSED=false; AU.pause(false); clearTimeout(introTimer);
-  ['#sub','#choice','#phone','#note','#card','#rhythm','#queue','#hud','#intro','#confirm','#menu','#ending'].forEach(function(s){$(s).classList.add('hide')});
+  ['#sub','#choice','#phone','#note','#card','#route','#rhythm','#queue','#hud','#intro','#confirm','#menu','#ending'].forEach(function(s){$(s).classList.add('hide')});
   hideChart(); $('#menuBtn').classList.remove('hide'); $('#pulse').classList.remove('on'); stageEl.classList.remove('shake','closed'); AU.tense(false);
   $('#txt').classList.remove('on'); $('#txt').textContent=''; $('#clock').textContent=''; $('#money').textContent=''; $('#tint').style.background='';
   bgs.forEach(function(b){ b.classList.remove('on'); b.style.backgroundImage=''; }); look.fx=look.tx=0; }
@@ -626,7 +692,7 @@ function pickP1(){ return new Promise(function(res){ var found=readP1(), L=$('#p
   add(null,'返回','','back');
   $('#tMain').classList.add('hide'); $('#tCamp').classList.add('hide'); $('#tP1').classList.remove('hide'); }); }
 function startGame(camp,replay){ PK0=Object.assign({},PK); running++; // 整合（助理 11/01）
-  resetStage(); S=fresh(camp,replay); window.__game.trace=[]; window.__game.nodes=[]; window.__game.ending=null;
+  resetStage(); S=fresh(camp,replay); window.__game.trace=[]; window.__game.nodes=[]; window.__game.ending=null; window.__game.hearts=[]; window.__game.routes=[]; window.__game.near=null;
   show(null); $('#hud').classList.remove('hide'); S.hud='none'; hud(); AU.unlock();
   applyP1(Q.get('p1')||LS.get('p1',null)||'none');
   var st=window.__nodeUsed?null:Q.get('node'); window.__nodeUsed=1; if(st&&N[st]){ S.node=st; try{Object.assign(S.vars,JSON.parse(Q.get('vars')||'{}'))}catch(e){} }
@@ -634,7 +700,7 @@ function startGame(camp,replay){ PK0=Object.assign({},PK); running++; // 整合�
     var f=N[st][0]; if(!(f&&f.k==='scene'&&f.a.bg)) setScene(sc); hud(); }
   save(); run(S.node,0); }
 function cont(camp){ var s=LS.get(skey(camp),null); if(!s) return; running++; resetStage(); S=fresh(s.camp,s.replay);
-  Object.assign(S,{vars:Object.assign(S.vars,s.vars),stats:s.stats||S.stats,seen:s.seen||{},hud:s.hud||'none',hist:s.hist||[],chart:s.chart||null,chap:s.chap||''});
+  Object.assign(S,{vars:Object.assign(S.vars,s.vars),stats:s.stats||S.stats,seen:s.seen||{},hud:s.hud||'none',hist:s.hist||[],chart:s.chart||null,chap:s.chap||'',keys:s.keys||[],lastChap:s.lastChap||''});
   show(null); $('#hud').classList.remove('hide'); AU.unlock();
   var sc=s.scene||{}; S.scene={}; preload(sc.bg); setScene(sc); hud(); if(S.chart) showChart();
   run(s.node,s.idx||0); }
@@ -659,16 +725,18 @@ $('#tCamp').addEventListener('click',async function(e){ var b=e.target.closest('
   if(campMode!=='replay'||!LS.get('p1',null)){ var p=await pickP1(); if(p==null){ refreshTitle(); return; } LS.set('p1',p); }
   LS.del(skey(a)); startGame(a,campMode==='replay'); });
 function openGallery(){ var got=LS.get('end',{}), L=$('#gList'); L.innerHTML='';
-  ENDINGS.forEach(function(e,i){ var ok=got[e.id], d=document.createElement('div'); d.className='ge'+(ok?' ok':'');
-    d.innerHTML='<div class="gi"><i>'+(ok?'':'？')+'</i></div><div class="gt"><b></b><span></span></div>'; d.firstChild.style.backgroundImage='url(img/'+((ok&&ok.B&&!ok.A)?'s_b5_end_'+e.id:e.img)+'.webp)';
-    d.querySelector('b').textContent=(i+1)+'. '+(ok?e.name:'？？？'); if(ok){ var em=document.createElement('em'); em.textContent=(ok.A?'阿葛 ':'')+(ok.B?'我':''); d.querySelector('b').appendChild(em);}
-    d.querySelector('span').textContent=ok?e.short:e.hint; L.appendChild(d); });
+  var lr=LS.get('lastrun',{}), lc=lr.last, nr=(SET.hint&&lc&&lr[lc])?nearestLocked(lc,lr[lc].vars):null; // v=306 依上一輪的數值，標出最接近的未解鎖結局
+  $('#gNear').textContent=nr?nearText(nr).replace('離你最近','上一輪離你最近'):''; $('#gNear').classList.toggle('hide',!nr);
+  ENDINGS.forEach(function(e,i){ var ok=got[e.id], d=document.createElement('div'); d.className='ge'+(ok?' ok':' lock')+(nr&&nr.id===e.id?' near':'');
+    d.innerHTML='<div class="gi"><i>'+(ok?'':'🔒')+'</i></div><div class="gt"><b></b><span></span></div>'; d.firstChild.style.backgroundImage='url(img/'+((ok&&ok.B&&!ok.A)?'s_b5_end_'+e.id:e.img)+'.webp)';
+    d.querySelector('b').textContent=(i+1)+'. '+(ok?(ok.nm?(ok.base?e.name+'／'+ok.nm:ok.nm):e.name):'🔒 ？？？'); if(ok){ var em=document.createElement('em'); em.textContent=(ok.A?'阿葛 ':'')+(ok.B?'我':''); d.querySelector('b').appendChild(em);}
+    d.querySelector('span').textContent=ok?e.short:('提示：'+(e.hint||'？')+(nr&&nr.id===e.id?'　✧ 最接近':'')); L.appendChild(d); });
   $('#gCount').textContent='已收集 '+Object.keys(got).filter(function(k){return ENDINGS.some(function(e){return e.id===k})}).length+' / '+ENDINGS.length;
   show('#gallery'); }
 $('#gBack').onclick=function(){ AU.sfx('select'); show('#title'); };
 var menuFrom=null;
 function inGame(){ return !!S&&$('#title').classList.contains('hide')&&$('#gallery').classList.contains('hide'); }
-function openMenu(){ menuFrom=inGame()?'game':'title'; $('#vVoice').value=SET.voice; $('#vMusic').value=SET.music; $('#vAmb').value=SET.amb; $('#vSub').checked=SET.sub; $('#vAuto').checked=SET.auto;
+function openMenu(){ menuFrom=inGame()?'game':'title'; $('#vVoice').value=SET.voice; $('#vMusic').value=SET.music; $('#vAmb').value=SET.amb; $('#vSub').checked=SET.sub; $('#vAuto').checked=SET.auto; if($('#vHint')) $('#vHint').checked=SET.hint;
   $('#mTitle').classList.toggle('hide',menuFrom==='title'); $('#mResume').textContent=menuFrom==='title'?'返回':'繼續'; $('#menu h2').textContent=menuFrom==='title'?'設定':'暫停';
   if(menuFrom==='game'){ PAUSED=true; AU.pause(true); } $('#menu').classList.remove('hide'); }
 function closeMenu(){ $('#menu').classList.add('hide'); if(menuFrom==='game'){ PAUSED=false; AU.pause(false); lineShown=performance.now(); } }
@@ -677,6 +745,7 @@ $('#menuBtn').addEventListener('click',function(e){e.stopPropagation(); if(!$('#
 ['vVoice','vMusic','vAmb'].forEach(function(id){ $('#'+id).addEventListener('input',function(){ SET[{vVoice:'voice',vMusic:'music',vAmb:'amb'}[id]]=+this.value; LS.set('set',SET); AU.vol(); }); });
 $('#vSub').onchange=function(){SET.sub=this.checked;LS.set('set',SET);$('#sub').classList.toggle('nosub',!SET.sub)};
 $('#vAuto').onchange=function(){SET.auto=this.checked;LS.set('set',SET)};
+if($('#vHint')) $('#vHint').onchange=function(){SET.hint=this.checked;LS.set('set',SET)};
 $('#mResume').onclick=function(e){ e.stopPropagation(); AU.sfx('select'); closeMenu(); };
 $('#mTitle').onclick=function(e){ e.stopPropagation(); save(); toTitle(); };
 $('#eTitle').onclick=function(){ toTitle(); };
@@ -790,7 +859,7 @@ var AU=(function(){
     get ctx(){return ac}, get el(){return vEl}};
 })();
 
-window.__game={get S(){return S},get skip(){return SKIP},setSkip:setSkip,get RD(){return RD},N:N,ORDER:ORDER,q:[],trace:[],nodes:[],lines:[],vlog:[],choices:[],rh:[],ending:null,get fps(){return fps},get paused(){return PAUSED},start:startGame,mg:{bid:bid,live:live,queue:queue},cont:cont,toTitle:toTitle,tap:onTap,
+window.__game={hearts:[],routes:[],near:null,openGallery:function(){ openGallery(); },get S(){return S},get skip(){return SKIP},setSkip:setSkip,get RD(){return RD},N:N,ORDER:ORDER,q:[],trace:[],nodes:[],lines:[],vlog:[],choices:[],rh:[],ending:null,get fps(){return fps},get paused(){return PAUSED},start:startGame,mg:{bid:bid,live:live,queue:queue},cont:cont,toTitle:toTitle,tap:onTap,
   choose:function(i){ var b=document.querySelectorAll('#opts button')[i]; if(b) b.click(); }, AU:AU, genChart:genChart};
 // 測試用直接進入
 if(Q.get('camp')){ $('#gate').classList.add('hide'); AU.init(); startGame(Q.get('camp'),Q.has('replay')); }

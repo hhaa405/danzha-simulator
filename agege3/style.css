@@ -242,3 +242,19 @@ h2{font-size:22px;letter-spacing:6px;margin-bottom:18px;font-family:"Noto Serif 
 #opts button span.was{flex:none;font-size:11px;letter-spacing:0;color:#f3d9a4;opacity:.8;border:1px solid rgba(243,217,164,.5);border-radius:10px;padding:1px 6px}
 #opts button.was{border-color:rgba(243,217,164,.45)}
 #opts button.pick span.was{color:#111;border-color:#111}
+
+/* v=306 章末路線卡、好感💛、最近結局提示、🔒 */
+#route{position:absolute;inset:0;z-index:27;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);animation:cardIn .8s ease}
+#route .rtWrap{width:min(86vw,420px);padding:18px 22px 14px;border:1px solid rgba(243,217,164,.25);border-radius:8px;background:rgba(12,10,8,.82);color:#e9e3d6;text-align:left}
+#rtHead{font-size:13px;letter-spacing:5px;color:#b9a77f;margin-bottom:8px}
+#rtRoute{font-size:clamp(15px,2.4vw,18px);color:#fff;font-family:"Noto Serif TC","Songti TC",serif;margin-bottom:10px}
+#route .rtSub{font-size:12px;color:#9a917f;margin-bottom:2px}
+#rtKeys{margin:0 0 8px;padding-left:18px;font-size:13px;line-height:1.8;color:#d8d0bf}
+#route small{display:block;text-align:right;font-size:11px;color:#777}
+#heartFx{position:absolute;right:max(14px,env(safe-area-inset-right));top:calc(max(8px,env(safe-area-inset-top)) + 44px);z-index:21;pointer-events:none;font-size:13px;color:#ffe9a8;text-shadow:0 1px 3px #000;opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+#heartFx.on{opacity:.92;transform:none}
+#heartFx.dn{color:#c9c9c9}
+#eNear,#gNear{font-size:13px;line-height:1.7;color:#d9cfb8;background:rgba(243,217,164,.06);border:1px dashed rgba(243,217,164,.28);border-radius:4px;padding:8px 12px;margin:0 0 14px;text-align:left}
+#gList .lock .gi i{font-size:24px;color:rgba(255,255,255,.55)}
+#gList .lock .gt span{color:#9a917f}
+#gList .near{border-color:rgba(243,217,164,.45)}

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#000">
 <title>阿葛傳奇 第二部．成名之後</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="style.css?v=305">
+<link rel="stylesheet" href="style.css?v=306">
 </head>
 <body>
 <div id="stage">
@@ -33,6 +33,8 @@
   <div id="phone" class="hide"><div class="ph"><div class="phTop"><span id="phTitle"></span><span class="phBat">▮▮▮ 5G</span></div><div id="phBody"></div><button id="phDown">▾ 放下手機</button></div></div>
   <div id="note" class="hide"><div class="paper"><div id="noteTxt"></div><small>（點擊收起）</small></div></div>
   <div id="card" class="hide"><div id="cardA"></div><div id="cardB"></div></div>
+  <div id="route" class="hide"><div class="rtWrap"><div id="rtHead"></div><div id="rtRoute"></div><div class="rtSub">這一章，你選了：</div><ul id="rtKeys"></ul><small>點一下繼續</small></div></div>
+  <div id="heartFx"></div>
 
   <div id="gate" class="screen"><div class="gateIn"><div class="hp"><svg viewBox="0 0 24 24" fill="none" stroke="#f3d9a4" stroke-width="1.3" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></div><p>建議戴上耳機</p><p class="sm">本作含全語音、配樂與環境音</p><button id="gateBtn">戴上耳機了，開始</button></div></div>
 
@@ -45,7 +47,7 @@
     </div><div class="ver"><a href="../agege2/" id="p1Link">◂ 第一部「阿葛人生模擬器」</a>　v3 · 純屬虛構</div>
   </div>
 
-  <div id="gallery" class="screen hide"><div class="gWrap"><h2>結局</h2><p class="tSub" id="gCount"></p><div id="gList"></div><button id="gBack">返回</button></div></div>
+  <div id="gallery" class="screen hide"><div class="gWrap"><h2>結局</h2><p class="tSub" id="gCount"></p><p id="gNear" class="hide"></p><div id="gList"></div><button id="gBack">返回</button></div></div>
 
   <div id="menu" class="screen hide"><div class="mWrap"><h2>暫停</h2>
     <label>人聲<input type="range" id="vVoice" min="0" max="1" step="0.05"></label>
@@ -53,14 +55,15 @@
     <label>環境音<input type="range" id="vAmb" min="0" max="1" step="0.05"></label>
     <label class="tg">字幕<input type="checkbox" id="vSub"></label>
     <label class="tg">自動前進<input type="checkbox" id="vAuto"></label>
+    <label class="tg">提示（💛、章末卡、結局方向）<input type="checkbox" id="vHint"></label>
     <div class="tBtns"><button id="mResume">繼續</button><button id="mTitle">回到標題</button></div></div></div>
 
   <div id="confirm" class="screen hide"><div class="cfWrap"><p id="cfMsg"></p><div class="tBtns" id="cfBtns"></div></div></div>
 
-  <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div class="tBtns"><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
+  <div id="ending" class="screen hide"><div class="eWrap"><div class="eTag" id="eTag"></div><h2 id="eName"></h2><p id="eDesc"></p><div id="eVerdict"></div><div id="eNear" class="hide"></div><div class="tBtns"><button id="eReplay">重來一次</button><button id="eTitle">回到標題</button></div></div></div>
 </div>
-<script src="voicemap.js?v=305"></script>
-<script src="story.js?v=305"></script>
-<script src="engine.js?v=305"></script>
+<script src="voicemap.js?v=306"></script>
+<script src="story.js?v=306"></script>
+<script src="engine.js?v=306"></script>
 </body>
 </html>
