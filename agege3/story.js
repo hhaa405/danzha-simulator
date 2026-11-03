@@ -6185,6 +6185,8 @@ chen.s: 「哲小館．對面店」。媒體會很喜歡。第二名，終於站
 == b4_yu
 @ bg=s_b4_yu_rain time=2034．十一月．下午 bgm=calm amb=rain tint=grey fade=blink
 ! if yu<1 -> b4_truth
+! when fell<1
+@ bg=s_b4_xiaoyu_window time=2034．十一月．下午 bgm=calm amb=rain tint=grey
 > 十一月。下雨的週四。小雨推門進來，抖了抖傘，坐到窗邊。
 ! when fell>=1
 > 我的店已經收了。我在飯店上班。她不知道從哪裡問到，找來員工出入口。
