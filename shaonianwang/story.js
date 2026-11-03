@@ -200,22 +200,22 @@ window.ENDINGS=[
  {id:'jing',name:'鳳凰花開的時候',img:'e_jing',bgm:'emo',good:1,hint:'一路都把靜怡姐放在心上（好感要一直累積），別讓她出事；還要把爸爸喚回來，最後選擇回省城道謝。',short:'鳳凰花又開了。',d:'鳳凰木下，兩杯熱豆漿。\n她說：「姐姐照顧弟弟，天經地義。」'},
  {id:'qian',name:'省城的雪',img:'e_qian',bgm:'emo',good:1,hint:'從羅城到省城，一次又一次站在馮千月那邊（好感要一直累積），最後去當她的朋友（好感夠高，在帝城那通電話就能先走）。',short:'雪很冷，茶很熱。',d:'馮家的大門為我打開的那天，下著省城那年的第一場雪。\n她說：「喝完就走。我不留你。」'},
  {id:'jail',name:'鐵窗',img:'e_jail_visit',bgm:'sad',bad:1,hint:'刀出鞘太多次，總有一次收不回來。',short:'鐵窗外的天很小。',d:'判決書上的年數，比我當年在河邊蹲的馬步還長。\n舅舅來看我。他隔著玻璃說：「我在裡面等過你媽，現在換你媽等你。」'},
- {id:'jail12',name:'死刑，繼續',img:'e_jail_c12',bgm:'sad',bad:1,hint:'舅舅最後一次問你要不要去，你還是說了不。',short:'每個月等一次探監。',d:'死刑改成了無期。\n我在鐵窗後面過了很多年。我爸老得更快了。'},
+ {id:'jail12',name:'死刑，繼續',img:'e_jail_c12',bgm:'sad',bad:1,hint:'太后的電話你回絕了，舅舅的話你也聽不進去。他最後一次問，你還是說了不。',short:'每個月等一次探監。',d:'死刑改成了無期。\n我在鐵窗後面過了很多年。我爸老得更快了。'},
  {id:'lone',name:'孤王',img:'e_lone',bgm:'sad',bad:1,hint:'把每一個兄弟都推開，王座上只剩你一個。',short:'王座很高，也很冷。',d:'我贏了每一場仗。\n慶功宴上，桌子很長，只有我一個人坐著。'},
- {id:'small',name:'小鎮少年',img:'e_small',bgm:'calm',hint:'國三那年，選擇留在家裡。',short:'沒有傳奇，也沒有遺憾。',d:'我沒有成為什麼了不起的人。\n可是我爸退休那天，是我去門房把他接回家的。'},
+ {id:'small',name:'小鎮少年',img:'e_small',bgm:'calm',hint:'一路陪在媽媽身邊；國三那年，選擇留在家裡。',short:'沒有傳奇，也沒有遺憾。',d:'我沒有成為什麼了不起的人。\n可是我爸退休那天，是我去門房把他接回家的。'},
  {id:'drift',name:'浪子',img:'e_drift',bgm:'sad',hint:'在省城迷了路，一直沒有回頭。',short:'走了很遠，還沒找到回家的路。',d:'我在很多城市待過，每一個都不久。\n媽打電話來，我總說「快了」。'},
  {id:'yama2',name:'第二個小閻王',img:'e_yama2',bgm:'boss',bad:1,hint:'學舅舅學得太像，連他都怕了。',short:'你變成了你最怕的那個人。',d:'他們叫我小閻王。舅舅聽到的時候，把菸掉在了地上。\n他說：「我這輩子最後悔的事，就是那天早上在河邊等你。」'},
  {id:'revenge',name:'以牙還牙',img:'e_revenge',bgm:'boss',bad:1,hint:'仇一個也不放過，最後只剩下仇。',short:'以牙還牙，最後只剩下牙。',d:'宋光頭的帳，陳老的帳，每一筆我都討回來了。\n帳本清了，我的人生也空了。'},
  {id:'dadwake',req:'dad>=75&&mem_ok==1',fall:'halfwake',name:'我爸真的醒了',img:'e_dadwake',bgm:'triumph',good:1,hint:'爸爸線要一路都選對他好；把他喚回來以後，那通電話，你選擇留在他身邊。',short:'窩囊了一輩子的人，一直替你擋著整個世界。',d:'我爸醒過來以後，每天早上問的還是：「巍子，吃早餐沒？」\n問完了，又加一句：「誰欺負你了？爸去處理。」'},
- {id:'coward',name:'窩囊廢的兒子',img:'e_coward',bgm:'sad',bad:1,hint:'每一次都選擇低頭。',short:'你忍下了每一次。',d:'我忍了一年，兩年，三年。\n後來，我也成了門口那個賠笑的人。只是我身後，沒有要保護的人。'},
- {id:'knife',name:'那把刀',img:'e_knife',bgm:'sad',bad:1,hint:'在雨天的校門口，轉向了錯的方向。',short:'那把刀，你終於撿起來了。',d:'十三歲，少年法庭，感化院。\n我終於變成了，我爸拚了命不想讓我變成的人。'},
+ {id:'coward',name:'窩囊廢的兒子',img:'e_coward',bgm:'sad',bad:1,hint:'初一那一天，每一次都選擇低頭；到了頂樓，還是不想再走進那個校門。',short:'你忍下了每一次。',d:'我忍了一年，兩年，三年。\n後來，我也成了門口那個賠笑的人。只是我身後，沒有要保護的人。'},
+ {id:'knife',name:'那把刀',img:'e_knife',bgm:'sad',bad:1,hint:'在雨天的校門口轉向了錯的方向；站到那扇鐵門前，心裡的火也沒有熄。',short:'那把刀，你終於撿起來了。',d:'十三歲，少年法庭，感化院。\n我終於變成了，我爸拚了命不想讓我變成的人。'},
  {id:'lesson',name:'師父的最後一課',img:'e_lesson',bgm:'emo',hidden:1,good:1,hint:'（隱藏）在師父倒下的地方，放下刀。',short:'真正的狠，是能放下。',d:'師父的酒葫蘆，我一直帶在身上。\n他最後教我的那一招，叫「收」。不管我爸醒沒醒，我都在練。'},
- {id:'halfwake',req:'dad>=75',fall:'ruin',name:'半醒',img:'e_halfwake',bgm:'sad',hint:'爸爸停手了，可是你那句話，叫的不是他。',short:'他記得巍子，只是不記得我就是巍子。',d:'南方海邊的療養院，每個星期六下午。\n他叫我小兄弟，跟我講他兒子的事。講得比我自己記得的還清楚。'},
+ {id:'halfwake',req:'dad>=75||close_ok==1',fall:'ruin',name:'半醒',img:'e_halfwake',bgm:'sad',hint:'他差一點就認出你了。一路上，再多站在他那邊一點。',short:'他記得巍子，只是不記得我就是巍子。',d:'南方海邊的療養院，每個星期六下午。\n他叫我小兄弟，跟我講他兒子的事。講得比我自己記得的還清楚。'},
  {id:'ruin',name:'十年後的爛尾樓',img:'e_ruin',bgm:'sad',hidden:1,bad:1,hint:'（隱藏）父子之戰，你鬆開了手。',short:'風還是那個風，人已經不是那個人。',d:'十年後，我站在小鎮那棟爛尾樓的頂樓。\n從這裡看得到木料廠的門房。那張小板凳，還在。'}
 ];
 window.FOCUS={};
 
-window.VARS=["blade_kept", "bro", "bs_doubt", "called_mj", "called_none", "chain_eye", "confess_jing", "coward", "dad", "dad11", "dad15", "dad16", "dad17", "dad18", "dad19", "dad20", "dad21", "dad22", "dad_bond_c11", "dad_call", "dad_coat", "dad_knows", "dad_letter_c09", "dad_letter_sent", "dad_protect", "dad_tip", "dad_touch", "dadbook", "drum", "du", "du_cold", "fame", "feet", "feizei", "foresee", "fruit_miao", "fzl", "gouhun", "hands", "heart", "hs", "hu_trust", "hurt", "hx", "hx2", "jiao", "jing", "jing_confess", "jing_here", "jing_lost", "jing_saved", "jing_umb", "join_uncle", "kill_dad", "knelt", "knife", "know_dad", "lang", "lele", "lian", "liu", "loyal", "mask_risk", "mem_ok", "miao", "miao2", "mj", "mom", "ms", "night_with", "packet", "power", "push", "qdd", "qian", "qian_hurt", "ql", "rage", "recog", "rescue", "revenge", "rom", "rs", "ryq", "ryq2", "ryq_promise", "sai", "scar_seen", "scarf", "sjg_hurt", "song_doubt", "song_ok", "song_tape", "staff", "uncle", "use_name", "wbl_called", "wgz_doubt", "wu", "wxy_scar", "xiong", "xu", "yama", "yehu_info", "ymss_help", "yq", "yq_saved"];
+window.VARS=["blade_kept", "bro", "bs_doubt", "called_mj", "called_none", "chain_eye", "close_ok", "close_w", "confess_jing", "coward", "dad", "dad11", "dad15", "dad16", "dad17", "dad18", "dad19", "dad20", "dad21", "dad22", "dad_bond_c11", "dad_call", "dad_coat", "dad_knows", "dad_letter_c09", "dad_letter_sent", "dad_protect", "dad_tip", "dad_touch", "dadbook", "drum", "du", "du_cold", "fame", "feet", "feizei", "foresee", "fruit_miao", "fzl", "gouhun", "hands", "heart", "hs", "hu_trust", "hurt", "hx", "hx2", "jiao", "jing", "jing_confess", "jing_here", "jing_lost", "jing_saved", "jing_umb", "join_uncle", "kill_dad", "knelt", "knife", "know_dad", "lang", "lele", "lian", "liu", "loyal", "luo_late", "mask_risk", "mem_ok", "miao", "miao2", "mj", "mom", "ms", "night_with", "packet", "power", "push", "qdd", "qian", "qian_hurt", "ql", "rage", "recog", "rescue", "revenge", "rom", "rs", "ryq", "ryq2", "ryq_promise", "sai", "scar_seen", "scarf", "sjg_hurt", "song_doubt", "song_ok", "song_tape", "staff", "th_no", "uncle", "use_name", "wbl_called", "wgz_doubt", "wu", "wxy_scar", "xiong", "xu", "yama", "yehu_info", "ymss_help", "yq", "yq_saved"];
 window.STORY_SRC=`// 第一章　窩囊廢的兒子（王巍 13 歲，初一）
 == c1_start
 ! pov wei
@@ -226,6 +226,7 @@ window.STORY_SRC=`// 第一章　窩囊廢的兒子（王巍 13 歲，初一）
 [R] > 很多年以後，我在一個坑邊又看見這個背影。那時候，他已經不認得我了。
 > 我叫王巍，今年十三歲，剛上初一。
 > 我們家住在鎮上最邊邊的一排平房，牆壁薄到隔壁咳嗽都聽得一清二楚。
+@ bg=s01_dad_porridge_pot time=九月．早上六點半 tint=cold bgm=calm amb=room wx=dust
 > 我爸叫王觀雨，六十出頭，頭髮全白了，在鎮外的木料廠當門衛。
 > 同學的爸爸都是四十歲上下。只有我爸，走在路上常被人當成我爺爺。
 dad: 巍子，起來了沒？粥我放在鍋裡，還熱著。
@@ -233,6 +234,7 @@ mom: 你爸今天早班，你吃完自己去學校，別又遲到。
 > 我爸彎著腰在門口穿那雙沾滿泥點的膠鞋，背駝得像一把舊弓。
 [R] > 這把舊弓，後來在任家的院子裡，拉滿過一次。
 dad: 巍子，昨天的作業寫完沒？錢夠不夠用？不夠爸這裡還有。
+@ bg=s01_dad_coins_flatten time=九月．早上六點半 tint=cold bgm=calm amb=room wx=dust
 > 他從口袋裡掏出一團皺巴巴的零錢，一張一張攤平。
 ? t=calm | 爸把零錢遞過來。
 - 「不用了，你自己留著。」語氣很冷 {dad-=1;rage+=1} -> c1_dad_cold
@@ -243,6 +245,7 @@ dad: 巍子，昨天的作業寫完沒？錢夠不夠用？不夠爸這裡還有
 > 我把頭撇開，一眼都不想看那團零錢。
 wei: 不用了。你自己留著買菸吧，反正也買不了什麼。
 dad: 好，好……那你中午記得吃飯。
+@ bg=s01_dad_coins_back time=九月．早上六點半 tint=cold bgm=calm amb=room wx=dust
 > 他把錢塞回口袋，笑得很勉強，像被人搧了一巴掌還要說謝謝。
 mom.s: 王巍！你怎麼跟你爸說話的？
 wei: 我說錯了嗎？他整天就會笑，被人罵也笑。
@@ -275,6 +278,7 @@ dad: 孩子嘛，長大就好了。
 > 去學校的路要經過木料廠。我每次都低著頭快步走，怕被同學看到門口那個白頭髮的老頭跟我揮手。
 > 今天他又在那裡，拿著一支竹掃把，掃門口的木屑。
 dad: 巍子！路上小心車！
+@ bg=s01_dad_waves_broom time=早上七點十分 tint=warm bgm=school amb=street wx=dust
 > 對面幾個騎腳踏車的同學笑出聲。
 ? t=mid def=2 | 我爸在大門口朝我揮手，同學在看。
 - 也朝他揮揮手 {dad+=1;heart+=1;fame-=1} -> c1_road_wave
@@ -306,6 +310,7 @@ wei: ……
 jiao: 喂，我在跟你講話。早上門口那個掃地的，是你爺爺吧？
 > 全班有好幾個人轉過頭來。
 jiao: 你爺爺好可憐喔，這麼老了還要看大門。你們家是不是很缺錢？
+@ bg=s01_pencil_snap time=早自習 tint=none bgm=school amb=class
 > 我握著鉛筆的手在抖，筆芯「啪」地斷了。
 ? t=high def=3 | 李嬌嬌還在笑，全班都在看。
 - 猛地站起來推她一把 {rage+=2;jiao-=1;wu+=1} -> c1_push
@@ -320,6 +325,7 @@ jiao: 你爺爺好可憐喔，這麼老了還要看大門。你們家是不是�
 jiao.u: 你敢推我？王巍你敢推我！
 wei.u: 是你先講我爸的！
 jiao.u: 你給我等著！你等著！
+@ bg=s01_class_silent_after_push time=早自習 tint=none bgm=school amb=class
 > 全班安靜得像死了一樣。我站在那裡，心跳快得耳朵嗡嗡響。
 > 推完那一下，我其實有點後悔。可是又有一點點……痛快。
 tch.u: 王巍！李嬌嬌！你們兩個在幹什麼！
@@ -351,6 +357,7 @@ jiao: 沒種。
 > 下課鐘一響，走廊那頭就來了一群人。
 > 領頭的是隔壁班的趙松，制服扣子只扣一顆，嘴裡嚼著口香糖，後面跟著十來個跟班。
 > 全校都知道，趙松是李嬌嬌的男朋友。他爸是鎮上有名的混混。
+@ bg=s01_zs_at_door time=下課十分鐘 tint=none bgm=tense amb=class
 zs: 哪個是王巍？
 zsx: 松哥，就是他，坐窗戶那個瘦猴。
 zs: 喂，你出來。你爹找你聊聊。
@@ -400,6 +407,7 @@ zs: 叫不出來？那就讓你長點記性。
 ! go c1_fight_go
 
 == c1_fight_go
+@ bg=s01_backwall_faceoff time=學校後牆 tint=grey bgm=battle amb=wind wx=dust
 ! fx shake
 ! game fight 6 擋住趙松的拳頭
 ! if rh>=4 -> c1_fight_ok
@@ -430,6 +438,7 @@ jing: 手伸出來。
 jing: 我剛剛在樓上都看到了。你別動，我幫你擦藥。
 wei: 不用……我自己來。
 jing: 你小時候摔破膝蓋，也是這樣逞強，最後哭著找你媽。
+@ bg=s01_jing_cotton_swab time=中午 tint=warm bgm=emo amb=class
 > 她用棉花棒輕輕點在我的傷口上，痛得我縮了一下。
 jing: 痛就說痛，不丟臉。
 ? t=calm | 靜怡學姊幫你擦藥。
@@ -449,6 +458,7 @@ jing: 你以後會懂的。
 == c1_jing_tough
 wei: 這點傷算什麼，過兩天就好了。
 jing: 嗯，很勇敢。
+@ bg=s01_jing_smile_brave time=中午 tint=warm bgm=emo amb=class
 > 她說「很勇敢」的時候，嘴角在笑，好像早就看穿我。
 jing: 勇敢的人，下次被欺負要記得跟老師講，知道嗎？
 wei: 講了也沒用。
@@ -473,6 +483,7 @@ dad: 巍子？你怎麼來了……你臉怎麼了？
 wei: 沒事。
 dad: 誰打你的？
 > 他放下飯盒，站起來，手有點抖。
+@ bg=s01_dad_sees_bruise time=傍晚六點 tint=dusk bgm=calm amb=wind wx=dust
 ? t=mid def=3 | 我爸盯著我的臉。
 - 「趙松打的。你能怎樣？你什麼都做不了！」 {dad-=1;rage+=2} -> c1_gate_yell
 - 說實話，然後小聲說：「爸，我好怕。」 {dad+=2;heart+=1} -> c1_gate_truth
@@ -531,8 +542,10 @@ dad: 大兄弟，大兄弟，小孩子不懂事，我替他跟你賠不是。
 zsf: 賠不是？你一個看門的，拿什麼賠？
 > 他把菸灰彈在我爸的鞋子上。我爸沒有躲。
 zsf: 跪下，給我兒子磕個頭，這事就算了。
+@ bg=s01_office_dad_kneel time=隔天．下午 tint=none bgm=tense amb=room
 > 我爸的膝蓋，慢慢彎了下去。
 [R] > 後來，帝城幾千號人，沒有一個見過這雙膝蓋彎下去。
+@ bg=s01_dad_knees_bend time=隔天．下午 tint=none bgm=tense amb=room
 ? t=high def=3 | 我爸要跪下去了。
 - 衝過去拉住他：「爸！不准跪！」 {dad+=2;wu+=1;fame+=1} -> c1_office_stop
 - 對趙松他爸大吼：「你憑什麼！」 {rage+=2;wu+=1} -> c1_office_shout
@@ -576,8 +589,21 @@ zs: 哈哈哈，爹，你看他爸真的跪了。
 > 夕陽把整個小鎮染成橘紅色，木料廠的煙囪在遠處冒著灰煙。
 > 我對自己說，總有一天，我不要再低頭。
 > 我還不知道，那一天來得那麼快，用的是那麼可怕的方式。
-! if coward>=6 -> c1_coward_end
+// 雲公子 11/03：門檻＋確認題。coward>=7＝每一次都低頭（c1 五題全選低頭）才問；差一次（==6）我爸上頂樓把我叫回家
+! if coward>=7 -> c1_coward_ask
+! if coward>=6 -> c1_coward_pulled
 ! go c2_start
+
+== c1_coward_pulled
+> 樓梯口傳來腳步聲。我爸爬上頂樓，喘著氣，手裡還捏著那頂舊帽子。
+dad: 巍子，回家吃飯。明天爸送你到校門口。
+! go c2_start
+
+== c1_coward_ask
+> 可是一想到明天還要走進那個校門，我的腿就開始發軟。
+? t=calm def=1 | 天快黑了。明天，還去不去學校？
+- 「去。明天照樣去。」 {heart+=1} -> c2_start
+- 「……明天請病假吧。」 {coward+=1} -> c1_coward_end
 
 == c1_coward_end
 > 可是第二天，我請了病假。第三天也是。
@@ -608,6 +634,7 @@ jiao: 我怎麼知道。是你自己先動手的。
 dad: 這件事，你別管了。今晚你在家陪你媽。
 wei: 那你呢？
 dad: 爸去跟他們好好談。
+@ bg=s02_mom_forbids time=傍晚五點 tint=warm bgm=emo amb=room
 mom.s: 王觀雨，你不准去。
 dad: 我不去，他們就會來家裡。
 > 我媽盯著他，那眼神我看不懂，好像害怕的不是趙松他們，而是我爸本身。
@@ -640,6 +667,7 @@ wei: 沒有啊。
 > 木料廠的空地上停著三台麵包車，車燈全開，照得堆成山的原木像一排排墓碑。
 > 二十幾個人，有的拿鋼管，有的拿棒球棍。趙松站在他爸旁邊，笑得很開心。
 zsf: 來了啊。老看門的，你兒子比你有種，至少敢來。
+@ bg=s02_dad_pleads_yard time=晚上八點．木料廠 tint=night bgm=danger amb=wind wx=dust
 dad: 大兄弟，孩子的事，我們大人講。你要多少錢，我想辦法。
 zsf: 錢？我缺你那幾個銅板？
 > 他朝旁邊點點頭。兩個人衝過來抓住我，把我按在地上。
@@ -740,6 +768,7 @@ dad: 還有誰？
 ! fx hit
 > 我爸側身一讓，刀鋒擦過他的手臂，劃出一道血口。
 > 他反手一刀背，砸在對方手腕上，彈簧刀飛進了木堆。
+@ bg=s02_zsf_wrist_fear bgm=battle wx=dust
 zsf.x: 你……你到底是什麼人？
 dad: 一個看大門的。滾。以後別再讓我看到你們靠近我兒子。
 > 麵包車的引擎聲倉皇地遠去，只剩下滿地的木屑和兩隻打翻的鞋。
@@ -765,6 +794,7 @@ dad: 以前的事，以後再說。
 ! go c2_after_more
 
 == c2_after_more
+@ bg=s02_dad_bound_arm_look time=晚上八點二十 tint=night bgm=emo amb=wind
 > 他抬頭看我，又變回那個老實巴交的門衛。只有眼睛還很亮。
 dad: 巍子，記住爸今天說的話。
 dad: 拳頭是用來保護人的，不是用來欺負人的。能忍就忍，忍不了——
@@ -779,6 +809,7 @@ wei.u: 爸？爸！
 > 手臂縫了十七針，人送進觀察室，到半夜都還沒醒。
 > 醫生說今晚是關鍵，叫我們家屬別走遠。
 mom.x: 我早就跟他說了……我早就說了……
+@ bg=s02_mom_trembling_chair time=深夜．鎮醫院 tint=cold bgm=sad amb=hospital
 > 我媽坐在走廊的塑膠椅上，沒有哭出聲，只是一直在發抖。
 ? t=calm | 走廊的燈管嗡嗡作響。
 - 抱住媽媽：「媽，還有我。」 {mom+=2;heart+=1} -> c2_hug_mom
@@ -818,6 +849,7 @@ mom.x: 你爸就是為了不讓你變成這樣，才忍了十幾年。你現在�
 mom: 巍子，你要記得，你爸是好人。不管以後聽到別人說什麼。
 wei: 別人會說什麼？
 mom: ……睡吧。明天還要上學。
+@ bg=s02_hallway_till_dawn time=凌晨三點 tint=cold bgm=sad amb=hospital
 > 我沒有睡。我在走廊坐到天亮，腦子裡一直重播他握刀站直的那一幕。
 > 天快亮的時候，護士跑出來說：醒了。
 > 我衝進去。他看到我，第一句話是：「巍子，吃早餐沒？」
@@ -840,9 +872,23 @@ mom: ……睡吧。明天還要上學。
 > 我站在趙家鐵門外面。雨打在我臉上，分不清是冷還是熱。
 > 美工刀的刀片推出來，喀、喀、喀，三格。
 > 只要門一開，我就衝進去。
-? t=high def=2 | 鐵門後面傳來腳步聲。
+? t=high def=1 | 鐵門後面傳來腳步聲。
 - 把刀片推回去，轉身離開 {rage-=2;heart+=1;knife=0} -> c2_knife_back
-- 不回頭了 {rage+=3} -> c2_knife_end
+- 不回頭了 {rage+=3} -> c2_knife_gate
+
+// 雲公子 11/03：門檻＋確認題。rage>=11（進這裡前 rage>=8）才問；不到的人門一開就手軟
+== c2_knife_gate
+! if rage<11 -> c2_knife_pulled
+> 門閂響了一下。我握刀的手，一點都沒有抖。
+? t=calm def=1 | 門開了一條縫。
+- 把刀片推回去 {rage-=2;heart+=1;knife=0} -> c2_knife_back
+- 衝進去 -> c2_knife_end
+
+== c2_knife_pulled
+> 門開了。出來的是一個提著菜籃的老太太，看了我一眼：「同學，下這麼大雨，怎麼不打傘？」
+> 我把手藏到背後，刀片割破了手指。我沒敢回答，轉身一路跑回學校。
+! set knife=0
+! go c2_to_class
 
 == c2_knife_back
 ! set blade_kept=1
@@ -878,6 +924,7 @@ wei: 你放心。我會照顧媽。我也不會再讓人欺負我了。
 hu: 你就是王巍？我叫程虎，初三的。
 hu: 聽說你爸的事了。趙家那邊放話要找你，你一個人頂不住的。
 hu: 跟哥混，哥罩你。一個月一百塊保護費就好，算是友情價。
+@ bg=s02_hu_offers_hand time=下午 tint=none bgm=school amb=class
 ? t=mid def=2 | 程虎伸出手，笑得很親切。
 - 握手：「謝謝虎哥。」 {hu_trust+=2;qian-=1} -> c2_hu_yes
 - 「讓我想想。」 {hu_trust+=0} -> c2_hu_think
@@ -917,6 +964,7 @@ lang: 夜市的燈……照不到我的寂寞……滷味攤的老闆……也�
 > 他在唸歌詞。不是唱，是唸，一個字一個字，認真得像在背課文。
 > 我本來只是想找個地方躲趙松，結果一轉頭，趙松就帶著人從圍牆缺口鑽了進來。
 zs: 王巍！你爸在醫院躺得爽嗎？今天換你躺！
+@ bg=s03_court_cornered time=十月．午休 tint=warm bgm=school amb=court
 > 我被逼到球場角落，背後就是坐在地上的豺狼。
 ? t=high def=1 | 趙松帶了八個人過來，你腦子一片空白。
 - 脫口而出：「豺狼是我哥！你們敢動我試試！」 {fame+=2;lang+=1} -> c3_fox
@@ -931,6 +979,7 @@ zs: 豺狼？你哥？放屁！
 ! fx hit
 > 一顆籃球從我耳邊呼嘯過去，正中趙松的臉。
 lang: 誰說放屁？
+@ bg=s03_lang_rises_behind time=十月．午休 tint=warm bgm=school amb=court
 > 豺狼慢吞吞地站起來，揉了揉脖子。
 lang: 他說我是他哥，你說他放屁。那你是說我放屁？
 zs.x: 不、不是，狼哥，我不知道……
@@ -951,8 +1000,10 @@ zs.x: 狼、狼哥……對不起，我們馬上走。
 ! go c3_after_fox
 
 == c3_brick
+@ bg=s03_brick_standoff time=十月．午休 tint=warm bgm=school amb=court
 > 我撿起一塊破磚頭，雙手握著，對著他們。
 wei.u: 來啊！大不了一起死！
+@ bg=s03_zs_smirks_brick time=十月．午休 tint=warm bgm=school amb=court
 zs: 唷，學你爸是吧？
 ! game fight 6 用磚頭逼退趙松
 ! if rh>=4 -> c3_brick_ok
@@ -980,6 +1031,7 @@ lang: 還要打？我陪你們。
 lang: 你，過來。
 > 我走過去，不敢坐。
 lang: 我什麼時候多了一個弟弟？
+@ bg=s03_lang_lazy_stare time=午休快結束 tint=warm bgm=calm amb=court
 ? t=mid def=2 | 豺狼懶洋洋地盯著你。
 - 老實道歉：「對不起，我只是太怕了……」 {lang+=1;heart+=1} -> c3_lang_sorry
 - 硬撐：「以後就是了，狼哥。」 {lang+=1;fame+=1} -> c3_lang_bold
@@ -1023,6 +1075,7 @@ lang: 好吃。明天再帶兩顆，這事就算了。
 > 只有程虎，在樓梯間攔住我，笑得比上次更熱情。
 hu: 巍子，厲害啊，攀上豺狼了？
 hu: 幫虎哥一個小忙。這包東西，明天體育課的時候，倒進李嬌嬌的水壺裡。
+@ bg=s03_hu_packet_palm time=三天後．放學 tint=dusk bgm=tense amb=class
 > 他手心裡是一個小小的透明夾鏈袋，裝著白色的粉。
 hu: 放心，就是瀉藥，整整她而已。誰叫她以前那樣對你。
 ? t=mid def=3 | 程虎把那包白粉塞向你。
@@ -1079,6 +1132,7 @@ jiao.u: 王巍？你……你要整我？
 ! go c3_frame_bad
 
 == c3_frame_bad
+@ bg=s03_packet_all_eyes time=隔天．第二節 tint=cold bgm=danger amb=class
 ? t=high def=3 | 所有人都盯著你手邊的那包白粉。
 - 大喊：「是程虎給我的！」 {wu+=1} -> c3_frame_accuse
 - 衝出教室去找豺狼 {lang+=1} -> c3_frame_run
@@ -1113,6 +1167,7 @@ lang: 杆子。
 gan: 是！
 > 杆子一把扣住想溜的程虎，從他外套內袋裡掏出一整疊同樣的夾鏈袋。
 gan: 狼哥，十二包。
+@ bg=s03_gan_packets_hu bgm=boss
 lang: 程虎，你這瀉藥，買得挺多啊。
 hu.x: 不、不是……那是……狼哥，誤會，都是誤會……
 > 剛剛還在演講的程虎，現在縮得像一隻被淋濕的狗。
@@ -1120,6 +1175,7 @@ hu.x: 不、不是……那是……狼哥，誤會，都是誤會……
 lang: 記你個頭。
 > 豺狼一腳踹在他屁股上。
 ! set jiao+=1;fame+=1
+@ bg=s03_jiao_teary_corridor bgm=boss
 jiao: 王巍……對不起，我剛剛以為……
 ? t=calm def=0 | 李嬌嬌眼睛紅紅的，等你開口。
 - 「沒事。」 -> c3_lang_r1
@@ -1148,6 +1204,7 @@ lang: 謝什麼。你欠我一根棒棒糖。
 zs: 王巍，今天沒有豺狼，沒有你爸。就你跟我。
 zs: 你贏了，以後我見你繞路。你輸了，給我跪下叫爹。
 > 我把書包放下來。手在抖，可是不是因為怕。
+@ bg=s03_zs_rolls_sleeves time=一週後．放學 tint=grey bgm=tense amb=wind
 ? t=mid def=1 | 趙松捲起袖子。
 - 「來。」擺出我爸那晚的架勢 {wu+=1;dad+=1} -> c3_fightback
 - 「我不想跟你打。」 {heart+=1} -> c3_no_fight
@@ -1213,6 +1270,7 @@ zs.x: 夠、夠了……我認輸……
 xiong: 豺狼！聽說你收了個小弟，很威啊？
 lang: 熊子，你又吃錯什麼藥？
 xiong: 我來跟你單挑！今天誰輸了，誰就滾出這個球場！
+@ bg=s03_xiong_thirty_men time=十一月．午休 tint=grey bgm=danger amb=court
 > 熊子身後站了三十幾個人。豺狼這邊，只有杆子，還有我。
 ? t=mid def=2 | 熊子帶了一群人，豺狼只有兩個人。
 - 站到豺狼旁邊：「狼哥，我跟你一起。」 {lang+=2;bro+=1;wu+=1} -> c3_stand_lang
@@ -1254,6 +1312,7 @@ lang: 嘖。你這小子，嘴巴倒挺會的。
 ! fx bighit
 lang: 啊……月亮……掉進了……飯盒……
 > 他痛得直抽氣，嘴裡居然還在唸歌詞。
+@ bg=s03_lang_xiong_lie_down time=十一月．午休 tint=grey bgm=battle amb=court wx=dust
 > 兩個人打了快十分鐘，最後都躺在地上，像兩條死魚。
 xiong: 你……他媽的……挺能打……
 lang: 你也是……肥熊……
@@ -1270,6 +1329,7 @@ lang: 以後別說我是你哥了。
 > 我心裡一涼。
 lang: 直接說，你是我兄弟。
 lang: 我們這種人，叫一聲兄弟，就是一輩子的事。你想清楚。
+@ bg=s03_rooftop_greasy_hand time=放學後．頂樓 tint=dusk bgm=calm amb=wind
 ? t=calm | 豺狼把油膩膩的手伸過來。
 - 握住他的手：「兄弟。」 {bro+=3;lang+=2} -> c3_bro_yes
 - 「我怕我配不上。」 {bro+=1;lang+=1;heart+=1} -> c3_bro_humble
@@ -1292,6 +1352,7 @@ lang: 嗯。
 ! go c3_end_hook
 
 == c3_end_hook
+@ bg=s03_black_car_gate time=放學．校門口 tint=dusk bgm=calm amb=street
 > 下樓的時候，一台黑得發亮的大車從校門口慢慢開過去，往木料廠的方向。
 > 車窗搖下一半，有人朝我看了一眼。
 ! go c4_start
@@ -1307,6 +1368,7 @@ dad: 宋老闆，孩子不懂事，您別……
 song: 哎，王大哥，跟我還客氣什麼。
 > 他塞給我一個紅包，厚得嚇人。我爸馬上搶過去塞回他口袋。
 song: 王大哥，我就是來說一聲。天嘯，下個月十五號出來。
+@ bg=s04_dad_hand_freezes time=十二月．週六下午 tint=warm bgm=tense amb=room
 > 我爸的手停在半空中。
 dad: 你跟他說，別回鎮上。
 song: 那可由不得我。他那個脾氣，你也知道。
@@ -1323,6 +1385,7 @@ wei: 媽，楊天嘯是誰？
 mom.u: 誰跟你說這個名字的？
 wei: 宋光頭來找爸，說他下個月十五號出來——
 mom.u: 你沒有舅舅！
+@ bg=s04_mom_chops_board time=晚上 tint=warm bgm=tense amb=room
 > 她把刀往砧板上一剁。
 mom.u: 你要是敢去找他，我打斷你的腿！聽清楚沒有！
 wei: ……舅舅？
@@ -1337,6 +1400,7 @@ wei: 狼哥，你聽過楊天嘯這個名字嗎？
 lang: 你從哪裡聽來的？
 wei: 宋光頭說的。他說下個月出來。
 lang: 小閻王……要出來了？
+@ bg=s04_lang_serious_tale time=週一．午休 tint=grey bgm=calm amb=court
 lang: 巍子，鎮上的老一輩，提到這個名字都要壓低聲音。
 lang: 他十幾年前一個人挑翻了整條街，後來為了一件事進去了，判了很久。
 lang: 聽說，他有個姊姊，嫁到我們鎮上。
@@ -1358,6 +1422,7 @@ lang: 聽說，他有個姊姊，嫁到我們鎮上。
 > 一台破得快散掉的 250 摩托車噗噗噗地騎過來，騎車的人頭髮染成三種顏色。
 fzl: 王巍是吧？狼哥叫我載你去。我叫非主流，名字是自己取的，有個性吧？
 wei: ……很有個性。
+@ bg=s04_bike_hold_tight time=一月十五日．清晨 tint=cold bgm=road amb=street wx=dust
 fzl: 坐穩啊，這台車的煞車，只有心情好的時候才會動。
 ? t=calm | 監獄在兩個小時車程外的山裡。
 - 跳上車：「出發！」 {fzl+=1} -> c4_ride
@@ -1376,6 +1441,7 @@ fzl: 第六次還沒發生嘛！上來！
 > 摩托車在山路上狂飆，非主流一邊騎一邊大聲唱跑調的歌。
 > 開到一半，後面突然出現一台白色麵包車，越來越近。
 fzl: 欸？那台車是不是在追我們？
+@ bg=s04_van_window_zsf time=早上七點．山路 tint=cold bgm=chase amb=wind wx=dust
 > 車窗搖下來，我看見一張臉——趙松他爸。手腕還打著石膏。
 zsf: 小雜種！停車！
 fzl: 哇靠！抓緊了！
@@ -1414,7 +1480,9 @@ fzl: 心情好的時候才會動嘛！
 > 他沒看他們，也沒看宋光頭。他的視線越過所有人，落在我身上。
 song: 天嘯，歡迎回來。這孩子是——
 uncle: 我知道是誰。
+@ bg=s04_uncle_looks_down bgm=boss amb=wind wx=dust
 > 他走過來，在我面前停下。他比我高一個頭，菸味很重，眼神冷得像冬天的河。
+@ bg=s04_wei_looks_up bgm=boss amb=wind wx=dust
 uncle: 你媽叫你來的？
 ? t=mid def=2 | 舅舅低頭看著你。
 - 「我自己來的。我想見你。」 {uncle+=2} -> c4_meet_honest
@@ -1425,6 +1493,7 @@ uncle: 你媽叫你來的？
 wei: 我自己來的。我……想見你。
 uncle: 見我幹嘛？
 wei: 我想知道，我爸那天拿刀的樣子，是跟誰學的。
+@ bg=s04_uncle_squints bgm=boss amb=wind wx=dust
 > 他的眼睛眯得更細了，像在打量一把刀夠不夠鋒利。
 uncle: 王觀雨拿刀了？
 wei: 嗯。
@@ -1459,6 +1528,7 @@ uncle: 膽子不小。比你爸年輕時大。
 > 我跟在後面。天黑了，下起大雨，非主流的摩托車早就修不好丟在山下。
 > 走到一半，路邊的樹林裡亮起十幾支手電筒。
 zsx: 楊天嘯！十二年前你廢了我大哥一條腿，今天還給你！
+@ bg=s04_rain_road_ambush time=當天晚上．山路 tint=night bgm=danger amb=rain wx=rain
 > 二十多個人，手裡拿著開山刀和鐵棍，把山路堵得死死的。
 uncle: 站遠一點。
 wei: 他們有二十幾個人！
@@ -1516,9 +1586,11 @@ lag: 這就是姊姊家的孩子？
 uncle: 嗯。
 lag: 有點像你小時候。
 uncle: 不像。他比我軟。
+@ bg=s04_uncle_eye_level time=晚上十點 tint=night bgm=emo amb=rain wx=rain
 > 舅舅走到我面前，蹲下來，跟我平視。
 uncle: 王巍，你聽好。以後你被人打死，我不管。
 uncle: 但你要是被別人打死，我就把那人全家都送下去陪你。
+@ bg=s04_uncle_hand_shoulder time=晚上十點 tint=night bgm=emo amb=rain wx=rain
 uncle: 所以，別讓別人有機會。
 ? t=calm | 舅舅的眼睛在黑暗裡發亮。
 - 「那你教我。」 {uncle+=2;wu+=1} -> c4_teach_me
@@ -1548,6 +1620,7 @@ uncle: 不過，想保護人，你也得先有拳頭。明天早上五點，河�
 uncle: 蹲馬步。臉盆放頭上，裝滿水。掉一滴，重來。
 wei: 要蹲多久？
 uncle: 蹲到我抽完這包菸。
+@ bg=s04_basin_stance_mist time=隔天清晨五點．河邊 tint=cold bgm=calm amb=river wx=dust
 > 那包菸，是新拆的。
 ! game stance 8 頂著水盆蹲樁步
 ! if rh>=5 -> c4_stance_ok
@@ -1574,10 +1647,12 @@ uncle: 你爸。
 > 我媽在廚房，聽到聲音走出來。看到他的那一秒，手裡的碗摔在地上。
 mom.x: 你……
 uncle: 姊。
+@ bg=s04_mom_uncle_standoff time=當天傍晚 tint=dusk bgm=tense amb=room
 > 十二年。他們隔著一個客廳對看，誰也沒往前走一步。
 mom.u: 出去。
 uncle: 我來看看孩子。
 mom.u: 我叫你出去！你要把巍子也拖進你們那個世界嗎？
+@ bg=s04_dad_behind_mom time=當天傍晚 tint=dusk bgm=tense amb=room
 > 我爸從房間走出來，站在我媽身後，對舅舅點了點頭。兩個男人之間，有一種我看不懂的東西。
 dad: 天嘯，你先走吧。
 uncle: 王觀雨，你倒是很會躲。
@@ -1599,6 +1674,7 @@ wei: 舅舅，你先走吧。我媽……需要時間。
 uncle: 呵。好。
 > 他看了我一眼，那個眼神裡居然有一點點讚許。
 uncle: 護著你媽，這點像樣。
+@ bg=s04_mom_hugs_wei time=當天傍晚 tint=dusk bgm=tense amb=room
 > 門關上之後，我媽一把抱住我，抱得我喘不過氣。
 mom.s: 巍子，答應媽，不要變成他那樣。
 wei: ……我答應。
@@ -1620,11 +1696,12 @@ wei: ……我答應。
 
 // 第五章　同桌的你，學姊的傘（初二）
 == c5_start
-@ bg=s05_spring_classroom time=初二．三月 tint=warm bgm=school amb=class wx=dust
+@ bg=s05_river_horse_stance time=初二．三月 tint=warm bgm=school amb=wind wx=dust
 ! title 第五章|同桌與學姊
 > 初二開學第一天，舅舅在河邊說：「馬步蹲滿一百天，我教你第一招。蹲不滿，這輩子別叫我舅舅。」
 > 初二開學，我長高了八公分，制服袖子短了一截。
 > 每天五點去河邊蹲馬步，七點跑步上學。我還是瘦，可是手臂開始有一點點線條。
+@ bg=s05_spring_classroom time=初二．三月 tint=warm bgm=school amb=class wx=dust
 > 李嬌嬌還是我的同桌。只是她不再嘲笑我了，改成每天逼問我。
 jiao: 王巍，你昨天放學去哪了？
 wei: 河邊。
@@ -1632,6 +1709,7 @@ jiao: 去河邊幹嘛？跟誰？是不是女生？
 wei: 跟我舅舅。
 jiao: 你舅舅？那個傳說中的小閻王？你帶我去看！
 wei: 不行。
+@ bg=s05_jiao_turns_away time=初二．三月 tint=warm bgm=school amb=class wx=dust
 jiao.u: 王巍，你給我等著！
 > 她氣得把頭轉過去。過了五分鐘，一張紙條從桌子中間推過來：「午餐分我一半，我就原諒你。」
 ? t=calm | 李嬌嬌假裝看窗外，耳朵卻紅紅的。
@@ -1640,6 +1718,7 @@ jiao.u: 王巍，你給我等著！
 - 假裝沒看到紙條 {jiao-=1} -> c5_lunch_ignore
 
 == c5_lunch_share
+@ bg=s05_lunchbox_share time=初二．三月 tint=warm bgm=school amb=class wx=dust
 > 中午我把飯盒蓋子打開，用筷子在中間劃了一條線，推過去。
 > 我媽做的，番茄炒蛋、炒青菜，一塊滷肉。
 jiao: ……就這樣？
@@ -1672,6 +1751,7 @@ jing: 小巍。
 > 孫靜怡撐著一把淺藍色的傘走過來。她初三了，要考中考，每天都留到很晚。
 jing: 沒帶傘？我送你。我們家順路。
 > 她的傘不大，兩個人撐有點擠。她把傘往我這邊偏，自己的肩膀濕了一大片。
+@ bg=s05_umbrella_shoulder_wet time=放學．下大雨 tint=grey bgm=emo amb=rain wx=rain
 ? t=calm | 雨打在傘面上，啪啪作響。
 - 把傘推回她那邊：「學姊，你肩膀濕了。」 {jing+=2} -> c5_umbrella_push
 - 接過傘：「我比你高了，我來撐。」 {jing+=2;fame+=0} -> c5_umbrella_hold
@@ -1681,6 +1761,7 @@ jing: 沒帶傘？我送你。我們家順路。
 wei: 學姊，你肩膀都濕了。
 jing: 沒關係，回家換衣服就好。
 wei: 有關係。
+@ bg=s05_umbrella_handle time=放學．下大雨 tint=grey bgm=emo amb=rain wx=rain
 > 我把傘柄往她那邊推。她看了我一眼，笑了。
 jing: 小巍長大了，會照顧人了。
 > 結果我們兩個都濕了一半。走到她家巷口，她把傘塞進我手裡，自己跑進去了。
@@ -1712,6 +1793,7 @@ jing: 有些人，從小就知道要擋在別人前面。只是他自己不知�
 > 四月，豺狼跟熊子升上高一的事情鬧大了。
 > 高一有個叫洛斌的，瘦瘦小小，可是家裡有錢，養了一群打手，專門欺負新生。
 > 他叫人堵了杆子，打斷了杆子兩根手指。
+@ bg=s05_lang_says_stay time=四月．高中部門口 tint=none bgm=danger amb=street
 lang: 巍子，今晚高一那邊，我跟熊子要去討個說法。你初二，別來。
 xiong: 對！小孩子回家寫作業！
 ? t=mid def=3 | 豺狼跟熊子要去高中部找洛斌。
@@ -1790,6 +1872,7 @@ luo.x: 我錯了，我錯了！杆子的醫藥費我出！我出十倍！
 lang: 錢自己留著。明天去杆子班上，當著全班的面道歉。
 luo.x: 好、好！
 > 熊子把他扔進路邊的垃圾桶。
+@ bg=s05_three_steps_laugh time=晚上九點 tint=night bgm=calm amb=street
 > 我們三個坐在高中部的台階上，誰都沒說話，喘著氣，然後一起笑了。
 xiong: 豺狼，以後高一，我們兩個說了算！
 lang: 三個。
@@ -1803,8 +1886,10 @@ lang: 我說三個。巍子也算。
 jiao.u: 王巍！你又去打架！
 wei: 小聲一點……
 jiao.u: 還有！我昨天看到你跟孫靜怡撐同一把傘！
+@ bg=s05_class_turns_heads time=隔天．早自習 tint=none bgm=school amb=class
 > 全班都轉過來了。
 jiao: 你說！你是不是喜歡她？
+@ bg=s05_jiao_red_face time=隔天．早自習 tint=none bgm=school amb=class
 ? t=high def=3 | 李嬌嬌氣得臉都紅了，全班在看。
 - 「她是我學姊，從小一起長大的。」 {jiao+=0;jing+=1} -> c5_jj_explain
 - 「關你什麼事？」 {jiao-=1} -> c5_jj_cold
@@ -1856,10 +1941,12 @@ cf: 你就是王巍？豺狼的小兄弟？
 cf: 我這個人很講道理。從下禮拜開始，高中部跟初中部的小賣部、檯球廳、網吧，都歸我管。
 cf: 豺狼要是同意，大家相安無事。
 lang: 不同意呢？
+@ bg=s06_chenfeng_finger_gun time=五月．週五放學 tint=dusk bgm=danger amb=court
 > 陳峰笑了笑，舉起手，比了一個手槍的形狀，對著豺狼的額頭。
 cf: 啪。
 > 他嘴巴發出的聲音，像真的槍聲一樣，嚇得杆子往後一跳。
 cf: 給你們一個禮拜考慮。
+@ bg=s06_chenfeng_walks_off time=五月．週五放學 tint=dusk bgm=danger amb=court
 ? t=mid def=2 | 陳峰轉身要走。
 - 叫住他：「不用一個禮拜，現在就回答你——不同意。」 {fame+=2;wu+=0} -> c6_cf_defy
 - 沉默，看豺狼怎麼說 {lang+=1} -> c6_cf_silent
@@ -1898,6 +1985,7 @@ lele: 王巍？陳峰叫我來。不打你，只是跟你比一場。
 lele: 你輸了，以後豺狼的事你別插手。我輸了，我轉身就走。
 wei: 你叫什麼名字？
 lele: 樂樂。
+@ bg=s06_lele_stance time=三天後．傍晚 tint=dusk bgm=tense amb=street
 ? t=mid def=1 | 樂樂擺出架勢。
 - 「好，我跟你比。」 {wu+=1} -> c6_lele_fight
 - 「你為什麼要幫陳峰？」 {heart+=1;lele+=1} -> c6_lele_talk
@@ -1914,6 +2002,7 @@ lele: 別用那種眼神看我。打吧。
 @ bg=s06_lele_duel fade=cut bgm=battle amb=street wx=dust
 ! fx shake
 > 樂樂出手比趙松快兩倍，比洛斌的人狠十倍。
+@ bg=s06_lele_circle time=三天後．傍晚 tint=dusk bgm=battle amb=street wx=dust
 ! game fight 8 跟樂樂單挑
 ! if rh>=5 -> c6_lele_win
 ! fx bighit
@@ -1947,6 +2036,7 @@ lele: 許叔，他是王巍。
 xu: 我管他是王巍還是王八！坐下！
 > 他剪開我的袖子，用碘酒往傷口上倒，痛得我差點跳起來。
 xu: 痛？痛就對了。痛才記得住。
+@ bg=s06_xu_wall_rifle time=當晚．老許飯莊 tint=warm bgm=calm amb=farm
 > 我看到牆上掛著一把獵槍，擦得發亮，跟這間髒亂的屋子格格不入。
 ? t=calm | 老許在幫你包紮，牆上掛著一把獵槍。
 - 問：「許叔，那把槍是真的嗎？」 {xu+=0} -> c6_xu_gun
@@ -1979,8 +2069,10 @@ lang: 是陷阱。
 wei: 我知道。可是熊子在裡面。
 > 我們到倉庫的時候，裡面一個人都沒有。只有熊子被綁在椅子上，嘴巴貼著膠帶。
 > 鐵門在我們背後轟地關上。
+@ bg=s06_catwalk_pov_down time=一週後．深夜 tint=night bgm=danger amb=wind
 > 二樓的鐵欄杆後面，站著一個皮膚蠟黃、瘦得像一具骷髏的中年男人。他手上拿著一把獵槍。
 > 那是老許的槍。
+@ bg=s06_gui_catwalk_speech time=一週後．深夜 tint=night bgm=danger amb=wind
 gui: 豺狼，王巍。我姪子好聲好氣跟你們談，你們不給面子。
 gui: 那就只好讓你們知道，這個鎮上，誰說了算。
 ? t=high def=2 | 槍口對準了你。
@@ -2032,11 +2124,13 @@ uncle: 陳老鬼。
 > 舅舅一個人走進來，嘴裡叼著菸，手插在口袋裡。
 gui.x: 嘯、嘯哥……誤會，這是誤會……
 uncle: 槍，拿開。
+@ bg=s06_gui_hands_shake time=一週後．深夜 tint=night bgm=battle amb=wind wx=dust
 > 陳老鬼的手抖得像篩子，槍差點掉在地上。
 > 舅舅走過去，一把奪過槍，順手拆了槍膛，把子彈一顆一顆倒在地上。
 uncle: 你剛剛用哪隻手，拿槍指他？
 gui.x: 嘯哥……
 uncle: 我問你，哪隻手。
+@ bg=s06_gui_kneels_floor bgm=battle wx=dust
 > 陳老鬼噗通一聲跪下來。
 > 宋光頭從門外急急忙忙衝進來，滿頭大汗。
 song: 天嘯！天嘯！手下留情！陳老鬼是我的人，給我一個面子！
@@ -2044,6 +2138,7 @@ uncle: 你的人？你的人拿槍指我外甥？
 song: 是我管教不嚴！我給你賠罪！你要什麼我都給！
 > 舅舅轉頭看我。
 uncle: 王巍，你說。他的手，要不要。
+@ bg=s06_gui_kneels_all_eyes bgm=battle wx=dust
 ? t=high def=2 | 陳老鬼跪在地上發抖，所有人都在看你。
 - 「不要。讓他把槍還給老許，跟老許道歉。」 {heart+=2;xu+=2;fame+=1} -> c6_spare_gui
 - 「舅舅，你決定。」 {uncle+=1} -> c6_uncle_decide
@@ -2091,6 +2186,7 @@ uncle: 斷一隻，留一隻。是看你的面子。
 > 樂樂站在倉庫門口，看著我。
 lele: 我媽的債，陳老鬼剛剛說，一筆勾銷了。
 wei: 那很好啊。
+@ bg=s06_lele_counts_me_in time=凌晨．倉庫外 tint=night bgm=calm amb=wind
 lele: 王巍。以後你要打架，算我一個。
 ? t=calm | 樂樂伸出拳頭。
 - 用拳頭碰他的拳頭 {lele+=2;bro+=2} -> c6_lele_fist
@@ -2119,6 +2215,7 @@ lele: 哈。那我要雞翅。
 jing: 小巍，學姊要走了。
 wei: 羅城很遠嗎？
 jing: 坐客運四個小時。不算遠，也不算近。
+@ bg=s06_jing_diploma_tap time=六月．初三畢業典禮 tint=warm bgm=emo amb=school wx=lights
 > 她手上拿著畢業證書，捲成一個筒，輕輕敲我的頭。
 jing: 以後被人欺負，沒有學姊幫你擦藥了喔。
 ? t=mid def=3 | 鳳凰花一片片掉下來。
@@ -2190,6 +2287,7 @@ mom: 為什麼是羅城？
 uncle: 陳老鬼背後還有人。宋光頭最近不太對勁。巍子留在鎮上，早晚出事。
 > 我爸看著那張通知書，看了很久。
 dad: 巍子，你自己決定。
+@ bg=s06_notice_on_table time=七月．晚上 tint=warm bgm=emo amb=room
 ? t=calm | 那張入學通知書放在飯桌上。
 - 「我去羅城。」 {fame+=1} -> c6_go_luo
 - 「我想留在鎮上，陪爸媽。」 {mom+=2;dad+=1} -> c6_stay_town
@@ -2200,7 +2298,7 @@ wei: 我不去。我想留在鎮上。陪我爸，陪我媽。
 > 我爸放下筷子，看了我很久。
 dad: 巍子。爸在門房坐了十幾年，每天看著別人的孩子走出這個鎮。
 dad: 你留下來陪我，爸很高興。可是爸更想看你走出去。
-? t=calm def=0 | 舅舅拿著紙袋，站在門口等。
+? t=calm def=1 | 舅舅拿著紙袋，站在門口等。
 - 「……好。我去。」 {dad+=2} -> c6_go_luo_mom
 - 「爸，我還是想留下來。」 {mom+=1} -> c6_stay_last
 
@@ -2208,9 +2306,17 @@ dad: 你留下來陪我，爸很高興。可是爸更想看你走出去。
 > 舅舅沒有走。他把紙袋放在門檻上，點了一根菸。
 uncle: 明天早上七點，我在客運站等你，帶你去羅城把名字報上。紙袋我放這裡，你想清楚了，自己拿。
 > 那天晚上，我盯著那個紙袋，看到天亮。
-? t=calm def=0 | 天亮了。紙袋還在門檻上。
+@ bg=s06_doorstep_envelope_dawn time=天亮．平房門口 tint=cold bgm=emo amb=room
+// 雲公子 11/03：門檻。mom>=6（一路陪著我媽，她才捨得留我）才問；不到的人，我媽把紙袋塞給我
+! if mom<6 -> c6_stay_pulled
+? t=calm def=1 | 天亮了。紙袋還在門檻上。
 - 拿起紙袋，追去客運站 {dad+=1} -> c6_go_luo_late
 - 把紙袋還給舅舅 {mom+=1} -> c6_small_end
+
+== c6_stay_pulled
+> 天剛亮，我媽就起來了。她把紙袋從門檻上撿起來，拍掉上面的露水，塞進我手裡。
+mom: 去吧。你爸說得對，你不該一輩子守著這個門口。
+! go c6_go_luo_late
 
 == c6_small_end
 @ bg=e_small fade=black bgm=calm amb=street
@@ -2222,10 +2328,11 @@ uncle: 明天早上七點，我在客運站等你，帶你去羅城把名字報�
 ! end small
 
 == c6_go_luo_late
+@ bg=s06_bus_stop_uncle_wait time=隔天早上七點．客運站 tint=cold bgm=emo amb=station
 > 我跑到客運站的時候，已經七點過五分。舅舅蹲在站牌底下，腳邊一地菸頭。
 > 他看到我手上的紙袋，站起來，拍了拍褲子。
 uncle: 走吧。報完名回來收行李，八月底才開學。
-> 那天晚上我從羅城回來，我媽站在門口等我。她什麼都看出來了。
+! set luo_late=1
 ! go c6_go_luo_mom
 
 == c6_go_luo
@@ -2233,6 +2340,9 @@ wei: 我去羅城。
 ! go c6_go_luo_mom
 
 == c6_go_luo_mom
+@ bg=s06_mom_sewing_bag time=出發前一晚 tint=warm bgm=emo amb=room
+! when luo_late==1
+> 那天晚上我從羅城回來，我媽站在門口等我。她什麼都看出來了。
 mom.s: 巍子……
 wei: 媽，我不是去打架的。我是去讀書的。我也想……看看外面。
 > 我媽沒有再說話。出發前一天晚上，她坐在我床邊，幫我縫了一個新的書包，縫到天亮。
@@ -2253,6 +2363,7 @@ lele: 他的 250 到不了羅城，半路就散了。
 == c6_jiao_bye
 wei: 你是來送我的嗎？
 jiao: 才不是！我、我剛好路過！
+@ bg=s06_bus_scarf_bag time=八月底．客運站 tint=warm bgm=emo amb=station
 > 她把紙袋塞進我懷裡。裡面是一條手織的圍巾，織得歪歪扭扭，有好幾個洞。
 jiao: 羅城冬天很冷。你那件破外套擋不住。
 wei: 你自己織的？
@@ -2266,6 +2377,7 @@ jiao: 初一你推我那一下，我還沒原諒你。到了羅城再算。
 
 == c6_jiao_wave
 > 我隔著人群朝她揮手。她愣了一下，把紙袋藏到身後，也揮了揮手。
+@ bg=s06_bus_rear_window_jiao time=八月底．客運站 tint=warm bgm=emo amb=station
 > 客運開動的時候，我從後窗看出去，看見她把紙袋丟進垃圾桶，又撿了回來，抱在懷裡蹲了下去。
 > 我那時候不知道袋子裡是什麼。好多年以後才知道，是一條她織壞了七次的圍巾。
 ! go c6_end_hook
@@ -2292,6 +2404,7 @@ jiao: 初一你推我那一下，我還沒原諒你。到了羅城再算。
 > 宿舍是兩人房，有冷氣，有獨立浴室。比我在鎮上的家還大。
 > 我的室友是一個瘦瘦的男生，戴著黑框眼鏡，正在用計算機算什麼。
 qdd: 你就是那個獎學金生？不對，你不是獎學金生。你是……有人幫你繳全額的。
+@ bg=s07_qdd_glasses time=下午．宿舍 tint=warm bgm=calm amb=room
 qdd: 我叫錢多多。我爸是做生意的，不大不小。我的專長是算帳，還有八卦。
 qdd: 我已經幫你算過了：你的鞋子、書包、手錶加起來，不到這間學校一天的學費。
 ? t=calm | 錢多多推了推眼鏡，等你的反應。
@@ -2332,8 +2445,10 @@ qdd: 見面禮。我叫錢多多。
 > 那是獎學金生的位子。
 > 一個穿著名牌襯衫、頭髮抓得很高的男生，把一個獎學金生的飯盒整盒倒在地上。
 rich: 窮酸味太重了，影響我食慾。舔乾淨，我就給你一千塊。
+@ bg=s07_canteen_kneel_boy time=開學第三天．中午 tint=none bgm=tense amb=canteen
 > 周圍的人在笑，有人在拍。那個男生跪在地上，手在發抖。
 qdd: 那是花少。他爸是羅城的地產大亨。別惹他。
+@ bg=s07_spilled_lunchbox time=開學第三天．中午 tint=none bgm=tense amb=canteen
 ? t=high def=3 | 那個獎學金生跪在地上，盯著倒翻的飯盒。
 - 走過去把那個男生拉起來 {heart+=2;fame+=1;wu+=0} -> c7_help_up
 - 把自己的飯盒放到花少桌上：「你餓的話，我的分你。」 {fame+=2;heart+=1} -> c7_mock_rich
@@ -2376,6 +2491,7 @@ weib: 怕。可是我更怕自己變成看戲的人。
 rich: 我們文明一點。一對一，打拳擊。你贏一個，我道歉。你輸了，滾出天成。
 > 一個傻大個從旁邊衝過來，擋在我前面。是陳小練，那個獎學金生。
 lian: 王巍！我、我也練過拳！我在家裡打沙包打了三年！
+@ bg=s07_boxing_warmup time=隔天．放學後 tint=dusk bgm=battle amb=wind wx=dust
 ? t=mid def=1 | 拳擊社的人在熱身。
 - 「謝了，你在旁邊看就好。」自己上 {wu+=1;fame+=1} -> c7_duel_solo
 - 「好，我們一起。」跟陳小練並肩 {lian+=2;bro+=1} -> c7_duel_pair
@@ -2429,6 +2545,7 @@ lian: 哈哈哈！王巍！我們好像很厲害欸！
 rich: ……你叫什麼名字？
 weib: 王巍。
 rich: 王巍。我記住了。
+@ bg=s07_steak_plate time=傍晚 tint=dusk bgm=calm amb=wind
 > 他沒有道歉。可是隔天中午，那個角落的獎學金生桌子上，
 > 多了一盤餐廳的牛排，沒有人知道是誰點的。
 > 錢多多說，那是花少叫人送的。
@@ -2440,7 +2557,9 @@ qdd: 他死要面子。不過，這已經是他道歉的方式了。
 > 週六，我坐了四十分鐘的公車，到羅城一中。
 > 靜怡學姊站在門口等我，頭髮剪短了，穿著白色的制服，比以前更好看。
 jingb: 小巍！你真的來羅城了！
+@ bg=s07_jing_pinch_cheek time=週六．羅城一中門口 tint=warm bgm=emo amb=street
 > 她跑過來，像小時候一樣捏了捏我的臉，然後愣住。
+@ bg=s07_jing_lookup time=週六．羅城一中門口 tint=warm bgm=emo amb=street
 jingb: 你……長得比我高好多了。
 weib: 我說過我會長大的。
 ? t=calm | 學姊仰頭看著你，笑得很開心。
@@ -2483,6 +2602,7 @@ jiaob: 大家好，我叫李嬌嬌，從……從很遠的地方轉來的。
 > 她穿著天成的制服，頭髮長了，比以前更漂亮，全班男生的眼睛都直了。
 > 她掃視整間教室，最後停在我身上，嘴角揚起來。
 jiaob: 老師，我要坐他旁邊。
+@ bg=s07_jiao_takes_seat time=十月．週一早上 tint=warm bgm=school amb=class
 ? t=mid def=0 | 全班都轉頭看你。
 - 「你怎麼來了？」 {jiao+=1} -> c7_jj_why
 - 假裝不認識她 {jiao-=1} -> c7_jj_pretend
@@ -2527,10 +2647,12 @@ jiaob: ……笨蛋。秋天戴什麼圍巾。
 @ bg=s07_rooftop_uncle_staff time=十月底．深夜．學校頂樓 tint=night bgm=calm amb=wind wx=dust
 > 那天深夜，舅舅出現在學校頂樓。我不知道他是怎麼進來的。
 uncle: 拿著。
+@ bg=s07_baton_in_palm time=十月底．深夜．學校頂樓 tint=night bgm=calm amb=wind wx=dust
 > 他丟給我一根黑色的金屬短棍，只有手掌那麼長。我一甩，它「唰」地伸長到一公尺多。
 uncle: 打神棍。打神也打鬼。
 weib: 給我的？
 uncle: 你在羅城的事，我都知道了。打架用拳頭，會死人。用這個，打不死人，能讓人記住。
+@ bg=s07_uncle_rooftop time=十月底．深夜．學校頂樓 tint=night bgm=calm amb=wind wx=dust
 uncle: 還有。宋光頭在羅城的生意，最近很大。離他遠一點。
 ? t=calm | 打神棍在月光下閃著冷光。
 - 「舅舅，你跟宋光頭到底怎麼了？」 {song_doubt+=1;uncle+=1} -> c7_ask_song
@@ -2576,6 +2698,7 @@ song: 巍子！來來來，坐！想吃什麼隨便點！
 > 吃到一半，他放下筷子。
 song: 巍子，宋叔問你一件事。你舅舅最近，是不是在查十二年前的事？
 song: 你幫宋叔留意一下。他要是查到什麼，跟宋叔說一聲。宋叔怕他被人騙，又做傻事。
+@ bg=s07_red_envelope time=十一月．羅城．宋光頭的會所 tint=warm bgm=danger amb=room
 > 他推過來一個紅包。很厚。
 ? t=mid def=3 | 宋光頭笑著等你回答。
 - 收下紅包：「好，宋叔。」打算之後告訴舅舅 {song_doubt+=2;fame+=0} -> c7_song_double
@@ -2612,6 +2735,7 @@ fzl: 巍子！我騎車來羅城找你玩！我在你學校門口！
 > 我還沒回答，後面就傳來一陣引擎聲。三台重型摩托車，騎士都戴著全罩安全帽，手上拿著鐵棍。
 fzl: 巍子，那些人是你朋友嗎？
 weib: 不是！快跑！
+@ bg=s07_250_motorbike time=當晚十點．羅城環河道路 tint=night bgm=chase amb=street wx=lights
 > 我跳上非主流的 250。破車噴出一股黑煙，在羅城的夜裡狂飆。
 ! game chase 8 甩開三台重機
 ! if rh>=5 -> c7_chase_win
@@ -2695,6 +2819,7 @@ langb: 巍子！聽說你在羅城被人追著打？
 xiong: 誰！誰敢動我們家巍子！
 > 豺狼高三了，還是小平頭，可是肩膀寬了一倍。熊子更像一座山了。
 uncle: 宋光頭在羅城有三百個人。爆獅是他的刀。
+@ bg=s08_uncle_war_words time=上午 tint=none bgm=tense amb=room
 uncle: 我要動他。你們，可以不來。
 ? t=mid def=1 | 舅舅看著屋子裡的每一個人。
 - 「我來。這件事是我挖出來的。」 {bro+=1;fame+=1;wu+=0} -> c8_join_war
@@ -2737,6 +2862,7 @@ lele: 王巍，你在小看我們。
 bs: 你就是小閻王的外甥？太瘦了。宋老闆說，打斷你兩條腿就好，不用殺。
 > 陳小練被吊在鐵架上，嘴巴流著血，還在對我搖頭。
 lian: 王巍……快走……他……他不是人……
+@ bg=s08_baoshi_knuckles time=一週後．羅城港區倉庫 tint=night bgm=boss amb=harbor
 ? t=high def=2 | 爆獅慢慢走過來，指節喀喀作響。
 - 甩開打神棍，正面迎擊 {wu+=1} -> c8_bs_fight
 - 先拖時間，用話套他 {heart+=0;fame+=0} -> c8_bs_talk
@@ -2799,6 +2925,7 @@ weib: ……有。他最後那一拳，可以打我的頭。他打了肩膀。
 @ bg=s08_temple_fair_drum time=年底．羅城城隍廟廟會 tint=warm bgm=festival amb=crowd wx=lights
 > 年底，羅城城隍廟趕廟會。整條街都是舞獅、社火、鞭炮、香煙。
 > 宋光頭的會所就在廟會那條街的盡頭。舅舅的計畫是：趁人多，所有人混在鑼鼓隊裡，接近會所。
+@ bg=s08_big_drum time=年底．羅城城隍廟廟會 tint=warm bgm=festival amb=crowd wx=lights
 > 訊號，是鼓聲。
 uncle: 王巍，你來打鼓。鼓點一亂，大家就不知道什麼時候動手。
 weib: 我？我從來沒打過鼓！
@@ -2877,6 +3004,7 @@ uncle: 十二年。
 song: 十二年，我每個月都去看你。你知道為什麼嗎？因為我怕。我每天都怕你出來。
 song: 當年那件事，上面的人要一個交代。不是你，就是我。我有老婆孩子……
 uncle: 我也有姊姊。
+@ bg=s08_song_hand_suit time=深夜．會所頂樓 tint=night bgm=boss amb=wind wx=rain
 > 宋光頭的手伸進西裝裡。
 ! when song_doubt>=3
 > 我早就覺得他不對勁。從倉庫那天起，他看我的眼神就藏著東西。
@@ -2888,6 +3016,7 @@ uncle: 我也有姊姊。
 
 == c8_grab_song
 ! fx hit
+@ bg=s08_rooftop_wrist_grab time=深夜．會所頂樓 tint=night bgm=boss amb=wind wx=rain
 > 我衝上去，抓住他的手腕。他手上是一把小手槍。
 > 我們兩個扭在一起，撞上欄杆。欄杆是生鏽的，喀啦一聲，鬆了。
 > 舅舅一把把我往後扯開，自己頂了上去，扣住宋光頭的手腕。
@@ -2909,6 +3038,7 @@ weib.u: 舅舅！小心！
 
 == c8_take_gun
 // 單鍵結局改為門檻：殺心累積夠重（yama>=6）才入獄，否則舅舅奪下槍（💛 11:0x）
+@ bg=s08_gun_in_puddle time=深夜．會所頂樓 tint=night bgm=boss amb=wind wx=rain
 ! if yama>=6 -> c8_take_gun_aim
 > 我撿起那把槍。很輕，比我想像的輕很多。
 > 舅舅一把扣住我的手腕，把槍奪了過去，退出彈匣，丟進積水裡。
@@ -2992,6 +3122,7 @@ uncle: 剛剛他掉下去的時候，我想的居然是，他每個月帶來的�
 zsx: 楊天嘯的外甥？省城有位大人物，想請你舅舅過去坐坐。
 weib: 什麼大人物？
 zsx: 李皇帝。小朋友，好好念書。
+@ bg=s08_station_uncle_smoke time=隔天早上．羅城警局門口 tint=cold bgm=calm amb=street
 > 舅舅走之前，在警局門口對我說：
 uncle: 我要去省城一陣子。這個人找我，我不能不去。
 uncle: 你媽，交給你了。
@@ -3026,6 +3157,7 @@ uncle: 到時候就知道了。
 @ bg=s08_riverside_phone time=傍晚．羅城河堤 tint=dusk bgm=emo amb=river
 > 那天傍晚，我一個人坐在羅城的河堤上。
 > 手機裡有十七通未接來電。九通是李嬌嬌，八通是靜怡學姊。
+@ bg=s08_phone_callback time=傍晚．羅城河堤 tint=dusk bgm=emo amb=river
 ? t=calm | 你先回撥給誰？
 - 撥給李嬌嬌 {jiao+=2} -> c8_call_jiao
 - 撥給靜怡學姊 {jing+=2} -> c8_call_jing
@@ -3063,6 +3195,7 @@ mom: 你沒有變成他。你變成了你自己。
 ! go c8_end
 
 == c8_end
+@ bg=s08_riverside_alone time=傍晚．羅城河堤 tint=dusk bgm=emo amb=river
 > 宋光頭死了。我以為最大的麻煩，跟著他一起從樓上掉下去了。
 > 我錯了。九天以後，有人半夜來踹我家的門。
 ! go c8b_start
@@ -3077,6 +3210,7 @@ mom: 你沒有變成他。你變成了你自己。
 > 半夜兩點，有人在踹我家的鐵門。一下，兩下，整片牆都在震。
 zsf.u: 王觀雨！出來！宋老闆死了，沒人罩你了！
 > 是趙松他爸。鎮上的人都叫他趙瘋子。三年前在木料廠，他被我爸打跑以後，就投靠了宋光頭。
+@ bg=s08b_mom_phone_dark time=宋光頭死後第九天．深夜．小鎮老家 tint=night bgm=danger amb=rain wx=rain
 > 我從床上跳起來，我媽已經站在客廳裡，手上抓著電話。我爸坐在黑暗裡，一動也不動。
 dad: 巍子，回房間。
 ? t=high def=1 | 門外不只一個人，鐵門的鎖開始變形。
@@ -3127,6 +3261,7 @@ zsf: 王觀雨，三年前你讓我在全鎮面前丟臉。今天，我要你老
 @ bg=s08b_dad_kitchen_knife fade=black bgm=boss amb=rain wx=rain
 ! fx slow
 > 我爸動了。
+@ bg=s08b_kitchen_doorway time=宋光頭死後第九天．深夜．小鎮老家 tint=night bgm=boss amb=rain wx=rain
 > 他從廚房走出來，手上是我媽切菜的那把刀。他走得很慢，像只是去倒一杯水。
 > 抓住我媽的那個人，手腕被他握住，一扭，整個人跪在地上。
 > 趙瘋子舉起開山刀劈下來。
@@ -3145,6 +3280,7 @@ dad: 我說過，別靠近我家人。
 dad: 人是我傷的。跟我老婆兒子沒關係。
 weib.u: 爸！是他們先闖進來的！這是正當防衛！
 dad: 巍子。
+@ bg=s08b_dad_white_hair time=凌晨兩點四十 tint=night bgm=sad amb=rain wx=rain
 > 他回頭看我。紅藍色的警燈，在他的白頭髮上一閃一閃。
 dad: 照顧你媽。
 ? t=calm | 警車的門打開了。
@@ -3193,6 +3329,7 @@ lag: 上位，不是打出來的，是讓人服出來的。這句話是你舅舅
 - 一個人去 {fame+=2;wu+=1} -> c8b_wbl_alone
 
 == c8b_wbl_bros
+@ bg=s08b_jackal_bear_log time=開春．羅城 tint=warm bgm=tense amb=wind
 > 豺狼叼著烤腸，熊子扛著一根比他還粗的木頭。
 langb: 巍子，談不攏就打，打不贏就跑。
 xiong: 我不跑。我扛著。
@@ -3228,6 +3365,7 @@ langb: 我的烤腸……
 @ bg=s08b_tiannu_door_card time=週末深夜．小鎮老家 tint=night bgm=tense amb=room
 > 週末回家，半夜醒來，我聽到客廳有人說話。
 > 一個高大的男人站在我媽面前，彎著腰，雙手接過一個紅色的帖子。
+@ bg=s08b_tiannu_back time=週末深夜．小鎮老家 tint=night bgm=tense amb=room
 > 燈光很暗，我只看得到他寬寬的背。
 mom: 天奴，你把楊家的門帖交到李皇帝手上。就說楊家的女兒求他，放我哥回來。
 tn: 小姐，楊家已經不認您了。這張帖子遞出去，您就……
@@ -3299,6 +3437,7 @@ dad: 以後你會知道。說正事。
 ! go c8b_tell_all
 
 == c8b_tell_all
+@ bg=s08b_visit_dad_listens time=會見室 tint=cold bgm=emo amb=room
 > 我把所有的事都說了。宋光頭，王寶林，舊碼頭，我手上那一半的羅城。
 > 我以為他會罵我。他沒有。他一句話都沒打斷。
 dad: 你想走這條路，我攔不住你。
@@ -3317,6 +3456,7 @@ dad: 你不說全，那我也只說一句：先拿下羅城的地下，再來見
 ! go c8b_dad_end
 
 == c8b_dad_end
+@ bg=s08b_guard_knocks time=會見室 tint=cold bgm=emo amb=room
 > 會見時間到了。獄警在門口敲了敲門。
 dad: 巍子。
 weib: 嗯？
@@ -3370,6 +3510,7 @@ dad: 還有……別告訴你媽，我瘦了。
 ! go c8b_huoye
 
 == c8b_huoye
+@ bg=s08b_huoye_cane time=一個月後．夜．桃花園 tint=night bgm=battle amb=street wx=lights
 > 火爺拄著拐杖，站在園子門口，看著警車開走。
 huoy: 小子，你借我的園子，抓了我的客人。
 weib: 他是死刑犯。火爺，你的園子，不該住這種人。
@@ -3424,6 +3565,7 @@ weib: 那就五個。
 > 出來那天，來接我的，是羅城刑警隊的陳隊長。他看了我很久。
 cdz: 你一個人打了九個，自己身上只有三處傷。誰教的？
 weib: 我舅舅……不是，沒人教。蹲馬步蹲出來的。
+@ bg=s08b_captain_bars time=五月．羅城看守所 tint=cold bgm=calm amb=room
 cdz: 根基不錯，打法爛透了。從明天開始，每天早上五點，到河邊找我。
 ? t=mid def=0 | 陳隊長在等你回答。
 - 「好。」 {wu+=2} -> c8b_master_yes
@@ -3450,6 +3592,7 @@ weib: ……啥？
 mom: 你爸年輕時候的結拜兄弟，他家的女兒。你們還沒出生就說好了。
 weib: 誰？叫什麼名字？
 mom: 你很快就會見到她。
+@ bg=s08b_chopsticks_drop time=暑假．我媽生日的隔天．老家 tint=warm bgm=emo amb=room
 > 我手上的筷子掉了。手機剛好在響，是嬌嬌傳來的訊息。
 ? t=mid def=0 | 手機一直在震。
 - 點開嬌嬌的訊息 {jiao+=2} -> c8b_answer_jiao
@@ -3482,6 +3625,7 @@ mom: 跟你媽年輕的時候一樣。
 > 那年冬天，一個陌生的大個子叫我「小少爺」。在那之前，我一直以為我媽只是我媽。
 > 跟陳隊長學功夫的第三個月，他第一次誇我。
 cdz: 打架，是讓別人倒下。功夫，是讓自己不倒。
+@ bg=s08c_wobbly_stone time=秋天．清晨五點．羅城河邊 tint=cold bgm=calm amb=water wx=dust
 > 他讓我站在河邊一塊會晃的石頭上，一站就是兩個小時。
 ! game stance 8 河邊站樁
 ! if rh>=5 -> c8c_stance_ok
@@ -3519,6 +3663,7 @@ lag: 陳隊長說，這東西放在證物室是廢鐵，放在你手上，才是
 > 從那以後他一直跟著我，喊我巍哥。
 > 升上高二，他也開始帶自己的一群學弟。後來我才知道，他是陳隊長的兒子。
 > 後來他打傷了豺狼的人，被我趕走。再後來，他投靠了元朗。
+@ bg=s08c_dark_dorm_call time=冬天以前．宿舍 tint=night bgm=tense amb=room
 > 那天晚上，元朗的人照著陳小練畫的路線，抄了我們的據點。我在電話裡，聽到陳小練在笑。
 lian: 巍哥，你不是很會打嗎？我讓你看看，誰才是羅城的老大。
 > 三天後，元朗為了滅口，從背後捅了陳小練一刀。陳小練沒死，元朗卻在那一夜，栽在了我手上。
@@ -3540,6 +3685,7 @@ cdz: 兒子，你恨不恨爸爸？
 - 轉過身，不說話 {rage+=1} -> c8c_lian_end
 
 == c8c_lian_home
+@ bg=s08c_wheelchair_corridor time=深夜．宿舍門口 tint=night bgm=sad amb=wind
 > 陳隊長推著輪椅走了。走廊很長，輪子的聲音一直響到樓梯口。
 > 我想起我爸。他要是知道我變成陳小練那個樣子，會怎麼做？
 ! set dad+=1
@@ -3568,6 +3714,7 @@ zts: 李皇帝讓我帶句話：做羅城的老大可以，別踏進省城一步
 ! go c8c_tiannu
 
 == c8c_tiannu
+@ bg=s08c_tiannu_streetlight time=初冬．夜．出租車上 tint=night bgm=danger amb=street wx=rain
 > 車門外，一道寬寬的影子擋住了路燈。是那天晚上在我家客廳的男人。天奴。
 > 他只出了一掌，趙鐵手就退出了車外。兩個人對看了一眼，趙鐵手冷笑一聲，走了。
 tn: 小少爺，沒事吧？
@@ -3614,6 +3761,7 @@ fn: 馮家不見客！
 
 == c8c_feng_hall
 hgj: 失禮了。我是侯管家。老爺不在，小姐請兩位進去坐。
+@ bg=s08c_qian_sofa_sizeup time=隔天．省城．馮家客廳 tint=cold bgm=tense amb=street
 > 馮家的客廳很大。一個跟我差不多大的女孩坐在沙發上，抱著手臂，從頭到腳打量我。
 qian: 你就是那個王巍？我爸從來沒有什麼結拜兄弟。
 weib: 信是我爸親手寫的。
@@ -3641,6 +3789,7 @@ ftd: 你是觀雨的兒子？上車聊。
 ftd: 李皇帝的事，我可以幫你。
 ftd: 只是我女兒不懂事，這門娃娃親，就當作沒有吧。你簽了，我們就是一家人。
 > 紙上寫著四個大字：放棄婚約。
+@ bg=s08c_pen_offered time=傍晚．馮天道的車上 tint=dusk bgm=tense amb=street
 ? t=high def=0 | 馮天道把筆遞給你。
 - 「這是我爸的事。不是一張紙能換的。」不簽 {dad+=2;fame+=1} -> c8c_no_sign_r1
 - 「馮叔叔，我要先問我爸。」 {dad+=1} -> c8c_no_sign_r2
@@ -3657,6 +3806,7 @@ ftd: 也好。替我問候他。
 == c8c_no_sign
 > 我沒有簽。馮天道笑了笑，把紙收回去，好像什麼都沒有發生過。
 ftd: 好孩子。有你爸的脾氣。
+@ bg=s08c_road_mom_silent time=傍晚．山路上 tint=dusk bgm=tense amb=street
 > 車子開走以後，我媽一直沒說話。過了很久，她才開口。
 mom: 你知道省城的人叫他什麼嗎？千面人。
 mom: 今天在馮家，從瘋牛、到小姐、到這張紙，全是一場戲。
@@ -3761,6 +3911,7 @@ weib: ……嗯。他說，他會幫忙。
 
 == c8c_farewell_end
 dad: 巍子，到了省城，自己小心。累了，就回家。
+@ bg=s08c_dad_wave time=出發前一天．會見室 tint=cold bgm=emo amb=room
 > 會見時間到了。我走到門口，回頭看。他還坐在那裡，朝我揮手。
 > 回家的路上，手機響了。是嬌嬌，只傳了兩個字：「永別。」
 ! when scarf==1
@@ -3877,6 +4028,7 @@ weib: 喂！五個打一個，要不要臉？
 > 我把眼鏡撿起來，還給他。他戴上，推了推，看著我。
 liu: 你叫什麼？
 weib: 王峰。
+@ bg=s08d_liu_glasses_on time=五月．傍晚．職校後門 tint=dusk bgm=danger amb=street wx=dust
 liu: 我叫劉鑫。王峰，你剛才那三招，不是街上學的。
 liu: 這一帶的人，以後都會叫你峰哥。至於我……你就叫我鑫哥吧，大家都這樣叫。
 > 後來我才知道，那群人是衝著他來的。不是因為錢，是因為一張圖。
@@ -3905,6 +4057,7 @@ liu: 路過的人，不會出手那麼重。……沒關係，我記住你了。
 yehu: 大師兄，龍脈圖在哪？師父去跟龍華集團談判，再也沒回來。圖在你手上，對吧？
 liu.s: 野狐……師父交代過……那張圖不能給你……
 > 野狐。劉鑫的二師弟。
+@ bg=s08d_yehu_raised_hand time=六月．深夜．學校後巷 tint=night bgm=danger amb=street wx=dust
 ? t=high def=0 | 野狐舉起手，又要打下去。
 - 走出去：「放開他。」 {liu+=2;fame+=1} -> c8d_save_liu
 - 先躲著，聽他們說什麼 {yehu_info=1} -> c8d_watch_yehu
@@ -3935,6 +4088,7 @@ yehu: 哪來的小鬼？
 == c8d_yehu_end
 > 瘋牛是馮千月叫來的。她說，她只是不想讓學校附近出人命。
 > 野狐想從牆上逃走，摔進了後巷的工地。那一夜之後，他再也沒有站起來。
+@ bg=s08d_liu_site_fence time=六月．深夜．學校後巷 tint=night bgm=danger amb=street wx=dust
 > 劉鑫看著工地的方向，看了很久。
 liu: 他小時候，跟我睡同一張床。
 ! go c8d_map
@@ -4000,6 +4154,7 @@ lw: 不錯。董事長那邊，我替你擋了。
 ! go c8d_longwang_end
 
 == c8d_longwang_end
+@ bg=s08d_longwang_whisper time=八月．龍家軍堂口 tint=night bgm=boss amb=crowd
 > 他走之前，在我耳邊說了一句：「你身上的味道，跟一個老朋友很像。」
 > 我不知道他在說誰。很久以後才知道。
 ! go c8d_lhd_rumor
@@ -4018,6 +4173,7 @@ mom: 他在省城，一定還在。
 > 計畫進行到最後一步，一個叫金明的人插了手。
 > 那天夜裡，龍玉華死了。不是我做的。可是省城的人都說，是王峰幹的。
 jm: 王峰，對不起啦。這筆帳，你背比較適合。
+@ bg=s08d_rain_search time=九月．高三開學．雨夜．省城 tint=cold bgm=sad amb=rain wx=rain
 > 龍家軍的人開始滿城找我。
 ! if yehu_info==1 -> c8d_yuhua_yehu
 ! go c8d_chase
@@ -4072,6 +4228,7 @@ liu: 謝什麼。哪天你想說真名，再來找我喝酒。
 lhd: 龍玉華死在一個叫王峰的小子手上。下個月的比武大會，我倒要看看他是誰。
 > 站在李皇帝面前，低著頭的那個人，是我舅舅。
 uncle: 大哥說的是。
+@ bg=s08d_uncle_bows_lhd time=幾天後．深夜．皇家夜總會 tint=night bgm=tense amb=crowd wx=lights
 > 我舅舅，小閻王，叫李皇帝「大哥」。
 lhd: 天嘯，你乖乖聽話，羅城那邊你姐姐和外甥，我一根頭髮都不會碰。
 uncle: 謝大哥。
@@ -4108,6 +4265,7 @@ uncle: 大哥，外面風大，我們進去說。
 > 電梯門一開，一個叼著菸的男人迎面走來。
 // 原創：舅舅罵人這句為本作補寫（原作只寫「罵了兩句」）。
 uncle: 鄉下來的？擋什麼路。
+@ bg=s09_lift_kick time=省城．皇家夜總會 tint=night bgm=tense amb=crowd wx=lights
 > 他抬腳就把我踹回電梯裡。我的背撞上鐵門，五臟六腑像被翻過來一遍。
 > 踹我的人，是我舅舅。他現在是李皇帝身邊的人，在這裡，他不認識我。
 ? t=mid def=2 | 舅舅當著李皇帝手下的面踹你。
@@ -4144,6 +4302,7 @@ lhd: 有人說小閻王還藏在我這裡？誰說的，站出來。
 lhd: 比武大會，現在開始。
 > 第二輪分組一出來，我就知道不是抽籤。我的對手是張健，一個出手專挑人皮肉下刀的瘋子。
 > 他早就知道我是誰的人，也早就等著我。
+@ bg=s09_qian_worried time=當晚．地下大廳 tint=warm bgm=battle amb=crowd wx=lights
 qian: 王峰，打不過就認輸，別跟那個變態拚命！
 ? t=mid def=1 | 馮千月在台下替你擔心。
 - 「我不會死在這種人手上。」 {qian+=1;fame+=1} -> c9_qian_brave
@@ -4212,6 +4371,7 @@ zts: 王峰，皇上在密境等你。
 > 能進密境的人，在省城一隻手數得完。八大家族的少爺小姐都沒有這個資格。
 lhd: 王峰，你是個人才。我要你在台上替我辦一件事：洪家的三少爺，不能活著走下拳台。
 lhd: 辦得到，你就是我的人。
+@ bg=s09_song_smile_memory time=密境 tint=gold bgm=danger amb=room
 > 他笑得很和氣。那種和氣，我在宋光頭臉上見過。
 ? t=mid def=2 | 李皇帝要你在台上殺人。
 - 「我盡力。」先答應，心裡另做打算 {fame+=1;heart+=1} -> c9_miji_yes
@@ -4244,6 +4404,7 @@ lhd: 辦得到，你就是我的人。
 > 他的拳腳像雨點一樣砸下來。我咬著牙撐了一輪又一輪，撐到眼前發黑。
 ! fx bighit
 > 先倒下的人是我。
+@ bg=s09_moonlight_falls time=十強賽 tint=cold bgm=battle amb=crowd wx=lights
 > 月光站在旁邊放聲大笑。笑到一半，人忽然直挺挺地倒了下去，再也沒有起來。
 > 劉家人衝上台。劉璨君抱著月光，喊得整個大廳都在發抖。
 // 原創：劉璨君這句台詞為本作補寫。
@@ -4290,6 +4451,7 @@ qian: 王峰，你……
 lw: 喲，挺熱鬧啊。
 > 是龍王。看起來普普通通的一個年輕人，可是他一出現，整個餐廳都安靜了。
 > 他是舅舅的朋友。至少，舅舅是這麼說的。
+@ bg=s09_laojiang_whisper time=隔天中午．選手餐廳 tint=none bgm=tense amb=canteen
 > 老醬趁亂湊到我耳邊。
 lj.s: 峰哥，那個抽旱菸的老頭讓我逮著了。他招了一件事。
 lj.s: 今晚台上，趙家的小女兒要殺馮家的大小姐。
@@ -4322,6 +4484,7 @@ lj.s: 今晚台上，趙家的小女兒要殺馮家的大小姐。
 weib.u: 小心！
 ! fx slow
 > 劍尖停在千月衣服前一寸。
+@ bg=s09_sword_dropped time=當晚．女子組 tint=cold bgm=danger amb=crowd wx=lights
 > 趙雪晴盯著千月的臉，眼淚一顆一顆掉下來。她手一鬆，劍掉在台上，人跪了下去，朝著趙家家主的方向哭喊。
 zxq.x: 我做不到……我做不到……
 > 從頭到尾，她都不想做。
@@ -4337,6 +4500,7 @@ qian: ……王峰。
 > 周家要王公子償命。龍王一邊拉褲子拉鍊一邊從廁所那頭走出來。
 lw: 吵什麼。我在旁邊全看見了，不是王公子幹的。
 > 輪到我了。對手是飛刀陳。
+@ bg=s09_longwang_block time=五強爭奪 tint=red bgm=battle amb=crowd
 > 上台前，龍王攔住我，一臉看不起人的樣子。
 lw: 病貓，棄權吧。上去也是丟人。
 ? t=mid def=1 | 龍王叫你棄權。
@@ -4386,6 +4550,7 @@ wgz: ……唉。好吧，算我一份。
 @ bg=s09_ring_lele time=三強之戰 tint=red bgm=boss amb=crowd wx=lights
 > 分組出來，我竟然輪空，直接進三強。
 > 葛平一棍把王公子打下台。下一場，岳家換人上場，上來的人我認識。
+@ bg=s09_lele_closeup time=三強之戰 tint=red bgm=boss amb=crowd wx=lights
 > 是樂樂。羅城的老兄弟，像一把出鞘的刀。
 // 原創：李皇帝這句由原作的轉述改成台詞。
 lhd.u: 那是小閻王的人！給我拿下！
@@ -4479,6 +4644,7 @@ weib: 好。
 ! go c9_final
 
 == c9_letter_mom
+@ bg=s09_night_call_mom time=決戰前夜 tint=night bgm=emo amb=night
 mom: 巍子？這麼晚了。
 weib: 媽，我很好。
 mom: ……你爸前兩天問起你。
@@ -4505,6 +4671,7 @@ lx.x: 鄉下來的，今天你走不下這個台。
 > 身上的舊傷還沒好，每動一下都扯著痛。我只能賭，賭他先失手。
 ! game fight 9 跟流星硬碰硬
 ! if rh>=6 -> c9_final_fire
+@ bg=s09_caught_by_qian time=決賽之夜 tint=red bgm=boss amb=crowd
 > 我被他一腳踢飛，落在千月懷裡。裁判已經舉起流星的手了。
 weib.x: 等等……你還沒讀秒吧？
 > 我撐著站起來。手腕的穴道像火山一樣爆開，一股熱流全湧進右拳。
@@ -4552,6 +4719,7 @@ lw: 這叫內勁，大驚小怪。
 weib: 我叫王峰。
 > 她笑了笑。
 jtt: 不，你叫王巍。
+@ bg=s09_teacup_tremble time=慶功宴之前．密境休息室 tint=gold bgm=danger amb=room
 > 我手裡的茶杯差點掉在地上。
 jtt: 別緊張。龍王交代過，不想讓你壓力太大，什麼事都以後再說。
 ? t=mid def=2 | 她怎麼會知道你的真名？
@@ -4574,6 +4742,7 @@ jtt: 你舅舅的脾氣，可比你好多了。
 > 我回學校待了半個月。千月一直沒來，再見到她，是在天台。
 > 她拉著我的手，紅著臉說，她和郝瑩瑩約好了，不如乾脆跟我走，找個地方隱居。
 > 她說她爸一直逼她嫁給劉璨君，她不想再回那個家了。
+@ bg=s09_qian_sneer time=半個月後．學校天台 tint=dusk bgm=emo amb=wind
 > 可是她開口前，順口說了幾句看不起鄉下人的話，跟當年在馮家門口一模一樣。
 > 那些我以為忘掉的難堪，一下子全湧了上來。
 ? t=mid def=1 | 你一直想報復馮家。現在機會就在眼前。
@@ -4612,6 +4781,7 @@ djx.u: 全部帶走，一個都不准放！
 
 == c9_flee
 ! fx hit
+@ bg=s09_roll_from_car time=幾天後．郊外倉庫 tint=cold bgm=danger amb=wind
 > 我扭住那隻手，撞開車門滾了出去。槍聲在背後追著我響。
 ! if rage-bro<13 -> c9_flee_pulled
 > 背後有人扯著嗓子喊我的名字。是飛刀陳。
@@ -4651,6 +4821,7 @@ fdc: 巍哥！你跑了，兄弟們怎麼辦？
 > 鐵門被撞開，管教整個人飛進來。
 > 舅舅站在門口，一手掐著另一個管教的脖子，把他提了起來。
 uncle: 叫戴九星過來。
+@ bg=s09_cuffs_unlocked time=看守所．第三天 tint=grey bgm=tense amb=room
 > 戴九星來了，臉色像死人一樣。最後是他親手幫我解開手銬的。
 weib: 我的兄弟呢？
 > 戴九星苦笑。
@@ -4680,8 +4851,10 @@ uncle: 他那種人，最不想聽的，就是別人替你報平安。
 > 回到場子，手機一通接一通，全是壞消息。
 > 我把手機往地上一摔。
 weib.u: 跟他們拚了！
+@ bg=s09_street_army_night time=當晚．金龍娛樂城門前 tint=red bgm=boss amb=crowd wx=smoke
 > 門外，省城的大軍站滿了整條街。帶頭喊話的是劉璨君，和馮天道。
 ftd: 瘋牛，去把他拿下。
+@ bg=s09_mad_bull_hammer time=當晚．金龍娛樂城門前 tint=red bgm=boss amb=crowd wx=smoke
 > 瘋牛掄著鐵錘衝過來，我迎了上去。
 > 我的拳頭快碰到瘋牛胸口的時候，他嘴唇動了一下。
 fn.x: 你別急，千月會來救你。
@@ -4767,6 +4940,7 @@ lhd: 一統省城，從今天開始。火曜使者王峰當總指揮，其他六
 > 去洪家談判那晚，洪家大少爺洪水寒當著郝瑩瑩她爸的面，句句都在羞辱郝家。
 hsh: 姓郝的，在省城，你們郝家算什麼東西？
 > 我把洪水寒按在桌上的時候，千月擋在他面前，罵我不自量力。
+@ bg=s09_qian_neck_scar time=同一晚 tint=gold bgm=tense amb=room
 > 我走過去，看到她脖子上有一道淺淺的傷痕，是那天替我擋刀留下的。
 ? t=calm | 千月脖子上的傷。
 - 輕輕碰了一下：「千月，還疼嗎？」 {qian+=2} -> c9_neck_soft
@@ -4801,6 +4975,7 @@ qian: ……誰要你管。早就不疼了。
 > 就在洪龍象要下令衝進來的時候，人群後面走出一個魁梧的漢子，右臂綁著金色絲帶。
 > 是大龍彪，李皇帝場子的總管。他看都不看洪龍象，衝著我抱拳。
 dlb.u: 恭迎，火曜使者！
+@ bg=s10_gold_ribbon_men time=金龍娛樂城．大堂 tint=red bgm=danger amb=crowd wx=lights
 > 四周幾百個綁金絲帶的漢子跟著齊聲大吼。洪龍象的臉，一瞬間全白了。
 ? t=mid def=1 | 洪家已經沒有退路。李皇帝要的是滅門。
 - 照命令動手，不留情面 {rage+=2;fame+=2} -> c10_hong_cold
@@ -4868,6 +5043,7 @@ lx: 找到了正好。李皇帝說，一個不留。
 lx: 你敢違抗李皇帝？那我今天就替他老人家清理門戶！
 ! fx shake
 > 流星像一陣風一樣撲過來。我從懷裡掏出一樣東西，高高舉起。
+@ bg=s10_thumb_ring_raised time=深夜．趙家暗室 tint=night bgm=danger amb=room
 > 李皇帝的玉扳指。
 weib.u: 見扳指如見李皇帝！流星，你給我站住！
 > 他硬生生停住，咬著牙瞪我。
@@ -4879,6 +5055,7 @@ lx: 好。回去我們找李皇帝評理。他要是說你沒錯，我服你。
 > 我們剛走出暗室，就聽到趙義在上面喊。
 zhy.u: 兩位使者，在裡面嗎？
 > 他本該被大龍彪他們伏擊。可他平平安安地回來了。
+@ bg=s10_gun_forehead time=同一夜．趙家飯廳 tint=red bgm=boss amb=room
 > 他請我喝酒。我剛把酒杯放下，額頭就頂上了一把槍。拿槍的是趙家大少爺趙川。
 > 周香雲把一切都告訴他了：我們是來滅趙家的。
 > 趙義嚇得臉色發青，卻想出了一個讓所有人都說不出話的主意：把妻子和女兒送去討好李皇帝，換趙家一條活路。
@@ -4927,6 +5104,7 @@ lhd: 王巍那個小王八蛋，竟敢拿個替身耍我！
 > 趙鐵手在旁邊勸了幾句。李皇帝終於喘過氣，指著我說：
 lhd: 王峰，你明天就潛進羅城，給我把王巍找出來！他家裡，一寸一寸地給我翻！
 weib: 好。我一定把王巍找出來。
+@ bg=s10_hidden_grin time=除夕夜．李皇帝的年會 tint=gold bgm=tense amb=crowd wx=lights
 > 沒有人知道，我心裡已經樂開了花。
 > 李皇帝派我去找我自己。
 ! go c10_luocheng
@@ -4959,6 +5137,7 @@ weib: 好。我一定把王巍找出來。
 lx: 精彩，實在精彩！李皇帝派你來找王巍，卻不知道你就是王巍！騎著驢找驢，天下獨一份！
 > 是流星。他一直跟在我後面。
 > 我的腦子一片空白，手已經摸到了懷裡的三稜刮刀。
+@ bg=s10_meteor_snow_laugh time=深夜．李嬌嬌家附近的小巷 tint=night bgm=tense amb=night wx=snow
 > 流星笑到在雪地上打滾，笑完了才坐起來，朝我伸出手。
 lx: 這麼多年，我第一次看到有人騙得了李皇帝。怎麼樣，合作吧？
 ? t=high def=1 | 流星知道了你的身分。
@@ -4986,6 +5165,7 @@ mom: 你們找王巍？那孩子一年都沒回家了，我也不知道他在哪
 > 她說得滴水不漏，跟在我後面的小弟被她看得頭都不敢抬。
 > 趁小弟出去抽菸，她壓低聲音，只說了一句話。
 mom: 瘦了。
+@ bg=s10_dad_old_coat time=隔天．王家 tint=warm bgm=calm amb=room
 > 客廳的牆上掛著我爸的舊外套，我小時候最討厭他穿這件，覺得土。
 // 原創：媽媽轉述爸爸近況、以及以下選擇，原作此處沒有，用來累積父子羈絆值。
 mom: 你爸在裡面一切都好。上次去看他，他問你在省城有沒有吃虧。
@@ -5018,6 +5198,7 @@ mom: 巍子，你不知道你爸為你扛過什麼。
 > 回省城前一晚，我跟流星在路邊說，李皇帝能派你跟蹤我，說不定也派了別人跟蹤你。
 > 話剛說完，梧桐樹下傳來一聲笑。
 zts: 有道理。李皇帝派流星跟你，當然也能派我跟流星。
+@ bg=s10_zhao_ironhand time=回省城前一晚．梧桐樹下 tint=night bgm=tense amb=wind
 > 是趙鐵手。月曜使者，李皇帝身邊最近的人。
 > 流星的手已經按在腰上了。
 > 趙鐵手卻慢慢舉起雙手，從懷裡摸出一塊打火機大小的黑色東西，丟給我。
@@ -5058,6 +5239,7 @@ lj: 峰哥，人太多了，先退進去吧。
 ! go c10_wgz_door
 
 == c10_wgz_door
+@ bg=s10_gate_pounding time=當晚八點．金龍娛樂城門口 tint=red bgm=battle amb=street wx=smoke
 wgz: 王峰！聽說有人找你麻煩，你沒事吧？開門！
 > 是王公子。我正要過去開門，老醬一把拽住我。
 lj: 峰哥，這門不能開！趙雪晴是他帶走的，萬一他是來替趙家報仇的呢？
@@ -5087,6 +5269,7 @@ zz: 王峰，現在你知道跟我作對的下場了？
 > 李皇帝把我趕出密境，就是要讓蜘蛛以為我落難了，自己現身。
 > 那天夜裡，我照李皇帝的吩咐，帶著打神棍追了出去。
 > 追到院子門口，一個黑影被人從門裡摔出來，重重撞在門檻上。是蜘蛛，已經沒了氣息。
+@ bg=s10_giant_enters time=幾天後．看守所 tint=grey bgm=tense amb=room
 > 門外響起沉重的腳步聲，一個將近兩米高的男人走了進來。
 // 原作此處的高大男子身分，取樣未確認，本作只寫外形，不點名。
 ! go c10_brothers
@@ -5154,6 +5337,7 @@ lele: 叔，信他一次。現在走，岳家還有人活。
 ! when lele>=2
 > 他說完，隔著院子朝我點了一下頭。比武大會那天我往台上撲，他都記得。
 > 岳青松握著手機，愣了很久，終於揮手讓人退開。
+@ bg=s10_yue_empty_court time=夜．岳家大宅 tint=night bgm=battle amb=wind
 > 那天晚上岳家舉家離開省城。岳公子一個人在空蕩蕩的院子裡大笑，笑聲聽起來很淒涼。
 ! set lele+=2;fame+=1
 ! go c10_four
@@ -5209,6 +5393,7 @@ lhd: 劉德全以為我什麼都不知道。我只是在等。
 > 千月一開始嚇呆了，後來看懂了，配合我哭喊，哭得比真的還像。
 qian: 你演技好爛。
 weib: 你也沒好到哪裡去。
+@ bg=s10_qian_red_eyes time=幾天後．密境大廳 tint=red bgm=boss amb=room
 > 她笑了，眼睛卻是紅的。
 > 我原本打算找機會帶她走。可是李皇帝沒有給我機會。
 ! go c10_gushan
@@ -5255,6 +5440,7 @@ lhd: 王峰？
 lhd: 趙鐵手，你也敢攔我？
 zts: 不敢。
 lhd: 不敢，就給我滾！
+@ bg=s10_iron_palms time=谷山．兩軍之間 tint=red bgm=battle amb=crowd wx=dust
 > 李皇帝一拳轟出，這一次，趙鐵手沒有站著挨打。他伸出那雙鐵掌，迎了上去。
 > 流星也跳了出來，站在我旁邊。
 lx: 三個打一個，夠意思了吧？
@@ -5273,6 +5459,7 @@ lx: 三個打一個，夠意思了吧？
 lhd: 王峰，你還不承認你反了？
 > 橫豎都是一死。那就真的反了吧。
 weib.u: 我們這邊的人都反了！沒人聽李皇帝的了！你們還等什麼，殺過來啊！
+@ bg=s10_brothers_raise_arms time=谷山．兩軍之間 tint=red bgm=battle amb=crowd wx=dust
 > 蚊子、老醬、飛刀陳跟著舉起傢伙。
 fdc: 尖刀隊，跟峰哥走！
 > 可是四聯那邊沒有人動。他們不知道這是不是另一個陷阱。
@@ -5317,6 +5504,7 @@ lhd: 你們騙了我這麼久……好，好！我送你們所有人上西天！
 > 那一戰我看不清。我只看得到兩道影子，和滿天的雨。
 > 雨停的時候，李皇帝躺在地上，睜著眼睛看著天空。
 ! fx flash
+@ bg=s10_uncle_hands_blade time=雨後．谷山 tint=night bgm=boss amb=wind wx=none
 > 舅舅搖晃了一下，我衝上去扶住他。
 > 他從身上摸出一把通體漆黑的鋼刀，遞給我。
 uncle: 去，把他的頭帶回來。
@@ -5368,6 +5556,7 @@ tn: 你、你還說！你看你瘦成什麼樣子了！
 ! go c10_tn_after
 
 == c10_tn_after
+@ bg=s10_lamp_study time=回到羅城 tint=warm bgm=calm amb=room
 > 晚上我在燈下複習功課。孫靜怡在電話裡說，高考不會因為我打過李皇帝就放過我。
 wdt: 程大力帶著他兒子，還有李嬌嬌她媽，在外面鬼鬼祟祟的。
 > 程力怕我跑了。可是我不跑。
@@ -5383,6 +5572,7 @@ jiaob: 媽！你又來了！
 lmm: 乾脆，直接把婚事辦了！
 weib: 阿姨……
 lmm: 叫什麼阿姨，叫媽！
+@ bg=s10_jiaojiao_blush time=隔天早上．王家門口 tint=warm bgm=school amb=street
 > 我哭笑不得。李嬌嬌在旁邊捂著臉，耳朵紅透了。
 ? t=calm | 回到羅城了。接下來想先去哪裡？
 - 去羅城監獄看爸爸 {dad+=2} -> c10_end_dad
@@ -5443,6 +5633,7 @@ dad: 你講了這麼多，怎麼沒有你馮叔叔？最後一戰，他沒幫上
 
 == c11_cover
 weib: 他……他大概也有他的難處吧。
+@ bg=s11_dad_gaze time=羅城監獄．會見室 tint=grey bgm=calm amb=room
 > 我爸沒說話，盯著我看了很久，像是看穿了什麼。
 dad: 巍子，你從小就不會撒謊。說吧。
 > 我低下頭，把實話全說了出來。
@@ -5450,6 +5641,7 @@ dad: 巍子，你從小就不會撒謊。說吧。
 
 == c11_truth
 weib: 爸，馮叔叔在省城這一年，從來沒幫過我。他蒙我、騙我、給我使絆子，好幾次差點要了我的命。
+@ bg=s11_cig_drops_table time=羅城監獄．會見室 tint=grey bgm=calm amb=room
 > 我爸手上的菸掉在桌上。
 dad: 到底怎麼回事？
 ! fx pulse
@@ -5463,6 +5655,7 @@ dad: 到底怎麼回事？
 == c11_ask_past
 dad: 以前？以前在木料廠扛木頭。
 > 他說得面不改色。我知道他不會說，也不再問。
+@ bg=s11_prison_gate_exit time=傍晚．羅城監獄門口 tint=dusk bgm=calm amb=street
 > 可是走出監獄的時候，我第一次覺得那道鐵門關住的，不是一個窩囊的老頭。
 ! go c11_news
 
@@ -5487,6 +5680,7 @@ mom: 馮家的女兒，下個禮拜要在劉家莊園嫁給劉璨君。
 == c11_hesitate
 > 我坐在沙發上，很久都沒動。
 mom: 巍子，你舅舅有他的事要辦，可你也有你的。
+@ bg=s11_mom_hand_shoulder time=幾天後．王家客廳 tint=warm bgm=tense amb=room
 > 她拍了拍我的肩膀。
 ! go c11_go
 
@@ -5522,6 +5716,7 @@ qian: 你來幹什麼？你能勸得住你舅舅嗎？他今天是來殺人的�
 qian: 谷山那天，你站在那裡一動都不動。現在才來？
 > 我答不出來。她說得沒錯。
 weib: 我不管別人。我只知道，你不能嫁給劉璨君。跟我走。
+@ bg=s11_door_footsteps time=別墅二樓．新娘休息室 tint=warm bgm=emo amb=room
 > 門外傳來腳步聲。
 ftd: 千月，你還沒好嗎？大家都在等你！
 ? t=high def=1 | 馮天道就在門外。
@@ -5576,6 +5771,7 @@ lcj: 馮千月，你瘋了嗎？！
 > 他的血滴在我的手背上。我哭了，像個沒用的小孩。
 uncle: 不准哭。
 uncle: 你不是廢物。從來都不是。
+@ bg=s11_red_eyes time=同一刻 tint=red bgm=sad amb=crowd
 > 我擦掉眼淚，盯著馮天道，眼睛越來越紅。
 uncle: 馮天道，你對付我，我沒意見。可是巍子，你怎麼下得了手？他是你結拜大哥的兒子！
 > 我愣住了。結拜大哥？
@@ -5677,6 +5873,7 @@ dad: 好。那就交給我。
 // ARCS 建議的分歧點：處置馮天道。原作是交給爸爸，三條路都收回同一結果。
 
 == c11_leave_try
+@ bg=s11_dad_turns_to_go time=片刻之後 tint=none bgm=tense amb=crowd
 > 我爸點點頭，轉身要走。
 > 一個不冷不熱的聲音響起來。
 ldq: 諸位把我劉家當成什麼地方了，想來就來，想走就走？
@@ -5684,6 +5881,7 @@ dad: 你攔我之前，最好先掂量掂量自己有幾斤幾兩。
 > 我爸的聲音不大，也不兇。可是聽起來，像是從很高很高的地方往下說。
 > 劉德全冷笑，拍了拍手，叫他的血刀隊出來。
 > 沒有人出來。
+@ bg=s11_dove_at_feet time=片刻之後 tint=none bgm=tense amb=crowd
 > 天上飛過一隻白鴿，落在劉德全腳邊。牠的羽毛是紅的。
 // 原作暗示血刀隊是爸爸這邊的人除掉的，但沒有明寫。本作同樣不說破，畫面只有白鴿。
 > 劉德全的臉一下子沒了血色，指著我爸，聲音像厲鬼一樣。
@@ -5711,6 +5909,7 @@ huoy.u: 你瞎了嗎？這是我的主人。
 > 他說，萬一大哥真的回去坐牢，馮家就沒了靠山，得先想好後路。
 > 他太太問，什麼後路？
 > 馮天道的聲音沉了下去：如果大哥不肯出山，那我……
+@ bg=s11_qian_push_door time=幾天後．馮家廚房外 tint=dusk bgm=danger amb=room
 > 千月一把推開了門。
 ? t=mid def=1 | 馮天道的話沒說完，可你聽懂了。
 - 把聽到的話告訴爸爸 {dad+=2;dad11+=2} -> c11_tell_dad
@@ -5738,6 +5937,7 @@ qian: 他是我爸。我知道他是什麼樣的人。可他還是我爸。
 weib: 爸……您這是……
 dad: 老婆，兒子在看，給我留點面子，讓我起來吧？
 mom: 不行。先把你當年喝花酒的事交代清楚，不然這輩子都別起來。
+@ bg=s11_washboard_kneel time=當晚．客房 tint=warm bgm=calm amb=room
 > 那個一巴掌把馮天道打得不敢吭聲的男人，跪在搓衣板上，苦著臉看我。
 ? t=calm def=2 | 爸爸用眼神向你求救。
 - 「媽，爸今天很帥，饒他一次吧。」 {dad+=1;mom+=1;dad11+=1} -> c11_wb_save
@@ -5857,6 +6057,7 @@ dad: 你倒是比我大方。
 ! go c11_submit_end
 
 == c11_submit_end
+@ bg=s11_forehead_stone time=涼亭 tint=gold bgm=tense amb=wind
 > 馮天道沒有碰我。他朝我爸磕了一個頭，額頭貼在石板上，很久都沒抬起來。
 > 我爸蹲下來，解開我身上的繩子。
 dad: 綁得太緊了，回去叫你媽給你擦藥。
@@ -5919,6 +6120,7 @@ dad: 巍子，窩囊不窩囊，不是別人說了算。是你自己知道，你
 > 帶頭的叫吳飛鵬，大家叫他吳少，手裡捧著一大束玫瑰。
 > 孫靜怡從樓上下來，臉色很難看。她一眼就在人群裡看到了我。
 jingb: 不好意思，我有男朋友了。
+@ bg=s12_arm_link time=開學第一天．女生宿舍樓下 tint=warm bgm=school amb=crowd
 > 她走過來，挽住我的手。
 jingb: 這就是我男朋友。
 > 吳飛鵬上上下下打量我，臉漲得通紅。
@@ -5966,6 +6168,7 @@ lj: 劉德全最大的弱點，不在劉家，在外面。
 
 == c12_hostage
 > 我帶著蚊子去了那所大學，車就停在宿舍樓下。
+@ bg=s12_lone_runner time=幾天後 tint=night bgm=tense amb=room
 > 可是看到他一個人在操場上一圈一圈地跑，跑到吐了還在跑，我忽然下不了手。
 > 我想起我自己。
 ! go c12_jinyi
@@ -5995,6 +6198,7 @@ lw: 你小子，越來越能打了。
 jg: 讓你們見識見識，我的無影腳！
 > 劉德全今晚要去皇家夜總會見鄭皇帝。如果他去了，就回不來了。
 weib: 我幫你對付大二。但你要答應我一件事：今晚，攔住你爸。
+@ bg=s12_hongyu_kneel time=幾天後．劉宏宇的大學 tint=warm bgm=battle amb=school
 > 金剛的腿還在空中劃第二圈，就被我一腳踢翻。劉宏宇看著我，眼睛發亮，「噗通」一聲跪下。
 > 他叫我師父。
 ? t=calm | 劉宏宇要拜你為師。
@@ -6017,6 +6221,7 @@ weib: 我幫你對付大二。但你要答應我一件事：今晚，攔住你�
 > 密境裡只有劉德全一個人在等。我摘下口罩，站到他面前。
 weib: 是我帶他來的。
 > 劉德全臉色大變。還沒等他開口，走廊傳來腳步聲，我們只好躲進衛生間。
+@ bg=s12_door_crack time=當晚．皇家夜總會 tint=red bgm=danger amb=bar
 > 門縫裡，我看到鄭皇帝笑著走進來，身後跟著葛家家主葛天忠。
 > 走到門口，鄭皇帝臉上的笑容一收，從懷裡抽出一把尖刀，朝葛天忠刺了過去。
 > 那就是笑面虎鄭皇帝。
@@ -6045,6 +6250,7 @@ weib.u: 報喪！
 qgj.s: 二公子，這麼多年，你受苦了。
 lcj: 秦管家！他是冒充的！
 > 我一字一句地說：劉家主臨終前告訴我，家主的位子，傳給他。
+@ bg=s12_pointing_heir time=天亮．劉家大門 tint=grey bgm=sad amb=wind
 > 我指向劉宏宇。全場炸開了。
 ljzm.u: 把這個野種，跟姓王的一起拿下！
 > 那天晚上，主母在祠堂上香時倒了下去。秦管家說，那是她自己選的。
@@ -6072,6 +6278,7 @@ lcj: 用不著你假好心！
 > 我喝了趙雪晴親手端來的那杯茶，醒來時，她正哭著對所有人說，我闖進她房間想傷害她。
 > 王家的人群情激憤，有人喊：朋友妻，不可欺！
 wgz.u: 王峰，你得給我一個解釋！
+@ bg=s12_wang_demands time=幾天後．劉家鐵門 tint=red bgm=boss amb=crowd
 ? t=mid def=0 | 王公子在等你的解釋。
 - 什麼都不解釋，接他的刀 {bro+=1;heart+=1} -> c12_explain_take
 - 當場拆穿這個局 {rage+=1;fame+=1} -> c12_explain
@@ -6184,14 +6391,17 @@ thn: 只要你臣服於哀家，你就是省城的皇帝。
 == c12_yes_early
 > 電話那頭笑了，笑聲像烏鴉叫。
 thn: 這麼快就答應的人，哀家不信。你在床上再躺一會兒，想清楚。
+@ bg=s12_phone_blanket time=行刑前．醫療室 tint=cold bgm=danger amb=hospital
 > 電話掛了。
 ! go c12_aman
 
 == c12_no
 > 電話掛了。
+! set th_no=1
 ! go c12_aman
 
 == c12_aman
+@ bg=s12_aman_bedside time=行刑前．醫療室 tint=cold bgm=danger amb=hospital
 > 一個穿白袍的實習女生走過來，問我怕不怕。我說不怕。
 > 她又問：你寧可死，也不願意當皇帝嗎？
 > 還沒等我回答，她轉身一記手刀，一個接一個把白大褂都放倒了，只剩那個戴眼鏡的頭兒站在原地發抖。
@@ -6209,8 +6419,9 @@ uncleb: 我是龍組七隊的隊長。
 > 太后娘娘仿照明朝建了一個組織，叫「夜明」。各地出了亂子，上面派龍組查，派的就是他。
 > 他跟著李皇帝來省城，忍了那麼多年，就是要等夜明露出尾巴。
 > 連我爸媽都不知道。他們一直以為他還是那個到處惹事的魔頭。
+@ bg=s12_uncle_bedside_close time=同一刻 tint=night bgm=emo amb=hospital
 uncleb: 太后要你當她的皇帝。你答應她，就是走進夜明。那條路……比死刑還難走。
-? t=mid def=0 | 舅舅要你自己選。
+? t=mid def=1 | 舅舅要你自己選。
 - 「舅，我去。」 {uncle+=3;fame+=1} -> c12_accept
 - 「我不幹。死就死吧。」 {heart+=1} -> c12_refuse_once
 // 原創：c12_refuse_end 是壞結局。原作中王巍主動接下了臥底任務（第 601 章）。
@@ -6219,10 +6430,19 @@ uncleb: 太后要你當她的皇帝。你答應她，就是走進夜明。那條
 // 原創：連拒兩次才進壞結局（💛 試玩建議）
 > 舅舅沒有站起來。他看著窗外，手指在床沿上敲了兩下。
 uncleb: 你死了，你爸媽怎麼辦？
+// 雲公子 11/03 門檻：太后的電話也回絕過（th_no）、跟舅舅不夠親（uncle<13；18:07 由 <15 下調，jail12 亂選 4.05→2.37）才有確認題；否則被舅舅勸回（c12_refuse_pulled）
+! if th_no!=1 || uncle>=13 -> c12_refuse_pulled
 uncleb: 我再問你一次。
-? t=mid def=0 | 舅舅在等你的答案。
+? t=calm def=1 | 舅舅在等你的答案。
 - 「……舅，我去。」 {uncle+=2;fame+=1} -> c12_accept
 - 「我說了，不幹。」 {heart+=1} -> c12_refuse_end
+
+== c12_refuse_pulled
+// 原創（雲公子 11/03）：門檻沒到，被舅舅一句話拉回主線
+uncleb: 你不怕死，我知道。可你死了，太后照樣找下一個人。
+> 我盯著天花板，很久沒說話。
+weib: ……舅，我去。
+! go c12_accept
 
 == c12_refuse_end
 > 舅舅沉默了很久，站起來，拍了拍我的頭。
@@ -6236,12 +6456,14 @@ uncleb: 這也是你的選擇。
 == c12_accept
 uncleb: 你知道你在說什麼嗎？以後的路，一步都不能錯。
 weib: 舅舅，相信我。我做得到。
+@ bg=s12_uncle_tear_bedside time=同一刻 tint=night bgm=emo amb=hospital
 > 他看著我，很久很久。一滴眼淚從他眼角滑下來。
 > 我第一次看到舅舅哭。我差點也哭了，可是我忍住了。我怕我一哭，他就不讓我去了。
 weib: 不至於吧，舅舅。對你外甥這點信心都沒有？
 uncleb: 有。當然有。畢竟是我小閻王的外甥。
 > 他伸手拍了拍我的額頭，掌心很暖。
 uncleb: 巍子，保重。
+@ bg=s12_djx_salute_door time=同一刻 tint=night bgm=emo amb=hospital
 > 他拉開門。戴九星在門外立正敬禮。
 djx: 長官！
 uncleb: 死刑，繼續。
@@ -6276,6 +6498,7 @@ uncleb: 死刑，繼續。
 hyy: 我會一直等你。千月也是，我們兩個一起等你。
 weib: 不准找男朋友。
 hyy: 不會的！
+@ bg=s12_rearview_eyes time=出發前．出租車上 tint=night bgm=emo amb=street wx=lights
 > 司機從後照鏡看了我好幾次，問我還要去哪間大學。
 weib: 哪間都不去了。去皇家夜總會。
 > 我把手伸進懷裡，握緊打神棍。今天晚上，我要去殺小閻王。
@@ -6365,6 +6588,7 @@ ybq: 你、你是不是想害死我？
 gx: 大哥，找我？
 weib: 別亂叫。
 > 姚冰倩在旁邊拚命使眼色，我只好硬著頭皮問：你想認我當大哥？
+@ bg=s12_bear_bow time=放學．教學樓 tint=dusk bgm=calm amb=school
 > 狗熊用力點頭，又轉頭對姚冰倩鞠躬。
 gx: 嫂子有什麼事，儘管吩咐！
 ybq.u: 誰、誰是你嫂子！
@@ -6381,6 +6605,7 @@ ybq.u: 誰、誰是你嫂子！
 @ bg=s13_campus_corncob time=隔天．姚冰倩的教室門口 tint=none bgm=tense amb=class
 ! title 第十三章|臥底夜明
 > 吳剛沒等到期限。他帶著一群人闖進姚冰倩的教室，要把她帶走。
+@ bg=s13_corncob_stuff time=隔天．姚冰倩的教室門口 tint=none bgm=tense amb=class
 > 狗熊堵在門口，把手上啃了一半的玉米棒子，一把塞進吳剛嘴裡。
 gx: 我先請你吃飯。
 gx.u: 吃人嘴軟，還不趕快放人？
@@ -6422,6 +6647,7 @@ gx.u: 吃人嘴軟，還不趕快放人？
 > 走廊上有人大喊：不好了，瘸子帶人打上來了！
 > 一個拄著拐的少年走進門。看清他的臉，我愣住了。
 lian: ……巍子哥。
+@ bg=s13_lian_crutch_face time=吳剛的教室門口 tint=dusk bgm=emo amb=class
 > 陳小練。當年在羅城背叛過我、又被我拉回來的陳小練。他瘦了，腿也瘸了。
 lian: 我等這一天很久了。我要當這個學校的天。
 weib: 我只是個保鏢。你們爭什麼，跟我無關。
@@ -6437,6 +6663,7 @@ lian: 我呸。
 @ bg=s13_lian_room_door time=幾週後．學生會辦公室外 tint=night bgm=danger amb=room
 > 陳小練當上天以後，越來越像當年的吳剛。
 > 他跟姚冰倩走得很近。我本來還替他們高興。
+@ bg=s13_office_door_kick time=幾週後．學生會辦公室外 tint=night bgm=danger amb=room
 > 那天晚上，我聽到門裡傳來姚冰倩的聲音。
 ybq.u: 王巍，救我！
 ! fx shake
@@ -6469,6 +6696,7 @@ lian: 你永遠都看不起我，對吧？
 > 路邊有一座公用電話亭。我站在外面抽了三支菸，才走進去，撥了家裡的號碼。
 > 響了四聲，有人接了。
 mom: 喂？
+@ bg=s13_mom_phone_home time=除夕前夜．北方小鎮老家 tint=cold bgm=sad amb=room
 > 是我媽。我爸還在羅城監獄裡，家裡只剩她一個人。
 mom: 喂？哪位？
 ? t=8 def=0 | 電話那頭是你媽。
@@ -6506,6 +6734,7 @@ mom: 你爸說，要是有人打電話回來，就替他帶一句話：在外面
 > 有一天晚上，音樂正到高潮，台上一個舞女突然撲下台，從身上抽出一把匕首，刺向刀哥的卡座。
 ! fx flash
 > 刺殺失敗了。她受了傷，躲進後台的雜物間，正好撞上在裡面偷懶的我。
+@ bg=s13_storeroom_hide time=寒假．鑽石酒吧後台 tint=red bgm=city amb=bar wx=lights
 ? t=5 def=1 | 刀哥的人在一間一間踹門。
 - 把她藏在雜物堆後面 {heart+=1;mask_risk+=1} -> c13_hide_dancer
 - 把她交出去，換刀哥的信任 {rage+=1} -> c13_give_dancer
@@ -6538,6 +6767,7 @@ hy.u: 誰是王巍，給我滾出來。
 dg: 別得罪虎爺，把人交出去。
 hy: 跟我的人連打三場。三場都贏，這事就算了。
 > 常來、常往兩兄弟輪流上。我沒用打神棍，兩場都贏得很難看，像在地上滾。
+@ bg=s13_zhou_teacher_steps time=幾天後．鑽石酒吧大廳 tint=red bgm=boss amb=bar
 > 第三場是虎爺身邊的周老師。
 ? t=mid def=1 | 周老師很強，但你還有打神棍沒有拿出來。
 - 手伸進懷裡，摸向打神棍 {mask_risk+=1} -> c13_zhou_reveal
@@ -6576,6 +6806,7 @@ hy: 你……你從哪裡找來這麼多人？
 > 我去藝術學院找她談。她長得很漂亮，脾氣卻很潑辣，叫我再看就把我眼睛挖出來。
 weib: 我們是不是在哪裡見過？
 // 原創：喘息（雲公子 11:24 總檢）。
+@ bg=s13_hx_eyeroll time=開學後．藝術學院 tint=warm bgm=tense amb=school
 hx: 搭訕這招，我七歲就聽膩了。
 > 跟我來的兄弟在後面憋笑，憋到咳嗽。
 > 她白了我一眼。
@@ -6601,6 +6832,7 @@ hx: 搭訕這招，我七歲就聽膩了。
 @ bg=s13_diamond_bar_tied time=某天夜裡．鑽石酒吧 tint=red bgm=danger amb=bar
 > 陳小練打電話給我，聲音很不對勁。他說：巍子哥，刀哥找你，你過來一趟。
 > 我一進門，就看到陳小練被綁在椅子上，滿臉是血。
+@ bg=s13_daoge_circle time=某天夜裡．鑽石酒吧 tint=red bgm=danger amb=bar
 > 刀哥早就懷疑我跟那個舞女刺客是一夥的。他抓了陳小練，就是要逼我現身。
 > 我想了一路的說辭，可是一個酒吧領班找到了我留下的破綻。智者千慮，竟有一失。
 dg: 你還有什麼話說？
@@ -6640,6 +6872,7 @@ weib: 十招之內。
 ! go c13_spare
 
 == c13_spare
+@ bg=s13_ruins_hold_lian time=幾週後．城郊廢墟 tint=dusk bgm=boss amb=wind wx=dust
 > 刀哥受了重傷，在斷牆之間逃竄。陳小練要追上去殺他，我一把拉住他。
 weib: 刀哥必須死，但不是現在。他還有用。
 lian: 你什麼事都瞞著我。
@@ -6660,6 +6893,7 @@ lian: ……又是以後。好，我再信你一次。
 > 周老師醒過來，打電話給虎爺。我耳朵好，又聽見了。
 hy.x: 殺了刀哥，順便把那三個人也一起處理掉。
 > 那三個人，就是我、陳小練和懷香格格。
+@ bg=s13_gao_appears time=幾週後．城郊廢墟 tint=dusk bgm=boss amb=wind wx=dust
 > 就在這時，廢墟裡走出一個中年男人，穿著普普通通，長相普普通通。
 > 刀哥連滾帶爬地撲到他腳邊。
 dg.u: 尚書大人，救我！
@@ -6705,6 +6939,7 @@ gss: 想？三天。三天之後，我要看到結果。
 lian: 巍子哥，高尚書讓我來的。
 > 我氣炸了。我以為他繞過我，主動向高尚書投誠，要踩著我往上爬。
 > 我們吵得很兇。吵到最後，他頭上都是血。
+@ bg=s13_lian_limp_away time=深夜．酒吧門口 tint=night bgm=emo amb=street
 lian: 巍子哥，你永遠覺得我會背叛你。這樣真的不好，你一定要改。
 lian: 這一次，我不會投靠任何人。我要跟你堂堂正正地決戰。
 > 他一瘸一拐地走了。
@@ -6807,6 +7042,7 @@ weib: 我明白。
 @ bg=s14_dorm_acupoint time=夜裡．營房 tint=night bgm=emo amb=night
 > 我還在練龍脈圖，一個穴道一個穴道地打通。每一次都痛得像骨頭被拆開。
 > 有時候痛到在地上打滾，同隊的人都躲得遠遠的。
+@ bg=s14_dorm_pointing time=夜裡．營房 tint=night bgm=emo amb=night
 > 有一天，一個人站起來指著我大喊：隊長，王巍要走火入魔了！再不處理掉他，我們都會遭殃！
 > 我成了過街老鼠，人人喊打。
 > 那天夜裡，我痛得睡不著，咬著被角，想起了一個很遠的聲音。
@@ -6851,6 +7087,7 @@ azd: 我跟了元帥快二十年，到現在還是個赤階。你小子來頭不
 > 朱雀門第一輪的三個青階隊員，全部敗北。青階隊長急得團團轉，最後才想起還有我。
 > 可是我贏了一場以後，他把我叫到一邊，臉色陰得可怕。
 > 「下一場，你必須輸。」
+@ bg=s14_captain_grip time=兵部大比 tint=gold bgm=festival amb=crowd wx=dust
 ? t=mid def=1 | 青階隊長要你放水。
 - 照他的話做 {coward+=1} -> c14_lose_yes
 - 當作沒聽見 {fame+=1;rage+=1} -> c14_lose_deaf
@@ -6916,6 +7153,7 @@ du: 不用謝。我只是想讓你死得好看一點。
 @ bg=s14_ring_goldknife time=紫階之戰 tint=red bgm=boss amb=crowd
 > 紫階之戰。我的對手叫金刀陳，兵部裡如雷貫耳的名字。
 > 他是玄武元帥的人。
+@ bg=s14_goldknife_sweat time=紫階之戰 tint=red bgm=boss amb=crowd
 > 打到一半，我一個轉身，他的金刀從背後扎了進來。
 ! fx bighit
 > 裁判沒有喊停。這，不公平。
@@ -6946,6 +7184,7 @@ weib: 我來。
 ! fx bighit
 > 背上的舊傷還沒好，胸口又挨了一刀。倒下之前，我把全身的力氣壓進右拳，使出炎燒拳，轟了出去。
 > 天快亮的時候，笛聲響了。萬毒公子拖著中毒的身子趕來，四面八方的草叢裡爬出成百上千隻毒蟲。
+@ bg=s14_mad_monk_slope time=天亮前．南邊的山坡 tint=night bgm=chase amb=night
 > 可毒蟲一片一片被金刀陳砍光。萬毒公子吐了血，我站都站不起來。
 > 就在這時，坡上有人慢吞吞地說話。
 flh: 他們兩個聯手打不過你，那再加上我呢？
@@ -6960,6 +7199,7 @@ flh: 草碎了，照樣能煎。撿起來，回去。
 == c14_du_past
 @ bg=s14_du_bedside time=半決賽當天．青龍門 tint=cold bgm=emo amb=night
 > 大家都去廣場了。萬毒公子在黑暗裡輕輕開口。
+@ bg=s14_du_dark_talk time=半決賽當天．青龍門 tint=cold bgm=emo amb=night
 du: 王巍，你想去打半決賽嗎？
 > 然後他說了他的事。那一年他七歲，常常被一群大孩子欺負。有一天，他決定讓那些毒蟲替他報仇。
 du: 從那天起，那個七歲的小孩就不見了。剩下的，是萬毒公子。
@@ -7056,6 +7296,7 @@ lzg.x: 你是不是王皇帝？
 jxl: 人在臨死之前，會本能地看向自己最信任的人。
 > 李澤剛睜著的眼睛，好像正對著我這邊。
 > 劍西來順著他的視線看過來。
+@ bg=s14_jxl_gaze time=幾天後．朱雀門廣場 tint=red bgm=danger amb=crowd
 jxl: 另一個臥底，在青龍門。
 ! fx shake
 ? t=4 def=0 | 劍西來在看青龍門的方向。
@@ -7097,6 +7338,7 @@ du: 那天你把我丟在台上。這次我替你頂著，你給我記住，你�
 > 一個刀疤臉帶了四五十個人衝進鑽石酒吧。
 dbl.u: 今晚，只為懷香格格而來！
 > 我抄起一張椅子砸過去，趁亂拉著她從後門衝了出去。
+@ bg=s14_alley_hx_smile time=夜．鳳城．鑽石酒吧 tint=red bgm=battle amb=bar
 > 我把她帶出酒吧。她在巷口回頭對我笑。
 hx: 我會一直等你。
 > 她轉身走了。我剛拐過路口，一個人攔住我：站住！
@@ -7120,6 +7362,7 @@ ybq.u: 王巍！你這個大笨蛋！
 == c14_weicheng
 @ bg=s14_weicheng_rooftop time=幾天後．渭城．天台 tint=night bgm=danger amb=wind
 > 回到兵部以後，我跟著玄武元帥去渭城辦事。
+@ bg=s14_car_drunk_whisper time=幾天後．渭城．天台 tint=night bgm=danger amb=wind
 > 一路上，玄武元帥身邊的紅老大酒喝多了，壓低聲音問萬毒公子扮的「王隊長」。
 hld.x: 您聽說過小閻王嗎？
 > 玄武元帥的手機響了。是青龍元帥。
@@ -7155,6 +7398,7 @@ uncleb: 那就回去。你的事還沒做完。
 @ bg=s14_short_captain time=幾週後．兵部 tint=dusk bgm=danger amb=room
 > 渭城那夜之後，朱雀、玄武兩位元帥都沒能回來，朱雀門暫歸青龍元帥管。
 > 我照舊趁矮子隊長喝醉，用他的手機傳消息給舅舅。這一次，他根本沒醉，一把按住了手機。
+@ bg=s14_short_captain_threat time=幾週後．兵部 tint=dusk bgm=danger amb=room
 > 原來隊長的手機全都被監控。第一次他就發現了，一直替我遮掩；李澤剛被抓的時候，也是他把情報裡跟我有關的那部分刪掉的。
 azd: 我早就知道你是龍組的人。三天之內，讓我當上朱雀門的紫階隊長。不然，我就把你的事抖出去。
 > 我去求了青龍元帥兩次。最多只能給到黃階，紫階想都別想，還挨了一頓罵。
@@ -7271,6 +7515,7 @@ du: 你猜，夜明的公主是誰？
 > 林婉兒忽然站了起來。
 lwe: 我有確鑿的證據，青龍門裡有叛徒。
 > 我們被抓了下去。
+@ bg=s14_plaza_lin_seizes time=青龍門廣場 tint=gold bgm=boss amb=crowd
 > 青龍元帥捂著肚子，被林婉兒逼著說話。
 ql.x: 我說，我說……孩子是王巍的。
 > 林婉兒的手掐住了我的喉嚨。
@@ -7296,6 +7541,7 @@ lwe: 能跟著左少帥，我腦子進水了才會有二心。
 @ bg=s14_tunnel_jian time=天亮前．青龍門甬道 tint=red bgm=boss amb=crowd
 > 青龍元帥說什麼都要回去救懷香格格。我攔不住她。
 // 原創：在 c14_princess→c14_zuofei 的長段中間加一題，只換一兩句。
+@ bg=s14_tunnel_ql_turn time=天亮前．青龍門甬道 tint=red bgm=boss amb=crowd
 ? t=mid def=0 | 青龍元帥要回去救懷香格格。
 - 「我陪你回去。」 {ql+=1} -> c14_back_with
 - 「你留下，我去。」 {hx+=1} -> c14_back_alone
@@ -7333,6 +7579,7 @@ weib: 綁我？門都沒有！
 == c14_zuofei
 @ bg=s14_empress_duel time=同一刻 tint=gold bgm=danger amb=wind
 > 我第一次看到舅舅慌。他的額頭上滲出了冷汗。
+@ bg=s14_zuofei_black_hand time=同一刻 tint=gold bgm=danger amb=wind
 uncleb: 小飛，出來吧。
 zf: 閻王大哥，連你都對付不了的人，我又能幫上什麼忙？
 > 左飛摘下白手套。那是一雙黑得像炭一樣的手。
@@ -7362,6 +7609,7 @@ uncleb: 除了地上那兩個女人，其他人，一律不放過。
 == c14_halt
 > 就在這時，舅舅的手機響了。他看了一眼名字，接起來，臉色變了。
 uncleb: 趙組長說，立刻撤兵。上面的命令。
+@ bg=s14_hx_weeping time=戰後 tint=grey bgm=sad amb=crowd
 > 左飛大喊住手。最前面那個人的刀已經砍了出去，又硬生生收了回來。
 > 跪著的夜明的人一下子活了過來，有人哭，有人笑，有人罵我們。
 > 懷香格格沒有理他們。她趴在太后娘娘身上，一直在哭。
@@ -7395,6 +7643,7 @@ uncleb: 那你就去三隊，跟著左飛。你在我手下，別人會說你靠
 > 舅舅說，他要回去把自己在北方建起來的那些勢力全部解散。他的身分已經公開了，不能再當地下之王。
 // 原創：以下父子相關的對話為本作自創。
 weib: 舅，你說我爸……他現在還好嗎？
+@ bg=s14_uncle_lighter_pause time=回程．山路 tint=warm bgm=road amb=wind
 > 舅舅點菸的手頓了一下。
 uncleb: 回去看看他吧。
 > 他只說了這一句。
@@ -7431,6 +7680,7 @@ uncleb: 回去看看他吧。
 ! title 第十五章|帝城・楊家
 ! set dad15=0
 > 鑰匙插進鎖孔的那一刻，我就知道屋裡沒有人。
+@ bg=s15_rattan_phone time=年關前．北方小鎮．老家 tint=cold bgm=sad amb=wind wx=snow
 > 我坐在我爸那張破藤椅上，撥了舅舅的電話。
 uncleb: 回家了？
 weib: 舅舅，我媽到底在哪？我爸……到底是什麼人？
@@ -7443,9 +7693,11 @@ uncleb: 你爸二十多年前是帝城地下的頭。手底下幾千號人，道
 // 原創
 [R] > 他說「大閻王」三個字的時候，聲音壓得很低。像怕吵醒誰。
 > 我差點把手機摔到地上。
+@ bg=s15_memory_gate_guard time=年關前．北方小鎮．老家 tint=cold bgm=sad amb=wind
 > 木料廠門口那個被人指著鼻子罵、也只會賠笑的門衛。大閻王？
 > 我早知道他不簡單。劉家莊園那天，他穿著囚服走進幾百個人中間，沒有一個人敢攔。
 > 可我不知道，他就是大閻王。
+@ bg=s15_flashback_yang_meet time=年關前．北方小鎮．老家 tint=cold bgm=sad amb=wind
 uncleb: 當年有人花錢請他去綁楊家大小姐，好拿捏楊家。人沒綁走，兩個人倒是看對眼了。
 uncleb: 後來他反過來幫楊老將軍扳倒了對頭。老將軍照樣不認，轉身把他的人連根拔了。
 weib: 他……沒還手？
@@ -7500,6 +7752,7 @@ uncleb: 這件事不准讓你爸知道。他什麼都能忍，就是碰不得你
 == c15_prison
 @ bg=s15_prison_glass time=三天後．監獄會見室 tint=cold bgm=calm amb=room
 > 玻璃那頭，我爸穿著灰色囚服。關了五年多，還剩一年出頭。
+@ bg=s15_dad_hopeful time=三天後．監獄會見室 tint=cold bgm=calm amb=room
 dad: 巍子！又長高了！你媽呢？她還在生我的氣，不肯來？
 ? t=calm def=0 | 他的眼睛亮亮的，在等我的答案。
 - 照舅舅說的騙他：「媽說你活該，關久一點才好。」 {dad+=1;dad15+=1} -> c15_prison_lie
@@ -7518,6 +7771,7 @@ weib: ……沒什麼。媽說你活該，多關一陣才好。
 @ bg=s15_prison_truth_eyes fade=cut bgm=boss amb=room
 > 話一出口，我就後悔了。
 > 我爸臉上的笑一點一點收起來。連獄警都下意識看了過來。
+@ bg=s15_dad_cold_eyes bgm=boss amb=room
 > 那不是門衛的眼神。那是我從沒見過的、另一個人的眼神。
 dad: 誰關的。
 weib: 爸，你先別——
@@ -7550,6 +7804,7 @@ dad: 捅了趙瘋子，判了七年，這還不叫添亂？
 > 龍組二隊的隊長，代號猴子，整天窩在城中村一間網咖裡打遊戲。
 hou: 新來的？去巷口買兩份涼皮，一瓶可樂，冰的。
 weib: ……我是來報到的。
+@ bg=s15_netcafe_typing time=開春．帝城城中村網咖 tint=none bgm=calm amb=street
 hou: 所以叫你去買啊。
 // 原創：長段落中間的喘息小選擇（翎茵 #27）
 ? t=calm def=0 | 猴子連頭都沒抬，手指還在鍵盤上飛。
@@ -7587,6 +7842,7 @@ agu: 跟著我。我不管你是幾星，在這裡只要記住一件事：別給
 @ bg=s15_meiyuan_dawn time=凌晨五點．梅園 tint=dusk bgm=tense amb=wind
 > 楊家少爺楊少宇帶人闖進梅園，我遠遠跟著，趴在荒草裡。
 > 木屋的窗子打開了。窗後那張臉，比兩年前瘦，也比兩年前白。
+@ bg=s15_mom_dawn_sneer time=凌晨五點．梅園 tint=dusk bgm=tense amb=wind
 > 是我媽。
 ysy: 喲，瘋女人，還沒睡啊？
 mom: 你是誰家的孩子？楊家的少爺不是楊天嘯嗎？
@@ -7660,6 +7916,7 @@ fz: 可以啊小子！這手車技，跟誰學的？
 == c15_legend
 @ bg=s15_car_beard_talk fade=cut bgm=emo amb=street
 > 那個大鬍子把槍收了一半，話匣子卻打開了。
+@ bg=s15_beard_driver_silent bgm=emo amb=street
 fz: 聽過大閻王和楊家大小姐沒有？一個是地下的王，一個是將門千金。為了她，他什麼都不要了。
 fz: 那是我們每一個兄弟心裡的神。
 > 我握著方向盤，一句話也沒接。
@@ -7728,6 +7985,7 @@ ysy: 我的未婚妻，跟一個看門的？你也配！
 == c15_ysy_choice
 @ bg=s15_ysy_floor fade=cut bgm=boss amb=wind
 ysy: 你……你知道我是誰嗎……
+@ bg=s15_staff_hover bgm=boss amb=wind
 > 他趴在地上還在罵。我舉起打神棍，手臂在發抖。
 > 這個人把我媽叫瘋女人，把任雨晴當玩具。
 ? t=high def=1 | 打神棍懸在半空。
@@ -7753,7 +8011,7 @@ ysy: 你……你知道我是誰嗎……
 
 == c15_ysy_kill_end
 // 原創
-@ bg=e_revenge fade=black bgm=boss amb=wind
+@ bg=e_revenge_c15 fade=black bgm=boss amb=wind
 > 那一棍落下去以後，迴廊安靜得只剩下我的呼吸。
 > 舅舅趕到時，我已經被押上一輛沒有車牌的車。
 > 楊老將軍終於等到了他要的理由。我媽在梅園裡，再也沒有等到我。
@@ -7778,6 +8036,7 @@ ylf: 鐵老大，這個人留不得了。
 uncleb: 媽。
 ylf: ……在這個家裡，叫老夫人。
 uncleb: 老夫人。這個人，是我派進來的。
+@ bg=s15_uncle_shields time=同一夜．楊家佛堂前 tint=night bgm=boss amb=wind
 ylf: 你？
 uncleb: 你今天要是動了他，你會後悔一輩子。
 > 他沒說為什麼。他在護著我的身分。
@@ -7850,6 +8109,7 @@ weib: 我是龍組的人！
 @ bg=s15_rennan_jeep time=當晚．軍用吉普車上 tint=night bgm=tense amb=street
 > 來提人的是女少將任楠。任雨晴的小姑姑，也是舅舅當年的未婚妻。
 rn: 再亂叫，我現在就斃了你。
+@ bg=s15_jeep_slap time=當晚．軍用吉普車上 tint=night bgm=tense amb=street
 > 她把我帶回任家，先讓我吃了一頓飽飯，然後一巴掌扇在我臉上。
 rn: 你吃飽了？有一個人，為了你三天沒吃一口東西。
 rn: 去見她。讓她死心。這是你唯一能為她做的事。
@@ -7897,6 +8157,7 @@ weib: 那我……就一輩子是通緝犯了？
 uncleb: 通緝的事，我想辦法。龍組，你是回不去了。
 uncleb: 鐵面判官，是你爸當年的舊部。你爸的人被楊家拔了以後，剩下的兄弟聚起來，取名地獄門。
 uncleb: 他們一次又一次摸進楊家，是想把你媽救出去。
+@ bg=s16_ironmask_wall_night time=深夜．帝城街頭．舅舅的車上 tint=night bgm=calm amb=street
 > 我想起車上那個大鬍子說的話。那是我們每一個兄弟心裡的神。
 ! when feizei==1
 > 我早就猜到了。那天他親口說過，有一天要把大小姐接出來，還給他。
@@ -7946,6 +8207,7 @@ uncleb: 你自己還一身麻煩，拿什麼帶她走？先活下去，再說別
 > 找不到鐵面判官，我只好先投靠一個叫金爺的老大，給他當保鏢。
 jin: 通緝犯？沒事。有本事就行，以後我罩著你。
 weib: 金爺，你就不怕惹麻煩？
+@ bg=s16_jin_goldteeth time=正月．金爺的場子 tint=warm bgm=calm amb=room
 jin: 怕麻煩，我就不在帝城混了。
 > 金爺四十多歲，一口金牙，人倒是講義氣。在他身邊，我才知道我爸的名聲在帝城有多響。
 > 這裡的幫派，不跟大閻王扯上點關係，好像就不夠正宗。
@@ -7960,6 +8222,7 @@ jin: 好！你從第一層打起，能上二十層，我就請全場吃涮羊肉
 @ bg=s16_forest_practice time=武道會前一週．城外老林子 tint=cold bgm=tense amb=forest wx=dust
 > 林子裡練功的人不只我一個。一個瞇眼笑的老頭攔住了我。
 xmg: 你手上那根，是打神棍吧？小閻王的親傳弟子？來我們鬼王派，老金那邊我去說。
+@ bg=s16_xiaoyu_smirk time=武道會前一週．城外老林子 tint=cold bgm=tense amb=forest wx=dust
 > 笑面鬼回頭問身邊一個年輕人。
 xmg: 王曉雨，你跟他比，誰強？
 xyu: 他？給我拎鞋，我都嫌他手腳慢。
@@ -7990,6 +8253,7 @@ xzk: 當年流寇鬧帝城，龍組都束手無策，是大閻王一個人一條
 xzk: 我身為大閻王當年最器重的兄弟——
 ym: 小鍾馗，你要不要臉？你當年就是給他跑腿的！
 lhpp: 我們這些老傢伙還沒死絕呢，輪得到你說最器重？
+@ bg=s16_hall_elders_stand time=武道會開幕．重天酒店地下大廳 tint=warm bgm=festival amb=crowd wx=lights
 > 幽冥老人、蓮花婆婆，一個又一個大人物站起來罵他。每個人都在搶，誰才是離大閻王最近的那一個。
 > 二十多年了。這麼多人記著他，護著他的名字，不許誰沾一點灰。
 > 而我，曾經是全世界最看不起他的那個人。
@@ -8040,6 +8304,7 @@ ref: 二十九層，李大威對周長功，開始！
 xyu: 你那條蜈蚣，開個價。
 weib: 它不賣。它也不是我的。
 xyu: 不是你的更好，搶起來不心疼。
+@ bg=s16_kicked_down time=當夜．酒店房間 tint=night bgm=boss amb=room
 xyu: 那我就自己拿。
 > 他出手了。我拼了命掄棍，十幾招之後，還是被他踢倒在地上。
 > 小七從我領口爬出來，衝著他張開了毒牙。
@@ -8053,6 +8318,7 @@ xyu: 一條蟲子而已。至於嗎。
 == c16_du_call
 @ bg=s16_phone_du time=清晨 tint=cold bgm=sad amb=room
 > 我撥通了萬毒公子的電話。我不知道該怎麼開口。
+@ bg=s16_phone_guilty time=清晨 tint=cold bgm=sad amb=room
 du: 喂？王巍？這麼早打來，小七又挑食了？
 weib: ……杜城，對不起。
 du: ……小七呢？
@@ -8099,24 +8365,27 @@ yhy: 少來，下次我一定贏你。
 > 她笑了。那是我來帝城以後，見過最乾淨的一個笑。
 // 原創：長段落中間的喘息小選擇
 ? t=calm def=0 | 她把紅綢一圈一圈收回手腕上。
-- 「下次妳贏了，我請妳吃涮羊肉。」 -> c16_hy_treat
-- 「王曉雨說要我的命。妳離他遠一點。」 -> c16_hy_warn
+- 「下次你贏了，我請你吃涮羊肉。」 -> c16_hy_treat
+- 「王曉雨說要我的命。你離他遠一點。」 -> c16_hy_warn
 
 == c16_hy_treat
 // 原創
 yhy: 金爺說好要請全場的，你拿別人的羊肉請客？
+@ bg=s16_hy_laugh bgm=battle amb=crowd wx=dust
 > 我被她噎得說不出話。她笑得更大聲了。
 ! go c16_lotus
 
 == c16_hy_warn
 // 原創
 yhy: 他敢碰我，蓮花婆婆第一個不放過他。
+@ bg=s16_hy_glance_corridor bgm=battle amb=crowd wx=dust
 > 她說得輕鬆，眼睛卻往走廊那頭看了一眼。
 ! go c16_lotus
 
 == c16_lotus
 @ bg=s16_hotel_lotus time=當夜．酒店房間 tint=warm bgm=tense amb=room
 > 我推開房門，屋裡坐滿了人。蓮花婆婆坐在正中，尹紅顏在旁邊替她捶腿。
+@ bg=s16_lotus_bargain time=當夜．酒店房間 tint=warm bgm=tense amb=room
 lhpp: 李大威，陰曹宮被你一個人打出局了。這筆帳，你說怎麼算？
 lhpp: 從三十一層起，代表陰曹宮出戰。條件你開。
 weib: 婆婆，陰曹宮出局，是因為您先輸給了幽冥老人吧？
@@ -8151,8 +8420,10 @@ lhpp: 好一張嘴！跟當年那個人一模一樣，氣死人不償命。
 tmp: 我認輸。
 xzk: 鐵面大哥，這……為什麼？
 tmp: 我忙。沒空陪你們玩。
+@ bg=s16_ring_floor32_walkoff time=第三十二層 tint=cold bgm=boss amb=crowd
 > 全場死寂。他提著刀走下台，我追到電梯口。
 weib: 鐵面大哥，為什麼？
+@ bg=s16_elevator_alone time=第三十二層 tint=cold bgm=boss amb=crowd
 tmp: 我希望你拿冠軍。
 > 電梯門關上了。
 ? t=calm def=0 | 我站在電梯口，腦子裡一團亂。
@@ -8201,6 +8472,7 @@ zf: 謝你舅舅吧。他打電話來，只說了四個字：救我外甥。
 ! go c16_zf_tape
 
 == c16_zf_tape
+@ bg=s16_zuofei_tape_tv time=兩天兩夜後．酒店房間 tint=dusk bgm=calm amb=room
 > 他把王曉雨的比賽錄影看了一遍又一遍。
 zf: 他快，他狠，但他沒輸過。沒輸過的人，最怕對手不怕死。
 zf: 你的優勢，不是招式。是你敢拿命去賭。
@@ -8226,6 +8498,7 @@ weib: 金爺，放心。
 > 王曉雨最後一個到。他舉起雙手，全場的吼聲幾乎掀翻屋頂。
 xyu: 紅顏姑娘，等我拿下冠軍，你跟我走。
 weib: 少廢話。先打贏我。
+@ bg=s16_xiaoyu_disbelief time=決賽之夜．第三十三層 tint=night bgm=boss amb=crowd wx=lights
 xyu: 十招。十招之內，你就躺下。
 > 十招過去了，我還站著。二十招，三十招。
 xmg: 王曉雨，沉住氣！
@@ -8302,7 +8575,7 @@ xyu: 我不認輸！我不認輸！
 
 == c16_kill_end
 // 原創
-@ bg=e_yama2 fade=black bgm=boss amb=crowd
+@ bg=e_yama2_c16 fade=black bgm=boss amb=crowd
 > 笑面鬼的喊聲，我沒有聽見。
 > 那一夜以後，帝城地下多了一個名字。他們叫我小閻王二世。
 > 舅舅趕來的時候，在擂台邊站了很久，手裡的菸掉在了地上，他都沒有發覺。
@@ -8342,6 +8615,7 @@ xzk: 好！依照大閻王定下的規矩，接下來兩年，帝城的領袖是
 > 冠軍獎盃還沒捧熱，台下就有人拍桌子。
 xmg: 這冠軍我不服！真正的少主在這——大閻王和楊大小姐的兒子！
 > 笑面鬼被幾位老前輩按倒，人群裡卻真的走出一個年輕人。他叫王曉雨。
+@ bg=s17_elders_kneel_xiaoyu time=帝城武道會．總決賽散場前 tint=night bgm=tense amb=crowd wx=lights
 xyu: 我在南方漁村長大。我爸臨死前，留給我這本冊子。
 lhpp: 是大哥的字……他說過，這身功夫要留給兒子。
 > 老前輩們一個接一個朝他跪下，喊他少主。
@@ -8439,6 +8713,7 @@ tmp: 少主，王曉雨我抓到了。他背後是笑面鬼，笑面鬼背後…
 ylj: 你今天敢鬧，我親手斃了你。
 > 我外公，不知道我是他外孫。十二鐵衛把我夾在最後一排。
 > 司儀問新娘願不願意。雨晴隔著整片人海看著我。
+@ bg=s17_chenlao_sits time=正午．任府喜宴 tint=warm bgm=festival amb=crowd
 ryq: 我願意。
 > 我閉上眼睛，笑了一下。旁邊的空位，有人坐下。
 cl: 年輕人，想娶任雨晴？我能幫你。
@@ -8483,6 +8758,7 @@ ylj: 妖言惑眾。十二鐵衛，拿下！
 > 槍口抵上我的額頭。
 hou: 槍下留人！槍下留人！槍下——留人！
 > 猴子帶著龍組衝進來，說我是通緝犯要帶走。阿古拍歪了槍。
+@ bg=s17_gate_rifles bgm=boss
 > 可大門一開，門外是幾百把槍。陳老站在最後面。
 cl: 通緝犯？就地正法。我的話，就是國法。
 > 魏老要活口，陳老就讓保鏢跟猴子比；眼看要輸，又叫十二鐵衛壓上。
@@ -8542,6 +8818,7 @@ dadb: 我知道。可我今天不當誰手裡的槍。
 == c17_chen_leaves
 cl: 門外幾百個衛兵，你怎麼進來的？
 dadb: 他們站著不動，手上也沒槍。我也覺得奇怪。
+@ bg=s17_chenlao_walks_out time=正午．任府喜宴 tint=warm bgm=boss amb=wind
 > 陳老愣了一下，大笑著走了。街上的人，是魏老調開的。
 dadb: 冤有頭，債有主。我今天只找楊老將軍。
 dadb: 他叫王巍，是我跟聽雪的兒子。
@@ -8594,11 +8871,12 @@ dadb: 我來，就是要帶你平平安安地走。
 == c17_no_kneel
 // 原創
 weib.u: 爸！不准跪！
-> 初一那年在訓導處，我爸彎著腰跟主任道謝，我一句話都沒說。這一次，我喊出來了。
+> 初一那年在政教處，我爸彎著腰跟主任道謝，我一句話都沒說。這一次，我喊出來了。
 dadb: 巍子，這一跪，很便宜。
 ! go c17_kneel
 
 == c17_kneel
+@ bg=s17_grandma_grabs_knife bgm=danger amb=wind
 > 咚的一聲。大閻王跪在他岳父面前。滿院的老兄弟，沒有一個抬得起頭。
 ylf: 鬧夠了沒有？要殺閨女，連我一起殺！
 > 外婆走過去抓住那把刀。刀偏了一寸。
@@ -8611,6 +8889,7 @@ mom: 多大點事，你們哭成這樣。
 dadb: 走不了了。陳老不會放過我。
 > 北牆上趴滿特警，槍口朝下。陳老站在正中間。
 dadb: 事情是我一個人做的。放其他人走，我留下。
+@ bg=s17_yuqing_takes_hand bgm=boss amb=wind
 cl: 不。今天，所有人都要死。
 > 連任、楊兩家都不放過。雨晴走過來，握住我的手。
 dadb: 你可以下令。但我保證，你會死在我們前面。
@@ -8632,6 +8911,7 @@ dad: 可是能娶到你媽，有你這個兒子，爸不後悔。以後，這個
 mom: 你不用問。我不後悔。以後我會好好活，說不定還找個比你帥的。
 dad: 那就好。
 > 他張開手，把我們兩個一起抱住。
+@ bg=s17_memory_bike_crossbar time=回憶．小時候的冬夜 tint=warm bgm=emo amb=wind
 > 小時候的冬夜，我在他腳踏車前槓上打瞌睡，是這雙手把我撈回來。
 [R] ? t=calm def=1 | 他鬆開手了。
 - 「爸……我會照顧好媽。」 {dad+=3;dad17+=3;mom+=1} -> c17_promise
@@ -8657,8 +8937,24 @@ dad: 巍子，聽話。
 ! go c17_promise
 
 == c17_bad_charge
-// 原創
+// 原創：門檻 rage>=58 才會再確認一次，不到門檻我爸把我拽回來（💛 7c123a4 複測建議，比照 c15_ysy_kill）
 @ bg=s17_charge_wall fade=cut bgm=danger
+! if rage<58 -> c17_charge_pulled
+// 原創
+> 北牆上的槍口跟著我的腳步一起轉。我爸的手還伸在半空。
+? t=calm def=1 | 再往前一步，他拿命換的交易就作廢了。
+- 停下來，退回他身邊 {heart+=1} -> c17_charge_pulled
+- 衝上去 -> c17_charge_end
+
+== c17_charge_pulled
+// 原創
+> 第三步，我的後領被一把拽住。像小時候他拎我回家吃飯。
+dad: 巍子。看著我。
+> 我回過頭。他在笑，眼睛是紅的。
+! go c17_promise
+
+== c17_charge_end
+// 原創
 > 我衝向北牆。我爸在半路攔住我，用整個身體擋在我前面。
 cl: 交易作廢。
 > 喊聲混成一片。再睜開眼，四周是白牆，手上是冰冷的手銬。
@@ -8670,6 +8966,7 @@ cl: 交易作廢。
 weib.s: 爸，我會照顧好媽。
 dad: 嗯。
 dadb: 楊老將軍，以前的恩怨一筆勾銷。看在聽雪的分上，別再找他們母子。
+@ bg=s17_mom_pulls_out time=幾分鐘後 tint=grey bgm=sad amb=crowd
 ylj: 用不著你教我！
 > 我媽拉著我往外走。所有人跟在後面，三步一回頭。
 weib.s: 媽……真的救不了嗎？
@@ -8684,6 +8981,7 @@ weib.s: 舅舅，你救救我爸……
 == c17_rain
 @ bg=s17_ren_gate_rain time=那天下午 tint=grey bgm=sad amb=rain wx=rain fade=black
 > 晴天轉陰，下起細雨。只有我媽沒哭，一直看著那扇門。
+@ bg=s17_zhao_urges_rain time=那天下午 tint=grey bgm=sad amb=rain wx=rain
 weib: 我要給我爸收屍。
 zhao: 王巍，你得馬上走！
 zhao: 沒有了……陳老把人帶走了。
@@ -8706,6 +9004,8 @@ uncleb: ……我盡力。
 ! go c17_leave
 
 == c17_storm
+// 原創：門檻 rage>=58 才會往裡衝，不到門檻沒人跟上；到門檻由我媽這一巴掌當確認題（💛 7c123a4 複測建議）
+! if rage<58 -> c17_storm_pulled
 // 原創
 > 幾十個人跟著我往裡衝。我媽擋在最前面，一巴掌打過來。
 mom: 你爸拿命換的路，你要拿去換一場打架？
@@ -8713,8 +9013,16 @@ mom: 你爸拿命換的路，你要拿去換一場打架？
 - 停下來，低頭 {mom+=1;rage-=1} -> c17_leave
 - 甩開她的手，繼續往裡衝 {rage+=3} -> c17_bad_revenge
 
+== c17_storm_pulled
+// 原創
+> 我吼完，身後沒有一個人動。雨嘩嘩地下。
+> 舅舅站在台階下，一句話都沒說，只是把傘舉到我頭頂。
+mom: 走。你爸要的，是你活著出帝城。
+! go c17_leave
+
 == c17_bad_revenge
 // 原創
+@ bg=e_revenge_c17 time=那天下午 tint=grey bgm=sad amb=rain
 > 那天我沒進得了任家。之後很多年，我也沒停下。
 > 帳一筆一筆清了。回頭一看，路的那一頭，已經沒有人在等我。
 ! end revenge
@@ -8774,6 +9082,7 @@ mom: 看什麼？你外公是將軍，你媽會開槍很奇怪嗎？
 @ bg=s17_south_highway time=往南．第二天夜裡 tint=night bgm=road amb=wind
 mom: 嬌嬌、靜怡那邊，一個電話都別打。你想害死她們？
 > 我把王曉雨的影片給她看。她看了很久，遞給天奴。
+@ bg=s17_highway_mom_asks time=往南．第二天夜裡 tint=night bgm=road amb=wind
 mom: 是不是漁王的兒子？
 tn: 一模一樣。
 mom: 那本冊子，你爸留給了海南的結拜兄弟海王。
@@ -8804,6 +9113,7 @@ weib: 爸，你等我。這一次，換我去接你。
 > 我口袋裡多了一封信，是我媽的字。
 > 天一點一點亮起來。四周只有枯草，和一條看不見盡頭的土路。
 mom.x: 兒子，陳老的人追得太緊。我跟天奴把他們引開，你別跟來。
+@ bg=s18_note_to_chest time=荒地．天快亮 tint=cold bgm=emo amb=wind
 mom.x: 去鳳城，找懷香格格。她會護著你。
 mom.x: 兒子，拜拜。
 > 「拜拜」兩個字寫得特別用力，筆尖把紙都戳破了。
@@ -8829,6 +9139,7 @@ weib: 爸，媽……你們兩個，是約好了一起丟下我的嗎？
 == c18_village
 @ bg=s18_village_courtyard_night time=搭便車．山村 tint=night bgm=night amb=night
 > 一個趕驢車的大爺讓我搭了一段，晚上還留我在他家吃飯。
+@ bg=s18_father_son_quarrel time=搭便車．山村 tint=night bgm=night amb=night
 > 半夜，他三十多歲的兒子喝醉回來，父子倆在院子裡吵得很兇。
 ye: 你就這麼過一輩子？我老了，誰管你？
 yeb: 你管過我什麼？從小到大你就只會罵我！
@@ -8849,13 +9160,14 @@ weib: 天亮了，我先去鳳城。爸媽要我活下去，我就得先活下�
 ql: 公主身體不適，不見客。
 weib: 我不是來見公主的。我是來看孩子的。
 > 我從背包裡拿出一套小衣服，是路上用身上最後的錢買的。
+@ bg=s18_ql_baby_clothes time=鳳城．深山兵部 tint=cold bgm=tense amb=wind wx=dust
 > 孩子是青龍元帥生的。鳳城那件事以後，她一個人扛了下來。
 > 她盯著那套衣服看了很久，眼神終於軟了一點。
 ql: ……是個男孩。鼻子有點大，長得像你。
 ql: 兵部事多，我帶不了，孩子現在跟著公主。公主說，等你像個爹了再來。
 ? t=calm def=0 | 我手裡那套衣服忽然變得好重。
 - 「我能看他一眼嗎？」 {dad+=1;dad18+=1;ql+=1} -> c18_ask_see
-- 「替我謝謝公主。也……謝謝妳。」 {hx+=1;ql+=1} -> c18_month
+- 「替我謝謝公主。也……謝謝你。」 {hx+=1;ql+=1} -> c18_month
 - [if mom>=3] 「我媽要是知道她有孫子，一定會很開心。」 {mom+=1;ql+=1} -> c18_month
 
 == c18_ask_see
@@ -8878,6 +9190,7 @@ weib: 不等了。先去海南。
 @ bg=s18_hainan_dock_noon time=海南．碼頭 tint=warm bgm=calm amb=harbor
 > 我搭黑船過海，在碼頭扛麻袋，一天三十塊。
 > 船老大盯了我好幾天，最後把我拎上一條漁船。
+@ bg=s18_lian_dock_reunion time=海南．碼頭 tint=warm bgm=calm amb=harbor
 cb: 有人要見你。
 lian: 王巍？真的是你！
 > 上次見他還是在鳳城。他拖著那條瘸腿，比以前黑了一大圈。
@@ -8893,6 +9206,7 @@ lian: 你跟我來。別讓任何人看見。
 > 漁村很安靜，安靜得不正常。屋裡躺著一個人，衣服被劍劃開好幾道。
 hw: 你……這眉眼，你就是大哥的兒子。長這麼大了。
 weib: 海叔，我是王巍。誰幹的？
+@ bg=s18_haiwang_cold_hand time=南方漁村．黃昏 tint=dusk bgm=emo amb=sea
 hw: 一個道士……叫一清。陳老的人。我和天奴聯手，都擋不住他。
 hw: 你媽，跟天奴，被他帶走了……往帝城去了。
 ? t=calm def=0 | 他的手越來越冷。我只能問一件事。
@@ -8920,6 +9234,7 @@ hw: 傻孩子……你打不過他。活著，比什麼都要緊。
 == c18_drunk
 @ bg=s18_beach_shack_bottles time=之後三天 tint=grey bgm=emo amb=sea
 > 三天，我跟陳小練一直在喝。喝到分不清天亮天黑。
+@ bg=s18_drunk_bottles time=之後三天 tint=grey bgm=emo amb=sea
 ? t=calm def=1 | 酒瓶又空了。
 - 「再拿一箱來。」 {coward+=1} -> c18_drunk_more
 - 把瓶子摔了，去海邊洗把臉 {heart+=1} -> c18_sea
@@ -9035,6 +9350,7 @@ xyu: 誰殺了我爸？站出來。
 xyu: 武道會上，你擋了我七八刀。今天這裡沒有擂台。
 > 門口還站著一個人，肩上趴著一條七尾蜈蚣。是萬毒公子，他把小七救活了。
 du: 王巍，這裡的事我替你擺平，你別出聲。
+@ bg=s18_xiaoyu_red_eyes time=幾天後．小練的樓 tint=grey bgm=tense amb=rain wx=rain
 ? t=high def=1 | 王曉雨的眼睛紅了。
 - 「是我。」 {fame+=1;heart+=1} -> c18_xiaoyu_end
 - 不出聲，讓萬毒公子處理 {du+=1;coward+=1} -> c18_xiaoyu_end
@@ -9172,8 +9488,24 @@ ql: 我看，哪個敢走。
 - [if dad18>=6] 想起我爸：真正的王，不靠殺人讓人跪 {dad+=2;dad18+=2;heart+=1} -> c18_end
 
 == c18_bad_yama
+// 原創：門檻 yama>=15 才會再確認一次，不到門檻青龍元帥按住我（💛 7c123a4 複測建議，比照 c16_kill_wxy）
+! if yama<15 -> c18_yama_pulled
 // 原創
-@ bg=e_yama2 fade=black bgm=battle
+> 我拎起鋼管。跪在最前面的那個皇帝，肩膀在抖。
+? t=calm def=1 | 這一棍下去，我就成了陳老想要的那種人。
+- 扔下鋼管 {heart+=1} -> c18_yama_pulled
+- 砸下去 -> c18_yama_end
+
+== c18_yama_pulled
+// 原創
+> 鋼管舉到一半，被一隻手按住了。是青龍元帥。
+ql: 王峰，他們跪的是兵部，不是你。
+> 我鬆開手。鋼管掉在黃土裡，悶悶的一聲。
+! go c18_end
+
+== c18_yama_end
+// 原創
+@ bg=e_yama2_c18 fade=black bgm=battle
 > 那天，狼谷的風很大。青龍元帥拉不住我，我也不讓她拉。
 > 從此南方的人提起王峰，都會先把門關上。
 > 我變成了陳老最想要的那種人。
@@ -9210,7 +9542,7 @@ hx: 你這個笨蛋。我叫你走，你就繞一大圈回來送死？
 > 她的手在袖子裡攥得很緊，像怕一鬆開，我又會走。
 hx: 傳我懿旨：王峰平叛有功，封陽城皇帝。
 ? t=calm def=0 | 帳裡所有人都看著我。
-- 「我接。南方，我替妳守。」 {hx+=1;fame+=1} -> c19_yiqing
+- 「我接。南方，我替你守。」 {hx+=1;fame+=1} -> c19_yiqing
 - 「我接。可我真正要的，是找回我爸媽。」 {dad+=1;dad19+=1;mom+=1} -> c19_yiqing
 
 == c19_yiqing
@@ -9249,6 +9581,7 @@ yq: 咦？你身上這股氣……龍脈圖。誰教你的？
 liu: 師父！住手！
 > 一個人扛著打神棍衝進校場。是劉鑫。
 > 他撲通跪在一清面前。原來一清道人，就是他當年那個以為早就死了的師父。
+@ bg=s19_kneel_choice time=天快亮 tint=dusk bgm=tense amb=wind
 liu.x: 王巍，跪下拜師。這是唯一能活下來的辦法。你不跪，青龍元帥就沒命了。
 ? t=high def=0 | 地上是青龍元帥的血，遠處是鬧鬧的哭聲。
 - 想起爸爸裝了二十年窩囊。我跪一次，算什麼 {dad+=2;dad19+=2;yq+=1} -> c19_kneel
@@ -9273,6 +9606,7 @@ yq: 哈哈，好，好！貧道一下子多了兩個徒弟。
 > 劉鑫先亮了亮他自己的龍組證件，又塞給我一本。上面是我的名字：龍組二隊，副隊長。
 // 原創：交代打神棍下落（c17 任府搜身交給劉鑫、c18 改用鋼管、c19_liuxin 劉鑫扛棍進校場），c20 起又拿來用
 > 他把打神棍也還給了我。任府那天替我收著，一路從帝城扛到了兵部。
+@ bg=s19_liu_confession time=那天晚上 tint=night bgm=night amb=night
 liu: 他是我師父，可是非黑白，我分得清。我是龍組派來盯著他的。
 liu: 在他面前，你只是王峰。千萬別讓他知道你是誰。
 yq.x: 公主沒事。陳老說了，夜明還是她的。
@@ -9330,8 +9664,8 @@ ykl: 一清的徒弟？好，先請你睡一覺。
 > 黑暗裡，有人在我旁邊輕輕咳嗽。是個女人，被關在這裡很多年了。
 sjh: 我叫賽金花……他的妻子。也是他的囚犯。
 ? t=mid def=0 | 我摸到棺材縫，用盡全力往上頂。
-- 「前輩，我帶妳一起出去。」 {heart+=2;sai=1} -> c19_master_sick
-- 「我先出去，再回來救妳。」 {wu+=1} -> c19_master_sick
+- 「前輩，我帶你一起出去。」 {heart+=2;sai=1} -> c19_master_sick
+- 「我先出去，再回來救你。」 {wu+=1} -> c19_master_sick
 
 == c19_master_sick
 @ bg=s19_yeku_garden_night time=夜哭府後院 tint=night bgm=battle amb=wind
@@ -9360,6 +9694,7 @@ yq: 劉鑫，結帳。
 liu: 師父……龍組的薪水，下個月才發。
 > 最後是我掏的錢。七籠包子，一清一個人吃了五籠。
 yq: 苗家寨有長生果。吃下去，貧道就能到大圓滿。
+@ bg=s19_heitou_guide time=幾天後．茶樓 tint=warm bgm=tense amb=street
 > 苗家寨的大寨主苗家仁、二寨主苗家桐，是風雲榜第六、第七。進寨的路要過一片毒林，七尾蜈蚣能帶路。
 ht: 我叫黑頭，苗家寨的嚮導。你一個人，不能告訴任何人。
 ! go c19_sai_warn
@@ -9377,6 +9712,7 @@ ht: 走吧，陽城皇帝。寨主等著呢。
 == c19_miao_hall
 @ bg=s19_miao_hall_drums time=苗家寨．大堂 tint=red bgm=tense amb=fire
 dzz: 陽城皇帝？你幫宋孝文掃毒，斷了苗家寨多少財路，你自己清楚。
+@ bg=s19_xueyan_cuts_rope time=苗家寨．大堂 tint=red bgm=tense amb=fire
 ng: 拖出去。
 > 大寨主盯著我這張臉看了很久。陽城皇帝王峰的臉，他記住了。
 > 黑刀南宮，風雲榜第十六，把我押上刑台，拎著我在寨子裡遊了一圈。
@@ -9396,6 +9732,7 @@ miao: 往後山跑，別回頭。
 @ bg=s19_du_hut_bamboo time=苗家寨．竹屋 tint=grey bgm=night amb=night
 > 苗雪雁被貶成了苗奴。我滾進林子，一把撕下臉上的人皮面具。
 > 寨子裡的人見過的，是陽城皇帝王峰那張臉。面具底下的通緝犯王巍，這裡沒有一個人認得。
+@ bg=s19_qianchong_looks_away time=苗家寨．竹屋 tint=grey bgm=night amb=night
 > 我把面具收進貼身的口袋，用自己的臉摸回寨子，躲進萬毒公子的阿伯——千蟲君子的竹屋。
 du: 這是我老家。你命真大，跑出去還敢回來。
 qc: 我什麼都沒看見。五寨的事，我千蟲君子不管。
@@ -9421,6 +9758,7 @@ du: 地牢的鑰匙在大寨主身上。等我消息，我欠你的，這回一�
 == c19_blackblade
 @ bg=s19_blackblade_yard time=黑刀南宮的院子 tint=cold bgm=tense amb=wind
 ng: 外地來的？叫什麼？
+@ bg=s19_desert_fox_sneer time=黑刀南宮的院子 tint=cold bgm=tense amb=wind
 weib: 王巍。
 ng: 跟帝城那個通緝犯同名？管你是誰，身手不錯就行。以後跟著我，替我看著大小姐苗冰駱。
 > 院子裡，風雲榜第四十六沙漠狐不服，要跟我比。
@@ -9443,13 +9781,14 @@ ng: 好。從今天起，你就是我的人。
 == c19_betrothal
 @ bg=s19_lantern_courtyard time=二寨主的院子 tint=warm bgm=calm amb=night
 ezz: 雪雁，以後就跟著王巍。這門親，我定了。
+@ bg=s19_xueyan_cold_vow time=二寨主的院子 tint=warm bgm=calm amb=night
 > 苗雪雁低著頭。我知道，她喜歡的是一個叫明月的人，兩個人私奔過一次。
 weib: 我不娶她。
 ezz: 這裡輪不到你說不。
 > 那天晚上，她坐在院子裡不肯進屋。
 miao: 你要我的人，拿去。可你永遠得不到我的心。
 ? t=calm def=0 | 院子裡的燈籠被風吹得一晃一晃。
-- 「只是名義上的。我睡外面，等能走了，送妳去找明月。」 {miao+=2;heart+=1} -> c19_bet_out
+- 「只是名義上的。我睡外面，等能走了，送你去找明月。」 {miao+=2;heart+=1} -> c19_bet_out
 - 「我也有喜歡的人。我們誰都別為難誰。」 {miao+=1;hx+=1} -> c19_hunt
 
 == c19_bet_out
@@ -9505,14 +9844,14 @@ ng.x: 他看上的，是大閻王的兒子。他信你爸總有一天會出來�
 > 那天晚上，苗雪雁來找我。她不信她爸是被朴爾殺的。
 ? t=calm def=0 | 她盯著我的眼睛。
 - 告訴她實話：十二天罡，都是大寨主的人 {miao+=2;heart+=1} -> c19_escape
-- 「別問了。知道了，妳也活不成。」 {miao-=1} -> c19_escape
+- 「別問了。知道了，你也活不成。」 {miao-=1} -> c19_escape
 
 == c19_escape
 @ bg=s19_waterfall_pool vid=v19_waterfall time=後山．瀑布潭 tint=night bgm=battle amb=rain wx=rain fade=black
 > 我把苗冰駱綁在房裡，帶著苗雪雁從瀑布潭逃。風雲榜第二十通臂猴追了上來。
 > 一掌打在苗雪雁背上。她倒在我懷裡，嘴唇一下子沒了顏色。
 > 她不信我。我從貼身口袋摸出那張人皮面具，當著她的面戴上。
-weib: 雪雁，妳看我是誰。陽城皇帝王峰——那天晚上妳割斷繩子放走的人，就是我！
+weib: 雪雁，你看我是誰。陽城皇帝王峰——那天晚上你割斷繩子放走的人，就是我！
 miao: ……我早該猜到的。
 > 我把面具收回口袋。從這裡出去以前，我還得當一陣子王巍。
 qc: 帶她到我那裡。要救她，只有長生果。
@@ -9521,8 +9860,23 @@ qc: 帶她到我那裡。要救她，只有長生果。
 - 自己吞下長生果，一個人殺去帝城找陳老 {rage+=3;yama+=2} -> c19_bad_revenge
 
 == c19_bad_revenge
+// 原創：門檻 rage>=66 才會再確認一次，不到門檻苗雪雁拉住我（💛 7c123a4 複測建議，比照 c15_ysy_kill）
+! if rage<66 -> c19_revenge_pulled
 // 原創
-@ bg=e_revenge fade=black bgm=battle
+> 苗雪雁靠在我肩上，呼吸越來越輕。
+? t=calm def=1 | 長生果只有一顆。我吃了，她就等不到了。
+- 先救她 {miao+=1} -> c19_revenge_pulled
+- 自己吞下去 -> c19_revenge_end
+
+== c19_revenge_pulled
+// 原創
+> 我剛站起來，袖口被勾住了。她的手指冰涼，一點力氣都沒有，可我走不動。
+weib: ……我先救你。
+! go c19_cellar
+
+== c19_revenge_end
+// 原創
+@ bg=e_revenge_c19 fade=black bgm=battle
 > 長生果在我嘴裡化開，全身燒起來。我一夜之間打穿了半座山。
 > 可苗雪雁沒等到我回來，劉鑫和一清也沒有。
 > 我一個人到了帝城，站在陳老的大門口，身後一個人都沒有。
@@ -9534,6 +9888,7 @@ qc: 帶她到我那裡。要救她，只有長生果。
 mbl: 爸，他是好人！
 > 我挨了他兩腳，連滾帶爬掀開地牢的蓋子，順著樓梯滾了下去。
 > 黑暗裡，我先把人皮面具戴回臉上。開口的時候，聲音已經是王峰的。
+@ bg=s19_cellar_lockpick time=苗家寨．地牢 tint=red bgm=tense amb=room
 weib: 師父，是我！
 yq: 好徒兒！你還活著！
 liu: 王峰，你總算來了。
@@ -9552,6 +9907,7 @@ liu.x: 你信我，我就不會讓你後悔。
 ! go c19_cellar_lock
 
 == c19_cellar_lock
+@ bg=s19_cellar_stairs_dzz time=苗家寨．地牢 tint=red bgm=tense amb=room
 dzz: 王巍！躲到哪去了？出來！
 yq: 王巍？他在叫誰？
 weib: 叫我。我在寨子裡，騙他們說我叫王巍。
@@ -9560,6 +9916,7 @@ yq: 叫什麼不好，偏偏叫王巍。大閻王的兒子就叫這個名字，�
 dzz: 陽城皇帝？……不對。你是王巍！原來你就是王巍！
 yq: 你這個岳父腦子進水了？連自家女婿都認不得。
 > 我一個字都不敢接。多說一句，就多一分讓他知道我是誰。
+@ bg=s19_lock_clicks time=苗家寨．地牢 tint=red bgm=tense amb=room
 > 喀的一聲，鎖開了。
 ! fx bighit
 > 一清長嘯一聲衝了出去。大寨主迎上來，一龍一虎撞在一起，整間地牢都在抖。
@@ -9587,6 +9944,7 @@ yq: 你這個岳父腦子進水了？連自家女婿都認不得。
 > 兩個人從地牢口一路打到後院，打碎了一口水缸、兩根廊柱，還有半面竹牆。
 dzz: 臭道士！沒有我二弟，我一樣收拾你！
 yq: 你二弟要是還在，貧道今天確實要費點事。可惜了。
+@ bg=s20_yiqing_holds_fruit time=苗家寨．後院 tint=red bgm=boss amb=night wx=dust
 > 寨裡的衛兵圍上來。我抄起一根扁擔，替他擋住背後。
 ! fx bighit
 > 一道劍光。大寨主僵在原地，低頭看著自己胸前，好像不相信。
@@ -9603,6 +9961,7 @@ yq: 哈哈哈！差一天熟，不礙事！
 > 我們抬著大寨主往外走。主宅門口的柱子上，還綁著一個人。是苗冰駱。
 > 寨子裡的人跑光了，最後一刻，沒有一個人記得替她鬆綁。
 mbl: 爸？……爸！你們把我爸怎麼了！
+@ bg=s20_bingluo_bound_cry time=苗家寨．主宅門口 tint=night bgm=tense amb=night
 yq: 苗家仁的女兒？
 > 一清的劍尖抬了起來。他做事的規矩，我跟了這麼久，最清楚。斬草，要除根。
 ? t=mid def=0 | 苗冰駱哭喊著，手腕在繩子上磨出了血痕。
@@ -9630,6 +9989,7 @@ yq: 貧道等了十年，不差再等十年。你們兩個跟著我吃了這麼�
 > 劉鑫的眼眶一下紅了。他是一清養大的，卻是龍組派來盯著一清的。
 > 他把果子推回去，一清又推回來，罵了一聲。最後劉鑫一邊哭，一邊吃完了。
 yq: 王峰，你怎麼不吃？你天資比劉鑫好，吃了它，起碼再開兩處穴道。
+@ bg=s20_yiqing_kind_smile time=苗家寨外．老林子裡 tint=gold bgm=calm amb=forest
 > 我握著那半顆果子。就在剛才，我還在想要怎麼從他手裡把它騙過來。
 ? t=mid def=0 | 一清笑眯眯地看著我，好像我吃了，比他自己吃了還高興。
 - 「師父，這半顆，我想拿去救一個人。」 {miao+=1;miao2+=1;yq+=1;heart+=1} -> c20_fruit_give
@@ -9661,8 +10021,10 @@ yq: 拿去。愛給誰給誰，就是不准還給我。我和劉鑫先回陽城�
 > 林子裡有腳步聲。十幾個黑衣人圍了過來，胸口繡著一條金龍。
 weib: 自己人！
 > 我掏出證件。龍組二隊，副隊長。他們一看，立刻立正行禮。
+@ bg=s20_forest_zuofei_unmask time=鳳凰山．凌晨的山路 tint=night bgm=tense amb=forest
 > 林子深處又走出一群人。為首的那個背著手，臉上掛著笑，像冬天裡的太陽。龍組三隊隊長，左飛。
 > 他身後是萬毒公子杜城，還有一臉得意的林婉兒。
+@ bg=s20_gold_scepter_grip time=鳳凰山．凌晨的山路 tint=night bgm=tense amb=forest
 > 我把王峰的臉從自己臉上揭下來。這半年，這是我第一次用自己的臉喘氣。
 zf: 王巍，你沒事，真是太好了。
 du: 你那位二小姐沒事了。左隊長的暗勁能治傷，人已經送回寨子去，千蟲君子守著。
@@ -9670,6 +10032,7 @@ weib: 真的？……左飛哥，我又欠你一次。
 zf: 自家人，不用客氣。
 > 左飛還說，陳老一直沒停過找我。他們也在找我爸媽，最近有了一點眉目。
 > 我握緊口袋裡的金權杖。冰冰涼涼的，硌得手心生疼。
+@ bg=s20_fruit_to_zuofei time=鳳凰山．凌晨的山路 tint=night bgm=tense amb=forest
 ? t=mid def=0 | 有眉目了。可是，只有一點。
 - 「知道就夠了。我會一個一個接回來。」 {dad+=1;dad20+=1;mom+=1} -> c20_fruit_what
 - 「那我更要待在一清身邊。看清楚陳老要幹什麼，就離我爸媽更近一步。」 {yq+=1;fame+=1} -> c20_fruit_what
@@ -9699,6 +10062,7 @@ zf: 你啊。跟你舅舅一樣，倔。
 @ bg=s20_miao_bedside_dawn time=苗家寨．清晨 tint=grey bgm=sad amb=room
 > 天快亮的時候，我又回了一趟苗家寨。
 > 山坡上的罌粟全燒光了，一片焦黑。寨子到處掛著白燈籠。
+@ bg=s20_xueyan_pale_sleep time=苗家寨．清晨 tint=grey bgm=sad amb=room
 > 千蟲君子穿著甲，站在主宅門口，像個普通的衛兵。
 qc: 我沒想到你還會回來。
 weib: 她怎麼樣？
@@ -9715,6 +10079,7 @@ qc: 還睡著。左少帥說，至少要睡三天。
 @ bg=s20_yangcheng_club_door time=陽城．會所門口 tint=dusk bgm=tense amb=street
 > 我戴著王峰的臉回到陽城。會所門口，站著兩個我一手提拔起來的兄弟，王倫和胎記男。
 > 他們看見我，張口就叫大哥。下一秒，一個留小平頭的男人從門裡走出來。
+@ bg=s20_liu_emperor_rant time=陽城．會所門口 tint=dusk bgm=tense amb=street
 liuhd: 叫誰大哥呢？你們是跟我吃飯，還是跟他吃飯？
 > 陽城現任的劉皇帝。
 > 我失蹤半年，十三城的皇帝聯盟差點散了，是他辦了一次比武大會、拿了冠軍，把場子穩住。
@@ -9735,6 +10100,7 @@ liuhd: 剛才讓你們滾，現在讓你們滾回來。前任皇帝？我呸，�
 ! go c20_liu_fight
 
 == c20_liu_fight
+@ bg=s20_club_door_fistfight time=陽城．會所門口 tint=dusk bgm=tense amb=street
 liuhd: 等的就是你這句話。打一場。我輸了，給你當奴才；你輸了，命留下。
 > 他排在風雲榜三十五名上下。我在苗家寨熬了半年，到底是什麼斤兩，我自己也想知道。
 > 打了幾十招，他越打越狂，以為我快撐不住了。我把打神棍收回腰後。
@@ -9745,6 +10111,7 @@ weib: 我不用傢伙，也贏得了你。
 > 這一拳又短又沉，打在他胸口，像一盆冰水澆下去。寒冰拳。
 ! fx bighit
 > 兩拳，兩次。他在地上抱著手打滾，爬不起來了。
+@ bg=s20_yangcheng_club_door_b time=陽城．會所門口 tint=dusk bgm=tense amb=street
 > 一輛車停在路邊。懷香格格下了車，青龍元帥跟在她後面。
 > 我一腳踩上劉皇帝的胸口，舉起拳頭。我沒想打下去。我在等一句話。
 hx: 王皇帝，夠了。
@@ -9770,6 +10137,7 @@ hx: 陽城給他坐。十三城皇盟的盟主，還是你。印我一直收著�
 // 原創：懷香保留王巍十三城皇盟盟主之位（原作 921–925 章王巍當選盟主；c19 未演出，這裡補上，給 c24「我是十三城盟主王巍」）
 > 我把苗家寨這半年的事說了一遍。說到被逼著娶了兩位寨主的女兒，青龍元帥瞪我。
 ql: 你跟我們公主都還沒結婚，倒先跟別人結了？
+@ bg=s20_naonao_runs_past time=陽城．咖啡廳 tint=warm bgm=warm amb=room
 hx: 你覺得是假的，人家可會當真。你打算怎麼辦？
 > 保姆抱著一個小傢伙上樓。虎頭虎腦，搖搖晃晃，已經會走路了。我的兒子，鬧鬧。
 > 我蹲下來張開手。他繞過我，撲進青龍懷裡，叫媽媽。懷香笑彎了腰。
@@ -9786,6 +10154,7 @@ ql: 慢慢來。他會記得的。
 ! go c20_cafe_end
 
 == c20_cafe_end
+@ bg=s20_cafe_tanghulu time=陽城．咖啡廳 tint=warm bgm=warm amb=room
 > 鬧鬧一把抓住隔壁桌叔叔的糖葫蘆，死不放手。懷香格格笑得趴在桌上。
 hx: 這脾氣，跟他爸一模一樣。
 > 我說我還得回一清身邊。他是扳倒陳老、救出我爸媽的關鍵。
@@ -9797,6 +10166,7 @@ ql: 那就小心點。他再怎麼對你好，也是陳老的人。
 > 回到一清的住處，他正坐在燈下，看一封信。看完了，手在抖。
 > 我跟了他這麼久，第一次看見他抖。
 liu: 師父，誰的信？
+@ bg=s20_wall_whisper_plot time=陽城．一清的住處 tint=night bgm=tense amb=room
 yq: 白雲城主。風雲榜第四。約我三天後，清明山巔，生死一戰。
 > 一清打敗過風雲榜第八、第六。第四，是另一回事。他比誰都清楚，那一名的差距，差的就是一條命。
 liu: 那……不去行不行？
@@ -9819,6 +10189,7 @@ liu: 你上去能幹嘛？給白雲城主多添一道菜？聽我的。
 bjj: 我爸會殺了你們！
 > 劉鑫撥通了白雲城主的電話，開了免提。
 liu: 白雲城主，令郎在我們這裡。明天的決鬥，你看——
+@ bg=s20_baijiajun_phone_down time=白雲城．傍晚 tint=dusk bgm=tense amb=street
 byc: 你們隨便。我不想讓他活命。
 // 原創：在 c20_baiyun→c20_qiansuanzi 的長段前段加一題，只換一兩句。
 ? t=calm def=0 | 電話掛了。白嘉俊的臉，白一陣紅一陣。
@@ -9851,6 +10222,7 @@ yq: 你老婆丟了，找貧道做什麼？
 ! fx bighit
 > 一劍穿胸。一清倒在地上，不動了。
 weib: 師父！
+@ bg=s20_baiyun_yiqing_respect time=一清的住處．深夜 tint=night bgm=boss amb=night wx=dust
 > 我撲過去，抱著他哭。我是來盯他的，可我抱著他，哭得像個孩子。
 > 白嘉俊衝進院子，大喊，綁人的是黑槍。那一劍，刺偏了一寸。
 yq: 咳……差一點，就差一點。
@@ -9867,6 +10239,7 @@ yq: 不見不散。
 > 白雲城主停在一個算命攤子前。布幡上寫著：鐵嘴千算就是我，不准別把錢給我。
 > 意思是：算得不準，就別把錢給我。
 > 攤子後面趴著一個滿臉麻子、戴墨鏡的老頭，在睡覺。
+@ bg=s20_qiansuanzi_dozes time=白雲城．大年初一的街口 tint=gold bgm=calm amb=street
 byc: 我找個人。黑槍。
 qsz: 喲，白雲城主，稀客。五百塊。
 > 白雲城主掏遍口袋，只有兩百多塊零錢。白嘉俊湊了一百多。老頭搖頭，一分都不讓。
@@ -9887,6 +10260,7 @@ qsz: 八折？老夫算命，從來只算全價的命。
 ! go c20_qsz_after
 
 == c20_qsz_after
+@ bg=s20_fortune_stall_sigh time=白雲城．大年初一的街口 tint=gold bgm=calm amb=street
 > 我的手在口袋裡，偷偷按著手機，給萬毒公子傳了一條訊息。
 > 他報了一個地址，城郊的一座廢工廠。然後他看著白雲城主，嘆了口氣。
 qsz: 你這一趟，大凶。
@@ -9918,6 +10292,7 @@ byc: 因為那是你媽。是我這輩子最愛的女人。……你離我遠一
 hq: 東海的前輩！你說好要幫我的！
 > 屋頂上落下一個人。戴著一頂大帽，遮住半張臉，手裡提著一張漁網。
 > 風雲榜第三，東海魔君。
+@ bg=s20_fishnet_drop time=城郊．廢工廠 tint=grey bgm=danger amb=wind wx=dust
 dhmj: 白雲，你殺過我的人。這筆帳，今天算。
 ! fx shake
 > 打不贏。白雲城主的劍，在那張網底下像一根草。
@@ -9933,6 +10308,7 @@ dhmj: 不錯，是個好材料。一起回東海吧。
 == c20_island
 @ bg=s20_donghai_island_pot time=東海．小島沙灘 tint=cold bgm=tense amb=sea wx=smoke
 > 東海魔君有八個兒子。他練功靠一口「百藥鍋」，煮藥的時候，要丟兩個高手進去，當藥引子。
+@ bg=s20_baiyun_lucid_whisper time=東海．小島沙灘 tint=cold bgm=tense amb=sea wx=smoke
 > 我和白雲城主，就是那兩個高手。
 > 白雲城主瘋了。整天傻笑，嗚嗚地哭，什麼髒事都做得出來。
 > 看守的人笑他，連東海魔君都不再看他一眼。
@@ -9940,6 +10316,7 @@ dhmj: 不錯，是個好材料。一起回東海吧。
 byc: 小子，別出聲。我沒瘋。
 weib: ……你裝的？
 byc: 不裝，他們會一直盯著我。你幫我一件事。
+@ bg=s20_leaky_boat time=東海．小島沙灘 tint=cold bgm=tense amb=sea wx=smoke
 ? t=mid def=0 | 白雲城主要我替他解開一隻手的鎖。他要報仇。
 - 「行。可你答應我，先想辦法讓我們兩個都活著出去。」 {heart+=1;wu+=1} -> c20_island_escape
 - 「我自己想辦法跑。你的仇，你自己報。」 {rage+=1} -> c20_island_escape
@@ -9987,9 +10364,11 @@ yq: 喊什麼喊，站遠點，別礙事。
 == c20_yq_fight
 > 一清和白雲城主聯手，差一點就贏了。白雲城主傷太重，倒下了。一清一個人，被逼到了海邊。
 yq: 還不肯現身？
+@ bg=s20_seawall_monkey_blade time=東海．清晨的海灘 tint=red bgm=battle amb=sea
 > 船頭上，跳下一個瘦得像竹竿的人，手裡一柄金光閃閃的尖刀，笑得滿不在乎。
 > 龍組二隊隊長，我的頂頭上司，猴子。
 hou: 是你自己說的，不到關鍵時刻，不准我出手。
+@ bg=s20_monkey_blocks_sword time=東海．清晨的海灘 tint=red bgm=battle amb=sea
 yq: 你看不出來，這就是關鍵時刻？
 > 原來，一清在白雲城撞上了去抓千算子的猴子，兩個人一拍即合，又拉上了陳小練。
 > 猴子的刀從正面壓上去，我從背後扯住了那張漁網。
@@ -10031,6 +10410,7 @@ yq: 不必。他是君子。對什麼人，用什麼手段，這是貧道的規�
 > 月亮爬上頭頂的時候，有人敲門。白雲城主遲到了整整七天。
 byc: 抱歉，我來晚了。
 yq: 來了就好。
+@ bg=s20_sword_at_chest time=北方小村．一清租的院子 tint=night bgm=tense amb=night
 > 兩個人走到村外的空地，像兩個要去喝茶下棋的老朋友。
 > 我看不清那一戰。只聽得到劍碰劍的聲音，一聲比一聲急。
 ! fx bighit
@@ -10057,6 +10437,7 @@ byc: ……東海的恩，我記著。可規矩是規矩。
 qsz: 各位，老夫又沒錢吃飯了。誰請我吃一頓？
 > 兩個風雲榜上的高手，真見了面，客客氣氣地喊他老先生。
 > 我們五個人坐進村頭的麵館。千算子吃得滿嘴流油，先給白雲城主指了一條活路。
+@ bg=s20_yiqing_phone_tremble time=北方小村．一清租的院子 tint=night bgm=tense amb=night
 yq: 老先生，那我呢？
 qsz: 你啊。你會死得很慘。
 > 一清像一頭被抽了筋的老牛。回去的路上，被門檻絆了一跤，摔得很重。
@@ -10076,6 +10457,7 @@ yq: 劉鑫，你還不到時候，自己練，練不上去了再吃。
 weib: 師父，這都什麼年代了！華夏是多少人拿命換來的，你要幫他回到從前？
 liu: 師父，你不能跟他站在一起！
 yq: 別跟我講大道理！我只知道陳老對我有大恩。他讓我死，我就去死。
+@ bg=s20_hug_master_legs time=深夜．院子裡的油燈 tint=dusk bgm=sad amb=room
 yq: 道不同，不相為謀，你我師徒，就此別過！
 > 他站起來往外走。
 // 原創：在 c20_qsz_dinner→c20_rank_two 的長段中間加一題，只換一兩句。
@@ -10099,6 +10481,7 @@ liu: 師父，還有辦法！風雲榜第四抓不到，那第二呢？我們去
 ! go c20_rank_two
 
 == c20_rank_two
+@ bg=s20_campfire_rank_list time=深夜．院子裡 tint=night bgm=emo amb=fire
 yq: 大閻王。
 > 我腦子裡嗡的一聲。
 > 風雲榜第一，一直空著。千算子說過，除了猴子、左飛那幾個人聯手，沒人配坐那個位子。
@@ -10106,6 +10489,7 @@ yq: 大閻王。
 yq: 劉鑫，你在帝城待過。
 yq: 前年任家那場婚禮，大閻王帶著整個帝城的地下世界闖進去救他兒子，你聽說過吧？
 liu: 帝城的人，到現在還在講。
+@ bg=s20_bait_realization time=深夜．院子裡 tint=night bgm=emo amb=fire
 yq: 英雄蓋世。可英雄也有氣短的時候。那一場，是陳老埋的套。
 yq: 他要的是大閻王出來，好收進自己的手底下。
 > 我想起任家婚禮那天，陳老坐到我旁邊，問我想不想娶任雨晴，說他可以幫我，條件是以後替他做事。
@@ -10143,6 +10527,7 @@ yq: 欠了二十年。後來他隱姓埋名，我投了陳老。這條命，一�
 yq: 海南那一趟，陳老叫我去帶一個女人回帝城。貧道帶了。那是楊家的大小姐……是他的老婆。
 > 我的指甲，掐進了手心裡。
 > 一清轉過頭來看我。看了很久，久到火堆裡的柴，啪地斷了一根。
+@ bg=s20_yiqing_knowing_smile time=深夜．院子裡 tint=night bgm=emo amb=fire
 yq: 王峰。在苗家寨，那個大寨主叫你王巍。
 > 我的心跳停了一拍。
 yq: 陳老一直在找一個叫王巍的孩子。大閻王的兒子。
@@ -10169,6 +10554,7 @@ yq: 徒兒們，走了！抓人！六指天眼！
 > 這種人，陳老怎麼會看得上？我和劉鑫想不明白。一清盯了三天，才說出實話。
 yq: 我要的不是他。是他的朋友。
 > 有天傍晚，六指天眼忽然趴在馬路牙子上，耳朵貼著地，聽了好久。
+@ bg=s20_sixfinger_pinned time=北方小城．水果店門口 tint=cold bgm=tense amb=street
 > 然後他站起來，朝我們藏身的巷口笑了笑。
 mj: 三位跟了我三天，累不累？想抓我，你們還沒那個本事。
 > 他跑得不快，可每一步都踩在我們想不到的地方。追到最後，我抬頭一看，是公安局的大門口。
@@ -10183,6 +10569,7 @@ yq: 你那位姓鄭的兄弟，在這座城的地下比武場。等我們把他�
 == c20_tournament
 @ bg=s20_underground_ring time=地下比武場 tint=red bgm=battle amb=crowd wx=smoke
 > 瘋子，是這座小城的地下老大，只跟比武大會的冠軍打。一清叫我去拿冠軍。
+@ bg=s20_ring_crowd_stunned time=地下比武場 tint=red bgm=battle amb=crowd wx=smoke
 > 第一場，對面是個叫坦克的大塊頭。我一拳，他就不動了。場子裡的人看我像看怪物。
 > 第二場，碰上一個叫烏雞的。他裝了一路的孬，上了台才露出真本事。
 > 我被他打得滿臉是血，躺在地上起不來。
@@ -10226,6 +10613,7 @@ zw: 哎喲，有兩下子！等我換身衣服，好好陪你玩！
 zw: 我女兒呢！誰抱走了我女兒！
 > 我心裡一涼，回頭找劉鑫。劉鑫不見了。
 // 原作 1045 章劉鑫奉一清之命扮成護士抱走嬰兒作要脅；本作只寫結果，嬰兒全程平安、無任何傷害描寫
+@ bg=s20_woods_swaddle time=深夜．城外小樹林 tint=night bgm=boss amb=forest
 > 城外的小樹林裡，劉鑫抱著一個包得嚴嚴實實的襁褓，手在抖。一清站在他旁邊。
 > 瘋子追來了，紅著眼睛，見人就打。六指天眼被綁在樹上，嘴裡塞著布，拚命朝我嗚嗚叫。
 ? t=high def=0 | 六指天眼的眼神在求我：把布拿掉。
@@ -10234,6 +10622,7 @@ zw: 我女兒呢！誰抱走了我女兒！
 
 == c20_crazy_stop
 mj: 午哥！孩子在他們手上！別動了！
+@ bg=s20_madman_fist_frozen time=深夜．城外小樹林 tint=night bgm=boss amb=forest
 > 瘋子站住了。拳頭停在半空，整個人在發抖。
 yq: 跟我走，孩子還給你媳婦，一根頭髮都不會少。
 > 一清把襁褓交還給醫院的護士。瘋子讓他點了穴，自己走進了一清的車裡。
@@ -10270,6 +10659,7 @@ yq: 鄭午。馬傑。猴子、左飛、黃杰的老兄弟。抓你們兩個，�
 yq: 給我一個解釋。
 liu: 師父……我和王峰，都是龍組的人。我們的任務，就是在你身邊盯著你。
 > 劉鑫跪在地上，砰砰砰地磕頭，額頭都磕破了。他憋了太久。
+@ bg=s20_yiqing_cannot_strike time=凌晨．路邊 tint=red bgm=boss amb=wind
 liu: 師父，你回頭吧！我每天都過得像在油鍋裡！
 yq: 你們……你們竟然是龍組的人。難怪每次快成的時候，總有龍組的人出來攪局！
 > 一清的劍，刺進了劉鑫的肩膀。劉鑫不躲，挺著胸口。
@@ -10277,6 +10667,7 @@ liu: 你殺了我吧。我早就不想活了。
 > 第二劍刺過來的時候，我撲了上去。劍尖扎進我的肩膀。
 weib: 師父，是我讓左飛治劉鑫的傷，他才欠了龍組的人情。要殺，殺我！
 yq: 原來是你！
+@ bg=s20_zhengwu_fist_lunge time=凌晨．路邊 tint=red bgm=boss amb=wind
 > 他的劍又舉起來。劉鑫一把推開我，用背擋了上去。
 // 原創：一清這幾劍都刺得很淺（他其實下不了手）
 > 那一劍刺得很淺。淺到我後來才想明白，他根本下不了手。
@@ -10302,6 +10693,7 @@ yq: 既然這樣，你們一起去死！
 @ bg=s20_dragon_team_arrives time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
 > 一個瘦得像竹竿的人，打著呵欠，從路邊一間網咖裡走出來。
 hou: 吵什麼吵，我這局還沒打完。
+@ bg=s20_monkey_lowers_blade time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
 > 猴子。他早就到了這座小城，看時間還早，先去打了幾局遊戲。
 yq: 你一個人來的？
 hou: 你不是叫我一個人來嗎？
@@ -10319,6 +10711,7 @@ liu: 不要！
 liu: 孫隊長，放我師父一條生路！
 uncleb: 你知道你在替誰求情嗎？
 > 劉鑫抬起頭，喊了一句：我師父二十年前輸給大閻王，欠他一條命，這些年一直記著！
+@ bg=s20_uncle_chain_raised time=凌晨．網咖門口 tint=cold bgm=battle amb=street wx=lights
 > 舅舅的鐵鏈停了一下。他看了一清很久，眼神變了，可是嘴上沒鬆。
 uncleb: 欠他的，就該還他。不是還給陳老。
 // 原創：舅舅在此得知一清欠大閻王一條命（給 c24「一清前輩」的轉折，博哥建議）
@@ -10369,6 +10762,7 @@ yq: 從今往後，你們兩個，跟貧道恩斷義絕。不再是我的徒弟�
 > 我爸被抓那次，我把所有的火都撒在他身上，說都是他的錯。
 > 他一聲不吭轉身走了。從那以後，我們一個電話都沒通過。
 > 他把大衣脫下來，披在我身上。
+@ bg=s20_uncle_rehearsed_pause time=清晨．院子門口 tint=cold bgm=emo amb=wind wx=snow
 uncleb: 等陳老垮了，你媽就能出來。你爸……上次帶人闖任家，鬧得太大，不好壓。最多判幾年。
 // 原創：重玩才有；舅舅在說謊（c24:17），不重複章末那根沒點的菸
 [R] > 他說到「判」字，停了一下。像在背一句早就背熟的話。
@@ -10388,6 +10782,7 @@ uncleb: 我騙過你嗎？
 weib: 舅舅，之前的事……對不起。
 uncleb: 多大點事。
 > 他轉身進屋。過了一會兒，屋裡傳來黃杰的抱怨：這麼大的床，你非貼著我睡幹嘛？舅舅說，暖和。
+@ bg=s20_snow_gate_pills time=清晨．院子門口 tint=cold bgm=emo amb=wind wx=snow
 > 鄭午和馬傑要回北方小城了。臨走前，鄭午一瘸一拐地走過來，往我手心裡塞了一顆藥丸。
 zw: 提氣丸。我們自己配的，比老道那顆對路。等你哪天心靜了再吃。
 mj: 王巍，那天晚上，謝了。
@@ -10412,6 +10807,7 @@ mj: 王巍，那天晚上，謝了。
 // 開頭鉤子：陳老上新聞、舅舅那句話移到最前面（雲公子 11:24 總檢）。
 > 新聞裡，陳老又在剪綵，笑得比誰都和藹。一點都不像要垮的樣子。
 > 我打給舅舅。他沉默了一下。
+@ bg=s21_sleepless_courtyard time=開春．帝城．精武門 tint=night bgm=city amb=street wx=lights
 uncleb: 放心。你快見到你媽了。可能一個禮拜，也可能一個月。
 > 這一句話，我等了兩年。
 > 精武門是龍組二隊在帝城的窩。院子不大，平常只住五六個人，其他人都在外面跑任務，或者兼差。
@@ -10442,6 +10838,7 @@ lwe: 嘁。我只是暫時答應他，說不準哪天就反悔。我這顆心是
 du: 沒事。妳年紀太大，左少帥看不上妳。
 lwe: 杜城你找死！
 > 兩個人在院子裡追著打，我只好喊停。他們是來帶我出去透氣的。
+@ bg=s21_du_expired_card time=第二天下午．精武門院子 tint=warm bgm=warm amb=street
 du: 今晚帝豪會所有個舞會，帝城的名流全會到。
 du: 龍組負責安保，憑證件就能進去。你戴上王峰的面具，沒人認得出你。
 > 我掏出證件。杜城看了一眼，搖頭。
@@ -10482,6 +10879,7 @@ sjg: 小土匪，咱們走著瞧。
 > 一個喝多了的公子哥湊上去，伸手要拉她。她一腳就把人踹倒在地上。
 xlz: 妳、妳敢踢我？妳知道我跟誰拜把子嗎？宋大哥！宋大哥！
 > 門口一陣騷動。一個年輕人走進來，前呼後擁。
+@ bg=s21_hongyan_walks_off time=當晚．帝豪會所．舞會 tint=gold bgm=festival amb=crowd wx=lights
 du: 那就是帝城新的地下龍頭。宋青雲。
 > 我愣住了。我爸被關，我又失蹤兩年，帝城的地下世界總不能一直沒人管。
 > 所有人都以為宋青雲要替兄弟出頭。他卻轉身，一拳打在那個公子哥臉上。
@@ -10511,6 +10909,7 @@ xlz: 宋大哥，你這一拳也太真了吧！我演英雄救美，被她踹一
 sqy: 小聲點。東西帶了沒？
 xlz: 帶了。下在她的果汁裡，十分鐘就起效。到時候你扶她去樓上休息……
 // 原作此處為下藥情節；本作只交代「下了藥」，不描寫後續意圖細節
+@ bg=s21_restroom_eye_lock time=會所．洗手間 tint=cold bgm=danger amb=room
 > 我在隔間裡，手捏成了拳頭。
 > 他們出去了。我推開門。宋青雲回頭，正好跟我四目相對。
 sqy: ……你聽到了什麼？
@@ -10520,6 +10919,7 @@ sqy: ……你聽到了什麼？
 
 == c21_spill
 // 原創分支：先保住尹紅顏，再揭穿；結果與原作相同（沒人相信、宋青雲翻臉）
+@ bg=s21_ballroom_spill_glass time=會所．舞池 tint=cold bgm=danger amb=room
 > 我從她身邊擦過去，肩膀一撞。杯子掉在地上，碎了。
 yhy: 你走路不長眼睛？
 weic: 那杯裡有東西。宋青雲讓人下的。
@@ -10541,6 +10941,7 @@ sqy: 你是誰？哪來的瘋子？拿出證據來！
 sqy: 原來是龍組的。我爸也是龍組的，宋金剛，聽過吧？你一個副隊長，跑來栽贓我？
 tmp: 宋龍頭為人正派，不可能做這種事。小兄弟，你被人騙了。
 lhpp: 小伙子，年紀輕輕，嘴上要有把門的。
+@ bg=s21_tiemian_recognizes_staff time=會所．洗手間 tint=cold bgm=danger amb=room
 > 連鐵面判官、蓮花婆婆，都站在他那一邊。他們看我的眼神，跟看一個搗亂的陌生人一樣。
 > 因為我現在，就是一個陌生人。
 sqy: 這裡是帝豪會所，不方便。帶出去。問清楚他是誰。
@@ -10558,6 +10959,7 @@ tmp: 少主……真的是少主！
 lhpp: 少主，你這兩年去哪了？我們派人到處找，找不到……
 weic: 婆婆，我很好。我媽應該也快出來了。
 lhpp: 那就好，那就好……少主，紅顏長成大姑娘了。她一直在等你回來。
+@ bg=s21_granny_joins_hands time=會所．舞池邊 tint=warm bgm=warm amb=crowd
 > 她把尹紅顏的手拉過來，往我手裡塞。我們兩個人都愣了一下，各自把手縮回去。
 ? t=calm def=0 | 蓮花婆婆笑得合不攏嘴。尹紅顏低著頭，耳朵有點紅。
 - 「婆婆，我心裡已經有人了。」 {heart+=1;loyal+=1} -> c21_lotus_decline
@@ -10625,9 +11027,11 @@ sjg: 小土匪，總部那一拳，今天一起算。
 ! go c21_vajra_after
 
 == c21_vajra_after
+@ bg=s21_vajra_duel_kneel bgm=boss amb=crowd
 > 宋青雲爬過來扯他爸的袖子，一直嚷。宋金剛一腳把他踢翻了兩圈。
 sjg: 閉嘴！丟人現眼！
 > 我看傻了。一個發起瘋來，連自己兒子都踢。
+@ bg=s21_yangzaixing_grass bgm=boss amb=crowd
 > 然後，他也撐不住，倒了下去。
 ! go c21_yang_arrives
 
@@ -10647,6 +11051,7 @@ yzx: 宋金剛，你剛才說什麼？
 > 猴子、左飛、黃杰、我舅舅、宋金剛、楊再興，還有一個跟宋金剛走得很近的趙鯤鵬。
 > 再加上龍組的組長，趙組長。
 > 這可能是龍組有史以來，最大的一次內訌。我一個人惹出來的。
+@ bg=s21_rivals_smug_smile time=會所．大廳 tint=cold bgm=boss amb=crowd
 zkp: 組長，事實很清楚。王巍破壞龍組安保任務，打傷宋青雲、宋隊長。按規矩，該關。
 uncleb: 宋青雲下藥在先。
 zkp: 證據呢？杯子呢？
@@ -10671,6 +11076,7 @@ zkp: 一個晚上？你以為龍組是你家開的？
 > 一個慈眉善目的老人，慢慢走了進來。所有人都站直了身子。
 cl: 這麼熱鬧，誰來給我這個老頭子說說？
 > 陳老。他身後，跟著一個背劍的道人。還有劉鑫。
+@ bg=s21_master_pats_back time=會所．貴賓廳 tint=gold bgm=tense amb=room
 > 一清。
 > 陳老聽趙組長說完，點了點頭，忽然轉過頭來看我們師徒三個。
 // 原創：重玩才有；陳老手上關著我爸，看我這張臉多停了一下
@@ -10681,7 +11087,9 @@ liu: 師父！
 > 他什麼都沒說。可是那兩下，比什麼都重。
 cl: 那麼宋青雲到底下沒下藥？下了，王巍就是見義勇為，不該罰。
 sjg: 陳老，我兒子從小在龍組長大，我用我的職位擔保——
+@ bg=s21_ballroom_balcony_sword time=會所．貴賓廳 tint=gold bgm=tense amb=room
 > 一道劍光。一清的長劍，已經停在宋青雲的喉嚨前面，差一公分。
+@ bg=s21_playboy_confesses time=會所．貴賓廳 tint=gold bgm=tense amb=room
 yq: 我徒弟不會隨便冤枉人。說實話。下了沒有？
 // 原創：一清說完恩斷義絕，卻仍叫「我徒弟」——呼應 c20 的舊債，他從那天起護著王巍，只是不說破
 sqy: 下、下了！是小六子給我的藥！不關我的事……
@@ -10719,6 +11127,7 @@ tmp: 少主說以後，那就以後。位子，我們替少主留著。
 @ bg=s21_ballroom_last_dance time=舞會．最後一支舞 tint=warm bgm=calm amb=crowd wx=lights
 > 音樂又響起來了。舅舅、猴子他們也各自找了舞伴。蓮花婆婆把尹紅顏推到我面前。
 > 我跟她跳了一支舞。我跳得很爛，她一直在笑。
+@ bg=s21_hongyan_unfinished time=舞會．最後一支舞 tint=warm bgm=calm amb=crowd wx=lights
 yhy: 王巍，你知道嗎？任雨晴……她，很不好。
 > 我的腳停了。
 weic: 怎麼不好？她結婚了？楊少宇欺負她？
@@ -10748,6 +11157,7 @@ cl: 我以前做了很多錯事，一把年紀了還胡思亂想。還好你們�
 weic: 陳老，我信。
 cl: 好。走之前，給你一個驚喜。
 > 他拉開了身後的車門。
+@ bg=s21_mom_steps_out time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 cl: 楊大小姐，可以出來了。
 @ bg=s21_ballroom_mom_returns_b time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 > 一個女人從車裡走出來。兩年多不見，她一點都沒變老。
@@ -10772,6 +11182,7 @@ mom: 傻孩子，先讓媽看看你。
 ! go c21_mom_dad_lie
 
 == c21_mom_dad_lie
+@ bg=s21_liu_quits time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 cl: 王巍，我本來想把你爸也放了。可他之前帶人大鬧任老將軍府，暫時出不來。
 cl: 最多不超過兩年，你們一家就能團圓。
 // 原作 1071 陳老的說法；真相留到 c24，本作不揭露
@@ -10784,17 +11195,20 @@ liu: 王巍，我退出龍組了。左飛的人情，我還清了。以後……
 - 「劉鑫，替我看好師父。」 {yq+=1} -> c21_liu_watch
 
 == c21_liu_bye
+@ bg=s21_brothers_hug time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 weic: 兄弟，保重。
 liu: 你也是。別再讓阿姨擔心了。
 ! go c21_liu_after
 
 == c21_liu_watch
+@ bg=s21_liu_wry_grin time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 liu: 還用你說？我盯了他這麼多年，盯出感情來了。
 ! go c21_liu_after
 
 == c21_liu_after
 @ bg=s21_ballroom_mom_returns_c time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 weic: 師父。你永遠是我師父。
+@ bg=s21_liu_door_whisper time=會所門口．長街 tint=night bgm=emo amb=street wx=lights
 > 一清沒理我，轉身替陳老開了車門。
 mom: 道長。兩年多前，謝謝你了。
 yq: 舉手之勞。
@@ -10823,6 +11237,7 @@ weic: 陳老今晚為什麼那樣？他到底在搞什麼鬼？
 > 幾個人互相看了看，最後都看向舅舅。舅舅嘆了口氣。
 uncleb: 我們把陳老想稱帝的證據交給另外幾位老人。本來夠了。
 uncleb: 可是你們放了一清，陳老提前收到風，自己先去攤牌，認錯，交權。
+@ bg=s21_teacup_shatters time=左飛家．二樓會客室 tint=cold bgm=tense amb=room
 uncleb: 硬拿下他，國內國外都要震。所以……原諒他一次。交出軍權，看以後的表現。
 uncleb: 放你媽出來，就是他的「表現」。
 weic: 那我爸呢？
@@ -10832,8 +11247,9 @@ uncleb: 你爸……一喊就能帶上千人圍將軍府。別說陳老，那幾
 weic: 他會改？我拿我的腦袋保證，他一有機會就會露出牙！
 weic: 現在不拿下，等他捲土重來就晚了！那幾個老人，全是尸位素餐的廢物！
 uncleb: 巍子，不要胡說！
+@ bg=s21_elders_silent time=左飛家．二樓會客室 tint=cold bgm=tense amb=room
 > 沒有人說話。我知道，我想得到的，他們全都想到了。他們只是沒辦法。
-? t=mid def=0 | 舅舅看著我。所有人都看著我。
+? t=mid def=1 | 舅舅看著我。所有人都看著我。
 - 「我退出龍組。我帶我媽回老家，等我爸出來。」 {heart+=1;mom+=1;dad+=1;dad21+=1} -> c21_quit
 - 「我留下。可是這筆帳，我會自己算。」 {revenge+=2;power+=1} -> c21_stay_lz
 - [if use_name==1] 「那就讓帝城的地下世界來辦。我是龍頭，我說了算。」 {power+=3;yama+=2} -> c21_power_path
@@ -10851,10 +11267,28 @@ mom: 兒子，媽想回家了。
 // 原創分支：保留舊稿的兩個壞結局入口
 wl: 你爸當年，就是在這個位子上，說過一模一樣的話。後來，他花了二十年，才讓自己不再是那個人。
 > 魏老是半夜才到的。他坐在角落裡，聽完了全部。
-! if yama>=7 -> c21_yama_end
-! if power>=4 && bro<18 -> c21_lone_end
+// 雲公子 11/03：門檻 7→15（c17–c19 門檻後帶高 yama 活到這裡的人變多，7 幾乎人人過；15 跟 c18 yama≥15 一致）
+! if yama>=15 -> c21_yama_ask
+! go c21_power_rest
+
+== c21_yama_ask
+// 原創：yama 結局前加一次確認（💛 建議）
+> 那句話已經到了嘴邊。說出來，就回不了頭。
+? t=calm def=1 | 魏老看著我，等我開口。
+- 沉默，把話嚥回去 {yama-=1;heart+=1} -> c21_power_rest
+- 「我爸坐得了的位子，我也坐得了。」 -> c21_yama_end
+
+== c21_power_rest
+! if power>=4 && bro<18 -> c21_lone_ask
 > 我把話嚥了回去。魏老說的那個人，我不想當。
 ! go c21_quit
+
+== c21_lone_ask
+// 原創：孤身結局前加一次確認（雲公子建議）
+> 我看了一圈。身邊能叫得動的兄弟，沒剩幾個了。
+? t=calm def=1 | 真的要一個人去算這筆帳？
+- 「……我跟我媽回家。」 {heart+=1;mom+=1} -> c21_quit
+- 一個人也要去 -> c21_lone_end
 
 == c21_yama_end
 @ bg=e_yama2 fade=black bgm=boss amb=wind
@@ -10880,6 +11314,7 @@ weic: 是！
 > 我啪地敬了一個禮。
 hj: 阿古還說要找你喝幾杯。你怎麼就走了？
 > 阿古。那個看起來憨憨的、對感情特別認真的四隊隊長。我們在楊家當護衛的時候，喝過很多酒。
+@ bg=s21_kitchen_pot_noodles time=凌晨四點．左飛家 tint=cold bgm=emo amb=room
 weic: 以後有機會。
 > 舅舅什麼都沒說，拍拍我的肩膀，讓我照顧好我媽。
 > 那天晚上，左飛到我房間，替我把新破的十幾處穴道的經脈接好。像泡在溫泉裡。我睡到了中午。
@@ -10894,6 +11329,7 @@ weic: 以後有機會。
 @ bg=s21_hometown_dusty_yard time=晚上九點．小鎮．老家 tint=night bgm=calm amb=night
 > 晚上八點落地羅城，九點回到小鎮。小鎮還是那樣，安靜，冷清。
 > 房子幾年沒住人，院子裡的灰積得老高，屋頂上長了草。我跟我媽掃到半夜。
+@ bg=s21_dad_rattan_chair time=晚上九點．小鎮．老家 tint=night bgm=calm amb=night
 > 堂屋角落裡，還放著我爸那張舊藤椅。椅背上的漆磨掉了一塊，是他靠了十幾年靠出來的。
 ? t=calm def=0 | 媽去睡了。我站在藤椅前面。
 - 坐上去，靠一靠他靠過的地方 {dad+=1;dad21+=1} -> c21_chair
@@ -10924,6 +11360,7 @@ hx: 鬧鬧現在會叫「爸爸」了。他每天拿著一張照片叫，照片�
 - 「替我親他一下。」 {heart+=1} -> c21_letter
 
 == c21_letter
+@ bg=s21_reservoir_bell_parcel time=一個月後．出租屋 tint=warm bgm=calm amb=room
 > 掛了電話沒幾天，杜城從苗疆辦完事回帝城，路過小鎮，給我帶了一個小布包。
 // 原創：苗雪雁的消息（原作此段無；呼應 c20 長生果）
 du: 苗家寨二小姐讓我帶的。她醒了，能下床了。
@@ -10945,6 +11382,7 @@ du: 就這樣？……算了，你們的事，我不管。
 
 == c21_breakthrough
 > 也許是心真的靜了。也許是鄭午那顆提氣丸起了作用。
+@ bg=s21_staff_stuns_fish time=一個月後．出租屋 tint=warm bgm=calm amb=room
 > 那天在水庫邊，我感覺身體裡那股熟悉的力量又滿了起來。我咬著牙，衝了上去。
 ! fx pulse
 > 第四十六處穴道，破了。疼得我在地上打滾。可是爬起來的時候，我知道我不一樣了。
@@ -10958,6 +11396,7 @@ du: 就這樣？……算了，你們的事，我不管。
 
 == c21_dad_dream
 // 原創：dad21>=3 的短場景；不透露爸爸的去向
+@ bg=s21_dad_dream_tricycle time=夢裡．小時候 tint=warm bgm=calm amb=room
 > 那天晚上我夢到小時候。我爸騎著三輪車載我去鎮上，我坐在後面的車斗裡。
 > 他回頭說：「坐穩了。」我說：「爸，你騎慢點。」他說：「慢不了，後面有人追。」
 > 我醒過來，想了很久，想不起來後面追的是誰。
@@ -10990,8 +11429,10 @@ yhy: 楊少宇兩年前就病死了，婚根本沒結成。楊再興姓楊，又
 // 原作 1074：楊少宇之死與王巍、萬毒公子下毒有關；c15–c17 未演出下毒，此處不提，只說病死
 yhy: 晴兒竟然也點頭了，說你早就把她忘了。她一定是被那老頭動了什麼手腳！
 // 原作 1074：楊再興並非楊家血親，任老將軍以「姓楊」算數；c23 開頭「楊家這一代」沿用此說
+@ bg=s22_hometown_mom_rush time=暮春．清晨．老家門口 tint=cold bgm=tense amb=street
 > 我媽從屋裡走出來。我把事情說了一遍，她比我還急，直跺腳。
 mom: 還愣著幹什麼？去啊！人家姑娘等了你兩年！
+@ bg=s22_mom_teary_smile time=暮春．清晨．老家門口 tint=cold bgm=tense amb=street
 ? t=calm def=0 | 媽已經在幫我收拾行李了。
 - 「媽，我爸當年……是不是也這樣跑去楊家找妳？」 {dad+=1;dad22+=1;mom+=1} -> c22_mom_story
 - 打電話叫老龜，馬上送我去羅城機場 {fame+=1} -> c22_fly
@@ -11018,6 +11459,7 @@ rlj: 楊隊長，婚禮就在家裡辦，以後也住家裡。不是要你入贅
 yzx: 我爹娘早就不在了，能孝敬您老人家，挺好。爺爺！
 > 任老將軍笑得眉飛色舞。全家都在笑，只有一個人低著頭，一聲不吭。
 // 原創：在 c22_mom_story→c22_window 的長段中間加一題，只換一兩句。
+@ bg=s22_roof_leaf_caught time=當晚．帝城．任家大宅 tint=night bgm=danger amb=wind wx=dust
 ? t=calm def=0 | 任雨晴說身體不舒服，先回房了。
 - 沿著屋脊，跟著她的腳步聲走 {ryq+=1;ryq2+=1} -> c22_roof_follow
 - 再趴一會兒，聽楊再興還要說什麼 {wu+=1} -> c22_roof_listen
@@ -11046,6 +11488,7 @@ weic: 晴兒，是我！
 ryq: 王巍？！
 > 她愣了一下，然後笑了。
 > 像那年冬天，凌晨四點，楊家結冰的人工湖邊，她偷偷跑出來見我時的那種笑。
+@ bg=s22_wait_for_me time=深夜．任雨晴的房間 tint=night bgm=emo amb=wind
 ryq: 你終於來了！
 weic: 告訴我，妳為什麼答應嫁給楊再興？
 ryq: 那個叫千算子的老頭說，只有這樣，才能把你逼回帝城。才能讓你回來找我。
@@ -11100,6 +11543,7 @@ rlj: 大閻王？哼，他護的人是不少。得罪的人，更多。
 ! go c22_rlj_yang
 
 == c22_rlj_yang
+@ bg=s22_ren_general_pleased time=任老將軍的書房 tint=warm bgm=tense amb=room
 rlj: 楊老將軍的外孫？他要是真認你，我馬上把孫女嫁給你。這才叫門當戶對。
 > 他說這話的時候，居然有點高興。任楊兩家聯姻，是他一輩子的心願。
 > 聽說是為了還楊老將軍在南疆戰場上救過他的命。
@@ -11120,6 +11564,7 @@ hou: 放心，我還能坑咱外甥？
 == c22_yang
 @ bg=s22_yang_general_study time=第二天．楊家大院 tint=cold bgm=tense amb=room
 > 我照猴子說的，渾身帶傷，跑到楊家門口。老夫人聽說外孫來了，拄著拐杖跑出來，一把抓住我的手。
+@ bg=s22_grandma_holds_hand time=第二天．楊家大院 tint=cold bgm=tense amb=room
 ylf: 孩子，這是怎麼了？任老頭要把孫女嫁給別人？我怎麼一點都不知道！
 ylf: 帝城誰不知道我楊家的外孫跟他家孫女是一對？
 ylf: 我這輩子命苦。一個女兒，一個兒子，二十多年沒見幾面。
@@ -11128,11 +11573,13 @@ ylf: 收了個乾兒子，又短命。有個老頭子，跟沒有一樣……
 weic: 姥姥，還有我在。
 ylf: 是啊，還有你在。你放心，我一定讓你姥爺認你——
 ylj: 想讓我認你？門都沒有！
+@ bg=s22_yang_general_storms_in time=第二天．楊家大院 tint=cold bgm=tense amb=room
 > 楊老將軍帶著一大群人走進院子，聲如打雷。
 > 老夫人跟他吵了半個鐘頭，連他當年怎麼求大閻王幫忙的老底都掀了。
 ylj: 好！要我認他，兩個條件。第一，不准再當什麼地下龍頭。我楊家的外孫，不當打手。
-// 原創：重玩才有的選項（呼應 c15 爸爸幫楊老將軍扳倒對頭）；[R] 題多一個選項，def=1「我答應」
-[N] ? t=mid def=0 | 老夫人回頭看我。帝城的龍頭，是我爸留下來的位子。
+// 原創：重玩才有的選項（呼應 c15 爸爸幫楊老將軍扳倒對頭）；[N]/[R] 兩份都 t=calm def=1「我答應」
+@ bg=s22_cane_stops time=第二天．楊家大院 tint=cold bgm=tense amb=room
+[N] ? t=calm def=1 | 老夫人回頭看我。帝城的龍頭，是我爸留下來的位子。
 - 「我答應。」 {heart+=1;loyal+=1} -> c22_yang_two
 - [if use_name==1] 沉默很久：「……好。龍頭可以不當，可我爸的人，我得照顧。」 {power+=1;bro+=1} -> c22_yang_two
 [R] ? t=calm def=1 | 老夫人回頭看我。帝城的龍頭，是我爸留下來的位子。
@@ -11172,6 +11619,7 @@ ref: 王巍，我看好你！哦對了，這次阿古也報了名。你們兩個
 @ bg=s22_dragon_hq_arena time=晚上八點．龍組訓練館 tint=gold bgm=battle amb=crowd wx=lights
 > 訓練館裡擠滿了人。我第一場的對手，是阿蔓。
 > 她把臉扭到一邊，看都不看我。她還在恨我。有些誤會，只能讓時間去解。
+@ bg=s22_agu_blade_frozen time=晚上八點．龍組訓練館 tint=gold bgm=battle amb=crowd wx=lights
 > 我沒用全力，她也沒有。三分鐘後，她自己走下了台，一句話都沒說。
 > 另一邊，阿古對上林婉兒。林婉兒快被逼下台了，忽然壓低聲音說了一句：前幾天，我見到林玉瑤了。
 > 林玉瑤，阿古在楊家愛過的姑娘。後來跟了楊少宇，又被楊家趕走，從此沒了消息。
@@ -11186,6 +11634,7 @@ weic: 阿古，不要！
 @ bg=s22_jingwumen_night_visit time=深夜．精武門．我的房間 tint=night bgm=danger amb=room
 > 那天半夜，有人敲我的門。是林玉瑤，六隊的人，阿古以前的女朋友。
 lyy: 王巍……我對不起阿古。可我一個外地姑娘在帝城，不靠一棵大樹，活不下去。
+@ bg=s22_lyy_frame_up time=深夜．精武門．我的房間 tint=night bgm=danger amb=room
 lyy: 你有大閻王、有楊老將軍。阿古什麼都沒有。王隊長，你要是不嫌棄，我願意跟著你……
 // 原作 1085 此段有性暗示；本作改成「她扯亂自己的頭髮衣領要喊人」的栽贓，不做任何身體描寫
 > 她一邊說，一邊伸手扯亂了自己的頭髮和衣領，眼睛往門外瞟。
@@ -11209,6 +11658,7 @@ weic: 屋裡太亂，咱們到外面喝！
 == c22_drink
 @ bg=s22_jingwumen_yard_drinks time=深夜．精武門院子 tint=warm bgm=calm amb=night
 agu: 王巍，明天就要決鬥了。我不想因為這個，咱倆就生分了。
+@ bg=s22_bottle_four_rings time=深夜．精武門院子 tint=warm bgm=calm amb=night
 > 他忽然解下背後那把鏽刀，朝桌上的白酒瓶劈了三刀，快得我只聽見三聲輕響。
 > 瓶子還站著，像什麼都沒發生。然後他捏起瓶子。
 > 一截，兩截，三截。瓶身斷成齊整的四段。
@@ -11224,6 +11674,7 @@ weic: 那我也給你看。炎燒拳，寒冰拳。被我打中胸口，心臟�
 // 原作 1088 不存在；1087→1089 之間：林玉瑤醒來跑出去哭訴，楊再興把我和阿古引進小巷
 > 林玉瑤醒過來，跑出去哭。等我追出去，楊再興已經扶著她，阿古擋在她前面，眼神冷得像不認識我。
 lyy: 阿古，還好你來了……他剛才想殺我！
+@ bg=s22_agu_blade_raised time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 yzx: 阿古，玉瑤我先帶去醫院。這小子交給你了。
 > 楊再興抱著她走了。窄巷子裡，只剩我和阿古。
 agu: 現在，你還有什麼話說？
@@ -11245,6 +11696,7 @@ agu: 閉嘴！
 == c22_alley_fight
 ! fx bighit
 > 我們兩個都打到站不起來。我的胸口挨了他一刀，他吃了我一記寒冰拳。
+@ bg=s22_alley_yang_returns time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 > 楊再興回來了。一個人回來的。
 yzx: 林玉瑤死了。
 agu: ……你說什麼？
@@ -11254,6 +11706,7 @@ yzx: 你這個蠢貨。一切都是我安排的。讓她去找王巍，讓你們
 > 我和阿古對看了一眼，同時撲上去。
 > 我抓下了他一把頭髮，阿古的指甲裡留下了他的皮屑。死也要留下證據。
 > 刀落下來的那一刻，巷子的牆頭上，傳來一個懶洋洋的聲音。
+@ bg=s22_monkey_turf time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 hou: 楊隊長，在我的地盤殺人，殺的還是我兄弟，不太好吧？
 @ bg=s22_alley_moon_fight_b time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 > 猴子蹲在牆頭，背後一輪大月亮。
@@ -11267,6 +11720,7 @@ hou: 這一片的流浪漢、酒鬼、小混混，都是我朋友。你在這裡
 agu: 玉瑤是被逼的……她替他做事，還丟了命，我不能不管！
 hj: 你還嫌不夠丟人？那個女人坑過你多少次了？
 hj: 你忘了你在農村的爹娘？你說要賺錢接他們來帝城享福的！
+@ bg=s22_agu_kneels_sobbing time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 hj: 好，你去。你從我身邊走過去，就再也不是我的徒弟。
 > 阿古站在那裡，渾身發抖。過了很久，他撲通一聲跪下，嚎啕大哭。
 ? t=mid def=1 | 我也站不穩，扶著牆。
@@ -11275,10 +11729,12 @@ hj: 好，你去。你從我身邊走過去，就再也不是我的徒弟。
 // 原創：兩個選項各給一句反應，再接回 c22_bell。
 
 == c22_agu_sit
+@ bg=s22_agu_head_shoulder time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 > 阿古哭到一半，把頭靠在我肩膀上。他的鼻涕擦了我一整個袖子。
 ! go c22_bell
 
 == c22_agu_hj
+@ bg=s22_master_huang_sends_home time=凌晨．城中村小巷 tint=night bgm=boss amb=street
 hj: 我逼他？我是在救他。……你們兩個，都給我回去睡覺。
 ! go c22_bell
 
@@ -11300,6 +11756,7 @@ hou: 阿古最後那一刀，快到傷口自己合上。扛一扛東西，把淤
 agu: 王巍，昨晚對不起。今天，我們好好打一場。
 > 上台之前，手機響了一下。很多人傳了訊息給我。我只回了一個。
 // 原創：決賽前的一通電話（三線互斥）
+@ bg=s22_phone_before_ring time=第二天晚上．訓練館．決賽 tint=gold bgm=battle amb=crowd wx=lights
 ? t=mid def=0 | 你回了誰？
 - 晴兒：「今晚我會贏。」 {ryq+=2;ryq2+=2} -> c22_reply_ryq
 - 雪雁：「我還欠妳一條命，不會死在台上的。」 {miao+=2;miao2+=2} -> c22_reply_miao
@@ -11345,6 +11802,7 @@ qsz: 年輕人，別激動，別激動……
 hou: 外甥，他不算。他這個 S 級，是陳老當年為了抓他，硬安上去的。
 hou: 你抓他交差，別人會說你走後門。
 qsz: 對嘛對嘛。小兄弟，老夫拿一個真的 S 級，換我自己。
+@ bg=s22_qsz_calls_after time=精武門後院 tint=grey bgm=tense amb=street wx=dust
 qsz: 華夏風雲榜第九，玉面書生。他現在在哪，老夫聽得一清二楚。
 weic: 你為什麼要把晴兒推給楊再興？為什麼要逼我回帝城？
 qsz: 天機不可洩漏。老夫只說一句：你不回來，這一劫，會落在別人身上。
@@ -11369,6 +11827,7 @@ qsz: 高處，有鴿子的地方。你一個人，不夠。
 > 陳不凡。省城公安局長的兒子，自命不凡。每天在女生宿舍樓下堵她。
 cbf: 孫靜怡，我爸是陳局！跟我吃頓飯，會死嗎？
 > 一個戴眼鏡的年輕老師擋在她前面，客客氣氣地勸陳不凡走。是她們系的張輔導員。
+@ bg=s22_jing_pinches_cheek time=三天後．省城．大學校門 tint=warm bgm=school amb=school
 zfd: 這位同學，請你尊重一下孫同學的意願。
 > 然後我看到了她。
 > 孫靜怡。比我記憶裡高了一點，頭髮長了，還是那麼好看，還是那麼冷靜。
@@ -11390,6 +11849,7 @@ jing: 有啊。剛剛那個，你也看到了。不過不用你出手。
 == c22_jing_meet
 jing: 傻瓜。你這幾年跑到哪裡去了？我爸說你回小鎮了，又跑了。
 // 靜怡線保持姊弟／至親口吻（組長裁定 09:42）
+@ bg=s22_campus_bench_afternoon time=三天後．省城．大學校門 tint=warm bgm=school amb=school
 > 我們在校園的長椅上坐了一個下午。
 > 她說醫學院還要再念一年、再實習，以後想留在省城當醫生。
 > 她說嬌嬌在羅城做生意，做得很大，還準備來省城開分公司。
@@ -11428,6 +11888,7 @@ weic: 陳局，血閻羅也放了吧。我要找一個人，用得上他的人�
 > 從局裡出來，我去醫院看張輔導員。孫靜怡守在病房外面。
 > 張輔導員頭上、腿上都纏著繃帶，躺在床上朝我笑。
 zfd: 你就是小孫常常提起的那個弟弟？她說你從小就愛打架。
+@ bg=s22_counselor_suspect time=當晚．省城．醫院 tint=warm bgm=emo amb=hospital
 > 我也笑了。可是有一件事，怎麼都說不通。
 > 陳局說，前幾天他老婆被人從十三樓擄走，對方逼他找我的麻煩。
 > 十三樓，無聲無息。省城裡沒有這種高手。
@@ -11467,6 +11928,7 @@ jing: 還有，剛才謝什麼謝。姐弟之間，不說這個。
 ymss: 你是怎麼看出來的？
 weic: 你喜歡扮帥哥。就算當老師，也要當最帥的那個。
 ymss: 帥有什麼用？小孫同學還是不喜歡我。早知道就……算了。
+@ bg=s22_agu_blocks_yang time=深夜．學校後面的公園 tint=night bgm=boss amb=night
 ymss: 身分暴露了，那就把你們都殺光，再帶小孫走。
 // 張輔導員＝玉面書生；CAST 分兩個 id（zfd／ymss）以免劇透
 > 我抽出打神棍。這時候，黑暗裡傳出另一個聲音。
@@ -11519,6 +11981,7 @@ hx: 王巍，你別亂來。鬧鬧還等著你回來呢。
 @ bg=s22_rooftop_jade_scholar time=天快亮．老城區．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 > 天快亮的時候，我看到了。北邊老城區的天上，一大群鴿子在盤旋，一圈又一圈。
 // 原創：foresee（c22_qsz_warn 回頭聽了千算子的話）時多一句。
+@ bg=s22_pigeon_coop_defiance time=天快亮．老城區．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 ! when foresee==1
 > 高處，有鴿子的地方。千算子說的，就是這裡。
 > 後來我才知道，那是她自己弄的。她被綁在天台上，一直用身體去撞鴿籠。
@@ -11529,6 +11992,7 @@ hx: 王巍，你別亂來。鬧鬧還等著你回來呢。
 > 她選了死在這裡。
 > 我衝上天台的時候，他的手正伸向她的脖子。
 weic: 住手！
+@ bg=s22_rooftop_edge_grab time=天快亮．老城區．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 > 滿天台的鴿子被我驚起來。他一把抓住她，三步衝到天台邊上，把她半個身子推了出去。
 ymss: 王皇帝，你可以啊，竟然找得到這裡。
 weic: 你別衝動！我們的事跟她沒關係。你放了她，我放你走。我保證不抓你。
@@ -11565,6 +12029,7 @@ ymss: 她不肯跟我走，你說她該不該死？
 == c22_fight_ymss
 @ bg=s22_rooftop_pigeon_duel time=清晨．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 > 我什麼都不想了。只想殺了他。
+@ bg=s22_majie_appears time=清晨．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 > 他的陰陽神功，一隻手燙，一隻手冰。
 > 打神棍擦過他的手，我的右手半邊燙傷、半邊凍僵，棍子掉在了地上。
 > 龍王、血閻羅、王公子他們趕到了，幾十個人一起衝上去，被他一個人全部打趴。
@@ -11579,6 +12044,7 @@ mj: 電話裡你那個聲音，我還以為你要哭了。
 > 他看了我一眼，又看了一眼天台的邊緣。他什麼都沒說。他來晚了。
 @ bg=s22_rooftop_pigeon_duel_b time=清晨．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 > 玉面書生追了他三圈天台，連他的衣角都碰不到。馬傑一邊跑一邊笑。
+@ bg=s22_majie_kicks_knee time=清晨．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 mj: 你還沒資格跟我交手。對付你，也用不著我。是吧，王巍？
 > 他在替我爭取時間。我身上的寒氣，一點一點退了。
 weic: 六指前輩，辛苦了。接下來，交給我。
@@ -11601,7 +12067,7 @@ weic: 六指前輩，辛苦了。接下來，交給我。
 
 == c22_ymss_after
 ! if jing_saved==1 -> c22_jing_alive
-? t=mid def=0 | 他躺在我腳下，還有一口氣。
+? t=mid def=1 | 他躺在我腳下，還有一口氣。
 - 「綁起來。交給龍組。」 {heart+=2} -> c22_take_alive
 - [if jing_lost==1 && revenge>=4] 舉起打神棍 {revenge+=3;yama+=1} -> c22_revenge_end
 
@@ -11616,6 +12082,7 @@ jing: 巍子，你哭什麼？我又沒死。
 ! when knelt==1
 jing: 我看到你跪下了。以後不准再為我跪任何人。
 > 我撲過去抱住她。是熱的。
+@ bg=s22_kowtow_to_sky time=清晨．舊樓頂 tint=red bgm=boss amb=wind wx=dust
 jing: 有個六根手指的前輩，在半空中用一根鋼絲把我接住了，一層一層把我送到樓下。
 jing: 大家都以為你知道。
 weic: 姐，對不起。是我沒保護好妳。
@@ -11674,7 +12141,9 @@ zhao: 另外宣布：楊再興殺害手下組員、破壞隊長競選，罪名�
 > 阿古站在角落裡，眼淚流了滿臉。林玉瑤一再對不起他，他還是記著她。
 > 從今以後，他大概能真的放下了。
 > 只有一隊的趙鯤鵬縮在角落，吹鬍子瞪眼。
+@ bg=s22_hq_window_dove time=幾天後．龍組訓練館．授職 tint=gold bgm=triumph amb=crowd wx=lights
 > 散場的時候，一隻白鴿落在訓練館的窗台上。
+@ bg=s22_dove_note_leg time=幾天後．龍組訓練館．授職 tint=gold bgm=triumph amb=crowd wx=lights
 > 腳上綁著一張紙條，字歪歪扭扭的，是我認得的字。
 yq: 隊長？哼。別死。
 // 原創：一清舊債的第二次呼應（他一直在看著）
@@ -11707,6 +12176,7 @@ yq: 隊長？哼。別死。
 @ bg=s22_badge_yang_gate time=第二天．帝城．楊家門口 tint=warm bgm=emo amb=wind
 > 我拿著隊長的證件，走到楊家大門口。
 > 這一次，我不翻牆，不闖門。
+@ bg=s22_knock_yang_gate time=第二天．帝城．楊家門口 tint=warm bgm=emo amb=wind
 > 我堂堂正正地，抬手敲門。
 ! go c23_start
 
@@ -11786,6 +12256,7 @@ yq: 隊長？哼。別死。
 > 任老將軍說過：只要楊老將軍認我，任雨晴就嫁進楊家。這是兩家上一輩就想結的親。
 > 楊家能娶她的人，只剩下一個。楊家的外孫。
 > 楊老將軍坐在大院的槐樹下，看著我胸口的龍組證件，看了很久。
+@ bg=s23_grandpa_walks_in time=春天．帝城．楊家大院 tint=warm bgm=emo amb=wind
 ylj: 我說過，楊家不認你。
 weic: 我記得。
 ylj: ……我說話不算數了。你叫我一聲。
@@ -11814,10 +12285,11 @@ ylj: 聽雪。回家吃飯。
 jiaoc: 王巍，羅城都傳遍了，說你明天就要跟帝城的大小姐定下來了。
 weic: ……還不知道。
 jiaoc: 騙人。新娘子很漂亮吧？
+@ bg=s23_phone_listening time=任家擺酒前一晚．四合院 tint=night bgm=romance amb=room
 > 她的聲音在笑。可是我認識她十年了。我知道她在哭。
 jiaoc: 我只是想說……初一那年，你坐我旁邊，被趙松推倒的時候，我就想，這個人好笨。
 jiaoc: 後來我一直在等這個笨蛋，長大。
-? t=high def=1 | 電話那頭很安靜。
+? 電話那頭很安靜。
 - 「嬌嬌，謝謝你等我。明天的事，我得自己去面對。」 {heart+=2} -> c23_jiao_bless
 - 「嬌嬌……對不起。」 {jiao+=1} -> c23_jiao_sorry
 - [if qian>=28] 「嬌嬌，我明天不去任家。省城下雪了，有個人還在等我一句話。」 {qian+=2} -> c23_qian_end
@@ -11873,6 +12345,7 @@ jiaoc: 你只是……剛好沒有喜歡我而已。
 > 訂親宴擺在任家。兩位老將軍坐在主位，滿屋子的人都在等我開口。
 > 任雨晴坐在對面，低著頭，手指一直在轉茶杯。
 > 我站起來，朝兩位老將軍鞠了一個躬。
+@ bg=s23_ryq_toasts time=訂親宴．帝城任家 tint=warm bgm=emo amb=crowd
 weic: 任爺爺，外公。這門親事，是兩家幾十年前的帳。帳，我可以替楊家還清。
 weic: 可是雨晴的一輩子，不是帳。
 > 滿屋子的人都愣住了。任老將軍的臉漲得通紅。
@@ -11889,6 +12362,7 @@ wl: 上面下令了。龍組，裁撤。
 ryq: 王巍，你今天敢跑，我就追你到天涯海角。
 weic: 我不跑。
 > 豺狼和熊子連夜從小鎮坐火車趕來，第一次進帝城，看什麼都新鮮。
+@ bg=s23_wine_frozen time=婚禮．帝城 tint=warm bgm=romance amb=crowd wx=lights
 > 豺狼是伴郎，烤雞腿藏在西裝口袋裡。熊子負責擋酒，喝到第三桌就倒了。
 > 敬酒敬到一半，魏老走進來，臉色鐵青，在我耳邊說了一句話。
 wl: 上面下令了。龍組，裁撤。
@@ -11912,6 +12386,7 @@ ryq: 去吧。我在這裡等你。
 == c23_asylum
 @ bg=s23_asylum_hq time=當晚．龍組總部 tint=cold bgm=tense amb=room
 > 龍組的總部，表面上是一間國家精神病院。這是我加入龍組之後，最喜歡的一個笑話。
+@ bg=s23_badge_pushed_back time=當晚．龍組總部 tint=cold bgm=tense amb=room
 > 今晚，這個笑話一點都不好笑。
 > 五位元老坐在會議室裡，每一個都老得像一棵樹。
 > 他們說，裁撤的命令，是從很高的地方下來的。
@@ -11970,6 +12445,7 @@ cl: 閻羅大帝。殺光他們。
 ! go c23_rush_in
 
 == c23_watch_hands
+@ bg=s23_scarred_hand bgm=boss amb=room
 > 他的手垂在身側，指節腫大。手背上有幾道很舊、很長的疤。
 ! if scar_seen==1 -> c23_hands_seen
 > 這種疤，我好像在哪裡見過。想不起來。
@@ -12009,6 +12485,7 @@ cl: 閻羅大帝。殺光他們。
 @ bg=s23_generals_refuse time=隔天．楊家 tint=grey bgm=tense amb=room
 > 隔天，我去找兩位老將軍。我要人，要槍，要去中海別院把陳老抓出來。
 > 楊老將軍和任老將軍，坐在同一張桌子兩邊，同時搖頭。
+@ bg=s23_walks_out_cane time=隔天．楊家 tint=grey bgm=tense amb=room
 ylj: 中海別院，不是你能動的地方。也不是我們能動的地方。
 weic: 龍組的人死了一個。下一次，會是全部。
 rlj: 孩子，有些事，要等。
@@ -12033,6 +12510,7 @@ weic: 外公，你欠我爸的。這次，算你還。
 > 三天後，西山腳下，來了一群人。
 > 他們穿著各式各樣的衣服，有的開賓士，有的騎三輪車。
 > 他們的年紀都很大了，最年輕的，也有五十多歲。
+@ bg=s23_tiemian_laughs time=三天後．西山腳下 tint=dusk bgm=epic amb=wind wx=dust
 > 帶頭的是鐵面判官。他把我託他收著的那面龍頭令旗，雙手捧到我面前，單膝跪下。
 tmp: 地獄門、閻羅教、陰曹宮、幽冥宗……大閻王的舊部，參見少主。
 > 他身後，幾百個人，同時跪了下來。
@@ -12057,6 +12535,7 @@ weic: 好。從今天起，你們聽我的。
 > 那天晚上，山頂上亮起了很多車燈。
 > 陳小練帶著一隊人上來了。後面，是懷香格格，和青龍元帥的兵。
 lian: 巍哥。我欠你的，今天來還。
+@ bg=s23_lift_naonao time=當晚．山頂 tint=night bgm=triumph amb=wind wx=lights
 > 一個小男孩從懷香格格身後跑出來，衝過來抱住我的腿。
 > 鬧鬧。他已經會走路了，會說話了。
 > 他抬頭看著我，大聲喊了一聲：「爸爸！」
@@ -12116,6 +12595,7 @@ ql: 好。那你最好別死在那一刀之前。
 > 離出發還有兩個小時。有人敲了敲我靠著的車窗。
 > 任雨晴穿著一件不合身的軍大衣，頭髮被山風吹得亂七八糟。
 > 她說她在這裡等，等不下去，就跟著青龍的車上來了。
+@ bg=s23_shared_coat time=午夜前．山頂 tint=night bgm=emo amb=wind wx=lights
 ryq: 新婚第四天就上山打仗的新郎，全帝城只有你一個。
 weic: 剩下的喜酒，回來再喝。
 ryq: 你每次都說回來。回來、回來，我都記在本子上了，總共欠我十一次。
@@ -12130,6 +12610,7 @@ ryq: 那就好。會怕的人，才會想辦法活著回來。
 @ bg=s23_lastnight_miao_campfire time=午夜前．山腳營火 tint=warm bgm=emo amb=fire
 ! set night_with=2
 > 山腳下有一堆營火。苗雪雁蹲在火邊，在烤一串我叫不出名字的東西。
+@ bg=s23_silver_bell time=午夜前．山腳營火 tint=warm bgm=emo amb=fire
 > 她從苗家寨一路跟著隊伍過來，誰勸都不回去。
 miao: 坐。吃一口，寨子裡打仗前都吃這個。吃了，膽子大。
 weic: 裡面沒放蠱吧？
@@ -12227,6 +12708,7 @@ yq: 傻徒弟，發什麼呆。走。
 @ bg=s24_villa_pit_dawn time=黎明．中海別院 tint=red bgm=boss amb=wind wx=smoke
 ! title 終章|閻羅大帝
 > 天快亮的時候，中海別院安靜了。陳老不見了。他的人，倒了一地。
+@ bg=s24_uncle_trembles time=黎明．中海別院 tint=red bgm=boss amb=wind wx=smoke
 > 別院的正中央有一個很深的坑。坑底，有東西在爬。
 > 閻羅大帝從坑裡爬出來。他的面具裂了一半，露出一隻眼睛。那隻眼睛裡，沒有人的光。
 > 舅舅站在我旁邊。我轉頭看他，發現他在發抖。
@@ -12235,9 +12717,11 @@ weic: 舅舅……他到底是誰？
 uncleb: ……
 weic: 舅舅！
 uncleb: 你爸。
+@ bg=s24_villa_uncle_truth time=黎明．中海別院 tint=red bgm=boss amb=wind wx=smoke
 ! fx slow
 > 世界突然沒有了聲音。
 uncleb: 你爸沒有被判刑。任家那天，陳老把他帶走了。
+@ bg=s24_yanluo_crouch_pit time=黎明．中海別院 tint=red bgm=boss amb=wind wx=smoke
 uncleb: 陳老用了一種叫迷魂大法的東西。
 uncleb: 他現在不認得任何人。他只聽陳老的。
 uncleb: 我知道。你媽知道。一清也知道。我們一直……瞞著你。
@@ -12349,6 +12833,7 @@ yq: 能打出去……不算本事……能收回來……才是……
 ! go c24_hold_master
 
 == c24_hold_master
+@ bg=s24_master_steps_noon time=中午．別院台階 tint=warm bgm=sad amb=wind
 > 我抱著師父，坐在別院的台階上。太陽已經很高了。
 > 舅舅走過來，跪在我旁邊，摘下帽子。
 uncleb: 一清前輩……
@@ -12360,6 +12845,7 @@ uncleb: 他欠你爸一條命。他說過，總有一天要還。他還了。
 == c24_map
 @ bg=s24_dragon_vein_map time=三天後．四合院 tint=night bgm=tense amb=room
 > 師父下葬的那天，劉鑫一個人從中海別院走了出來，跪在墳前，再也沒有回去。
+@ bg=s24_finger_on_map time=三天後．四合院 tint=night bgm=tense amb=room
 > 那天晚上，他把那張發黃的地圖攤在桌上。他從省城帶到帝城，帶了好多年。
 liu: 這張練功圖，我照著衝了好幾年的穴。直到前天，我才發現羊皮的夾層裡，還縫著另一張圖。
 liu: 一張山的地形圖。我師父臨死前說過，圖裡藏著一個人的退路。現在我知道是誰的了。陳老。大別山。
@@ -12376,8 +12862,9 @@ du: 迷魂大法，我解不了。可是我知道一件事：被控制的人，�
 > 魏老站起來，聲音很沉。
 wl: 閻羅大帝，必須除掉。他手上有龍組的人命。
 wl: 王巍。這個任務，你可以不參加。
+@ bg=s24_uncle_smokes_corner time=隔天．龍組會議室 tint=cold bgm=boss amb=room
 > 所有人都看著我。舅舅坐在角落，抽著菸，沒有看我。他說過，迷魂大法，沒有辦法解。
-? t=high def=0 | 魏老在等你的回答。
+? t=high def=1 | 魏老在等你的回答。
 - 「我參加。」心裡想的，是找機會喚醒他 {dad+=2} -> c24_fake_yes
 - 「我不參加。我也不會讓你們殺他。」 {dad+=3;fame-=1} -> c24_refuse
 - 「……我參加。如果他真的回不來了，我親手送他走。」 {kill_dad=1;yama+=1} -> c24_true_yes
@@ -12438,9 +12925,10 @@ cl: 閻羅大帝——殺了他！
 mom.u: 王觀雨！
 > 是我媽。她不該在這裡。她從山腳下，一個人爬上來的。
 > 閻羅大帝停住了。他轉過頭，看著我媽。
+@ bg=s24_yanluo_walks_to_mom bgm=boss amb=wind wx=dust
 mom.u: 王觀雨！你看清楚！我是聽雪！
 > 他的喉嚨裡，發出一種很奇怪的聲音。像在哭，又像在笑。
-? t=high def=0 | 閻羅大帝慢慢走向媽媽。
+? t=high def=1 | 閻羅大帝慢慢走向媽媽。
 - 跟媽媽一起喊：「爸！」 {dad+=3;mom+=1} -> c24_shout_together
 - 衝過去，擋在媽媽前面 {mom+=3;dad+=1} -> c24_shield_mom
 - 趁他停住，攻擊他的後背 {dad-=3;kill_dad+=1} -> c24_attack
@@ -12467,6 +12955,22 @@ weic: 爸。衝我來。別碰她。
 ! go c24_struggle
 
 == c24_attack
+// 雲公子 11/03：會議上已說過「親手送他走」（kill_dad 選完這項會到 2＝直接 ruin）時，先問一次確認題
+! if kill_dad>=2 -> c24_attack_ask
+! go c24_attack_hit
+
+== c24_attack_ask
+> 我抓起打神棍。會議室裡我說過的那句話，又在耳朵裡響起來。
+? t=calm def=1 | 這一棍下去，就收不回來了。
+- 扔掉棍子，張開手擋在他面前 {kill_dad=1;dad+=3} -> c24_attack_pulled
+- 打下去 -> c24_attack_hit
+
+== c24_attack_pulled
+> 棍子掉在石階上。他的腳步，停了一下。
+weic.u: 爸！是我！
+! go c24_struggle
+
+== c24_attack_hit
 ! fx hit
 > 我衝上去，一棍打在他的背上。
 > 他沒有倒。他轉過身，那隻沒有光的眼睛，盯著我。
@@ -12485,12 +12989,45 @@ weic: 爸。衝我來。別碰她。
 weic.u: 爸！你醒醒！你說過累了就回家！我在這裡！我在這裡啊！
 ! game stance 10 抱住他，不要放手
 // 喚醒判定（雲公子，門檻依 2000 條隨機路徑第 70 百分位≈72～73；組長裁定取 75（約三成通過），見 PROGRESS「終章喚醒門檻」）
-// dad<60 反目 → c24_fail；60..74 掙扎 → c24_fail_close；>=75 喚醒線 → c24_memory（回憶選對才醒）
+// dad<50 反目 → c24_fail；50..74 掙扎 → c24_close（兩次機會，叫對了半醒，都叫錯 c24_fail_close）；>=75 喚醒線 → c24_memory（回憶選對才醒）
+// 雲公子 11/03：原本 60..74 直接 c24_fail_close、<60 直接 c24_fail；現在反目線 60→50，50..74（或說過「送他走」且 <80）先走 c24_close；75／80 不動
 ! if kill_dad>=2 -> c24_fail
-! if dad<60 -> c24_fail
-! if kill_dad==1 && dad<80 -> c24_fail_close
-! if dad<75 -> c24_fail_close
+! if dad<50 -> c24_fail
+! if kill_dad==1 && dad<80 -> c24_close
+! if dad<75 -> c24_close
 ! go c24_memory
+
+== c24_close
+> 拳頭停了一下。只有一下。
+> 他低頭看著我，嘴唇動了動，好像要叫一個名字。
+> 杜城說過，心裡最深的那個名字，是鎖不住的。
+? t=calm def=1 | 他的拳頭還舉著。你喊他什麼？
+- 「爸，吃早餐沒？」 {close_ok=1;dad+=1} -> c24_close_wake
+- 「閻羅大帝！我命令你，住手！」 {close_w=1} -> c24_close_retry
+- 「爸，門房那張小板凳，我還給你留著。」 {close_ok=1;dad+=1} -> c24_close_wake
+- 「陳老騙了你！你要殺的人是他！」 {close_w=2} -> c24_close_retry
+- 「爸，紅藥水。你拿衛生紙沾著，給我擦過臉。」 {close_ok=1;dad+=1} -> c24_close_wake
+
+== c24_close_retry
+> 他的手動了一下。拳頭沒有落下來。
+> 那樣叫，叫不到他。我要叫的，是木料廠門房裡那個人。
+? t=calm def=1 | 他還在發抖。再喊他一次。
+- 「爸，吃早餐沒？」 {close_ok=1;dad+=1} -> c24_close_wake
+- [if close_w!=1] 「閻羅大帝！我命令你，住手！」 -> c24_fail_close
+- 「爸，門房那張小板凳，我還給你留著。」 {close_ok=1;dad+=1} -> c24_close_wake
+- [if close_w!=2] 「陳老騙了你！你要殺的人是他！」 -> c24_fail_close
+- 「爸，紅藥水。你拿衛生紙沾著，給我擦過臉。」 {close_ok=1;dad+=1} -> c24_close_wake
+
+== c24_close_wake
+// 原創（雲公子 11/03）：差一點的人叫對了 → 半醒（meta.js halfwake req 加 close_ok==1）。不加 @ bg，沿用 s24_hold_his_leg
+> 拳頭慢慢鬆開了。他退了兩步，坐在石階上，低頭看著自己的手。
+> 他沒有再打任何人。可是他看我的眼神，像在看一個陌生人。
+> 那句話，他聽見了。只是還想不起來，說話的人是誰。
+> 我媽和舅舅醒過來的時候，陳老已經被龍組押下了山。
+> 後來，龍組把他安置在南方海邊一間安靜的療養院。我每個星期都去。
+dadb: 小兄弟，你又來啦？
+> 他叫我小兄弟。可每次我要走，他都會問一句：吃早餐沒？
+! end halfwake
 
 == c24_fail
 @ bg=e_ruin fade=black bgm=sad amb=wind
@@ -12504,9 +13041,8 @@ weic.u: 爸！你醒醒！你說過累了就回家！我在這裡！我在這裡
 ! end ruin
 
 == c24_fail_close
+// 雲公子 11/03：開頭兩句移到 c24_close（文字不變）
 @ bg=e_ruin fade=black bgm=sad amb=wind
-> 拳頭停了一下。只有一下。
-> 他低頭看著我，嘴唇動了動，好像要叫一個名字。
 > 他眼睛裡那一點光，又暗了下去。
 > 我被他甩出去，撞在石頭上。龍組的人衝上來。槍聲響起的時候，我閉上了眼睛。
 > 後來他們告訴我，他倒下以前，把手伸向我躺著的方向。
@@ -12536,6 +13072,7 @@ weic.u: 爸！你醒醒！你說過累了就回家！我在這裡！我在這裡
 == c24_halfwake
 @ bg=e_halfwake fade=black bgm=sad amb=sea
 > 拳頭慢慢放下了。他退了兩步，坐在地上，像一個走了很遠的路的人。
+@ bg=s24_halfwake_gatekeeper_smile
 > 他沒有再打任何人。可是他看我的眼神，像在看一個陌生人。
 > 那句話，叫醒的是閻羅大帝、是盟主、是別人的名字。不是他自己。
 > 我媽和舅舅醒過來的時候，陳老已經被龍組押下了山。
@@ -12614,9 +13151,10 @@ wl: 國家需要你。
 - [if bro>=28 && power<4] 「我想把位子交出去，回小鎮跟兄弟們過日子。」 {bro+=2} -> c24_bro_end
 - [if power>=4 && bro>=15] 「帝城和十三城需要一個人坐鎮。我留下來。」 {power+=1} -> c24_meng_end
 - [if jing_lost!=1 && jing>=14] 「省城有個姐姐，我欠她一聲謝謝。我想先去還。」 {jing+=2} -> c24_jing_end
-- [if qian>=20] 「省城下雪了。馮家只剩她一個人撐著，我想去當她的朋友。」 {qian+=2} -> c24_qian_end
+- [if qian>=22] 「省城下雪了。馮家只剩她一個人撐著，我想去當她的朋友。」 {qian+=2} -> c24_qian_end
 
 == c24_accept
+@ bg=s24_dad_calls_weizi time=兩個月後．老家門口 bgm=epic amb=room
 weic: 我去。
 > 我把牛皮紙袋收進懷裡。我爸坐在院子裡，在剝花生。他沒有問那是什麼。
 dadb: 要出門？
@@ -12660,6 +13198,7 @@ dadb: 去吧。早點回來吃飯。
 == c24_jing_end
 @ bg=e_jing fade=white bgm=emo amb=wind
 > 我回到省城。醫院後面，有一棵很大的鳳凰木。
+@ bg=s24_jing_soymilk
 > 靜怡現在是實習醫生，剛跟完夜班，白袍還沒脫。
 > 她手上拿著兩杯熱豆漿，一杯塞給我。
 > 我跟她說謝謝。謝謝初一那年，她在頂樓樓梯間替我擦藥。
